@@ -8,7 +8,7 @@ written with different languages working together.
 
 Look the CATERING Repository [here](https://github.com/EdgarArguelles/Catering)
 
-#CATERING React client
+# CATERING React client
 This project is a React Client used by CATERING
 
 # Live API:
