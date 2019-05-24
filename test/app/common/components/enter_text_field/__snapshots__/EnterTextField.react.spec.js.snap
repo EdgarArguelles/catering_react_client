@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components -> EnterTextField snapshot should render TextField with props 1`] = `
+<div
+  className="MuiFormControl-root-1 MuiFormControl-marginDense-3 className test"
+  onKeyUp={[Function]}
+>
+  <div
+    className="MuiInputBase-root-18 MuiInput-root-5 MuiInput-underline-9 MuiInputBase-formControl-19 MuiInput-formControl-6 MuiInputBase-marginDense-25"
+    onClick={[Function]}
+  >
+    <input
+      aria-invalid={false}
+      autoFocus={true}
+      className="MuiInputBase-input-28 MuiInput-input-13 MuiInputBase-inputMarginDense-29 MuiInput-inputMarginDense-14"
+      defaultValue="initValue test"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="placeholder test"
+      required={false}
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`Components -> EnterTextField snapshot should render TextField without props 1`] = `
+<div
+  className="MuiFormControl-root-1 MuiFormControl-marginDense-3"
+  onKeyUp={[Function]}
+>
+  <div
+    className="MuiInputBase-root-18 MuiInput-root-5 MuiInput-underline-9 MuiInputBase-formControl-19 MuiInput-formControl-6 MuiInputBase-marginDense-25"
+    onClick={[Function]}
+  >
+    <input
+      aria-invalid={false}
+      className="MuiInputBase-input-28 MuiInput-input-13 MuiInputBase-inputMarginDense-29 MuiInput-inputMarginDense-14"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      required={false}
+      type="text"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,37 @@
+@import '../../../../../Variables';
+
+#dish-toolbar {
+  height: $toolbar-height;
+  background-color: $header-color;
+
+  .search {
+    width: 200px;
+    margin: auto 10px auto auto;
+    color: #fff;
+    transition-duration: 0.5s;
+
+    @media (max-width: $screen-xs) {
+      width: 150px;
+    }
+
+    &:after {
+      border-bottom: 2px solid $main-color;
+    }
+
+    .clear-search-box-btn {
+      color: #fff;
+    }
+  }
+
+  .search-active {
+    width: 300px;
+
+    @media (max-width: $screen-xs) {
+      width: 200px;
+    }
+
+    @media (max-width: 425px) {
+      width: 175px;
+    }
+  }
+}

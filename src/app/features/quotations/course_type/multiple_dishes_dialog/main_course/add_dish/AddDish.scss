@@ -1,0 +1,14 @@
+@import '../../../../../../Variables';
+@import '../MainCourse';
+
+.add-dish {
+  min-width: 88px !important;
+  border: dashed $gray !important;
+  border-radius: $radius !important;
+
+  i {
+    padding: 25px 0;
+    font-size: xx-large;
+    color: $gray;
+  }
+}

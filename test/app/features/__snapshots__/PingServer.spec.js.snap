@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PingServer snapshot should render header 1`] = `
+<header
+  id="header"
+>
+  <div
+    className="MuiGrid-container-1 MuiGrid-justify-xs-space-between-20 header-container"
+  >
+    <div
+      id="logo"
+    >
+      <a
+        href="#home"
+      >
+        <img
+          className="company-logo"
+          id="logo"
+          src={
+            Object {
+              "\\">": "\\">",
+              "145661": "145661",
+              "3-c011": "3-c011",
+              "org": "org",
+              "w3": "w3",
+            }
+          }
+        />
+      </a>
+    </div>
+    <nav
+      id="nav-menu-container"
+    >
+      <ul
+        className="nav-menu"
+      >
+        <li
+          className="menu-active"
+        >
+          <a
+            href="#home"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="#about"
+          >
+            Quienes Somos
+          </a>
+        </li>
+        <li>
+          <a
+            href="#services"
+          >
+            Servicios
+          </a>
+        </li>
+        <li>
+          <a
+            href="#quotations"
+          >
+            Presupuesto
+          </a>
+        </li>
+        <li>
+          <a
+            href="#contact"
+          >
+            Contactanos
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+`;

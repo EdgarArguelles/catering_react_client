@@ -1,0 +1,21 @@
+@import '../../../../../Variables';
+
+$radius: 10px;
+
+#main-course {
+  .loader {
+    button {
+      padding: 0;
+
+      svg {
+        height: 104px;
+        width: 88px;
+      }
+    }
+  }
+
+  .main-course-divider {
+    margin-top: 20px;
+    height: 4px;
+  }
+}

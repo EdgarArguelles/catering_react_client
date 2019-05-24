@@ -1,0 +1,14 @@
+@import '../../Variables';
+
+.section-header {
+  .section-title {
+    font-weight: 700;
+    font-size: 2em;
+    font-style: oblique;
+  }
+
+  .section-description {
+    margin-bottom: 50px;
+    line-height: 35px;
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../../../Variables';
+
+.course-type {
+  margin-top: 20px;
+
+  @media (max-width: $screen-xs) {
+    margin-top: 0;
+  }
+
+  .name {
+    font-style: oblique;
+    font-size: x-large;
+    color: #E8453C;
+  }
+
+  .loader {
+    width: 400px;
+    margin-left: 200px;;
+  }
+
+  ol {
+    text-align: justify;
+
+    a {
+      cursor: pointer;
+    }
+  }
+}

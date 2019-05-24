@@ -1,0 +1,27 @@
+@import '../../../../../../../../Variables';
+
+.menu-item-header {
+  .menu-title {
+    color: #E8453C;
+
+    .avatar {
+      background-color: $main-color;
+      float: left;
+      margin-top: -10px;
+    }
+
+    input {
+      margin-top: -10px;
+    }
+
+    i {
+      font-size: small;
+      position: fixed;
+      padding: 0 5px;
+    }
+  }
+
+  button {
+    margin-right: 10px;
+  }
+}

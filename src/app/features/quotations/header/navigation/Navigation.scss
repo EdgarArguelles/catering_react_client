@@ -1,0 +1,35 @@
+@import '../../../../Variables';
+@import '../Header';
+
+#navigation {
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 389px) {
+    max-width: 170px;
+  }
+
+  button {
+    margin-right: 15px;
+
+    i {
+      color: #fff;
+    }
+  }
+
+  p {
+    max-height: $header-height;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: x-large;
+
+    @media (max-width: $screen-xs) {
+      font-size: large;
+    }
+
+    @media (max-width: $screen-xxs) {
+      font-size: small;
+      margin-left: -20px;
+    }
+  }
+}

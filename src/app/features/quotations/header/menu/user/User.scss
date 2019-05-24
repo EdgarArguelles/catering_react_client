@@ -1,0 +1,17 @@
+@import '../../../../../Variables';
+
+$avatar-size: 50px;
+
+#user {
+  .user-name {
+    @media (max-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  .avatar {
+    height: $avatar-size;
+    width: $avatar-size;
+    margin-left: 10px;
+  }
+}

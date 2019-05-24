@@ -1,0 +1,15 @@
+@import '../../../../../Variables';
+
+#session {
+  text-align: center;
+
+  button {
+    display: block;
+    margin: auto auto 30px auto;
+    width: 260px;
+
+    @media (max-width: 349px) {
+      margin-left: -15px;
+    }
+  }
+}

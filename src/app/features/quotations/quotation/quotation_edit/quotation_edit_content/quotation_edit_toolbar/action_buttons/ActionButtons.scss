@@ -1,0 +1,37 @@
+@import '../../../../../../../Variables';
+@import '../../../../../../../common/components/fetch_button/FetchButton';
+
+$action-margin-left: 20px;
+
+#action-buttons {
+  margin: auto 10px auto auto;
+
+  .action-progress {
+    margin-left: $action-margin-left;
+  }
+
+  button {
+    margin-left: $action-margin-left;
+    width: 230px;
+
+    @media (max-width: $screen-sm) {
+      width: 175px;
+    }
+
+    @media (max-width: 649px) {
+      width: $action-small-width;
+
+      .button-label {
+        display: none;
+      }
+
+      .button-icon {
+        margin-right: 0;
+      }
+    }
+
+    &:disabled {
+      background-color: $gray;
+    }
+  }
+}

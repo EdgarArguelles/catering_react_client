@@ -1,0 +1,6 @@
+@import '../../../../../../Variables';
+@import '../create_new_quotation/CreateNewQuotation';
+
+#continue-quotation {
+  @extend #create-new-quotation;
+}

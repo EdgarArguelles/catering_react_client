@@ -1,0 +1,45 @@
+@import '../../../Variables';
+
+$btn-width: 56px;
+
+.course-type {
+  .btn-container {
+    width: $btn-width;
+    position: fixed;
+    bottom: $floating-button-bottom;
+    margin-left: calc(100vw - #{$btn-width} - #{$floating-button-right});
+
+    @media (max-width: 1020px) {
+      margin-left: calc(100vw - #{$btn-width} - 20px);
+    }
+
+    @media (max-width: 880px) {
+      margin-left: calc(100vw - #{$btn-width} - 140px);
+    }
+
+    @media (max-width: 860px) {
+      margin-left: calc(100vw - #{$btn-width} - 120px);
+    }
+
+    @media (max-width: 840px) {
+      margin-left: calc(100vw - #{$btn-width} - 100px);
+    }
+
+    @media (max-width: 820px) {
+      margin-left: calc(100vw - #{$btn-width} - 80px);
+    }
+
+    @media (max-width: 800px) {
+      margin-left: calc(100vw - #{$btn-width} - 60px);
+    }
+
+    button {
+      transition: transform 1s;
+      animation-fill-mode: initial;
+
+      i {
+        font-size: initial;
+      }
+    }
+  }
+}

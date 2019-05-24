@@ -1,0 +1,43 @@
+@import '../../../../Variables';
+
+$contact-avatar: 120px;
+
+#media {
+  background: url(../../../../../assets/img/contact-bg.jpg) fixed center;
+
+  .card-media {
+    height: $contact-card-normal-height;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    @media (max-width: $screen-xs) {
+      height: $contact-card-xs-height;
+      padding-top: 50px;
+    }
+
+    .avatar {
+      margin: 40px auto 50px auto;
+      height: $contact-avatar;
+      width: $contact-avatar;
+      border: 5px solid #fff;
+
+      @media (max-width: $screen-xs) {
+        margin: 10px auto 35px auto;
+      }
+    }
+
+    .social-links {
+      button {
+        font-size: 1.3em;
+        background: #000;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        transition: 0.3s;
+
+        &:hover {
+          background: $main-color;
+        }
+      }
+    }
+  }
+}

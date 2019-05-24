@@ -1,0 +1,12 @@
+@import '../../Variables';
+
+#auth {
+  .waiting {
+    display: inline-grid;
+
+    .progress {
+      margin: -25px auto 0 auto;
+      width: 100px;
+    }
+  }
+}

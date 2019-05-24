@@ -1,0 +1,30 @@
+@import '../../../Variables';
+
+.editable-field {
+  .not-editing {
+    display: inline-flex;
+    padding-left: 50px;
+
+    .edit-button {
+      height: 50px;
+    }
+  }
+
+  .editing {
+    margin: 22px 0;
+    min-width: 400px;
+    max-width: 70%;
+
+    @media (max-width: 500px) {
+      min-width: auto;
+    }
+
+    input {
+      font-size: xx-large;
+
+      @media (max-width: $screen-xs) {
+        font-size: x-large;
+      }
+    }
+  }
+}

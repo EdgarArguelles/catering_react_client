@@ -1,0 +1,19 @@
+@import '../../../../Variables';
+
+#selected-dish-dialog {
+  div:first-child[aria-hidden=true] {
+    background-color: transparent;
+  }
+
+  .selected-dish-dialog-content {
+    .empty {
+      min-height: 500px;
+    }
+  }
+
+  .selected-dish-dialog-content, .selected-dish-dialog-title {
+    @media (max-width: $screen-xxs) {
+      padding: 15px 0;
+    }
+  }
+}

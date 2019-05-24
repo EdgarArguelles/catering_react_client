@@ -1,0 +1,18 @@
+@import '../../../../../../Variables';
+@import '../MainCourse';
+
+.dish-thumbnail {
+  padding: 0 !important;
+  box-shadow: 5px 5px 5px grey;
+
+  .dish-image {
+    height: 104px;
+    width: 88px;
+    border-radius: $radius;
+
+    &:hover {
+      opacity: 0.85;
+      box-shadow: 10px 10px 10px grey;
+    }
+  }
+}

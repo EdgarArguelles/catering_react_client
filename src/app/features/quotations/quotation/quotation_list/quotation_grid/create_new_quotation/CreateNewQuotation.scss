@@ -1,0 +1,19 @@
+@import '../../../../../../Variables';
+
+#create-new-quotation {
+  width: 100%;
+  min-height: 250px;
+  border: dashed $gray;
+  color: $gray;
+  border-radius: $card-border-radius;
+
+  span {
+    display: flex;
+    flex-direction: column;
+
+    i {
+      padding: 25px 0;
+      font-size: xx-large;
+    }
+  }
+}

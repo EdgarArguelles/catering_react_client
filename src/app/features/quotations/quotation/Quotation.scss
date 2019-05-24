@@ -1,0 +1,42 @@
+@import '../../../Variables';
+
+.quotation {
+  width: 100%;
+
+  .quotation-card {
+    background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+    width: 100%;
+
+    .avatar {
+      background-color: $main-color;
+      margin: auto;
+    }
+
+    .title {
+      color: #2196f3;
+      font-size: x-large;
+    }
+
+    .price {
+      font-size: medium;
+
+      .amount {
+        font-style: italic;
+      }
+    }
+
+    .date {
+      color: $gray;
+
+      .relative-date {
+        margin-bottom: 0;
+        font-size: medium;
+      }
+
+      .exact-date {
+        margin-top: 0;
+        font-size: x-small;
+      }
+    }
+  }
+}

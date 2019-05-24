@@ -1,0 +1,13 @@
+@import '../../../Variables';
+
+#services {
+  padding: $content-padding;
+
+  @media (max-width: $screen-lg) {
+    padding: $content-padding-lg;
+  }
+
+  p {
+    line-height: 35px;
+  }
+}

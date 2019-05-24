@@ -1,0 +1,48 @@
+@import '../../../../Variables';
+
+.course-content {
+  .course-drag-icon {
+    color: $gray;
+    float: left;
+    margin: 10px 15px 0 -10px;
+  }
+
+  .avatar {
+    background-color: $main-color;
+  }
+
+  ul {
+    margin-right: 10px;
+    list-style-type: none;
+
+    @media (max-width: $screen-xs) {
+      padding-left: 5px;
+    }
+
+    li {
+      font-size: large;
+      font-style: italic;
+
+      &.deprecated-text {
+        text-decoration: line-through;
+        color: $gray;
+      }
+
+      &:before {
+        content: "•";
+        padding-right: 8px;
+        color: $secondary-color;
+      }
+
+      a {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .price {
+    margin-right: 10px;
+    font-size: small;
+    color: $gray;
+  }
+}

@@ -1,0 +1,62 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~animate.css/animate.css';
+@import './Variables';
+
+body {
+  margin: 0;
+
+  .menu-icon {
+    margin-right: 20px;
+  }
+
+  .button-icon {
+    margin-right: 20px;
+    font-size: x-large;
+  }
+
+  .floating-button {
+    position: fixed;
+    bottom: $floating-button-bottom;
+    right: $floating-button-right;
+    font-size: x-large;
+
+    @media (max-width: $screen-sm) {
+      right: $floating-button-right-sm;
+    }
+
+    @media (max-width: $screen-xs) {
+      right: $floating-button-right-xs;
+    }
+  }
+}
+
+#app {
+  font-family: "Open Sans", sans-serif;
+
+  .hidden {
+    display: none;
+  }
+
+  .company-logo {
+    cursor: pointer;
+    max-width: 130px;
+    max-height: 60px;
+  }
+
+  #expand-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+
+  @media (max-width: $screen-sm) {
+    .move-up {
+      transition: transform 0.2s !important;
+      transform: translate3d(0, -46px, 0) !important;
+
+      @media (max-width: 383px) {
+        transform: translate3d(0, -80px, 0) !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data -> Dishes -> Loader snapshot should render h1 Test 1`] = `
+<h1>
+  Test
+</h1>
+`;
+
+exports[`Data -> Dishes -> Loader snapshot should render loader 1`] = `
+<div>
+  loader
+</div>
+`;
+
+exports[`Data -> Dishes -> Loader snapshot should render null 1`] = `null`;
+
+exports[`Data -> Dishes -> Loader snapshot should render renderer 1`] = `
+<div>
+  renderer
+</div>
+`;

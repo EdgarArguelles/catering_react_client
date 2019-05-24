@@ -1,0 +1,36 @@
+@import '../../../../../Variables';
+@import '../../../header/Header';
+
+#empty-quotation-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - #{$header-height});
+  color: $gray;
+
+  i {
+    font-size: 10em;
+  }
+
+  .title {
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    font-size: large;
+  }
+
+  .create {
+    display: block;
+    margin: 40px auto;
+    border-radius: 50px;
+    width: 350px;
+
+    @media (max-width: 350px) {
+      width: auto;
+    }
+  }
+}

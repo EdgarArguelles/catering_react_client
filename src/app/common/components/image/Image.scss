@@ -1,0 +1,13 @@
+@import '../../../Variables';
+
+.loading-image {
+  background: url(../../../../assets/img/loading-large.gif) no-repeat center;
+  width: 350px;
+  height: 350px;
+}
+
+.loading-small {
+  background: url(../../../../assets/img/loading.png) no-repeat center;
+  width: 128px;
+  height: 128px;
+}

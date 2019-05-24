@@ -1,0 +1,32 @@
+@import '../../../../../Variables';
+
+$img-size: 180px;
+
+#empty-course-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: $img-size;
+    height: $img-size;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  p {
+    color: $gray;
+  }
+
+  .title {
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: large;
+  }
+}

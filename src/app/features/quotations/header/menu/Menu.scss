@@ -1,0 +1,28 @@
+@import '../../../../Variables';
+@import '../Header';
+
+#menu {
+  display: flex;
+  margin: 0 0 0 auto;
+
+  p {
+    text-transform: uppercase;
+    font-size: small;
+  }
+
+  a, button {
+    p {
+      @media (max-width: $screen-xs) {
+        display: none;
+      }
+    }
+
+    @media (max-width: $screen-menu) {
+      padding: 5px;
+    }
+
+    @media (max-width: $screen-xs) {
+      min-width: 50px;
+    }
+  }
+}

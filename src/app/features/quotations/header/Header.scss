@@ -1,0 +1,28 @@
+@import '../../../Variables';
+
+$header-height: 64px;
+$screen-menu: 734px;
+$icon-size: 1.8em;
+
+#quotations-header {
+  height: $header-height;
+
+  #app-bar {
+    height: $header-height;
+    background: $header-color;
+    box-shadow: none;
+
+    .tool-bar {
+      padding: 0 24px;
+
+      @media (max-width: $screen-menu) {
+        padding: 0 10px;
+      }
+
+      i {
+        font-size: $icon-size;
+        margin-right: 5px;
+      }
+    }
+  }
+}

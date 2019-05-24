@@ -1,0 +1,11 @@
+@import '../../../../../../Variables';
+
+#add-button {
+  @media (max-width: $screen-sm) {
+    margin-right: 5px;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+}

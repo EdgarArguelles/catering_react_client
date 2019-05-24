@@ -1,0 +1,27 @@
+@import '../../../../../../Variables';
+
+#menu-grid {
+  margin: 0;
+
+  .animated {
+    transform: scale(1);
+  }
+
+  .new-menu-button {
+    width: 95%;
+    min-height: 325px;
+    border: dashed $gray;
+    color: $gray;
+    border-radius: $card-border-radius;
+
+    span {
+      display: flex;
+      flex-direction: column;
+
+      i {
+        padding: 25px 0;
+        font-size: xx-large;
+      }
+    }
+  }
+}

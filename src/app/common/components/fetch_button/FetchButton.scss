@@ -1,0 +1,54 @@
+@import '../../../Variables';
+
+$action-small-width: 50px;
+
+.fetch-button {
+  .action-progress {
+    position: absolute;
+    color: $main-color;
+    z-index: 1;
+  }
+
+  .action-button {
+    transition: width 0.5s, transform 1s !important;
+
+    &.fetching {
+      width: $action-small-width !important;
+      background-color: $gray !important;
+
+      .button-label {
+        display: none;
+      }
+
+      .button-icon {
+        margin-right: 0;
+      }
+    }
+
+    &.success,
+    &.error {
+      color: #fff;
+      width: 200px !important;
+
+      @media (max-width: 629px) {
+        width: $action-small-width !important;
+
+        .button-label {
+          display: none;
+        }
+
+        .button-icon {
+          margin-right: 0;
+        }
+      }
+    }
+
+    &.success {
+      background-color: $main-color !important;
+    }
+
+    &.error {
+      background-color: $error-color !important;
+    }
+  }
+}

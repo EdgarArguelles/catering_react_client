@@ -1,0 +1,68 @@
+@import '../../../../Variables';
+
+.action {
+  width: 100%;
+  height: 100%;
+  border-radius: $card-border-radius !important;
+  box-shadow: 5px 5px 5px grey;
+  transition: 0.5s;
+
+  .image {
+    border-radius: $card-border-radius;
+    width: 100%;
+    height: 100%;
+  }
+
+  .absolute {
+    border-radius: $card-border-radius;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .image-backdrop {
+    background-color: #000;
+    opacity: 0.4;
+  }
+
+  .image-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .image-title {
+    position: relative;
+    padding: 5px;
+    font-size: x-large;
+  }
+
+  .image-marked {
+    height: 3px;
+    width: 50px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -2px;
+    left: calc(50% - 25px);
+  }
+
+  &:hover {
+    box-shadow: 50px 50px 50px grey;
+
+    .image-backdrop {
+      opacity: 0.15;
+    }
+
+    .image-title {
+      text-shadow: 2px 2px #636262;
+      border: 4px solid #fff;
+    }
+
+    .image-marked {
+      opacity: 0;
+    }
+  }
+}

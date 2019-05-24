@@ -1,0 +1,38 @@
+@import '../../../Variables';
+
+#contact {
+  .home-screen {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../../../../assets/img/contact-bg.jpg) fixed center center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+
+    .container {
+      height: 100%;
+
+      #media {
+        background: none;
+      }
+
+      @media (max-width: $screen-xs) {
+        height: $contact-card-normal-height + $contact-card-xs-height;
+      }
+    }
+  }
+
+  .in-dialog {
+    #content {
+      .content {
+        @media (max-width: $screen-xs) {
+          button {
+            padding-left: 0;
+
+            i {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

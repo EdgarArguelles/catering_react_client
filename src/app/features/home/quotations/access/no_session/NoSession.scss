@@ -1,0 +1,20 @@
+@import '../../../../../Variables';
+
+#no-session {
+  text-align: center;
+
+  button {
+    width: 260px;
+    color: #fff;
+    margin: auto auto 30px auto;
+    background-color: $main-color;
+
+    @media (max-width: 349px) {
+      margin-left: -15px;
+    }
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}

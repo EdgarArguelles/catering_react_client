@@ -1,0 +1,37 @@
+@import '../../../../../../Variables';
+
+#quotation-edit-toolbar {
+  height: $toolbar-height;
+  background-color: $header-color;
+
+  .quotation-price {
+    font-size: x-large;
+    color: #fff;
+
+    @media (max-width: 369px) {
+      font-size: medium;
+    }
+
+    .price-question {
+      font-size: x-small;
+      margin-top: -15px;
+      color: #fff;
+    }
+
+    @media (max-width: 810px) {
+      margin-left: -15px;
+
+      .price-label {
+        font-size: medium;
+      }
+    }
+
+    @media (max-width: 689px) {
+      margin-left: 0;
+
+      .price-label {
+        display: none;
+      }
+    }
+  }
+}

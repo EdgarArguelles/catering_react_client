@@ -1,0 +1,34 @@
+@import '../../../../../Variables';
+
+#dish-header {
+  display: flex;
+  align-items: center;
+
+  .navigation {
+    font-size: 1.8em;
+  }
+
+  .title {
+    flex: 1 1 auto;
+    margin-left: 15px;
+
+    .sub-title {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: medium;
+    }
+  }
+
+  @media (max-width: $screen-xxs) {
+    .actions {
+      margin-right: 5px;
+
+      button {
+        font-size: x-small;
+      }
+    }
+
+    .title {
+      font-size: medium;
+    }
+  }
+}

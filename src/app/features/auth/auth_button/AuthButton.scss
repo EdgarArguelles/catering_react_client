@@ -1,0 +1,15 @@
+@import '../../../Variables';
+
+.auth-button {
+  @media (max-width: $screen-xs) {
+    font-size: small !important;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  i {
+    width: 14px;
+  }
+}

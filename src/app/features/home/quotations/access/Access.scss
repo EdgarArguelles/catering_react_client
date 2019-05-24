@@ -1,0 +1,17 @@
+@import '../../../../Variables';
+
+#access {
+  #welcome-back {
+    margin-top: 50px;
+    border-radius: 50px;
+
+    .button-label {
+      margin: 10px;
+      line-height: 40px;
+    }
+
+    .button-avatar {
+      float: right;
+    }
+  }
+}

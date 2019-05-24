@@ -1,0 +1,16 @@
+@import '../../../../Variables';
+
+#quotation-list {
+  padding-right: 10px;
+
+  .load-more {
+    display: block;
+    margin: 40px auto;
+    border-radius: 50px;
+    width: 350px;
+
+    @media (max-width: 350px) {
+      width: auto;
+    }
+  }
+}

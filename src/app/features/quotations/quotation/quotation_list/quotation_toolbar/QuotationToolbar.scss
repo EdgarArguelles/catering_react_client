@@ -1,0 +1,37 @@
+@import '../../../../../Variables';
+
+#quotation-toolbar {
+  height: $toolbar-height;
+  background-color: $header-color;
+
+  .sort-button {
+    color: #fff;
+    margin: 15px 10px auto auto;
+    transition: 0.5s;
+
+    i {
+      margin-left: 15px;
+    }
+
+    &.compact {
+      @media (max-width: 499px) {
+        margin-right: -20px;
+        font-size: small;
+      }
+
+      @media (max-width: 455px) {
+        margin-top: 5px;
+        max-width: 200px;
+      }
+
+      @media (max-width: $screen-xxs) {
+        font-size: x-small;
+        margin-top: 10px;
+
+        i {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

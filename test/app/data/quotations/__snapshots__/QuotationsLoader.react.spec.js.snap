@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data -> Quotations -> Loader snapshot should render h1 Test 1`] = `
+<h1>
+  Test
+</h1>
+`;

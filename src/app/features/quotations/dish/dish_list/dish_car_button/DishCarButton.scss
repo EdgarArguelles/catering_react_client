@@ -1,0 +1,17 @@
+@import '../../../../../Variables';
+
+#dish-car-button {
+  color: $gray;
+  margin-bottom: 80px;
+
+  .dish-car-badge {
+    i {
+      margin-top: 5px;
+    }
+
+    span {
+      top: -7px;
+      right: -8px;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import '../../../../Variables';
+
+.course-type-content {
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: $screen-sm) {
+    margin: 0;
+  }
+
+  .title {
+    text-align: center;
+    font-size: xx-large;
+    font-style: italic;
+
+    @media (max-width: $screen-xs) {
+      font-size: 1.2em;
+    }
+  }
+
+  #courses-draggable {
+    @media (max-width: $screen-sm) {
+      background: #808080;
+    }
+
+    .draggable {
+      left: auto !important; // left: auto fix bug when drag inside tabs
+      width: 100%;
+      transition: width 0.5s, box-shadow 0.5s;
+
+      &:hover {
+        width: calc(100% - 5px);
+        margin-bottom: 5px;
+        box-shadow: 10px 10px 5px grey;
+      }
+    }
+  }
+}

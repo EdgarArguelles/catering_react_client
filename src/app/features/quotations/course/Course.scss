@@ -1,0 +1,9 @@
+@import '../../../Variables';
+
+.course {
+  margin-top: 30px;
+
+  @media (max-width: $screen-sm) {
+    margin-top: 0;
+  }
+}

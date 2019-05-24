@@ -1,0 +1,40 @@
+@import '../../../../Variables';
+
+.service {
+  padding: 50px 20px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  height: 200px;
+  position: relative;
+  background: #fafafa;
+
+  .icon {
+    position: absolute;
+    top: -36px;
+    left: calc(50% - 36px);
+    transition: 0.2s;
+    border-radius: 50%;
+    display: inline-block;
+    border: 6px solid #fff;
+    background: $main-color;
+    padding: 16px;
+
+    i {
+      color: #fff;
+      font-size: 1.5em;
+    }
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  .description {
+    font-size: 0.8em;
+    line-height: 24px;
+  }
+}

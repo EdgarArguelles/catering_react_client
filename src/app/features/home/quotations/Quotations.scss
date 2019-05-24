@@ -1,0 +1,38 @@
+@import '../../../Variables';
+
+#quotations {
+  padding: $content-padding;
+
+  @media (max-width: $screen-lg) {
+    padding: $content-padding-lg;
+  }
+
+  button {
+    display: block;
+    margin: auto auto 30px auto;
+  }
+
+  p {
+    line-height: 35px;
+  }
+
+  .video {
+    text-align: center;
+
+    iframe {
+      height: 100%;
+      width: 100%;
+      min-height: 400px;
+      max-width: 700px;
+
+      @media (max-width: $screen-lg) {
+        min-height: 300px;
+      }
+    }
+  }
+
+  hr {
+    margin-top: 30px;
+    width: 50%;
+  }
+}
