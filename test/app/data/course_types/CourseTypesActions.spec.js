@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import Api from '../../../../src/app/common/Api';
-import CourseTypesActions, {ACTION_TYPES} from '../../../../src/app/data/course_types/CourseTypesActions';
+import Api from 'app/common/Api';
+import CourseTypesActions, {ACTION_TYPES} from 'app/data/course_types/CourseTypesActions';
 
 describe('Data -> CourseTypes -> Actions', () => {
   const dispatchStub = sinon.stub();

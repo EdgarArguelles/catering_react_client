@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import Api from '../../../../src/app/common/Api';
-import QuotationsActions, {ACTION_TYPES} from '../../../../src/app/data/quotations/QuotationsActions';
+import Api from 'app/common/Api';
+import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 
 describe('Data -> Quotations -> Actions', () => {
   const dispatchStub = sinon.stub();

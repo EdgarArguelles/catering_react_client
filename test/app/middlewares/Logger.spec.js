@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
-import logger from '../../../src/app/middlewares/Logger';
+import logger from 'app/middlewares/Logger';
 
 describe('Middlewares -> Logger', () => {
   const nextStub = sinon.stub();

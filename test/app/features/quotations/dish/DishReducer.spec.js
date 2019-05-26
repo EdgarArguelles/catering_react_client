@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES} from '../../../../../src/app/features/quotations/dish/DishActions';
-import DishReducer from '../../../../../src/app/features/quotations/dish/DishReducer';
+import {ACTION_TYPES} from 'app/features/quotations/dish/DishActions';
+import DishReducer from 'app/features/quotations/dish/DishReducer';
 
 describe('Quotations -> Dish -> Reducer', () => {
   it('should get default state when empty', () => {

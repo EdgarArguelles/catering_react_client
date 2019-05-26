@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import Api from '../../../../src/app/common/Api';
-import AuthActions, {ACTION_TYPES} from '../../../../src/app/features/auth/AuthActions';
+import Api from 'app/common/Api';
+import AuthActions, {ACTION_TYPES} from 'app/features/auth/AuthActions';
 
 describe('Auth -> Actions', () => {
   const dispatchStub = sinon.stub();

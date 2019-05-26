@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import QuotationsActions, {ACTION_TYPES} from '../../../../src/app/features/quotations/QuotationsActions';
+import QuotationsActions, {ACTION_TYPES} from 'app/features/quotations/QuotationsActions';
 
 describe('Quotations -> Actions', () => {
   describe('changeMenuTab', () => {

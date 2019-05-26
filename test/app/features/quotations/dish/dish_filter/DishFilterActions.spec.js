@@ -1,6 +1,5 @@
 import {expect} from 'chai';
-import DishFilterActions, {ACTION_TYPES}
-  from '../../../../../../src/app/features/quotations/dish/dish_filter/DishFilterActions';
+import DishFilterActions, {ACTION_TYPES} from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 describe('Quotations -> Dish -> Filter -> Actions', () => {
   describe('cleanFilters', () => {

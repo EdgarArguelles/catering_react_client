@@ -1,9 +1,8 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES}
-  from '../../../../../../src/app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+import {ACTION_TYPES} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 import MultipleDishesDialogReducer
-  from '../../../../../../src/app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
 
 describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () => {
   it('should get default state when empty', () => {

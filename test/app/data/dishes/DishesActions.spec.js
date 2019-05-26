@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import Api from '../../../../src/app/common/Api';
-import DishesActions, {ACTION_TYPES} from '../../../../src/app/data/dishes/DishesActions';
+import Api from 'app/common/Api';
+import DishesActions, {ACTION_TYPES} from 'app/data/dishes/DishesActions';
 
 describe('Data -> Dishes -> Actions', () => {
   const dispatchStub = sinon.stub();

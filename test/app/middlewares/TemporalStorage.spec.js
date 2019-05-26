@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
-import temporalStorage from '../../../src/app/middlewares/TemporalStorage';
+import temporalStorage from 'app/middlewares/TemporalStorage';
 
 describe('Middlewares -> TemporalStorage', () => {
   const nextStub = sinon.stub();

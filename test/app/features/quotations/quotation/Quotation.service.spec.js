@@ -6,7 +6,7 @@ import {
   fetchCompleteQuotation,
   getEditPath,
   isQuotationStarted,
-} from '../../../../../src/app/features/quotations/quotation/Quotation.service';
+} from 'app/features/quotations/quotation/Quotation.service';
 
 describe('Quotations -> Quotation -> Service', () => {
   describe('isQuotationStarted', () => {

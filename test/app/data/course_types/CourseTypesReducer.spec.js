@@ -1,9 +1,9 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import {ACTION_TYPES} from '../../../../src/app/data/course_types/CourseTypesActions';
-import {courseTypes, courseTypesFetching} from '../../../../src/app/data/course_types/CourseTypesReducer';
-import Utils from '../../../../src/app/common/Utils';
+import {ACTION_TYPES} from 'app/data/course_types/CourseTypesActions';
+import {courseTypes, courseTypesFetching} from 'app/data/course_types/CourseTypesReducer';
+import Utils from 'app/common/Utils';
 
 describe('Data -> CourseTypes -> Reducer', () => {
   describe('courseTypesFetching', () => {

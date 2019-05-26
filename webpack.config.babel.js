@@ -68,6 +68,7 @@ export default {
   ],
   resolve: {
     alias: {
+      app: path.resolve('./src/app'), // allow to use import with 'app/'
       stompjs: `${nodeDir}/stompjs/lib/stomp.js`, // allow to use import Stomp from 'stompjs';
     },
   },

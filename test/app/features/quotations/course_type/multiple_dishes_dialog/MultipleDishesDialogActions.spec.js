@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import MultipleDishesDialogActions, {ACTION_TYPES}
-  from '../../../../../../src/app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 
 describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Actions', () => {
   describe('openDialog', () => {

@@ -6,10 +6,10 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
-import reducers from '../../../../src/app/Reducers';
-import QuotationsLoader from '../../../../src/app/data/quotations/QuotationsLoader.react';
-import QuotationsActions, {ACTION_TYPES} from '../../../../src/app/data/quotations/QuotationsActions';
-import {ACTION_TYPES as AUTH_TYPES} from '../../../../src/app/features/auth/AuthActions';
+import reducers from 'app/Reducers';
+import QuotationsLoader from 'app/data/quotations/QuotationsLoader.react';
+import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
+import {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
 
 describe('Data -> Quotations -> Loader', () => {
   const dispatchStub = sinon.stub();

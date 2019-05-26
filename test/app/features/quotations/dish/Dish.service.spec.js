@@ -7,7 +7,7 @@ import {
   getActiveDishes,
   getDishesPrice,
   isDishAdded,
-} from '../../../../../src/app/features/quotations/dish/Dish.service';
+} from 'app/features/quotations/dish/Dish.service';
 
 describe('Quotations -> Dish -> Service', () => {
   describe('areAllDishesPresent', () => {

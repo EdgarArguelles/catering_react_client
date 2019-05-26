@@ -1,6 +1,5 @@
 import {expect} from 'chai';
-import NavigationActions, {ACTION_TYPES}
-  from '../../../../../../src/app/features/quotations/header/navigation/NavigationActions';
+import NavigationActions, {ACTION_TYPES} from 'app/features/quotations/header/navigation/NavigationActions';
 
 describe('Quotations -> Header -> Navigation -> Actions', () => {
   describe('changeNavigation', () => {

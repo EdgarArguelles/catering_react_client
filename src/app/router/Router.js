@@ -1,10 +1,10 @@
 import React, {lazy, Suspense} from 'react';
 import {Redirect, Route, Router, Switch} from 'react-router-dom';
+import pingServer from 'app/features/PingServer';
 import History from './History';
-import pingServer from '../features/PingServer';
 
-const Home = lazy(() => import('../features/home/Layout.react'));
-const Quotations = lazy(() => import('../features/quotations/Layout.react'));
+const Home = lazy(() => import('app/features/home/Layout.react'));
+const Quotations = lazy(() => import('app/features/quotations/Layout.react'));
 
 export default (
   <Router history={History}>
