@@ -2,11 +2,11 @@ import './CourseTypeContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getSortedCourseTypes} from '../CourseType.service';
-import MenuActions from '../../menu/MenuActions';
-import DragDrop from '../../../../common/components/drag_drop/DragDrop.react';
-import Course from '../../course/Course.react';
+import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
+import DragDrop from 'app/common/components/drag_drop/DragDrop.react';
+import Course from 'app/features/quotations/course/Course.react';
 import EmptyCourseType from './empty_course_type/EmptyCourseType.react';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
 
 class CourseTypeContent extends React.Component {
   static propTypes = {

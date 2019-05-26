@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import formatCurrency from 'format-currency';
 import CardContent from '@material-ui/core/CardContent';
-import MenuQuantity from '../../../../../../menu/menu_summary/menu_quantity/MenuQuantity.react';
+import MenuQuantity from 'app/features/quotations/menu/menu_summary/menu_quantity/MenuQuantity.react';
 
 export default class MenuItemContent extends React.Component {
   static propTypes = {

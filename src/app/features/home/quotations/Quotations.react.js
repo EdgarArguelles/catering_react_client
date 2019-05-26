@@ -1,7 +1,7 @@
 import './Quotations.scss';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import SectionHeader from '../SectionHeader.react';
+import SectionHeader from 'app/features/home/SectionHeader.react';
 import Information from './information/Information.react';
 import Access from './access/Access.react';
 

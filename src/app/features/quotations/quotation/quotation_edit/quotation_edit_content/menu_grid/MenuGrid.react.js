@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import History from '../../../../../../router/History';
-import Utils from '../../../../../../common/Utils';
-import {getRandomMenuId} from '../../../../menu/Menu.service';
+import History from 'app/router/History';
+import Utils from 'app/common/Utils';
+import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuItem from './menu_item/MenuItem.react';
-import QuotationActions from '../../../QuotationActions';
-import QuotationsActions from '../../../../QuotationsActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class MenuGrid extends React.Component {
   static propTypes = {

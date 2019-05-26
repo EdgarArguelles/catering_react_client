@@ -8,11 +8,10 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import History from '../../../router/History';
-import ConfirmationDialog
-  from '../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import QuotationsActions from '../../../data/quotations/QuotationsActions';
+import History from 'app/router/History';
 import {areEqual} from './Quotation.service';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import QuotationsActions from 'app/data/quotations/QuotationsActions';
 
 class Quotation extends React.Component {
   static propTypes = {

@@ -1,5 +1,5 @@
 import './Auth.scss';
-import loading from '../../../assets/img/loading.gif';
+import loading from 'assets/img/loading.gif';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import React from 'react';

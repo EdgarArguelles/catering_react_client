@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuDialog from '../../../../../../../menu/menu_summary/menu_dialog/MenuDialog.react';
-import QuotationActions from '../../../../../../../../quotations/quotation/QuotationActions';
-import QuotationsActions from '../../../../../../../QuotationsActions';
+import MenuDialog from 'app/features/quotations/menu/menu_summary/menu_dialog/MenuDialog.react';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class ViewMenu extends React.Component {
   static propTypes = {

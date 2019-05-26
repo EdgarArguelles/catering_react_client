@@ -1,5 +1,5 @@
 import './Image.scss';
-import error from '../../../../assets/img/not-found.png';
+import error from 'assets/img/not-found.png';
 import React from 'react';
 import PropTypes from 'prop-types';
 

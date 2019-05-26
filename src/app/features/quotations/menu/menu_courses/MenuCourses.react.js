@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {BulletList} from 'react-content-loader';
-import DishesLoader from '../../../../data/dishes/DishesLoader.react';
-import {getSortedCourseTypes} from '../../course_type/CourseType.service';
-import DishActions from '../../dish/DishActions';
+import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
+import DishesLoader from 'app/data/dishes/DishesLoader.react';
+import DishActions from 'app/features/quotations/dish/DishActions';
 
 class MenuCourses extends React.Component {
   static propTypes = {

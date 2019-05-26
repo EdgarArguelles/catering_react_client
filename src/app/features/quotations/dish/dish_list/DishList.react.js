@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
-import {getCourseTypeDishes, getCurrentCourseType} from '../../course_type/CourseType.service';
-import {getActiveDishes} from '../../dish/Dish.service';
+import {getCourseTypeDishes, getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
+import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
 import DishCarButton from './dish_car_button/DishCarButton.react';
 import DishFilterDialog from './dish_filter_dialog/DishFilterDialog.react';
 import DishToolbar from './dish_toolbar/DishToolbar.react';
 import DishGrid from './dish_grid/DishGrid.react';
-import NavigationActions from '../../header/navigation/NavigationActions';
-import DishesActions from '../../../../data/dishes/DishesActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import DishesActions from 'app/data/dishes/DishesActions';
 
 class DishList extends React.Component {
   static propTypes = {

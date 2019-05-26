@@ -2,9 +2,9 @@
  * Given the same arguments, it should calculate the next state and return it.
  * No surprises. No side effects. No API calls. No mutations. Just a calculation.
  */
-import {ACTION_TYPES as DATA_ACTION_TYPES} from '../../../data/quotations/QuotationsActions';
+import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import {ACTION_TYPES} from './QuotationActions';
-import menuReducer from '../menu/MenuReducer';
+import menuReducer from 'app/features/quotations/menu/MenuReducer';
 
 const name = (state = '', action) => {
   switch (action.type) {

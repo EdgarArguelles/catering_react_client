@@ -2,8 +2,8 @@ import './Course.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
-import {CourseContentLoader} from '../../../common/components/content_loaders/ContentLoaders.react';
-import DishesLoader from '../../../data/dishes/DishesLoader.react';
+import {CourseContentLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import DishesLoader from 'app/data/dishes/DishesLoader.react';
 import CourseContent from './course_content/CourseContent.react';
 import RemoveDialog from './remove_dialog/RemoveDialog.react';
 

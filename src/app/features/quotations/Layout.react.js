@@ -1,14 +1,14 @@
 import './Layout.scss';
-import loading from '../../../assets/img/loading-large.gif';
+import loading from 'assets/img/loading-large.gif';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {completeLoading} from '../../Template';
+import {completeLoading} from 'app/Template';
 import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog.react';
 import Header from './header/Header.react';
 import Router from './router/Router.react';
-import CourseTypesActions from '../../data/course_types/CourseTypesActions';
-import DataActions from '../../data/DataActions';
+import CourseTypesActions from 'app/data/course_types/CourseTypesActions';
+import DataActions from 'app/data/DataActions';
 
 class Layout extends React.Component {
   static propTypes = {

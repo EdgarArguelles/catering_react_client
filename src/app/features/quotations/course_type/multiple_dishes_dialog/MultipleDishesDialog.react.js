@@ -6,10 +6,10 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import cateringDialog from '../../../../common/components/catering_dialog/CateringDialog';
+import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
 import MultipleDishesActions from './multiple_dishes_actions/MultipleDishesActions.react';
 import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars.react';
-import NavigationActions from '../../header/navigation/NavigationActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import MultipleDishesDialogActions from './MultipleDishesDialogActions';
 
 const Transition = props => {

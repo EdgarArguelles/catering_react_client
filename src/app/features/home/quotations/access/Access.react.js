@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import History from '../../../../router/History';
+import History from 'app/router/History';
 import NoSession from './no_session/NoSession.react';
 import Session from './session/Session.react';
 

@@ -3,12 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import History from '../../../../router/History';
-import AuthDialog from '../../auth_dialog/AuthDialog.react';
-import NavigationActions from '../../header/navigation/NavigationActions';
-import AuthDialogActions from '../../auth_dialog/AuthDialogActions';
-import QuotationsActions from '../../QuotationsActions';
-import QuotationsDataActions from '../../../../data/quotations/QuotationsActions';
+import History from 'app/router/History';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import QuotationsDataActions from 'app/data/quotations/QuotationsActions';
 
 class QuotationView extends React.Component {
   static propTypes = {

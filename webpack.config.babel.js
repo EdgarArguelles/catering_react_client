@@ -8,6 +8,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import WorkboxPlugin from 'workbox-webpack-plugin';
 
+const srcPath = path.resolve('./src');
 const distPath = path.resolve('./dist');
 const nodeDir = path.resolve('./node_modules');
 const stats = {children: false}; // hide MiniCSSExtractPlugin information printed when build
@@ -68,7 +69,8 @@ export default {
   ],
   resolve: {
     alias: {
-      app: path.resolve('./src/app'), // allow to use import with 'app/'
+      app: `${srcPath}/app`, // allow to use import with 'app/'
+      assets: `${srcPath}/assets`, // allow to use import with 'assets/'
       stompjs: `${nodeDir}/stompjs/lib/stomp.js`, // allow to use import Stomp from 'stompjs';
     },
   },

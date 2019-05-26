@@ -7,12 +7,12 @@ import Badge from '@material-ui/core/Badge';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
-import {getSortedCourseTypes} from '../../../course_type/CourseType.service';
-import {resetBarsTop} from '../../../../../common/components/expand_bar/ExpandBar.react';
-import ExpandTabs from '../../../../../common/components/expand_bar/expand_tabs/ExpandTabs.react';
-import CourseType from '../../../course_type/CourseType.react';
-import MenuSummary from '../../menu_summary/MenuSummary.react';
-import QuotationsActions from '../../../QuotationsActions';
+import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
+import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar.react';
+import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs.react';
+import CourseType from 'app/features/quotations/course_type/CourseType.react';
+import MenuSummary from 'app/features/quotations/menu/menu_summary/MenuSummary.react';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const tabsElementId = 'expand-bar';
 const slideClassName = 'swipeable';

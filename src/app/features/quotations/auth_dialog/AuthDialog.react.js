@@ -8,8 +8,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import cateringDialog from '../../../common/components/catering_dialog/CateringDialog';
-import Auth from '../../auth/Auth.react';
+import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
+import Auth from 'app/features/auth/Auth.react';
 import AuthDialogActions from './AuthDialogActions';
 
 const Transition = props => {

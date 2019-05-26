@@ -3,12 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
-import History from '../../../../../../../../router/History';
-import ConfirmationDialog
-  from '../../../../../../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import FetchButton, {ANIMATION_DELAY} from '../../../../../../../../common/components/fetch_button/FetchButton.react';
-import DataQuotationsActions from '../../../../../../../../data/quotations/QuotationsActions';
-import QuotationsActions from '../../../../../../QuotationsActions';
+import History from 'app/router/History';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton.react';
+import DataQuotationsActions from 'app/data/quotations/QuotationsActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class DeleteQuotation extends React.Component {
   static propTypes = {

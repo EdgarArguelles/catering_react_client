@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import History from '../../../../../../router/History';
-import DishActions from '../../../../dish/DishActions';
-import DishFilterActions from '../../../../dish/dish_filter/DishFilterActions';
+import History from 'app/router/History';
+import DishActions from 'app/features/quotations/dish/DishActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 class AddDish extends React.Component {
   static propTypes = {

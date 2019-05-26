@@ -6,10 +6,11 @@ import formatCurrency from 'format-currency';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import {getDishesPrice} from '../../dish/Dish.service';
-import {useMultipleDishes} from '../../course_type/CourseType.service';
-import DishActions from '../../dish/DishActions';
-import MultipleDishesDialogActions from '../../course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
+import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
+import DishActions from 'app/features/quotations/dish/DishActions';
+import MultipleDishesDialogActions
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 
 class CourseContent extends React.Component {
   static propTypes = {

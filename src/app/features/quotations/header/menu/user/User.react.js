@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import History from '../../../../../router/History';
+import History from 'app/router/History';
 import UserMenu from './user_menu/UserMenu.react';
 
 class User extends React.Component {

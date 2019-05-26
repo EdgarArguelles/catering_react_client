@@ -1,5 +1,5 @@
 import './Logo.scss';
-import image from '../../../../../assets/img/logo.png';
+import image from 'assets/img/logo.png';
 import React from 'react';
 
 export default class Logo extends React.Component {

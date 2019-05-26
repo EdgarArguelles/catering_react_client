@@ -2,9 +2,9 @@
  * Given the same arguments, it should calculate the next state and return it.
  * No surprises. No side effects. No API calls. No mutations. Just a calculation.
  */
-import Utils from '../../common/Utils';
-import {ACTION_TYPES as API_ACTION_TYPES} from '../../common/Api';
-import {ACTION_TYPES as AUTH_ACTION_TYPES} from '../../features/auth/AuthActions';
+import Utils from 'app/common/Utils';
+import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
+import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
 import {ACTION_TYPES} from './QuotationsActions';
 
 export const quotationsFetching = (state = false, action = {}) => {

@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import EnterTextField from '../../../../../../../../common/components/enter_text_field/EnterTextField.react';
-import QuotationActions from '../../../../../QuotationActions';
-import MenuActions from '../../../../../../menu/MenuActions';
+import EnterTextField from 'app/common/components/enter_text_field/EnterTextField.react';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
 
 class MenuItemHeader extends React.Component {
   static propTypes = {

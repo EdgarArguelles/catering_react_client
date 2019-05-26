@@ -1,16 +1,15 @@
 import './CreateQuotation.scss';
-import image from '../../../../../../assets/img/new-quotation.jpg';
+import image from 'assets/img/new-quotation.jpg';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ConfirmationDialog
-  from '../../../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import History from '../../../../../router/History';
-import {isQuotationStarted} from '../../../quotation/Quotation.service';
-import {getRandomMenuId} from '../../../menu/Menu.service';
-import Action from '../Action.react';
-import QuotationActions from '../../../quotation/QuotationActions';
-import QuotationsActions from '../../../QuotationsActions';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import History from 'app/router/History';
+import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
+import Action from 'app/features/quotations/home/action/Action.react';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class CreateQuotation extends React.Component {
   static propTypes = {

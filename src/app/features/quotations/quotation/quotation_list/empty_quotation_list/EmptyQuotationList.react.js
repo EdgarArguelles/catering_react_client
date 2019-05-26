@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import History from '../../../../../router/History';
-import {getRandomMenuId} from '../../../menu/Menu.service';
-import {getEditPath, isQuotationStarted} from '../../Quotation.service';
-import QuotationActions from '../../QuotationActions';
-import QuotationsActions from '../../../QuotationsActions';
+import History from 'app/router/History';
+import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
+import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class EmptyQuotationList extends React.Component {
   static propTypes = {

@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import History from '../../../../../../router/History';
-import {getEditPath, isQuotationStarted} from '../../../Quotation.service';
+import History from 'app/router/History';
+import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 
 class ContinueQuotation extends React.Component {
   static propTypes = {

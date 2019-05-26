@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import formatCurrency from 'format-currency';
 import IconButton from '@material-ui/core/IconButton';
-import {isDishAdded} from '../../Dish.service';
+import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
 import AddButton from './add_button/AddButton.react';
 import RemoveButton from './remove_button/RemoveButton.react';
 

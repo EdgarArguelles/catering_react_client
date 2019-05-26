@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {fetchCompleteQuotation} from '../../features/quotations/quotation/Quotation.service';
+import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import QuotationsActions from './QuotationsActions';
 
 class QuotationsLoader extends React.Component {

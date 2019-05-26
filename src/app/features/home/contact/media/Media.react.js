@@ -1,12 +1,12 @@
 import './Media.scss';
-import image from '../../../../../assets/img/areli.jpg';
+import image from 'assets/img/areli.jpg';
+import {version} from '../../../../../../package.json';
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
-import {version} from '../../../../../../package.json';
 
 export default class Media extends React.Component {
   static propTypes = {};

@@ -2,12 +2,12 @@ import './MenuEdit.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import History from '../../../../router/History';
-import {getMenuFromLink, getRandomMenuId} from '../Menu.service';
+import History from 'app/router/History';
+import {getMenuFromLink, getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuEditTabs from './menu_edit_tabs/MenuEditTabs.react';
-import NavigationActions from '../../header/navigation/NavigationActions';
-import QuotationsActions from '../../QuotationsActions';
-import QuotationActions from '../../quotation/QuotationActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
 class MenuEdit extends React.Component {
   static propTypes = {

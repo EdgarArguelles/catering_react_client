@@ -2,8 +2,8 @@ import './Home.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import History from '../../../router/History';
-import {getEditPath, isQuotationStarted} from '../../quotations/quotation/Quotation.service';
+import History from 'app/router/History';
+import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 
 class Home extends React.Component {
   static propTypes = {

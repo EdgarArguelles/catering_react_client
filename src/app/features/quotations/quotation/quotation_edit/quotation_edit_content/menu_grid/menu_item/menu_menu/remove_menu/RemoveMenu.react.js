@@ -3,10 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
-import ConfirmationDialog
-  from '../../../../../../../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import QuotationActions from '../../../../../../../../quotations/quotation/QuotationActions';
-import NavigationActions from '../../../../../../../header/navigation/NavigationActions';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 
 class RemoveMenu extends React.Component {
   static propTypes = {

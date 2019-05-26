@@ -1,7 +1,7 @@
 import './Layout.scss';
 import React from 'react';
-import {initJQuery} from '../../Template';
-import BackToTop from '../../common/components/back_to_top/BackToTop.react';
+import {initJQuery} from 'app/Template';
+import BackToTop from 'app/common/components/back_to_top/BackToTop.react';
 import Header from './header/Header.react';
 import Home from './home/Home.react';
 import About from './about/About.react';

@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
-import {getRandomMenuId} from '../../../../../../../menu/Menu.service';
-import QuotationActions from '../../../../../../../../quotations/quotation/QuotationActions';
+import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
 class DuplicateMenu extends React.Component {
   static propTypes = {

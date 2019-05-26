@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
-import History from '../../../../../../../../../router/History';
-import QuotationsActions from '../../../../../../../../quotations/QuotationsActions';
-import QuotationActions from '../../../../../../../../quotations/quotation/QuotationActions';
+import History from 'app/router/History';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
 class EditMenu extends React.Component {
   static propTypes = {

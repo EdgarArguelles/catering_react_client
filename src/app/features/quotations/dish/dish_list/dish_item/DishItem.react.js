@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 import formatCurrency from 'format-currency';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Utils from '../../../../../common/Utils';
-import Image from '../../../../../common/components/image/Image.react';
-import {isDishAdded} from '../../Dish.service';
-import DishActions from '../../DishActions';
+import Utils from 'app/common/Utils';
+import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
+import Image from 'app/common/components/image/Image.react';
+import DishActions from 'app/features/quotations/dish/DishActions';
 
 class DishItem extends React.Component {
   static propTypes = {

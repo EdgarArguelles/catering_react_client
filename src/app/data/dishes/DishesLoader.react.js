@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {areAllDishesPresent, fetchDishesList} from '../../features/quotations/dish/Dish.service';
+import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import DishesActions from './DishesActions';
 
 class DishesLoader extends React.Component {

@@ -1,5 +1,5 @@
 import isEqual from 'lodash/isEqual';
-import Utils from '../../../common/Utils';
+import Utils from 'app/common/Utils';
 
 /**
  * Check if a quotation is started
