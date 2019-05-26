@@ -2,14 +2,14 @@ import './Router.scss';
 import React, {lazy, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router-dom';
-import History from '../../../router/History';
+import History from 'app/router/History';
 
-const Home = lazy(() => import('../home/Home.react'));
-const QuotationEdit = lazy(() => import('../quotation/quotation_edit/QuotationEdit.react'));
-const QuotationList = lazy(() => import('../quotation/quotation_list/QuotationList.react'));
-const MenuEdit = lazy(() => import('../menu/menu_edit/MenuEdit.react'));
-const DishList = lazy(() => import('../dish/dish_list/DishList.react'));
-const QuotationView = lazy(() => import('../quotation/quotation_view/QuotationView.react'));
+const Home = lazy(() => import('app/features/quotations/home/Home.react'));
+const QuotationEdit = lazy(() => import('app/features/quotations/quotation/quotation_edit/QuotationEdit.react'));
+const QuotationList = lazy(() => import('app/features/quotations/quotation/quotation_list/QuotationList.react'));
+const MenuEdit = lazy(() => import('app/features/quotations/menu/menu_edit/MenuEdit.react'));
+const DishList = lazy(() => import('app/features/quotations/dish/dish_list/DishList.react'));
+const QuotationView = lazy(() => import('app/features/quotations/quotation/quotation_view/QuotationView.react'));
 
 class RedirectHome extends React.Component {
   static propTypes = {};
