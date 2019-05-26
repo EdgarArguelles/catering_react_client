@@ -2,13 +2,14 @@ import './EmptyCourseType.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import History from '../../../../../router/History';
-import Utils from '../../../../../common/Utils';
-import Image from '../../../../../common/components/image/Image.react';
-import {useMultipleDishes} from '../../CourseType.service';
-import MultipleDishesDialogActions from '../../multiple_dishes_dialog/MultipleDishesDialogActions';
-import DishFilterActions from '../../../dish/dish_filter/DishFilterActions';
-import DishActions from '../../../dish/DishActions';
+import History from 'app/router/History';
+import Utils from 'app/common/Utils';
+import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
+import Image from 'app/common/components/image/Image.react';
+import MultipleDishesDialogActions
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
+import DishActions from 'app/features/quotations/dish/DishActions';
 
 class EmptyCourseType extends React.Component {
   static propTypes = {

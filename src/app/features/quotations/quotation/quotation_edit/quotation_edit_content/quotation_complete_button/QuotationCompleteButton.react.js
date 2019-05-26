@@ -3,11 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
-import History from '../../../../../../router/History';
-import {areEqual} from '../../../Quotation.service';
-import ConfirmationDialog
-  from '../../../../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import QuotationsActions from '../../../../QuotationsActions';
+import History from 'app/router/History';
+import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class QuotationCompleteButton extends React.Component {
   static propTypes = {

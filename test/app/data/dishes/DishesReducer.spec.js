@@ -1,10 +1,10 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import {ACTION_TYPES as DATA_ACTION_TYPES} from '../../../../src/app/data/DataActions';
-import {ACTION_TYPES} from '../../../../src/app/data/dishes/DishesActions';
-import {dishes, dishesFetching, dishFetching} from '../../../../src/app/data/dishes/DishesReducer';
-import Utils from '../../../../src/app/common/Utils';
+import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/DataActions';
+import {ACTION_TYPES} from 'app/data/dishes/DishesActions';
+import {dishes, dishesFetching, dishFetching} from 'app/data/dishes/DishesReducer';
+import Utils from 'app/common/Utils';
 
 describe('Data -> Dishes -> Reducer', () => {
   describe('dishesFetching', () => {

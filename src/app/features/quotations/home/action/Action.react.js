@@ -2,7 +2,7 @@ import './Action.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Image from '../../../../common/components/image/Image.react';
+import Image from 'app/common/components/image/Image.react';
 
 export default class Action extends React.Component {
   static propTypes = {

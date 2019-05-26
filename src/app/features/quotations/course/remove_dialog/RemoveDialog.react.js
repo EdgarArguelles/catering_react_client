@@ -2,10 +2,9 @@ import './RemoveDialog.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ConfirmationDialog
-  from '../../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import {getDishesPrice} from '../../dish/Dish.service';
-import MenuActions from '../../menu/MenuActions';
+import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
 
 class RemoveDialog extends React.Component {
   static propTypes = {

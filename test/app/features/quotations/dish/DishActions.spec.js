@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import DishActions, {ACTION_TYPES} from '../../../../../src/app/features/quotations/dish/DishActions';
+import DishActions, {ACTION_TYPES} from 'app/features/quotations/dish/DishActions';
 
 describe('Quotations -> Dish -> Actions', () => {
   describe('selectDish', () => {

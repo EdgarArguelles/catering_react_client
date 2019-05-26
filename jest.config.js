@@ -2,6 +2,9 @@ module.exports = {
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
 
+  // Allow to use 'app/' import in tests
+  modulePaths: ['src'],
+
   // A map from regular expressions to paths to transformers
   transform: {
     '^.+\\.js$': 'babel-jest',

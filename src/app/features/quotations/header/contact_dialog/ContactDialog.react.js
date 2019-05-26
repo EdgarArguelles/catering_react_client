@@ -7,8 +7,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import cateringDialog from '../../../../common/components/catering_dialog/CateringDialog';
-import Contact from '../../../home/contact/Contact.react';
+import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
+import Contact from 'app/features/home/contact/Contact.react';
 
 const Transition = props => {
   return <Slide {...props}/>;

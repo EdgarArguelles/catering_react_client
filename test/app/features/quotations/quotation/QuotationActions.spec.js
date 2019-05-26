@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import QuotationActions, {ACTION_TYPES} from '../../../../../src/app/features/quotations/quotation/QuotationActions';
+import QuotationActions, {ACTION_TYPES} from 'app/features/quotations/quotation/QuotationActions';
 
 describe('Quotations -> Quotation -> Actions', () => {
   describe('changeName', () => {

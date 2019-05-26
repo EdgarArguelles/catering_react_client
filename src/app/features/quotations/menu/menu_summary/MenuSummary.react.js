@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 import formatCurrency from 'format-currency';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import EditableField from '../../../../common/components/editable_field/EditableField.react';
+import EditableField from 'app/common/components/editable_field/EditableField.react';
 import MenuQuantity from './menu_quantity/MenuQuantity.react';
 import RemoveMenu from './remove_menu/RemoveMenu.react';
 import CompleteMenu from './complete_menu/CompleteMenu.react';
 import MenuDialog from './menu_dialog/MenuDialog.react';
-import MenuActions from '../MenuActions';
-import QuotationsActions from '../../QuotationsActions';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class MenuSummary extends React.Component {
   static propTypes = {

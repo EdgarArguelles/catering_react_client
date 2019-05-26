@@ -1,7 +1,7 @@
 import './HomeLink.scss';
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import History from '../../../../../router/History';
+import History from 'app/router/History';
 
 const HOME_PATH = '/presupuestos';
 

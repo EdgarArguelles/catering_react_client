@@ -2,7 +2,7 @@
  * Given the same arguments, it should calculate the next state and return it.
  * No surprises. No side effects. No API calls. No mutations. Just a calculation.
  */
-import Utils from '../../common/Utils';
+import Utils from 'app/common/Utils';
 import {ACTION_TYPES} from './CourseTypesActions';
 
 export const courseTypesFetching = (state = false, action = {}) => {

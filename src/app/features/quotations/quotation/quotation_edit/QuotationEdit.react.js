@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import QuotationEditContent from './quotation_edit_content/QuotationEditContent.react';
-import NavigationActions from '../../header/navigation/NavigationActions';
-import QuotationActions from '../QuotationActions';
-import QuotationsActions from '../../QuotationsActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class QuotationEdit extends React.Component {
   static propTypes = {

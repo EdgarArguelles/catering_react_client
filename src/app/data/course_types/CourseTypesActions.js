@@ -2,7 +2,7 @@
  * Following the Flux Standard Action: https://github.com/acdlite/flux-standard-action
  */
 import keyMirror from 'keymirror';
-import Api from '../../common/Api';
+import Api from 'app/common/Api';
 
 export const ACTION_TYPES = keyMirror({
   SET_COURSE_TYPES: null,

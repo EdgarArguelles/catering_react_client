@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import AuthDialog from '../../auth_dialog/AuthDialog.react';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
 import EmptyQuotationList from './empty_quotation_list/EmptyQuotationList.react';
 import NoSessionQuotationList from './no_session_quotation_list/NoSessionQuotationList.react';
 import QuotationToolbar from './quotation_toolbar/QuotationToolbar.react';
 import QuotationGrid from './quotation_grid/QuotationGrid.react';
-import AuthDialogActions from '../../auth_dialog/AuthDialogActions';
-import NavigationActions from '../../header/navigation/NavigationActions';
-import QuotationsActions from '../../../../data/quotations/QuotationsActions';
+import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import QuotationsActions from 'app/data/quotations/QuotationsActions';
 
 const PAGINATION = {page: -1, size: 5, sort: ['createdAt'], direction: 'DESC'};
 

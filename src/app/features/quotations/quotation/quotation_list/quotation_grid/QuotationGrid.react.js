@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import Utils from '../../../../../common/Utils';
-import {isQuotationStarted} from '../../Quotation.service';
-import {QuotationItemLoader} from '../../../../../common/components/content_loaders/ContentLoaders.react';
-import Quotation from '../../Quotation.react';
+import Utils from 'app/common/Utils';
+import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import {QuotationItemLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import Quotation from 'app/features/quotations/quotation/Quotation.react';
 import ContinueQuotation from './continue_quotation/ContinueQuotation.react';
 import CreateNewQuotation from './create_new_quotation/CreateNewQuotation.react';
 

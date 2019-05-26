@@ -1,11 +1,11 @@
 import './EditQuotation.scss';
-import image from '../../../../../../assets/img/edit-quotation.jpg';
+import image from 'assets/img/edit-quotation.jpg';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import History from '../../../../../router/History';
-import {getEditPath} from '../../../quotation/Quotation.service';
-import Action from '../Action.react';
+import History from 'app/router/History';
+import {getEditPath} from 'app/features/quotations/quotation/Quotation.service';
+import Action from 'app/features/quotations/home/action/Action.react';
 
 class EditQuotation extends React.Component {
   static propTypes = {

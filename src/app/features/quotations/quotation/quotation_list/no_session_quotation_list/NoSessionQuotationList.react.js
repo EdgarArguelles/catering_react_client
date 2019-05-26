@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import AuthDialogActions from '../../../auth_dialog/AuthDialogActions';
+import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 
 class NoSessionQuotationList extends React.Component {
   static propTypes = {

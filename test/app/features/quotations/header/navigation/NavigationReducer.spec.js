@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES} from '../../../../../../src/app/features/quotations/header/navigation/NavigationActions';
-import NavigationReducer from '../../../../../../src/app/features/quotations/header/navigation/NavigationReducer';
+import {ACTION_TYPES} from 'app/features/quotations/header/navigation/NavigationActions';
+import NavigationReducer from 'app/features/quotations/header/navigation/NavigationReducer';
 
 describe('Quotations -> Header -> Navigation -> Reducer', () => {
   it('should get default state when empty', () => {

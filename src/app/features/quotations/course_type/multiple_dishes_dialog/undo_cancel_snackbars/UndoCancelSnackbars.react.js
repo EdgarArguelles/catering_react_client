@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MultipleDishesDialogActions from '../MultipleDishesDialogActions';
+import MultipleDishesDialogActions
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 
 class UndoCancelSnackbars extends React.Component {
   static propTypes = {

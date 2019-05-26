@@ -6,11 +6,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import cateringDialog from '../../../../../common/components/catering_dialog/CateringDialog';
-import Animate from '../../../../../common/components/animate/Animate.react';
-import Menu from '../../Menu.react';
-import NavigationActions from '../../../header/navigation/NavigationActions';
-import QuotationsActions from '../../../QuotationsActions';
+import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
+import Animate from 'app/common/components/animate/Animate.react';
+import Menu from 'app/features/quotations/menu/Menu.react';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const CateringDialog = cateringDialog(Dialog);
 

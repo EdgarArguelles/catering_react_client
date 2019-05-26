@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Toolbar from '@material-ui/core/Toolbar';
-import ExpandBar from '../../../../../common/components/expand_bar/ExpandBar.react';
-import SearchBox from '../../../../../common/components/search_box/SearchBox.react';
-import DishFilterActions from '../../dish_filter/DishFilterActions';
+import ExpandBar from 'app/common/components/expand_bar/ExpandBar.react';
+import SearchBox from 'app/common/components/search_box/SearchBox.react';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 class DishToolbar extends React.Component {
   static propTypes = {

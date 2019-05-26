@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
-import FetchButton from '../../../../../../../../common/components/fetch_button/FetchButton.react';
-import AuthDialog from '../../../../../../auth_dialog/AuthDialog.react';
-import AuthDialogActions from '../../../../../../auth_dialog/AuthDialogActions';
-import QuotationsActions from '../../../../../../QuotationsActions';
-import DataQuotationsActions from '../../../../../../../../data/quotations/QuotationsActions';
+import FetchButton from 'app/common/components/fetch_button/FetchButton.react';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
+import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import DataQuotationsActions from 'app/data/quotations/QuotationsActions';
 
 class SaveQuotation extends React.Component {
   static propTypes = {

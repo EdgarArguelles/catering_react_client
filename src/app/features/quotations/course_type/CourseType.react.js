@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
-import History from '../../../router/History';
+import History from 'app/router/History';
 import {useMultipleDishes} from './CourseType.service';
-import Animate from '../../../common/components/animate/Animate.react';
+import Animate from 'app/common/components/animate/Animate.react';
 import CourseTypeContent from './course_type_content/CourseTypeContent.react';
 import MultipleDishesDialog from './multiple_dishes_dialog/MultipleDishesDialog.react';
 import MainCourse from './multiple_dishes_dialog/main_course/MainCourse.react';
-import DishActions from '../dish/DishActions';
-import DishFilterActions from '../dish/dish_filter/DishFilterActions';
+import DishActions from 'app/features/quotations/dish/DishActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 import MultipleDishesDialogActions from './multiple_dishes_dialog/MultipleDishesDialogActions';
 
 class CourseType extends React.Component {

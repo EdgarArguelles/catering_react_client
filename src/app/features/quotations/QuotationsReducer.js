@@ -2,8 +2,8 @@
  * Given the same arguments, it should calculate the next state and return it.
  * No surprises. No side effects. No API calls. No mutations. Just a calculation.
  */
-import {ACTION_TYPES as AUTH_ACTION_TYPES} from '../auth/AuthActions';
-import {ACTION_TYPES as DATA_ACTION_TYPES} from '../../data/quotations/QuotationsActions';
+import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
+import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import {ACTION_TYPES} from './QuotationsActions';
 import {isAuthDialogOpen} from './auth_dialog/AuthDialogReducer';
 import navigation from './header/navigation/NavigationReducer';

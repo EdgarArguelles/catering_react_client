@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import isEqual from 'lodash/isEqual';
 import Fab from '@material-ui/core/Fab';
-import History from '../../../../../../router/History';
-import MenuActions from '../../../../menu/MenuActions';
-import MultipleDishesDialogActions from '../../../../course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
-import DishActions from '../../../DishActions';
+import History from 'app/router/History';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
+import MultipleDishesDialogActions
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+import DishActions from 'app/features/quotations/dish/DishActions';
 
 class RemoveButton extends React.Component {
   static propTypes = {

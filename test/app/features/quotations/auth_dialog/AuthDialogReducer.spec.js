@@ -1,6 +1,6 @@
 import {expect} from 'chai';
-import {ACTION_TYPES} from '../../../../../src/app/features/quotations/auth_dialog/AuthDialogActions';
-import {isAuthDialogOpen} from '../../../../../src/app/features/quotations/auth_dialog/AuthDialogReducer';
+import {ACTION_TYPES} from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import {isAuthDialogOpen} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 
 describe('Quotations -> Auth Dialog -> Reducer', () => {
   it('should get default state when empty', () => {

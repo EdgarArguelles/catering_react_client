@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import {isQuotationStarted} from '../quotation/Quotation.service';
+import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 import CreateQuotation from './action/create_quotation/CreateQuotation.react';
 import EditQuotation from './action/edit_quotation/EditQuotation.react';
 import MyQuotations from './action/my_quotations/MyQuotations.react';
-import NavigationActions from '../header/navigation/NavigationActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 
 class Home extends React.Component {
   static propTypes = {

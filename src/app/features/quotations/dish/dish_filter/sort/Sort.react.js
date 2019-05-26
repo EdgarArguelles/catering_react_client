@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
-import DishFilterActions from '../DishFilterActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 class Sort extends React.Component {
   static propTypes = {

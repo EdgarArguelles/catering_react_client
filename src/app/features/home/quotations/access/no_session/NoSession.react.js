@@ -1,7 +1,7 @@
 import './NoSession.scss';
 import React from 'react';
 import Fab from '@material-ui/core/Fab';
-import History from '../../../../../router/History';
+import History from 'app/router/History';
 
 export default class NoSession extends React.Component {
   static propTypes = {};

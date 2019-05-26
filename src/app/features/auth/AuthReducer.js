@@ -2,7 +2,7 @@
  * Given the same arguments, it should calculate the next state and return it.
  * No surprises. No side effects. No API calls. No mutations. Just a calculation.
  */
-import {ACTION_TYPES as API_ACTION_TYPES} from '../../common/Api';
+import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
 import {ACTION_TYPES} from './AuthActions';
 
 const socketConnected = (state = false, action) => {

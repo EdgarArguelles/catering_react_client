@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Chip from '@material-ui/core/Chip';
-import Utils from '../../../common/Utils';
+import Utils from 'app/common/Utils';
 
 export default class Dish extends React.Component {
   static propTypes = {

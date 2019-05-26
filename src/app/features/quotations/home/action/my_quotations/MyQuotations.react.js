@@ -1,12 +1,12 @@
 import './MyQuotations.scss';
-import image from '../../../../../../assets/img/my-quotations.jpg';
+import image from 'assets/img/my-quotations.jpg';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import History from '../../../../../router/History';
-import Action from '../Action.react';
-import AuthDialogActions from '../../../auth_dialog/AuthDialogActions';
-import AuthDialog from '../../../auth_dialog/AuthDialog.react';
+import History from 'app/router/History';
+import Action from 'app/features/quotations/home/action/Action.react';
+import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
 
 class MyQuotations extends React.Component {
   static propTypes = {

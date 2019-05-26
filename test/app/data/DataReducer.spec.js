@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES} from '../../../src/app/data/DataActions';
-import Data from '../../../src/app/data/DataReducer';
+import {ACTION_TYPES} from 'app/data/DataActions';
+import Data from 'app/data/DataReducer';
 
 describe('Data -> Reducer', () => {
   it('should get default state when empty', () => {

@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES} from '../../../../../../src/app/features/quotations/dish/dish_filter/DishFilterActions';
-import DishFilterReducer from '../../../../../../src/app/features/quotations/dish/dish_filter/DishFilterReducer';
+import {ACTION_TYPES} from 'app/features/quotations/dish/dish_filter/DishFilterActions';
+import DishFilterReducer from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
 describe('Quotations -> Dish -> Filter -> Reducer', () => {
   it('should get default state when empty', () => {

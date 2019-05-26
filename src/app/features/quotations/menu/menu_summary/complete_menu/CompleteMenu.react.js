@@ -1,7 +1,7 @@
 import './CompleteMenu.scss';
 import React from 'react';
 import Fab from '@material-ui/core/Fab';
-import History from '../../../../../router/History';
+import History from 'app/router/History';
 
 export default class CompleteMenu extends React.Component {
   static propTypes = {};

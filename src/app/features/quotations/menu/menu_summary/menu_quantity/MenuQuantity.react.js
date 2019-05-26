@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import MenuActions from '../../MenuActions';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
 
 class MenuQuantity extends React.Component {
   static propTypes = {

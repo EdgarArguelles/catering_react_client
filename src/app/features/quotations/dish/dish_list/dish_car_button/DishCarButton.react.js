@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import Badge from '@material-ui/core/Badge';
-import History from '../../../../../router/History';
-import {getCurrentCourseType} from '../../../course_type/CourseType.service';
+import History from 'app/router/History';
+import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 
 class DishCarButton extends React.Component {
   static propTypes = {

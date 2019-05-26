@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES} from '../../../../../src/app/features/quotations/menu/MenuActions';
-import MenuReducer from '../../../../../src/app/features/quotations/menu/MenuReducer';
+import {ACTION_TYPES} from 'app/features/quotations/menu/MenuActions';
+import MenuReducer from 'app/features/quotations/menu/MenuReducer';
 
 describe('Quotations -> Menu -> Reducer', () => {
   it('should get default state when empty', () => {

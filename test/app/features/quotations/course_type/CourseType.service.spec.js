@@ -7,7 +7,7 @@ import {
   getCurrentCourseTypeDishes,
   getSortedCourseTypes,
   useMultipleDishes,
-} from '../../../../../src/app/features/quotations/course_type/CourseType.service';
+} from 'app/features/quotations/course_type/CourseType.service';
 
 describe('Quotations -> Course Type -> Service', () => {
   describe('getActiveCourseTypes', () => {

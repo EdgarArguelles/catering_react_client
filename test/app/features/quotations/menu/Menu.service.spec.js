@@ -1,10 +1,6 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {
-  getMenuFromLink,
-  getRandomMenuId,
-  getShareMenuLink,
-} from '../../../../../src/app/features/quotations/menu/Menu.service';
+import {getMenuFromLink, getRandomMenuId, getShareMenuLink} from 'app/features/quotations/menu/Menu.service';
 
 const LINK = 'http://localhost/presupuestos/menu/ver?menu=';
 

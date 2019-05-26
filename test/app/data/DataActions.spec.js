@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import DataActions, {ACTION_TYPES} from '../../../src/app/data/DataActions';
+import DataActions, {ACTION_TYPES} from 'app/data/DataActions';
 
 describe('Data -> Actions', () => {
   describe('changeVersion', () => {

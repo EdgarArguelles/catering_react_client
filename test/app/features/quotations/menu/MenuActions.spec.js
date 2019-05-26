@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import MenuActions, {ACTION_TYPES} from '../../../../../src/app/features/quotations/menu/MenuActions';
+import MenuActions, {ACTION_TYPES} from 'app/features/quotations/menu/MenuActions';
 
 describe('Quotations -> Menu -> Actions', () => {
   describe('changeName', () => {

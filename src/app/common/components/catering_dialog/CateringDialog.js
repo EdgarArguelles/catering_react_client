@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import NavigationActions from '../../../features/quotations/header/navigation/NavigationActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 
 export default ComposedComponent => {
   class CateringDialog extends React.Component {

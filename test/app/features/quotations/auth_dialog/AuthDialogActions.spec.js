@@ -1,6 +1,5 @@
 import {expect} from 'chai';
-import AuthDialogActions, {ACTION_TYPES}
-  from '../../../../../src/app/features/quotations/auth_dialog/AuthDialogActions';
+import AuthDialogActions, {ACTION_TYPES} from 'app/features/quotations/auth_dialog/AuthDialogActions';
 
 describe('Quotations -> Auth Dialog -> Actions', () => {
   describe('openAuthDialog', () => {

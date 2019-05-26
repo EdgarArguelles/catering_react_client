@@ -1,10 +1,10 @@
 import './Navigation.scss';
-import image from '../../../../../assets/img/logo.png';
+import image from 'assets/img/logo.png';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
-import History from '../../../../router/History';
+import History from 'app/router/History';
 
 class Navigation extends React.Component {
   static propTypes = {

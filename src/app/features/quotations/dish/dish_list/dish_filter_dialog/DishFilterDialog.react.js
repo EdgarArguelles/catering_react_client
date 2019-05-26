@@ -7,8 +7,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import cateringDialog from '../../../../../common/components/catering_dialog/CateringDialog';
-import DishFilter from '../../dish_filter/DishFilter.react';
+import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
+import DishFilter from 'app/features/quotations/dish/dish_filter/DishFilter.react';
 
 const Transition = props => {
   return <Slide direction="up" {...props}/>;

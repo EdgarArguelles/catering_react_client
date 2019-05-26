@@ -2,8 +2,8 @@
  * Given the same arguments, it should calculate the next state and return it.
  * No surprises. No side effects. No API calls. No mutations. Just a calculation.
  */
-import Utils from '../../common/Utils';
-import {ACTION_TYPES as DATA_ACTION_TYPES} from '../DataActions';
+import Utils from 'app/common/Utils';
+import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/DataActions';
 import {ACTION_TYPES} from './DishesActions';
 
 export const dishesFetching = (state = false, action = {}) => {

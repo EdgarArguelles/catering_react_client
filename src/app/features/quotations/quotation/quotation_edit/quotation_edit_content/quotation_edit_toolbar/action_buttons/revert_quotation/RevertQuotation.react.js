@@ -5,11 +5,10 @@ import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
-import History from '../../../../../../../../router/History';
-import ConfirmationDialog
-  from '../../../../../../../../common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
-import QuotationsActions from '../../../../../../QuotationsActions';
-import QuotationActions from '../../../../../QuotationActions';
+import History from 'app/router/History';
+import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
 class RevertQuotation extends React.Component {
   static propTypes = {

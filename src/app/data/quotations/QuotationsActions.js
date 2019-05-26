@@ -3,8 +3,8 @@
  * Following the Flux Standard Action: https://github.com/acdlite/flux-standard-action
  */
 import keyMirror from 'keymirror';
-import Api from '../../common/Api';
-import Utils from '../../common/Utils';
+import Api from 'app/common/Api';
+import Utils from 'app/common/Utils';
 
 export const ACTION_TYPES = keyMirror({
   QUOTATIONS_CLEAN_ERROR: null,

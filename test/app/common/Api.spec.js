@@ -2,7 +2,7 @@
 import {expect} from 'chai';
 import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
-import Api, {ACTION_TYPES} from '../../../src/app/common/Api';
+import Api, {ACTION_TYPES} from 'app/common/Api';
 
 describe('Api', () => {
   describe('Api calls', () => {

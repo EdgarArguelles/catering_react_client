@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES as API_ACTION_TYPES} from '../../../../src/app/common/Api';
-import {ACTION_TYPES} from '../../../../src/app/features/auth/AuthActions';
-import AuthReducer from '../../../../src/app/features/auth/AuthReducer';
+import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
+import {ACTION_TYPES} from 'app/features/auth/AuthActions';
+import AuthReducer from 'app/features/auth/AuthReducer';
 
 describe('Auth -> Reducer', () => {
   it('should get default state when empty', () => {

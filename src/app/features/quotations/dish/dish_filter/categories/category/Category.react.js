@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Switch from '@material-ui/core/Switch';
-import DishFilterActions from '../../DishFilterActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 class Category extends React.Component {
   static propTypes = {

@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
-import Utils from '../../../../../common/Utils';
-import {CategoryContentLoader} from '../../../../../common/components/content_loaders/ContentLoaders.react';
-import {getCurrentCourseTypeDishes} from '../../../course_type/CourseType.service';
-import {getActiveDishes} from '../../../dish/Dish.service';
+import Utils from 'app/common/Utils';
+import {getCurrentCourseTypeDishes} from 'app/features/quotations/course_type/CourseType.service';
+import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
+import {CategoryContentLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
 import Category from './category/Category.react';
-import DishFilterActions from '../DishFilterActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 class Categories extends React.Component {
   static propTypes = {

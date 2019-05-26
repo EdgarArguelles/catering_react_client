@@ -3,10 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import DishesLoader from '../../../../../data/dishes/DishesLoader.react';
-import {getDishesPrice} from '../../../dish/Dish.service';
-import MenuActions from '../../../menu/MenuActions';
-import MultipleDishesDialogActions from '../MultipleDishesDialogActions';
+import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
+import DishesLoader from 'app/data/dishes/DishesLoader.react';
+import MenuActions from 'app/features/quotations/menu/MenuActions';
+import MultipleDishesDialogActions
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 
 class MultipleDishesActions extends React.Component {
   static propTypes = {

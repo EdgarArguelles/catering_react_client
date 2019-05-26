@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 import MenuItemHeader from './menu_item_header/MenuItemHeader.react';
 import MenuItemContent from './menu_item_content/MenuItemContent.react';
 import MenuMenu from './menu_menu/MenuMenu.react';
-import QuotationActions from '../../../../QuotationActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
 class MenuItem extends React.Component {
   static propTypes = {

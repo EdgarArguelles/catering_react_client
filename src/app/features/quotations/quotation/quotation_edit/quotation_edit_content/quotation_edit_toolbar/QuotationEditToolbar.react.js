@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
-import ExpandBar from '../../../../../../common/components/expand_bar/ExpandBar.react';
+import ExpandBar from 'app/common/components/expand_bar/ExpandBar.react';
 import ActionButtons from './action_buttons/ActionButtons.react';
 
 class QuotationEditToolbar extends React.Component {

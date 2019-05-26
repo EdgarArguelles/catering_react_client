@@ -6,10 +6,10 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
-import reducers from '../../../../src/app/Reducers';
-import DishesLoader from '../../../../src/app/data/dishes/DishesLoader.react';
-import DishesActions, {ACTION_TYPES} from '../../../../src/app/data/dishes/DishesActions';
-import {ACTION_TYPES as DATA_TYPES} from '../../../../src/app/data/DataActions';
+import reducers from 'app/Reducers';
+import DishesLoader from 'app/data/dishes/DishesLoader.react';
+import DishesActions, {ACTION_TYPES} from 'app/data/dishes/DishesActions';
+import {ACTION_TYPES as DATA_TYPES} from 'app/data/DataActions';
 
 describe('Data -> Dishes -> Loader', () => {
   const myRenderer = () => <div>renderer</div>;

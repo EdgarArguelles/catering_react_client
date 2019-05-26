@@ -3,7 +3,7 @@ import {expect} from 'chai';
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import React from 'react';
-import EnterTextField from '../../../../../src/app/common/components/enter_text_field/EnterTextField.react';
+import EnterTextField from 'app/common/components/enter_text_field/EnterTextField.react';
 
 describe('Components -> EnterTextField', () => {
   const onSaveStub = sinon.stub();

@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import Utils from '../../../src/app/common/Utils';
+import Utils from 'app/common/Utils';
 
 describe('Utils', () => {
   describe('getSortString', () => {

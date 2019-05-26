@@ -8,7 +8,7 @@ import 'isomorphic-fetch';
 import 'url-search-params-polyfill';
 
 import '../index.html';
-import '../assets/img/icon-128x128.png';
+import 'assets/img/icon-128x128.png';
 import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';

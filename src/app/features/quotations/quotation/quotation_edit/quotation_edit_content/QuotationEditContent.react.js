@@ -2,13 +2,13 @@ import './QuotationEditContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {QuotationEditLoader} from '../../../../../common/components/content_loaders/ContentLoaders.react';
-import EditableField from '../../../../../common/components/editable_field/EditableField.react';
+import {QuotationEditLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import EditableField from 'app/common/components/editable_field/EditableField.react';
 import QuotationEditToolbar from './quotation_edit_toolbar/QuotationEditToolbar.react';
 import MenuGrid from './menu_grid/MenuGrid.react';
 import QuotationNotify from './quotation_notify/QuotationNotify.react';
 import QuotationCompleteButton from './quotation_complete_button/QuotationCompleteButton.react';
-import QuotationActions from '../../QuotationActions';
+import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
 class QuotationEditContent extends React.Component {
   static propTypes = {

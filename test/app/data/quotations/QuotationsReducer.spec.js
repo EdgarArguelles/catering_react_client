@@ -1,17 +1,17 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
 import sinon from 'sinon';
-import {ACTION_TYPES as API_ACTION_TYPES} from '../../../../src/app/common/Api';
-import {ACTION_TYPES as AUTH_ACTION_TYPES} from '../../../../src/app/features/auth/AuthActions';
-import {ACTION_TYPES} from '../../../../src/app/data/quotations/QuotationsActions';
+import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
+import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
+import {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import {
   quotations,
   quotationsError,
   quotationsFetching,
   quotationsMetaData,
   quotationsUpdateFetching,
-} from '../../../../src/app/data/quotations/QuotationsReducer';
-import Utils from '../../../../src/app/common/Utils';
+} from 'app/data/quotations/QuotationsReducer';
+import Utils from 'app/common/Utils';
 
 describe('Data -> Quotations -> Reducer', () => {
   describe('quotationsFetching', () => {

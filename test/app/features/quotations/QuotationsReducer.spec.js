@@ -1,9 +1,9 @@
 /* eslint-disable max-lines */
 import {expect} from 'chai';
-import {ACTION_TYPES as AUTH_ACTION_TYPES} from '../../../../src/app/features/auth/AuthActions';
-import {ACTION_TYPES as DATA_ACTION_TYPES} from '../../../../src/app/data/quotations/QuotationsActions';
-import {ACTION_TYPES} from '../../../../src/app/features/quotations/QuotationsActions';
-import QuotationsReducer from '../../../../src/app/features/quotations/QuotationsReducer';
+import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
+import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
+import {ACTION_TYPES} from 'app/features/quotations/QuotationsActions';
+import QuotationsReducer from 'app/features/quotations/QuotationsReducer';
 
 describe('Quotations -> Reducer', () => {
   it('should get default state when empty', () => {
