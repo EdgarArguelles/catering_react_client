@@ -2,17 +2,17 @@
 
 exports[`Components -> EnterTextField snapshot should render TextField with props 1`] = `
 <div
-  className="MuiFormControl-root-1 MuiFormControl-marginDense-3 className test"
+  className="MuiFormControl-root MuiFormControl-marginDense MuiTextField-root className test"
   onKeyUp={[Function]}
 >
   <div
-    className="MuiInputBase-root-18 MuiInput-root-5 MuiInput-underline-9 MuiInputBase-formControl-19 MuiInput-formControl-6 MuiInputBase-marginDense-25"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
       autoFocus={true}
-      className="MuiInputBase-input-28 MuiInput-input-13 MuiInputBase-inputMarginDense-29 MuiInput-inputMarginDense-14"
+      className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
       defaultValue="initValue test"
       disabled={false}
       onBlur={[Function]}
@@ -28,16 +28,16 @@ exports[`Components -> EnterTextField snapshot should render TextField with prop
 
 exports[`Components -> EnterTextField snapshot should render TextField without props 1`] = `
 <div
-  className="MuiFormControl-root-1 MuiFormControl-marginDense-3"
+  className="MuiFormControl-root MuiFormControl-marginDense MuiTextField-root"
   onKeyUp={[Function]}
 >
   <div
-    className="MuiInputBase-root-18 MuiInput-root-5 MuiInput-underline-9 MuiInputBase-formControl-19 MuiInput-formControl-6 MuiInputBase-marginDense-25"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense"
     onClick={[Function]}
   >
     <input
       aria-invalid={false}
-      className="MuiInputBase-input-28 MuiInput-input-13 MuiInputBase-inputMarginDense-29 MuiInput-inputMarginDense-14"
+      className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}

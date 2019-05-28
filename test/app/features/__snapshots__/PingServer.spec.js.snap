@@ -5,7 +5,7 @@ exports[`PingServer snapshot should render header 1`] = `
   id="header"
 >
   <div
-    className="MuiGrid-container-1 MuiGrid-justify-xs-space-between-20 header-container"
+    className="MuiGrid-root header-container MuiGrid-container MuiGrid-justify-xs-space-between"
   >
     <div
       id="logo"

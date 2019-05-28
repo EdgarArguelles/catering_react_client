@@ -54,7 +54,7 @@ class DishGrid extends React.Component {
     const {dishes} = this.props;
 
     return (
-      <Grid id="dish-grid" container spacing={16} justify="flex-start">
+      <Grid id="dish-grid" container spacing={2} justify="flex-start">
         {this.getContentLoader()}
         {[...dishes].sort(this.getSort()).map(dish => (
           <Animate key={dish.id} visible={this.isDishVisible(dish)} animationIn="fadeInDown" animationOut="fadeOutUp"
