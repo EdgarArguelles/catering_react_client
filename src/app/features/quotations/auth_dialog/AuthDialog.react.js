@@ -12,10 +12,6 @@ import cateringDialog from 'app/common/components/catering_dialog/CateringDialog
 import Auth from 'app/features/auth/Auth.react';
 import AuthDialogActions from './AuthDialogActions';
 
-const Transition = props => {
-  return <Zoom {...props}/>;
-};
-
 class AuthDialog extends React.Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
@@ -35,7 +31,7 @@ class AuthDialog extends React.Component {
 
     return (
       <Dialog id="auth-dialog" maxWidth="xs" open={open} onClose={onClose}
-              TransitionComponent={Transition} transitionDuration={500}>
+              TransitionComponent={Zoom} transitionDuration={500}>
         <DialogTitle>Acceder</DialogTitle>
         <DialogContent>
           <Auth onSuccess={this.handleSuccess}/>

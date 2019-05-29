@@ -10,10 +10,6 @@ import Button from '@material-ui/core/Button';
 import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
 import Contact from 'app/features/home/contact/Contact.react';
 
-const Transition = props => {
-  return <Slide {...props}/>;
-};
-
 class ContactDialog extends React.Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
@@ -26,7 +22,7 @@ class ContactDialog extends React.Component {
 
     return (
       <Dialog id="contact-dialog" fullWidth={true} maxWidth="md" fullScreen={fullScreen} open={open} onClose={onClose}
-              TransitionComponent={Transition} transitionDuration={500}>
+              TransitionComponent={Slide} transitionDuration={500}>
         <DialogContent>
           <Contact/>
         </DialogContent>

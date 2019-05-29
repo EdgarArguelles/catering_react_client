@@ -182,7 +182,6 @@
     // React specific linting rules for ESLint
     //
     "jsx-quotes": [2, "prefer-double"], // prefer double quotes in JSX
-    "react/display-name": 2, // Prevent missing displayName in a React component definition
     "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
     "react/jsx-uses-vars": 2, // Prevent variables used in JSX to be incorrectly marked as unused
