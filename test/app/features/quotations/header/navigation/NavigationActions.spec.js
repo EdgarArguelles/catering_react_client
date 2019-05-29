@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import NavigationActions, {ACTION_TYPES} from 'app/features/quotations/header/navigation/NavigationActions';
 
 describe('Quotations -> Header -> Navigation -> Actions', () => {
@@ -8,7 +7,7 @@ describe('Quotations -> Header -> Navigation -> Actions', () => {
 
       const result = NavigationActions.changeNavigation(backLink);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CHANGE_NAVIGATION,
         payload: {
           backLink,
@@ -16,7 +15,7 @@ describe('Quotations -> Header -> Navigation -> Actions', () => {
         },
       });
       // don't mutate
-      expect(backLink).to.deep.equal('test');
+      expect(backLink).toStrictEqual('test');
     });
 
     it('should dispatch CHANGE_NAVIGATION', () => {
@@ -25,7 +24,7 @@ describe('Quotations -> Header -> Navigation -> Actions', () => {
 
       const result = NavigationActions.changeNavigation(backLink, title);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CHANGE_NAVIGATION,
         payload: {
           backLink,
@@ -33,8 +32,8 @@ describe('Quotations -> Header -> Navigation -> Actions', () => {
         },
       });
       // don't mutate
-      expect(backLink).to.deep.equal('test');
-      expect(title).to.deep.equal('title 1');
+      expect(backLink).toStrictEqual('test');
+      expect(title).toStrictEqual('title 1');
     });
   });
 
@@ -44,14 +43,14 @@ describe('Quotations -> Header -> Navigation -> Actions', () => {
 
       const result = NavigationActions.closeNavigationDialog(closeDialog);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CLOSE_NAVIGATION_DIALOG,
         payload: {
           closeDialog,
         },
       });
       // don't mutate
-      expect(closeDialog).to.deep.equal('test');
+      expect(closeDialog).toStrictEqual('test');
     });
   });
 });

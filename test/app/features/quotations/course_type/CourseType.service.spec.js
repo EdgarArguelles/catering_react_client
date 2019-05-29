@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {
   getActiveCourseTypes,
   getCourseTypeDishes,
@@ -16,7 +15,7 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getActiveCourseTypes();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
     });
 
     it('should get empty array when courseTypes is null', () => {
@@ -25,9 +24,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getActiveCourseTypes(courseTypes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseTypes).to.deep.equal(null);
+      expect(courseTypes).toStrictEqual(null);
     });
 
     it('should get empty array when courseTypes is empty', () => {
@@ -36,9 +35,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getActiveCourseTypes(courseTypes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseTypes).to.deep.equal([]);
+      expect(courseTypes).toStrictEqual([]);
     });
 
     it('should exclude inactive when courseTypes is array', () => {
@@ -55,9 +54,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getActiveCourseTypes(courseTypes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseTypes).to.deep.equal([
+      expect(courseTypes).toStrictEqual([
         {position: 5},
         {position: 1, status: 0},
         {position: 15, status: 1},
@@ -79,9 +78,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getActiveCourseTypes(courseTypes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseTypes).to.deep.equal({
+      expect(courseTypes).toStrictEqual({
         a5: {position: 5},
         a1: {position: 1, status: 0},
         a15: {position: 15, status: 1},
@@ -110,10 +109,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal(undefined);
-        expect(shouldIncludeInactive).to.deep.equal(true);
+        expect(courseTypes).toStrictEqual(undefined);
+        expect(shouldIncludeInactive).toStrictEqual(true);
       });
 
       it('should get empty array when courseTypes is null', () => {
@@ -122,10 +121,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal(null);
-        expect(shouldIncludeInactive).to.deep.equal(true);
+        expect(courseTypes).toStrictEqual(null);
+        expect(shouldIncludeInactive).toStrictEqual(true);
       });
 
       it('should get empty array when courseTypes is empty', () => {
@@ -134,10 +133,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal([]);
-        expect(shouldIncludeInactive).to.deep.equal(true);
+        expect(courseTypes).toStrictEqual([]);
+        expect(shouldIncludeInactive).toStrictEqual(true);
       });
 
       it('should get sorted array when courseTypes is object', () => {
@@ -156,15 +155,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal({
+        expect(courseTypes).toStrictEqual({
           a5: {position: 5},
           a1: {position: 1, status: 0},
           a15: {position: 15, status: 1},
           a3: {position: 3, status: 1},
         });
-        expect(shouldIncludeInactive).to.deep.equal(true);
+        expect(shouldIncludeInactive).toStrictEqual(true);
       });
     });
 
@@ -178,15 +177,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal([
+        expect(courseTypes).toStrictEqual([
           {position: 5},
           {position: 1, status: 0},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(shouldIncludeInactive).to.deep.equal(undefined);
+        expect(shouldIncludeInactive).toStrictEqual(undefined);
       });
 
       it('should get sorted array when shouldIncludeInactive is null', () => {
@@ -198,15 +197,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal([
+        expect(courseTypes).toStrictEqual([
           {position: 5},
           {position: 1, status: 0},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(shouldIncludeInactive).to.deep.equal(null);
+        expect(shouldIncludeInactive).toStrictEqual(null);
       });
 
       it('should get sorted array when shouldIncludeInactive is false', () => {
@@ -218,15 +217,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).to.deep.equal([
+        expect(courseTypes).toStrictEqual([
           {position: 5},
           {position: 1, status: 0},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(shouldIncludeInactive).to.deep.equal(false);
+        expect(shouldIncludeInactive).toStrictEqual(false);
       });
     });
 
@@ -235,15 +234,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getSortedCourseTypes();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseTypes).to.deep.equal([
+      expect(courseTypes).toStrictEqual([
         {position: 5},
         {position: 1, status: 0},
         {position: 15, status: 1},
         {position: 3, status: 1},
       ]);
-      expect(shouldIncludeInactive).to.deep.equal(true);
+      expect(shouldIncludeInactive).toStrictEqual(true);
     });
 
     it('should get sorted array when courseTypes is array', () => {
@@ -256,15 +255,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseTypes).to.deep.equal([
+      expect(courseTypes).toStrictEqual([
         {position: 5},
         {position: 1, status: 0},
         {position: 15, status: 1},
         {position: 3, status: 1},
       ]);
-      expect(shouldIncludeInactive).to.deep.equal(true);
+      expect(shouldIncludeInactive).toStrictEqual(true);
     });
   });
 
@@ -288,10 +287,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal(undefined);
-        expect(selectedTab).to.deep.equal(1);
+        expect(allCourseTypes).toStrictEqual(undefined);
+        expect(selectedTab).toStrictEqual(1);
       });
 
       it('should get undefined when allCourseTypes is null', () => {
@@ -300,10 +299,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal(null);
-        expect(selectedTab).to.deep.equal(1);
+        expect(allCourseTypes).toStrictEqual(null);
+        expect(selectedTab).toStrictEqual(1);
       });
 
       it('should get undefined when allCourseTypes is empty', () => {
@@ -312,10 +311,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal([]);
-        expect(selectedTab).to.deep.equal(1);
+        expect(allCourseTypes).toStrictEqual([]);
+        expect(selectedTab).toStrictEqual(1);
       });
 
       it('should get second sorted object when allCourseTypes is object', () => {
@@ -329,15 +328,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal({
+        expect(allCourseTypes).toStrictEqual({
           a5: {position: 5, status: 1},
           a1: {position: 1, status: 1},
           a15: {position: 15, status: 1},
           a3: {position: 3, status: 1},
         });
-        expect(selectedTab).to.deep.equal(1);
+        expect(selectedTab).toStrictEqual(1);
       });
     });
 
@@ -348,15 +347,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, status: 1},
           {position: 1, status: 1},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(selectedTab).to.deep.equal(undefined);
+        expect(selectedTab).toStrictEqual(undefined);
       });
 
       it('should get undefined when selectedTab is null', () => {
@@ -365,15 +364,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, status: 1},
           {position: 1, status: 1},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(selectedTab).to.deep.equal(null);
+        expect(selectedTab).toStrictEqual(null);
       });
 
       it('should get third sorted object when selectedTab is 2', () => {
@@ -382,15 +381,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, status: 1},
           {position: 1, status: 1},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(selectedTab).to.deep.equal(2);
+        expect(selectedTab).toStrictEqual(2);
       });
 
       it('should get last sorted object when selectedTab is 4', () => {
@@ -399,15 +398,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, status: 1},
           {position: 1, status: 1},
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(selectedTab).to.deep.equal(4);
+        expect(selectedTab).toStrictEqual(4);
       });
     });
 
@@ -416,15 +415,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getCurrentCourseType();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(allCourseTypes).to.deep.equal([
+      expect(allCourseTypes).toStrictEqual([
         {position: 5, status: 1},
         {position: 1, status: 1},
         {position: 15, status: 1},
         {position: 3, status: 1},
       ]);
-      expect(selectedTab).to.deep.equal(1);
+      expect(selectedTab).toStrictEqual(1);
     });
 
     it('should get second sorted object', () => {
@@ -432,15 +431,15 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(allCourseTypes).to.deep.equal([
+      expect(allCourseTypes).toStrictEqual([
         {position: 5, status: 1},
         {position: 1, status: 1},
         {position: 15, status: 1},
         {position: 3, status: 1},
       ]);
-      expect(selectedTab).to.deep.equal(1);
+      expect(selectedTab).toStrictEqual(1);
     });
   });
 
@@ -464,10 +463,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal({id: 'a1'});
-        expect(allDishes).to.deep.equal(undefined);
+        expect(courseType).toStrictEqual({id: 'a1'});
+        expect(allDishes).toStrictEqual(undefined);
       });
 
       it('should get empty array when allDishes is null', () => {
@@ -476,10 +475,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal({id: 'a1'});
-        expect(allDishes).to.deep.equal(null);
+        expect(courseType).toStrictEqual({id: 'a1'});
+        expect(allDishes).toStrictEqual(null);
       });
 
       it('should get empty array when allDishes is empty', () => {
@@ -488,10 +487,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal({id: 'a1'});
-        expect(allDishes).to.deep.equal([]);
+        expect(courseType).toStrictEqual({id: 'a1'});
+        expect(allDishes).toStrictEqual([]);
       });
 
       it('should get filter array when allDishes is object', () => {
@@ -508,10 +507,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal({id: 'a1'});
-        expect(allDishes).to.deep.equal({
+        expect(courseType).toStrictEqual({id: 'a1'});
+        expect(allDishes).toStrictEqual({
           a5: {courseTypeId: 'a5'},
           a1: {courseTypeId: 'a1'},
           a15: {courseTypeId: 'a1'},
@@ -527,10 +526,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal(undefined);
-        expect(allDishes).to.deep.equal([
+        expect(courseType).toStrictEqual(undefined);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a1'},
           {courseTypeId: 'a1'},
@@ -544,10 +543,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal(null);
-        expect(allDishes).to.deep.equal([
+        expect(courseType).toStrictEqual(null);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a1'},
           {courseTypeId: 'a1'},
@@ -561,10 +560,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCourseTypeDishes(allDishes, courseType);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).to.deep.equal({id: 'a2'});
-        expect(allDishes).to.deep.equal([
+        expect(courseType).toStrictEqual({id: 'a2'});
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a1'},
           {courseTypeId: 'a1'},
@@ -578,10 +577,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getCourseTypeDishes();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).to.deep.equal({id: 'a1'});
-      expect(allDishes).to.deep.equal([
+      expect(courseType).toStrictEqual({id: 'a1'});
+      expect(allDishes).toStrictEqual([
         {courseTypeId: 'a5'},
         {courseTypeId: 'a1'},
         {courseTypeId: 'a1'},
@@ -597,10 +596,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getCourseTypeDishes(allDishes, courseType);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).to.deep.equal({id: 'a1'});
-      expect(allDishes).to.deep.equal([
+      expect(courseType).toStrictEqual({id: 'a1'});
+      expect(allDishes).toStrictEqual([
         {courseTypeId: 'a5'},
         {courseTypeId: 'a1'},
         {courseTypeId: 'a1'},
@@ -635,11 +634,11 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal(undefined);
-        expect(allCourseTypes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual(undefined);
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -653,11 +652,11 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal(null);
-        expect(allCourseTypes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual(null);
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -671,11 +670,11 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal([]);
-        expect(allCourseTypes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual([]);
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -697,16 +696,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal({
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual({
           a5: {courseTypeId: 'a5'},
           a1: {courseTypeId: 'a8'},
           a15: {courseTypeId: 'a8'},
           a3: {courseTypeId: 'a3'},
         });
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -722,16 +721,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal(undefined);
+        expect(allCourseTypes).toStrictEqual(undefined);
       });
 
       it('should get empty array when allCourseTypes is null', () => {
@@ -740,16 +739,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal(null);
+        expect(allCourseTypes).toStrictEqual(null);
       });
 
       it('should get empty array when allCourseTypes is empty', () => {
@@ -758,16 +757,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal([]);
+        expect(allCourseTypes).toStrictEqual([]);
       });
 
       it('should get filter array when allCourseTypes is object', () => {
@@ -784,16 +783,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(2);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(2);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal({
+        expect(allCourseTypes).toStrictEqual({
           a5: {position: 5, id: 'a8', status: 1},
           a1: {position: 1, id: 'a5', status: 1},
           a15: {position: 15, id: 'a6', status: 1},
@@ -811,16 +810,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(undefined);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(undefined);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -834,16 +833,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(null);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(null);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -857,16 +856,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
         const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-        expect(result).to.deep.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).to.deep.equal(4);
-        expect(allDishes).to.deep.equal([
+        expect(selectedTab).toStrictEqual(4);
+        expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).to.deep.equal([
+        expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
           {position: 15, id: 'a6', status: 1},
@@ -880,16 +879,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getCurrentCourseTypeDishes();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(selectedTab).to.deep.equal(2);
-      expect(allDishes).to.deep.equal([
+      expect(selectedTab).toStrictEqual(2);
+      expect(allDishes).toStrictEqual([
         {courseTypeId: 'a5'},
         {courseTypeId: 'a8'},
         {courseTypeId: 'a8'},
         {courseTypeId: 'a3'},
       ]);
-      expect(allCourseTypes).to.deep.equal([
+      expect(allCourseTypes).toStrictEqual([
         {position: 5, id: 'a8', status: 1},
         {position: 1, id: 'a5', status: 1},
         {position: 15, id: 'a6', status: 1},
@@ -905,16 +904,16 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(selectedTab).to.deep.equal(2);
-      expect(allDishes).to.deep.equal([
+      expect(selectedTab).toStrictEqual(2);
+      expect(allDishes).toStrictEqual([
         {courseTypeId: 'a5'},
         {courseTypeId: 'a8'},
         {courseTypeId: 'a8'},
         {courseTypeId: 'a3'},
       ]);
-      expect(allCourseTypes).to.deep.equal([
+      expect(allCourseTypes).toStrictEqual([
         {position: 5, id: 'a8', status: 1},
         {position: 1, id: 'a5', status: 1},
         {position: 15, id: 'a6', status: 1},
@@ -929,7 +928,7 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = useMultipleDishes();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
     });
 
     it('should get false when courseType is null', () => {
@@ -938,9 +937,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = useMultipleDishes(courseType);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).to.deep.equal(null);
+      expect(courseType).toStrictEqual(null);
     });
 
     it('should get false when name is not Plato Fuerte', () => {
@@ -949,9 +948,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = useMultipleDishes(courseType);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).to.deep.equal({id: 'test', name: 'test name'});
+      expect(courseType).toStrictEqual({id: 'test', name: 'test name'});
     });
 
     it('should get true when name is Plato Fuerte', () => {
@@ -960,9 +959,9 @@ describe('Quotations -> Course Type -> Service', () => {
 
       const result = useMultipleDishes(courseType);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).to.deep.equal({id: 'test', name: 'Plato Fuerte'});
+      expect(courseType).toStrictEqual({id: 'test', name: 'Plato Fuerte'});
     });
   });
 });

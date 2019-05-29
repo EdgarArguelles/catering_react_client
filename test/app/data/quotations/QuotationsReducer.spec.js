@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
 import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
@@ -20,7 +19,7 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -28,9 +27,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get true when action is FETCH_QUOTATIONS_REQUEST', () => {
@@ -40,9 +39,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get true when action is FETCH_QUOTATION_REQUEST', () => {
@@ -52,9 +51,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get false when action is FETCH_QUOTATIONS_SUCCESS', () => {
@@ -64,9 +63,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is FETCH_QUOTATIONS_ERROR', () => {
@@ -76,9 +75,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is FETCH_QUOTATION_SUCCESS', () => {
@@ -88,9 +87,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is FETCH_QUOTATION_ERROR', () => {
@@ -100,9 +99,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
   });
 
@@ -112,7 +111,7 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -120,9 +119,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get true when action is CREATE_QUOTATIONS_REQUEST', () => {
@@ -132,9 +131,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get true when action is EDIT_QUOTATIONS_REQUEST', () => {
@@ -144,9 +143,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get true when action is DELETE_QUOTATIONS_REQUEST', () => {
@@ -156,9 +155,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get false when action is CREATE_QUOTATIONS_SUCCESS', () => {
@@ -168,9 +167,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is CREATE_QUOTATIONS_ERROR', () => {
@@ -180,9 +179,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is EDIT_QUOTATIONS_SUCCESS', () => {
@@ -192,9 +191,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is EDIT_QUOTATIONS_ERROR', () => {
@@ -204,9 +203,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is DELETE_QUOTATIONS_SUCCESS', () => {
@@ -216,9 +215,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is DELETE_QUOTATIONS_ERROR', () => {
@@ -228,9 +227,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsUpdateFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
   });
 
@@ -240,7 +239,7 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -248,9 +247,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is QUOTATIONS_CLEAN_ERROR', () => {
@@ -260,9 +259,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is FETCH_QUOTATIONS_REQUEST', () => {
@@ -272,9 +271,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is FETCH_QUOTATIONS_SUCCESS', () => {
@@ -284,9 +283,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is FETCH_QUOTATION_REQUEST', () => {
@@ -296,9 +295,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is FETCH_QUOTATION_SUCCESS', () => {
@@ -308,9 +307,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is CREATE_QUOTATIONS_REQUEST', () => {
@@ -320,9 +319,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is CREATE_QUOTATIONS_SUCCESS', () => {
@@ -332,9 +331,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is EDIT_QUOTATIONS_REQUEST', () => {
@@ -344,9 +343,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is EDIT_QUOTATIONS_SUCCESS', () => {
@@ -356,9 +355,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is DELETE_QUOTATIONS_REQUEST', () => {
@@ -368,9 +367,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should get null when action is DELETE_QUOTATIONS_SUCCESS', () => {
@@ -380,9 +379,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should set error when action is FETCH_QUOTATIONS_ERROR', () => {
@@ -392,9 +391,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should set error when action is FETCH_QUOTATION_ERROR', () => {
@@ -404,9 +403,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should set error when action is CREATE_QUOTATIONS_ERROR', () => {
@@ -416,9 +415,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should set error when action is EDIT_QUOTATIONS_ERROR', () => {
@@ -428,9 +427,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
 
     it('should set error when action is DELETE_QUOTATIONS_ERROR', () => {
@@ -440,9 +439,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsError(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'error1'});
+      expect(state).toStrictEqual({id: 'error1'});
     });
   });
 
@@ -452,7 +451,7 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -460,9 +459,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is SESSION_EXPIRED', () => {
@@ -472,9 +471,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is PING_USER_ERROR', () => {
@@ -484,9 +483,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is LOGOUT', () => {
@@ -496,9 +495,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is CREATE_QUOTATIONS_SUCCESS', () => {
@@ -508,9 +507,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is EDIT_QUOTATIONS_SUCCESS', () => {
@@ -520,9 +519,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is DELETE_QUOTATIONS_SUCCESS', () => {
@@ -532,9 +531,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should get null when action is QUOTATIONS_CLEAN_QUOTATIONS', () => {
@@ -544,9 +543,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1'});
+      expect(state).toStrictEqual({id: 'meta1'});
     });
 
     it('should replace metadata when action is FETCH_QUOTATIONS_SUCCESS', () => {
@@ -559,9 +558,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotationsMetaData(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({id: 'meta1', old: 'old1'});
+      expect(state).toStrictEqual({id: 'meta1', old: 'old1'});
     });
   });
 
@@ -577,7 +576,7 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -589,9 +588,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1'},
         'id-2': {id: 'id-2', name: '123'},
         'id-3': {id: 'id-3'},
@@ -612,9 +611,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -637,9 +636,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -662,9 +661,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -687,9 +686,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -712,9 +711,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -737,9 +736,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -762,9 +761,9 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -801,11 +800,11 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, data);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123'},
@@ -839,11 +838,11 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, [data]);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123', extra: '123'},
@@ -871,11 +870,11 @@ describe('Data -> Quotations -> Reducer', () => {
 
       const result = quotations(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, [data]);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', name: 'ct1'},
         'id-2': {id: 'id-2', name: 'ct2'},
         'id-3': {id: 'id-3', name: '123', extra: '123'},

@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
 import Api, {ACTION_TYPES} from 'app/common/Api';
@@ -22,7 +21,7 @@ describe('Api', () => {
 
         Api.getJSON(null, '/test');
 
-        expect(fetchMock.lastUrl()).to.equal(urlExpected);
+        expect(fetchMock.lastUrl()).toStrictEqual(urlExpected);
       });
 
       it('should not use default prefix when prefix is defined', () => {
@@ -30,7 +29,7 @@ describe('Api', () => {
 
         Api.getJSON(null, 'https://custom.com/test');
 
-        expect(fetchMock.lastUrl()).to.equal(urlExpected);
+        expect(fetchMock.lastUrl()).toStrictEqual(urlExpected);
       });
     });
 
@@ -45,7 +44,7 @@ describe('Api', () => {
 
             const json = await Api.graphql(null, '/test');
 
-            expect(json).to.deep.equal(jsonExpected);
+            expect(json).toStrictEqual(jsonExpected);
           });
 
           it('should handle graphql errors', async () => {
@@ -56,7 +55,7 @@ describe('Api', () => {
               await Api.graphql(null, '/test');
               throw new Error('promise should fail but it did not!!!!');
             } catch (error) {
-              expect(error).to.deep.equal({errors: errorsExpected});
+              expect(error).toStrictEqual({errors: errorsExpected});
             }
           });
         });
@@ -74,7 +73,7 @@ describe('Api', () => {
 
             Api.getJSON(null, '/test');
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
           });
 
           it('should overwrite method in options and Accept in headers when options is defined', () => {
@@ -87,7 +86,7 @@ describe('Api', () => {
 
             Api.getJSON(null, '/test', config);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
           });
 
           describe('headers', () => {
@@ -107,7 +106,7 @@ describe('Api', () => {
 
               Api.getJSON(null, '/test');
 
-              expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+              expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
             });
 
             it('should overwrite authorization in headers when options is defined', () => {
@@ -121,7 +120,7 @@ describe('Api', () => {
 
               Api.getJSON(null, '/test', config);
 
-              expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+              expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
             });
           });
         });
@@ -142,9 +141,9 @@ describe('Api', () => {
 
             Api.postJSON(null, '/test', body);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
             // don't mutate
-            expect(body).to.deep.equal({content: 'test'});
+            expect(body).toStrictEqual({content: 'test'});
           });
 
           it('should overwrite method and body in options and Accept and Content-Type ' +
@@ -164,9 +163,9 @@ describe('Api', () => {
 
             Api.postJSON(null, '/test', body, config);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
             // don't mutate
-            expect(body).to.deep.equal({content: 'test'});
+            expect(body).toStrictEqual({content: 'test'});
           });
         });
 
@@ -186,9 +185,9 @@ describe('Api', () => {
 
             Api.putJSON(null, '/test', body);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
             // don't mutate
-            expect(body).to.deep.equal({content: 'test'});
+            expect(body).toStrictEqual({content: 'test'});
           });
 
           it('should overwrite method and body in options and Accept and Content-Type in headers' +
@@ -208,9 +207,9 @@ describe('Api', () => {
 
             Api.putJSON(null, '/test', body, config);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
             // don't mutate
-            expect(body).to.deep.equal({content: 'test'});
+            expect(body).toStrictEqual({content: 'test'});
           });
         });
 
@@ -227,7 +226,7 @@ describe('Api', () => {
 
             Api.deleteJSON(null, '/test');
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
           });
 
           it('should overwrite method in options and Accept in headers when options is defined', () => {
@@ -240,7 +239,7 @@ describe('Api', () => {
 
             Api.deleteJSON(null, '/test', config);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
           });
         });
       });
@@ -254,10 +253,10 @@ describe('Api', () => {
 
           const response = await Api.getBLOB(null, '/test');
 
-          expect(response).to.haveOwnProperty('blob');
-          expect(response).to.haveOwnProperty('fileName');
-          expect(response.blob).to.not.be.undefined;
-          expect(response.fileName).to.be.undefined;
+          expect(response).toHaveProperty('blob');
+          expect(response).toHaveProperty('fileName');
+          expect(response.blob).toBeDefined();
+          expect(response.fileName).toBeUndefined();
         });
 
         it('should response a BLOB object with fileName when response has header', async () => {
@@ -270,10 +269,10 @@ describe('Api', () => {
 
           const response = await Api.getBLOB(null, '/test');
 
-          expect(response).to.haveOwnProperty('blob');
-          expect(response).to.haveOwnProperty('fileName');
-          expect(response.blob).to.not.be.undefined;
-          expect(response.fileName).to.equal(fileName);
+          expect(response).toHaveProperty('blob');
+          expect(response).toHaveProperty('fileName');
+          expect(response.blob).toBeDefined();
+          expect(response.fileName).toStrictEqual(fileName);
         });
 
         describe('GET', () => {
@@ -289,7 +288,7 @@ describe('Api', () => {
 
             Api.getBLOB(null, '/test');
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
           });
 
           it('should overwrite method in options and Accept in headers when options is defined', () => {
@@ -302,7 +301,7 @@ describe('Api', () => {
 
             Api.getBLOB(null, '/test', config);
 
-            expect(fetchMock.lastOptions()).to.deep.equal(optionsExpected);
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
           });
         });
       });
@@ -331,7 +330,7 @@ describe('Api', () => {
             await Api.getJSON(dispatchStub, '/test');
             throw new Error('promise should fail but it did not!!!!');
           } catch (error) {
-            expect(error).to.deep.equal({error: 'error', errorCode: 500});
+            expect(error).toStrictEqual({error: 'error', errorCode: 500});
             sinon.assert.callCount(dispatchStub, 1);
             sinon.assert.calledWithExactly(dispatchStub, errorAction);
           }
@@ -355,9 +354,9 @@ describe('Api', () => {
             await Api.getJSON(dispatchStub, '/test');
             throw new Error('promise should fail but it did not!!!!');
           } catch (error) {
-            expect(error).to.deep.equal({error: 'error', errorCode: 401});
-            expect(window.sessionStorage.getItem('accessToken')).to.be.null;
-            expect(window.sessionStorage.getItem('userImage')).to.be.null;
+            expect(error).toStrictEqual({error: 'error', errorCode: 401});
+            expect(window.sessionStorage.getItem('accessToken')).toBeNull();
+            expect(window.sessionStorage.getItem('userImage')).toBeNull();
             sinon.assert.callCount(dispatchStub, 2);
             sinon.assert.calledWithExactly(dispatchStub, sessionAction);
             sinon.assert.calledWithExactly(dispatchStub, errorAction);
@@ -382,9 +381,9 @@ describe('Api', () => {
             await Api.getJSON(dispatchStub, '/test');
             throw new Error('promise should fail but it did not!!!!');
           } catch (error) {
-            expect(error).to.deep.equal({error: 'error', errorCode: 403});
-            expect(window.sessionStorage.getItem('accessToken')).to.be.null;
-            expect(window.sessionStorage.getItem('userImage')).to.be.null;
+            expect(error).toStrictEqual({error: 'error', errorCode: 403});
+            expect(window.sessionStorage.getItem('accessToken')).toBeNull();
+            expect(window.sessionStorage.getItem('userImage')).toBeNull();
             sinon.assert.callCount(dispatchStub, 2);
             sinon.assert.calledWithExactly(dispatchStub, sessionAction);
             sinon.assert.calledWithExactly(dispatchStub, errorAction);
@@ -407,7 +406,7 @@ describe('Api', () => {
             await Api.getJSON(dispatchStub, '/test');
             throw new Error('promise should fail but it did not!!!!');
           } catch (error) {
-            expect(error).to.deep.equal({message: 'Api error'});
+            expect(error).toStrictEqual({message: 'Api error'});
             sinon.assert.callCount(dispatchStub, 1);
             sinon.assert.calledWithExactly(dispatchStub, errorAction);
           }

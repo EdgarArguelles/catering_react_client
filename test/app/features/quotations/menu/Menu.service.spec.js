@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {getMenuFromLink, getRandomMenuId, getShareMenuLink} from 'app/features/quotations/menu/Menu.service';
 
 const LINK = 'http://localhost/presupuestos/menu/ver?menu=';
@@ -11,7 +10,7 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getRandomMenuId();
 
-      expect(result.startsWith(startsWithExpected)).to.be.true;
+      expect(result.startsWith(startsWithExpected)).toBeTruthy();
     });
   });
 
@@ -19,7 +18,7 @@ describe('Quotations -> Menu -> Service', () => {
     it('should get null when menu is undefined', () => {
       const result = getShareMenuLink();
 
-      expect(result).to.deep.equal(null);
+      expect(result).toStrictEqual(null);
     });
 
     it('should get null when menu is null', () => {
@@ -27,9 +26,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getShareMenuLink(menu);
 
-      expect(result).to.deep.equal(null);
+      expect(result).toStrictEqual(null);
       // don't mutate
-      expect(menu).to.deep.equal(null);
+      expect(menu).toStrictEqual(null);
     });
 
     it('should encode name and replace all ; by %', () => {
@@ -37,9 +36,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getShareMenuLink(menu);
 
-      expect(result).to.deep.equal(`${LINK}name%201%25abc%25123;150.45;100;`);
+      expect(result).toStrictEqual(`${LINK}name%201%25abc%25123;150.45;100;`);
       // don't mutate
-      expect(menu).to.deep.equal({id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100});
+      expect(menu).toStrictEqual({id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100});
     });
 
     it('should get link when courses is not present', () => {
@@ -47,9 +46,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getShareMenuLink(menu);
 
-      expect(result).to.deep.equal(`${LINK};;;`);
+      expect(result).toStrictEqual(`${LINK};;;`);
       // don't mutate
-      expect(menu).to.deep.equal({id: 'test'});
+      expect(menu).toStrictEqual({id: 'test'});
     });
 
     it('should get link when courses is empty', () => {
@@ -57,9 +56,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getShareMenuLink(menu);
 
-      expect(result).to.deep.equal(`${LINK}name%201%25abc%25123;150.45;100;`);
+      expect(result).toStrictEqual(`${LINK}name%201%25abc%25123;150.45;100;`);
       // don't mutate
-      expect(menu).to.deep.equal({id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []});
+      expect(menu).toStrictEqual({id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []});
     });
 
     it('should get link when menu is complete', () => {
@@ -83,9 +82,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getShareMenuLink(menu);
 
-      expect(result).to.deep.equal(`${LINK}name%201;150.45;100;5.T1.D1,D2,D3:8.T2.D4,D5:6.T2.`);
+      expect(result).toStrictEqual(`${LINK}name%201;150.45;100;5.T1.D1,D2,D3:8.T2.D4,D5:6.T2.`);
       // don't mutate
-      expect(menu).to.deep.equal({
+      expect(menu).toStrictEqual({
         id: 'test', name: 'name 1', price: 150.45, quantity: 100, courses: [
           {
             id: 'C1', position: 5, type: {id: 'T1', name: 'Type 1'}, dishes: [
@@ -109,7 +108,7 @@ describe('Quotations -> Menu -> Service', () => {
     it('should get null when data is undefined', () => {
       const result = getMenuFromLink();
 
-      expect(result).to.deep.equal(null);
+      expect(result).toStrictEqual(null);
     });
 
     it('should get null when data is null', () => {
@@ -117,9 +116,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getMenuFromLink(data);
 
-      expect(result).to.deep.equal(null);
+      expect(result).toStrictEqual(null);
       // don't mutate
-      expect(data).to.deep.equal(null);
+      expect(data).toStrictEqual(null);
     });
 
     it('should replace all % by ; in name', () => {
@@ -127,9 +126,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getMenuFromLink(data);
 
-      expect(result).to.deep.equal({name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []});
+      expect(result).toStrictEqual({name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []});
       // don't mutate
-      expect(data).to.deep.equal('name 1%abc%123;150.45;100;');
+      expect(data).toStrictEqual('name 1%abc%123;150.45;100;');
     });
 
     it('should get menu when courses is not present', () => {
@@ -137,9 +136,9 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getMenuFromLink(data);
 
-      expect(result).to.deep.equal({name: '', price: 0.0, quantity: 0, courses: []});
+      expect(result).toStrictEqual({name: '', price: 0.0, quantity: 0, courses: []});
       // don't mutate
-      expect(data).to.deep.equal(';;;');
+      expect(data).toStrictEqual(';;;');
     });
 
     it('should get menu when menu is complete', () => {
@@ -147,7 +146,7 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getMenuFromLink(data);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         name: 'name 1', price: 150.45, quantity: 100, courses: [
           {
             position: 5, type: {id: 'T1'}, dishes: [{id: 'D1'}, {id: 'D2'}, {id: 'D3'}],
@@ -161,7 +160,7 @@ describe('Quotations -> Menu -> Service', () => {
         ],
       });
       // don't mutate
-      expect(data).to.deep.equal('name 1;150.45;100;5.T1.D1,D2,D3:8.T2.D4,D5:6.T2.');
+      expect(data).toStrictEqual('name 1;150.45;100;5.T1.D1,D2,D3:8.T2.D4,D5:6.T2.');
     });
   });
 });

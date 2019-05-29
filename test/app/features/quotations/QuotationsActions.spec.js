@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import QuotationsActions, {ACTION_TYPES} from 'app/features/quotations/QuotationsActions';
 
 describe('Quotations -> Actions', () => {
@@ -8,14 +7,14 @@ describe('Quotations -> Actions', () => {
 
       const result = QuotationsActions.changeMenuTab(tab);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATIONS_CHANGE_MENU_TAB,
         payload: {
           tab,
         },
       });
       // don't mutate
-      expect(tab).to.deep.equal(5);
+      expect(tab).toStrictEqual(5);
     });
   });
 
@@ -25,14 +24,14 @@ describe('Quotations -> Actions', () => {
 
       const result = QuotationsActions.changeMenuDialogOpen(isMenuDialogOpen);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATIONS_CHANGE_IS_MENU_DIALOG_OPEN,
         payload: {
           isMenuDialogOpen,
         },
       });
       // don't mutate
-      expect(isMenuDialogOpen).to.deep.equal(true);
+      expect(isMenuDialogOpen).toStrictEqual(true);
     });
   });
 
@@ -40,7 +39,7 @@ describe('Quotations -> Actions', () => {
     it('should dispatch QUOTATIONS_DELETE_LOCAL', () => {
       const result = QuotationsActions.deleteLocal();
 
-      expect(result).to.deep.equal({type: ACTION_TYPES.QUOTATIONS_DELETE_LOCAL});
+      expect(result).toStrictEqual({type: ACTION_TYPES.QUOTATIONS_DELETE_LOCAL});
     });
   });
 
@@ -48,7 +47,7 @@ describe('Quotations -> Actions', () => {
     it('should dispatch QUOTATIONS_END_REMOTE_PROCESS', () => {
       const result = QuotationsActions.endRemoteProcess();
 
-      expect(result).to.deep.equal({type: ACTION_TYPES.QUOTATIONS_END_REMOTE_PROCESS});
+      expect(result).toStrictEqual({type: ACTION_TYPES.QUOTATIONS_END_REMOTE_PROCESS});
     });
   });
 });

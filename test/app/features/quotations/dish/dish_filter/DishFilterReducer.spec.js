@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES} from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 import DishFilterReducer from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
@@ -13,7 +12,7 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
     const result = DishFilterReducer();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -25,9 +24,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
     const result = DishFilterReducer(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       search: 'test',
       sort: 'price',
       categories: ['cat1', 'cat2'],
@@ -49,9 +48,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
     const result = DishFilterReducer(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       search: 'test',
       sort: 'price',
       categories: ['cat1', 'cat2'],
@@ -74,9 +73,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
       const result = DishFilterReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2'],
@@ -100,9 +99,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
       const result = DishFilterReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         search: 'test',
         sort: 'name',
         categories: ['cat1', 'cat2'],
@@ -126,9 +125,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
       const result = DishFilterReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2'],
@@ -150,9 +149,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
       const result = DishFilterReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2'],
@@ -174,9 +173,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
       const result = DishFilterReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2', 'cat3'],
@@ -198,9 +197,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
 
       const result = DishFilterReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2', 'cat3'],

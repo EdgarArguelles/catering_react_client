@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import QuotationActions, {ACTION_TYPES} from 'app/features/quotations/quotation/QuotationActions';
 
 describe('Quotations -> Quotation -> Actions', () => {
@@ -9,14 +8,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.changeName(name);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_CHANGE_NAME,
         payload: {
           name,
         },
       });
       // don't mutate
-      expect(name).to.deep.equal('test');
+      expect(name).toStrictEqual('test');
     });
   });
 
@@ -26,14 +25,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.selectMenu(menuId);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_SELECT_MENU,
         payload: {
           menuId,
         },
       });
       // don't mutate
-      expect(menuId).to.deep.equal('test');
+      expect(menuId).toStrictEqual('test');
     });
   });
 
@@ -43,14 +42,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.addNewMenu(menuId);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_ADD_NEW_MENU,
         payload: {
           menuId,
         },
       });
       // don't mutate
-      expect(menuId).to.deep.equal('test');
+      expect(menuId).toStrictEqual('test');
     });
   });
 
@@ -60,14 +59,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.addMenu(menu);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_ADD_MENU,
         payload: {
           menu,
         },
       });
       // don't mutate
-      expect(menu).to.deep.equal({id: 'M1'});
+      expect(menu).toStrictEqual({id: 'M1'});
     });
   });
 
@@ -77,14 +76,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.removeMenu(menuId);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_REMOVE_MENU,
         payload: {
           menuId,
         },
       });
       // don't mutate
-      expect(menuId).to.deep.equal('test');
+      expect(menuId).toStrictEqual('test');
     });
   });
 
@@ -94,14 +93,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.setPrice(amount);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_SET_PRICE,
         payload: {
           amount,
         },
       });
       // don't mutate
-      expect(amount).to.deep.equal(5);
+      expect(amount).toStrictEqual(5);
     });
   });
 
@@ -111,14 +110,14 @@ describe('Quotations -> Quotation -> Actions', () => {
 
       const result = QuotationActions.revertQuotation(quotation);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.QUOTATION_REVERT,
         payload: {
           data: quotation,
         },
       });
       // don't mutate
-      expect(quotation).to.deep.equal({id: 'Q1'});
+      expect(quotation).toStrictEqual({id: 'Q1'});
     });
   });
 });

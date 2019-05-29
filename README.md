@@ -21,13 +21,13 @@ This project is a React Client used by CATERING
 - Webpack
 - Babel
 - Eslint
-- Jest / Chai / Sinon
+- Jest / Sinon
 - Sass
 - Npm
 
 ## NPM Build tasks:
 - evaluate JS code via Eslint
-- test JS code via Jest / Chai / Sinon
+- test JS code via Jest / Sinon
 - compile ES6 via Babel
 - compile Sass into css code
 - bundle JS and CSS files

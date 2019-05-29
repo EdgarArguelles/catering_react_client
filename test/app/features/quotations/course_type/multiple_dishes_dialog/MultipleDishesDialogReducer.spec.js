@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 import MultipleDishesDialogReducer
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
@@ -13,7 +12,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
     const result = MultipleDishesDialogReducer();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -24,9 +23,9 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
     const result = MultipleDishesDialogReducer(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       isMultipleDishesDialogOpen: true,
       dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
     });
@@ -49,9 +48,9 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
       const result = MultipleDishesDialogReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isMultipleDishesDialogOpen: false,
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
       });
@@ -72,9 +71,9 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
       const result = MultipleDishesDialogReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isMultipleDishesDialogOpen: false,
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
       });
@@ -93,9 +92,9 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
       const result = MultipleDishesDialogReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isMultipleDishesDialogOpen: false,
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
       });
@@ -114,9 +113,9 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
       const result = MultipleDishesDialogReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isMultipleDishesDialogOpen: false,
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
       });
@@ -135,9 +134,9 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer', () =>
 
       const result = MultipleDishesDialogReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isMultipleDishesDialogOpen: false,
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
       });

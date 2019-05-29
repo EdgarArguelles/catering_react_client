@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
 import {ACTION_TYPES} from 'app/features/auth/AuthActions';
 import AuthReducer from 'app/features/auth/AuthReducer';
@@ -13,7 +12,7 @@ describe('Auth -> Reducer', () => {
 
     const result = AuthReducer();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -24,9 +23,9 @@ describe('Auth -> Reducer', () => {
 
     const result = AuthReducer(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       socketConnected: true,
       loggedUser: {id: 'ID1'},
     });
@@ -46,9 +45,9 @@ describe('Auth -> Reducer', () => {
 
       const result = AuthReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         socketConnected: false,
         loggedUser: {id: 'ID1'},
       });
@@ -69,9 +68,9 @@ describe('Auth -> Reducer', () => {
 
       const result = AuthReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         socketConnected: true,
         loggedUser: {id: 'ID1'},
       });
@@ -90,9 +89,9 @@ describe('Auth -> Reducer', () => {
 
       const result = AuthReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         socketConnected: true,
         loggedUser: {id: 'ID1'},
       });
@@ -111,9 +110,9 @@ describe('Auth -> Reducer', () => {
 
       const result = AuthReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         socketConnected: true,
         loggedUser: {id: 'ID1'},
       });
@@ -132,9 +131,9 @@ describe('Auth -> Reducer', () => {
 
       const result = AuthReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         socketConnected: true,
         loggedUser: {id: 'ID1'},
       });
@@ -153,9 +152,9 @@ describe('Auth -> Reducer', () => {
 
       const result = AuthReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         socketConnected: true,
         loggedUser: {id: 'ID1'},
       });

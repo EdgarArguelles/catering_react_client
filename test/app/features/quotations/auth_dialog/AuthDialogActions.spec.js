@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import AuthDialogActions, {ACTION_TYPES} from 'app/features/quotations/auth_dialog/AuthDialogActions';
 
 describe('Quotations -> Auth Dialog -> Actions', () => {
@@ -6,7 +5,7 @@ describe('Quotations -> Auth Dialog -> Actions', () => {
     it('should dispatch CHANGE_IS_AUTH_DIALOG_OPEN', () => {
       const result = AuthDialogActions.openAuthDialog();
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CHANGE_IS_AUTH_DIALOG_OPEN,
         payload: {
           isAuthDialogOpen: true,
@@ -19,7 +18,7 @@ describe('Quotations -> Auth Dialog -> Actions', () => {
     it('should dispatch CHANGE_IS_AUTH_DIALOG_OPEN', () => {
       const result = AuthDialogActions.closeAuthDialog();
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CHANGE_IS_AUTH_DIALOG_OPEN,
         payload: {
           isAuthDialogOpen: false,

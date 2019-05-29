@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES} from 'app/features/quotations/header/navigation/NavigationActions';
 import NavigationReducer from 'app/features/quotations/header/navigation/NavigationReducer';
 
@@ -13,7 +12,7 @@ describe('Quotations -> Header -> Navigation -> Reducer', () => {
 
     const result = NavigationReducer();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -25,9 +24,9 @@ describe('Quotations -> Header -> Navigation -> Reducer', () => {
 
     const result = NavigationReducer(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       backLink: 'abc',
       title: '123',
       closeDialog: {id: 'ID1'},
@@ -50,9 +49,9 @@ describe('Quotations -> Header -> Navigation -> Reducer', () => {
 
       const result = NavigationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         backLink: 'abc',
         title: '123',
         closeDialog: {id: 'ID1'},
@@ -76,9 +75,9 @@ describe('Quotations -> Header -> Navigation -> Reducer', () => {
 
       const result = NavigationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         backLink: 'abc',
         title: '123',
         closeDialog: {id: 'ID1'},
@@ -102,9 +101,9 @@ describe('Quotations -> Header -> Navigation -> Reducer', () => {
 
       const result = NavigationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         backLink: 'abc',
         title: '123',
         closeDialog: {id: 'ID1'},
@@ -126,9 +125,9 @@ describe('Quotations -> Header -> Navigation -> Reducer', () => {
 
       const result = NavigationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         backLink: 'abc',
         title: '123',
         closeDialog: {id: 'ID1'},

@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import renderer, {act} from 'react-test-renderer';
 import React from 'react';
@@ -41,12 +40,12 @@ describe('Data -> Quotations -> Loader', () => {
         },
       });
 
-      expect(component.props.children).to.deep.equal(<h1>Test</h1>);
-      expect(component.props.loggedUser).to.be.undefined;
-      expect(component.props.quotation).to.deep.equal({id: 'Q1'});
-      expect(component.props.isFetching).to.deep.equal(true);
-      expect(component.props.quotations).to.be.undefined;
-      expect(component.props.fetchQuotation).to.not.be.undefined;
+      expect(component.props.children).toStrictEqual(<h1>Test</h1>);
+      expect(component.props.loggedUser).toBeUndefined();
+      expect(component.props.quotation).toStrictEqual({id: 'Q1'});
+      expect(component.props.isFetching).toStrictEqual(true);
+      expect(component.props.quotations).toBeUndefined();
+      expect(component.props.fetchQuotation).toBeDefined();
     });
 
     it('should have all props', () => {
@@ -59,12 +58,12 @@ describe('Data -> Quotations -> Loader', () => {
         },
       });
 
-      expect(component.props.children).to.deep.equal(<h1>Test</h1>);
-      expect(component.props.loggedUser).to.deep.equal({id: 'user 1'});
-      expect(component.props.quotation).to.deep.equal({id: 'Q1'});
-      expect(component.props.isFetching).to.deep.equal(true);
-      expect(component.props.quotations).to.deep.equal({Q2: {id: 'Q2'}, Q3: {id: 'Q3'}});
-      expect(component.props.fetchQuotation).to.not.be.undefined;
+      expect(component.props.children).toStrictEqual(<h1>Test</h1>);
+      expect(component.props.loggedUser).toStrictEqual({id: 'user 1'});
+      expect(component.props.quotation).toStrictEqual({id: 'Q1'});
+      expect(component.props.isFetching).toStrictEqual(true);
+      expect(component.props.quotations).toStrictEqual({Q2: {id: 'Q2'}, Q3: {id: 'Q3'}});
+      expect(component.props.fetchQuotation).toBeDefined();
     });
   });
 

@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import {ACTION_TYPES} from 'app/features/quotations/quotation/QuotationActions';
 import QuotationReducer from 'app/features/quotations/quotation/QuotationReducer';
@@ -14,7 +13,7 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
     const result = QuotationReducer();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -27,9 +26,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
     const result = QuotationReducer(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       id: 'ID1',
       name: 'name 1',
       menus: [{id: 'menu 1'}, {id: 'menu 2'}],
@@ -70,9 +69,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
     const result = QuotationReducer(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       id: 'ID1',
       name: 'name 1',
       extra: 'abc',
@@ -102,9 +101,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
     const result = QuotationReducer(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       id: 'ID1',
       name: 'name 1',
       extra: 'abc',
@@ -144,9 +143,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
     const result = QuotationReducer(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       id: 'ID1',
       name: 'name 1',
       extra: 'abc',
@@ -176,9 +175,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
     const result = QuotationReducer(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       id: 'ID1',
       name: 'name 1',
       extra: 'abc',
@@ -203,9 +202,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],
@@ -232,9 +231,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],
@@ -259,9 +258,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],
@@ -286,9 +285,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],
@@ -313,9 +312,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],
@@ -348,9 +347,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [
@@ -389,9 +388,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [
@@ -421,9 +420,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
         const result = QuotationReducer(state, {type: 'invalid'});
 
-        expect(result).to.deep.equal(stateExpected);
+        expect(result).toStrictEqual(stateExpected);
         // don't mutate
-        expect(state).to.deep.equal({
+        expect(state).toStrictEqual({
           id: 'ID1',
           name: 'name 1',
           menus: [{id: 'menu 1'}, {id: 'menu 2', isSelected: false}],
@@ -456,9 +455,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
         const result = QuotationReducer(state, {type: 'invalid'});
 
-        expect(result).to.deep.equal(stateExpected);
+        expect(result).toStrictEqual(stateExpected);
         // don't mutate
-        expect(state).to.deep.equal({
+        expect(state).toStrictEqual({
           id: 'ID1',
           name: 'name 1',
           menus: [
@@ -491,9 +490,9 @@ describe('Quotations -> Quotation -> Reducer', () => {
 
       const result = QuotationReducer(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],

@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import DataActions, {ACTION_TYPES} from 'app/data/DataActions';
 
 describe('Data -> Actions', () => {
@@ -8,14 +7,14 @@ describe('Data -> Actions', () => {
 
       const result = DataActions.changeVersion(version);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.DATA_CHANGE_VERSION,
         payload: {
           version,
         },
       });
       // don't mutate
-      expect(version).to.deep.equal('V5');
+      expect(version).toStrictEqual('V5');
     });
   });
 });

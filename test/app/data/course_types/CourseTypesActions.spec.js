@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import Api from 'app/common/Api';
 import CourseTypesActions, {ACTION_TYPES} from 'app/data/course_types/CourseTypesActions';
@@ -19,14 +18,14 @@ describe('Data -> CourseTypes -> Actions', () => {
 
       const result = CourseTypesActions.setCourseTypes(courseTypes);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.SET_COURSE_TYPES,
         payload: {
           courseTypes,
         },
       });
       // don't mutate
-      expect(courseTypes).to.deep.equal({id: 5});
+      expect(courseTypes).toStrictEqual({id: 5});
     });
   });
 
@@ -42,7 +41,7 @@ describe('Data -> CourseTypes -> Actions', () => {
 
       const result = await CourseTypesActions.fetchCourseTypes()(dispatchStub);
 
-      expect(result).to.deep.equal({data: {activeCourseTypes: {value: 'test'}}, metaData: {version: 'version1'}});
+      expect(result).toStrictEqual({data: {activeCourseTypes: {value: 'test'}}, metaData: {version: 'version1'}});
       sinon.assert.callCount(graphqlStub, 2);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, versionBody);
@@ -64,7 +63,7 @@ describe('Data -> CourseTypes -> Actions', () => {
         await CourseTypesActions.fetchCourseTypes()(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, versionBody);
         sinon.assert.callCount(dispatchStub, 2);
@@ -88,7 +87,7 @@ describe('Data -> CourseTypes -> Actions', () => {
         await CourseTypesActions.fetchCourseTypes()(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 2);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, versionBody);

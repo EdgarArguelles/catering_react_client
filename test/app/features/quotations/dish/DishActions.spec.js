@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import DishActions, {ACTION_TYPES} from 'app/features/quotations/dish/DishActions';
 
 describe('Quotations -> Dish -> Actions', () => {
@@ -8,7 +7,7 @@ describe('Quotations -> Dish -> Actions', () => {
 
       const result = DishActions.selectDish(dishId);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.SELECT_DISH,
         payload: {
           dishId,
@@ -16,7 +15,7 @@ describe('Quotations -> Dish -> Actions', () => {
         },
       });
       // don't mutate
-      expect(dishId).to.deep.equal('test');
+      expect(dishId).toStrictEqual('test');
     });
 
     it('should dispatch SELECT_DISH', () => {
@@ -25,7 +24,7 @@ describe('Quotations -> Dish -> Actions', () => {
 
       const result = DishActions.selectDish(dishId, showActions);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.SELECT_DISH,
         payload: {
           dishId,
@@ -33,8 +32,8 @@ describe('Quotations -> Dish -> Actions', () => {
         },
       });
       // don't mutate
-      expect(dishId).to.deep.equal('test');
-      expect(showActions).to.deep.equal(false);
+      expect(dishId).toStrictEqual('test');
+      expect(showActions).toStrictEqual(false);
     });
   });
 });

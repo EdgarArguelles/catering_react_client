@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import renderer, {act} from 'react-test-renderer';
 import React from 'react';
@@ -45,14 +44,14 @@ describe('Data -> Dishes -> Loader', () => {
         },
       );
 
-      expect(component.props.children).to.be.undefined;
-      expect(component.props.renderer).to.be.undefined;
-      expect(component.props.loader).to.be.undefined;
-      expect(component.props.dishes).to.deep.equal([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}]);
-      expect(component.props.dataVersion).to.be.undefined;
-      expect(component.props.dishFetching).to.deep.equal({});
-      expect(component.props.allDishes).to.be.undefined;
-      expect(component.props.fetchDish).to.not.be.undefined;
+      expect(component.props.children).toBeUndefined();
+      expect(component.props.renderer).toBeUndefined();
+      expect(component.props.loader).toBeUndefined();
+      expect(component.props.dishes).toStrictEqual([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}]);
+      expect(component.props.dataVersion).toBeUndefined();
+      expect(component.props.dishFetching).toStrictEqual({});
+      expect(component.props.allDishes).toBeUndefined();
+      expect(component.props.fetchDish).toBeDefined();
     });
 
     it('should have all props', () => {
@@ -72,14 +71,14 @@ describe('Data -> Dishes -> Loader', () => {
         <h1>Test</h1>,
       );
 
-      expect(component.props.children).to.deep.equal(<h1>Test</h1>);
-      expect(component.props.renderer).to.deep.equal(myRenderer);
-      expect(component.props.loader).to.deep.equal(<div>loader</div>);
-      expect(component.props.dishes).to.deep.equal([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]);
-      expect(component.props.dataVersion).to.deep.equal(5);
-      expect(component.props.dishFetching).to.deep.equal({D1: false, D2: true});
-      expect(component.props.allDishes).to.deep.equal({D1: {id: 'D1'}, D2: {id: 'D2'}, D3: {id: 'D3'}});
-      expect(component.props.fetchDish).to.not.be.undefined;
+      expect(component.props.children).toStrictEqual(<h1>Test</h1>);
+      expect(component.props.renderer).toStrictEqual(myRenderer);
+      expect(component.props.loader).toStrictEqual(<div>loader</div>);
+      expect(component.props.dishes).toStrictEqual([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]);
+      expect(component.props.dataVersion).toStrictEqual(5);
+      expect(component.props.dishFetching).toStrictEqual({D1: false, D2: true});
+      expect(component.props.allDishes).toStrictEqual({D1: {id: 'D1'}, D2: {id: 'D2'}, D3: {id: 'D3'}});
+      expect(component.props.fetchDish).toBeDefined();
     });
   });
 

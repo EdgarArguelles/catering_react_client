@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import {
   areEqual,
@@ -15,9 +14,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = isQuotationStarted(quotation);
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).to.deep.equal(undefined);
+      expect(quotation).toStrictEqual(undefined);
     });
 
     it('should return false when quotation is null', () => {
@@ -25,9 +24,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = isQuotationStarted(quotation);
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).to.deep.equal(null);
+      expect(quotation).toStrictEqual(null);
     });
 
     it('should return true when name is not empty', () => {
@@ -35,9 +34,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = isQuotationStarted(quotation);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate
-      expect(quotation).to.deep.equal({name: 'test'});
+      expect(quotation).toStrictEqual({name: 'test'});
     });
 
     it('should return false when menus is undefined', () => {
@@ -45,9 +44,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = isQuotationStarted(quotation);
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).to.deep.equal({name: ''});
+      expect(quotation).toStrictEqual({name: ''});
     });
 
     it('should return false when all menus are not selected', () => {
@@ -55,9 +54,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = isQuotationStarted(quotation);
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).to.deep.equal({name: '', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]});
+      expect(quotation).toStrictEqual({name: '', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]});
     });
 
     it('should return true when a menu is selected', () => {
@@ -65,9 +64,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = isQuotationStarted(quotation);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate
-      expect(quotation).to.deep.equal({
+      expect(quotation).toStrictEqual({
         menus: [{id: 'M1'}, {id: 'M2', isSelected: false}, {
           id: 'M3',
           isSelected: true,
@@ -85,9 +84,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = getEditPath(quotation);
 
-      expect(result).to.deep.equal(editQuotationPath);
+      expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).to.deep.equal(undefined);
+      expect(quotation).toStrictEqual(undefined);
     });
 
     it('should get editQuotationPath when quotation is null', () => {
@@ -95,9 +94,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = getEditPath(quotation);
 
-      expect(result).to.deep.equal(editQuotationPath);
+      expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).to.deep.equal(null);
+      expect(quotation).toStrictEqual(null);
     });
 
     it('should get editQuotationPath when menus is undefined', () => {
@@ -105,9 +104,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = getEditPath(quotation);
 
-      expect(result).to.deep.equal(editQuotationPath);
+      expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).to.deep.equal({id: 'Q1'});
+      expect(quotation).toStrictEqual({id: 'Q1'});
     });
 
     it('should get editQuotationPath when all menus are not selected', () => {
@@ -115,9 +114,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = getEditPath(quotation);
 
-      expect(result).to.deep.equal(editQuotationPath);
+      expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).to.deep.equal({id: 'Q1', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]});
+      expect(quotation).toStrictEqual({id: 'Q1', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]});
     });
 
     it('should get editMenuPath when a menu is selected', () => {
@@ -125,9 +124,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = getEditPath(quotation);
 
-      expect(result).to.deep.equal(editMenuPath);
+      expect(result).toStrictEqual(editMenuPath);
       // don't mutate
-      expect(quotation).to.deep.equal({
+      expect(quotation).toStrictEqual({
         id: 'Q1',
         menus: [{id: 'M1'}, {id: 'M2', isSelected: false}, {id: 'M3', isSelected: true}],
       });
@@ -191,10 +190,10 @@ describe('Quotations -> Quotation -> Service', () => {
 
         const result = areEqual(quotation1, quotation2);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(quotation1).to.deep.equal(undefined);
-        expect(quotation2).to.deep.equal({
+        expect(quotation1).toStrictEqual(undefined);
+        expect(quotation2).toStrictEqual({
           id: 'Q1',
           price: 50.52,
           menus: [
@@ -224,10 +223,10 @@ describe('Quotations -> Quotation -> Service', () => {
 
         const result = areEqual(quotation1, quotation2);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(quotation1).to.deep.equal(null);
-        expect(quotation2).to.deep.equal({
+        expect(quotation1).toStrictEqual(null);
+        expect(quotation2).toStrictEqual({
           id: 'Q1',
           price: 50.52,
           menus: [
@@ -259,9 +258,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         const result = areEqual(quotation1, quotation2);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(quotation1).to.deep.equal({
+        expect(quotation1).toStrictEqual({
           id: 'Q1',
           price: 50.68,
           menus: [
@@ -283,7 +282,7 @@ describe('Quotations -> Quotation -> Service', () => {
           ],
           extra: 'extra',
         });
-        expect(quotation2).to.deep.equal(undefined);
+        expect(quotation2).toStrictEqual(undefined);
       });
 
       it('should return false when quotation2 is null', () => {
@@ -291,9 +290,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         const result = areEqual(quotation1, quotation2);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(quotation1).to.deep.equal({
+        expect(quotation1).toStrictEqual({
           id: 'Q1',
           price: 50.68,
           menus: [
@@ -315,7 +314,7 @@ describe('Quotations -> Quotation -> Service', () => {
           ],
           extra: 'extra',
         });
-        expect(quotation2).to.deep.equal(null);
+        expect(quotation2).toStrictEqual(null);
       });
     });
 
@@ -325,10 +324,10 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = areEqual(quotation1, quotation2);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate
-      expect(quotation1).to.deep.equal(undefined);
-      expect(quotation2).to.deep.equal(undefined);
+      expect(quotation1).toStrictEqual(undefined);
+      expect(quotation2).toStrictEqual(undefined);
     });
 
     it('should return true when both are null', () => {
@@ -337,18 +336,18 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = areEqual(quotation1, quotation2);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate
-      expect(quotation1).to.deep.equal(null);
-      expect(quotation2).to.deep.equal(null);
+      expect(quotation1).toStrictEqual(null);
+      expect(quotation2).toStrictEqual(null);
     });
 
     it('should return true when both are equal', () => {
       const result = areEqual(quotation1, quotation2);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate quotation1
-      expect(quotation1).to.deep.equal({
+      expect(quotation1).toStrictEqual({
         id: 'Q1',
         price: 50.68,
         menus: [
@@ -372,7 +371,7 @@ describe('Quotations -> Quotation -> Service', () => {
       });
 
       // don't mutate quotation2
-      expect(quotation2).to.deep.equal({
+      expect(quotation2).toStrictEqual({
         id: 'Q1',
         price: 50.52,
         menus: [
@@ -407,16 +406,16 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = areEqual(quotation1, quotation2);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate quotation1
-      expect(quotation1).to.deep.equal({
+      expect(quotation1).toStrictEqual({
         id: 'Q1',
         price: 50.68,
         extra: 'extra',
       });
 
       // don't mutate quotation2
-      expect(quotation2).to.deep.equal({
+      expect(quotation2).toStrictEqual({
         id: 'Q1',
         price: 50.52,
         menus: null,
@@ -429,9 +428,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       const result = areEqual(quotation1, quotation2);
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
       // don't mutate quotation1
-      expect(quotation1).to.deep.equal({
+      expect(quotation1).toStrictEqual({
         id: 'Q1',
         price: 50.68,
         menus: [
@@ -455,7 +454,7 @@ describe('Quotations -> Quotation -> Service', () => {
       });
 
       // don't mutate quotation2
-      expect(quotation2).to.deep.equal({
+      expect(quotation2).toStrictEqual({
         id: 'Q2',
         price: 50.52,
         menus: [
@@ -499,9 +498,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         sinon.assert.callCount(fetchQuotation, 0);
         // don't mutate
-        expect(quotation).to.deep.equal(undefined);
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual(undefined);
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -514,9 +513,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         sinon.assert.callCount(fetchQuotation, 0);
         // don't mutate
-        expect(quotation).to.deep.equal(null);
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual(null);
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -529,9 +528,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         sinon.assert.callCount(fetchQuotation, 0);
         // don't mutate
-        expect(quotation).to.deep.equal({name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -547,9 +546,9 @@ describe('Quotations -> Quotation -> Service', () => {
         sinon.assert.callCount(fetchQuotation, 1);
         sinon.assert.calledWithExactly(fetchQuotation, 'test3');
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(undefined);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(undefined);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -563,9 +562,9 @@ describe('Quotations -> Quotation -> Service', () => {
         sinon.assert.callCount(fetchQuotation, 1);
         sinon.assert.calledWithExactly(fetchQuotation, 'test3');
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(null);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(null);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -578,9 +577,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         sinon.assert.callCount(fetchQuotation, 0);
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(true);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(true);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -596,9 +595,9 @@ describe('Quotations -> Quotation -> Service', () => {
         sinon.assert.callCount(fetchQuotation, 1);
         sinon.assert.calledWithExactly(fetchQuotation, 'test3');
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal(undefined);
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual(undefined);
       });
 
       it('should call fetchQuotation when quotations is null', () => {
@@ -609,9 +608,9 @@ describe('Quotations -> Quotation -> Service', () => {
         sinon.assert.callCount(fetchQuotation, 1);
         sinon.assert.calledWithExactly(fetchQuotation, 'test3');
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal(null);
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual(null);
       });
 
       it('should call fetchQuotation when quotations is present without menus', () => {
@@ -622,9 +621,9 @@ describe('Quotations -> Quotation -> Service', () => {
         sinon.assert.callCount(fetchQuotation, 1);
         sinon.assert.calledWithExactly(fetchQuotation, 'test3');
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({test1: {id: 'test1', name: 'A', menus: []}, test3: {id: 'test3', name: 'B'}});
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({test1: {id: 'test1', name: 'A', menus: []}, test3: {id: 'test3', name: 'B'}});
       });
 
       it('should not call fetchQuotation when quotations is present with menus', () => {
@@ -634,9 +633,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
         sinon.assert.callCount(fetchQuotation, 0);
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test3: {id: 'test3', name: 'B', menus: []},
         });
@@ -650,9 +649,9 @@ describe('Quotations -> Quotation -> Service', () => {
         fetchCompleteQuotation(quotation, isFetching, quotations, fetchQuotation);
 
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -664,9 +663,9 @@ describe('Quotations -> Quotation -> Service', () => {
         fetchCompleteQuotation(quotation, isFetching, quotations, fetchQuotation);
 
         // don't mutate
-        expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-        expect(isFetching).to.deep.equal(false);
-        expect(quotations).to.deep.equal({
+        expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+        expect(isFetching).toStrictEqual(false);
+        expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
         });
@@ -678,9 +677,9 @@ describe('Quotations -> Quotation -> Service', () => {
 
       sinon.assert.callCount(fetchQuotation, 0);
       // don't mutate
-      expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-      expect(isFetching).to.deep.equal(false);
-      expect(quotations).to.deep.equal({
+      expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+      expect(isFetching).toStrictEqual(false);
+      expect(quotations).toStrictEqual({
         test1: {id: 'test1', name: 'A', menus: []},
         test2: {id: 'test2', name: 'B', menus: []},
       });
@@ -692,9 +691,9 @@ describe('Quotations -> Quotation -> Service', () => {
       sinon.assert.callCount(fetchQuotation, 1);
       sinon.assert.calledWithExactly(fetchQuotation, 'test3');
       // don't mutate
-      expect(quotation).to.deep.equal({id: 'test3', name: 'ABC'});
-      expect(isFetching).to.deep.equal(false);
-      expect(quotations).to.deep.equal({
+      expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
+      expect(isFetching).toStrictEqual(false);
+      expect(quotations).toStrictEqual({
         test1: {id: 'test1', name: 'A', menus: []},
         test2: {id: 'test2', name: 'B', menus: []},
       });

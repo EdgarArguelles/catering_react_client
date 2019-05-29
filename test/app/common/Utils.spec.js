@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import Utils from 'app/common/Utils';
 
 describe('Utils', () => {
@@ -11,7 +10,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString());
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
 
       it('should sort the strings array correctly when attribute is present', () => {
@@ -21,7 +20,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString(attribute));
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
     });
 
@@ -44,7 +43,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString());
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
 
       it('should not sort the objects array when attribute is incorrect', () => {
@@ -66,7 +65,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString(attribute));
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
 
       it('should sort the objects array when attribute is incorrect and secondSort is present', () => {
@@ -89,7 +88,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString(attribute, secondSort));
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
 
       it('should sort the objects array correctly when attribute is correct', () => {
@@ -111,7 +110,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString(attribute));
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
 
       it('should sort the objects array correctly when attribute is correct and secondSort is present', () => {
@@ -134,7 +133,7 @@ describe('Utils', () => {
 
         const result = array.sort(Utils.getSortString(attribute, secondSort));
 
-        expect(result).to.deep.equal(expected);
+        expect(result).toStrictEqual(expected);
       });
     });
   });
@@ -146,7 +145,7 @@ describe('Utils', () => {
 
       const result = Utils.getDriveImage(id);
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
     });
   });
 
@@ -166,7 +165,7 @@ describe('Utils', () => {
       Utils.arrayToObject(array);
 
       // don't mutate
-      expect(array).to.deep.equal(array2);
+      expect(array).toStrictEqual(array2);
     });
 
     it('should transform a complex array to an object', () => {
@@ -183,9 +182,9 @@ describe('Utils', () => {
 
       const result = Utils.arrayToObject(array);
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
       // don't mutate
-      expect(array).to.deep.equal([
+      expect(array).toStrictEqual([
         {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
         {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
         {id: 'id3', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
@@ -205,9 +204,9 @@ describe('Utils', () => {
 
       const result = Utils.arrayToObject(array);
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
       // don't mutate
-      expect(array).to.deep.equal([
+      expect(array).toStrictEqual([
         {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
         {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
         {id: 'id1', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
@@ -215,19 +214,19 @@ describe('Utils', () => {
     });
 
     it('should throw an error when not parameter', () => {
-      expect(() => Utils.arrayToObject()).to.throw('Cannot read property \'forEach\' of undefined');
+      expect(() => Utils.arrayToObject()).toThrow('Cannot read property \'forEach\' of undefined');
     });
 
     it('should throw an error when null parameter', () => {
-      expect(() => Utils.arrayToObject(null)).to.throw('Cannot read property \'forEach\' of null');
+      expect(() => Utils.arrayToObject(null)).toThrow('Cannot read property \'forEach\' of null');
     });
 
     it('should throw an error when object parameter', () => {
-      expect(() => Utils.arrayToObject({test: 'abc'})).to.throw('.forEach is not a function');
+      expect(() => Utils.arrayToObject({test: 'abc'})).toThrow('.forEach is not a function');
     });
 
     it('should throw an error when numeric parameter', () => {
-      expect(() => Utils.arrayToObject(5)).to.throw('.forEach is not a function');
+      expect(() => Utils.arrayToObject(5)).toThrow('.forEach is not a function');
     });
   });
 
@@ -269,7 +268,7 @@ describe('Utils', () => {
       Utils.stringifyObjectWithNoQuotesOnKeys(json);
 
       // don't mutate
-      expect(json).to.deep.equal(json2);
+      expect(json).toStrictEqual(json2);
     });
 
     it('should transform a complex object', () => {
@@ -297,9 +296,9 @@ describe('Utils', () => {
 
       const result = Utils.stringifyObjectWithNoQuotesOnKeys(json);
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
       // don't mutate
-      expect(json).to.deep.equal({
+      expect(json).toStrictEqual({
         id: 1,
         name: 'test',
         gender: undefined,
@@ -322,7 +321,7 @@ describe('Utils', () => {
 
       const result = Utils.stringifyObjectWithNoQuotesOnKeys();
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
     });
 
     it('should transform when null parameter', () => {
@@ -330,7 +329,7 @@ describe('Utils', () => {
 
       const result = Utils.stringifyObjectWithNoQuotesOnKeys(null);
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
     });
   });
 
@@ -352,7 +351,7 @@ describe('Utils', () => {
       Utils.stringifyPageDataRequest(json);
 
       // don't mutate
-      expect(json).to.deep.equal(json2);
+      expect(json).toStrictEqual(json2);
     });
 
     it('should transform a complex object', () => {
@@ -366,9 +365,9 @@ describe('Utils', () => {
 
       const result = Utils.stringifyPageDataRequest(json);
 
-      expect(result).to.deep.equal(expected);
+      expect(result).toStrictEqual(expected);
       // don't mutate
-      expect(json).to.deep.equal({
+      expect(json).toStrictEqual({
         id: 1,
         name: 'test',
         value1: 'ASC',
@@ -377,11 +376,11 @@ describe('Utils', () => {
     });
 
     it('should throw an error when not parameter', () => {
-      expect(() => Utils.stringifyPageDataRequest()).to.throw('Cannot read property \'replace\' of undefined');
+      expect(() => Utils.stringifyPageDataRequest()).toThrow('Cannot read property \'replace\' of undefined');
     });
 
     it('should throw an error when null parameter', () => {
-      expect(() => Utils.stringifyPageDataRequest(null)).to.throw('Cannot read property \'replace\' of null');
+      expect(() => Utils.stringifyPageDataRequest(null)).toThrow('Cannot read property \'replace\' of null');
     });
   });
 });

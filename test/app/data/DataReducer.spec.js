@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES} from 'app/data/DataActions';
 import Data from 'app/data/DataReducer';
 
@@ -27,7 +26,7 @@ describe('Data -> Reducer', () => {
 
     const result = Data();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -53,9 +52,9 @@ describe('Data -> Reducer', () => {
 
     const result = Data(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       version: 'abc',
       fetching: {
         courseTypes: true,
@@ -119,9 +118,9 @@ describe('Data -> Reducer', () => {
 
     const result = Data(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       version: 'abc',
       fetching: {
         courseTypes: true,
