@@ -35,12 +35,14 @@ class MenuEditTabs extends React.Component {
     const {menuCourses} = this.props;
     const courses = menuCourses.filter(course => course.type.id === courseType.id);
 
-    return (
+    const label = (
       <React.Fragment>
         {courses.length > 0 && <Avatar className="avatar">{courses.length}</Avatar>}
         {courseType.name}
       </React.Fragment>
     );
+
+    return <Tab key={courseType.id} className="course-type-tab" label={label}/>;
   };
 
   render() {
@@ -50,7 +52,7 @@ class MenuEditTabs extends React.Component {
       <div id="menu-edit-tabs">
         <Tabs centered id={tabsElementId} classes={{indicator: 'indicator'}} variant="fullWidth" value={tab}
               onChange={(event, newValue) => this.changeTapValue(newValue)}>
-          {sortedCourseTypes.map(courseType => (<Tab key={courseType.id} label={this.getTabLabel(courseType)}/>))}
+          {sortedCourseTypes.map(courseType => this.getTabLabel(courseType))}
           <Tab className="summary-tab" icon={
             <Badge badgeContent={menuCourses.length} invisible={menuCourses.length === 0} color="secondary">
               <i className="fas fa-dollar-sign" aria-hidden="true"/>
