@@ -63,7 +63,7 @@ describe('Components -> EnterTextField', () => {
     it('should call onSave when keyCode is 13', () => {
       mountComponent({onSave: onSaveStub});
 
-      wrapper.root.find(el => el.type.name === 'TextField').props.onKeyUp({keyCode: 13, target: {value: 'test'}});
+      wrapper.root.findByType('div').props.onKeyUp({keyCode: 13, target: {value: 'test'}});
 
       sinon.assert.callCount(onSaveStub, 1);
       sinon.assert.calledWithExactly(onSaveStub, 'test');
@@ -72,7 +72,7 @@ describe('Components -> EnterTextField', () => {
     it('should call onSave when keyCode is 27 and initValue is present', () => {
       mountComponent({initValue: 'initValue test', onSave: onSaveStub});
 
-      wrapper.root.find(el => el.type.name === 'TextField').props.onKeyUp({keyCode: 27});
+      wrapper.root.findByType('div').props.onKeyUp({keyCode: 27});
 
       sinon.assert.callCount(onSaveStub, 1);
       sinon.assert.calledWithExactly(onSaveStub, 'initValue test');
@@ -81,7 +81,7 @@ describe('Components -> EnterTextField', () => {
     it('should call onSave when keyCode is 27 and initValue is not present', () => {
       mountComponent({onSave: onSaveStub});
 
-      wrapper.root.find(el => el.type.name === 'TextField').props.onKeyUp({keyCode: 27});
+      wrapper.root.findByType('div').props.onKeyUp({keyCode: 27});
 
       sinon.assert.callCount(onSaveStub, 1);
       sinon.assert.calledWithExactly(onSaveStub, '');
@@ -90,7 +90,7 @@ describe('Components -> EnterTextField', () => {
     it('should not call onSave when keyCode is not 13 or 27', () => {
       mountComponent({onSave: onSaveStub});
 
-      wrapper.root.find(el => el.type.name === 'TextField').props.onKeyUp({keyCode: 30});
+      wrapper.root.findByType('div').props.onKeyUp({keyCode: 30});
 
       sinon.assert.callCount(onSaveStub, 0);
     });

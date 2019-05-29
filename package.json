@@ -1,6 +1,6 @@
 {
   "name": "catering_react_client",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "This project is a React Client used by CATERING",
   "scripts": {
     "webpack-dev": "API_URL=https://cateringjavaapi.herokuapp.com webpack-dev-server -d --history-api-fallback --port 3001 --host 0.0.0.0",
@@ -72,7 +72,7 @@
     "@fortawesome/fontawesome-free": "5.8.2",
     "@material-ui/core": "4.0.1",
     "@material-ui/lab": "3.0.0-alpha.30",
-    "animate.css": "3.7.0",
+    "animate.css": "3.7.1",
     "compression": "1.7.4",
     "express": "4.17.1",
     "format-currency": "1.0.0",
