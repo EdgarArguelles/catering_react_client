@@ -10,9 +10,7 @@ import Button from '@material-ui/core/Button';
 import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
 import DishFilter from 'app/features/quotations/dish/dish_filter/DishFilter.react';
 
-const Transition = props => {
-  return <Slide direction="up" {...props}/>;
-};
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props}/>);
 
 class DishFilterDialog extends React.Component {
   static propTypes = {

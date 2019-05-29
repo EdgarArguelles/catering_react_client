@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import Api from 'app/common/Api';
 import DishesActions, {ACTION_TYPES} from 'app/data/dishes/DishesActions';
@@ -24,7 +23,7 @@ describe('Data -> Dishes -> Actions', () => {
 
       const result = await DishesActions.fetchDishes(courseTypeId)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -37,7 +36,7 @@ describe('Data -> Dishes -> Actions', () => {
         },
       });
       // don't mutate
-      expect(courseTypeId).to.deep.equal(8);
+      expect(courseTypeId).toStrictEqual(8);
     });
 
     it('should dispatch FETCH_DISHES_REQUEST and FETCH_DISHES_ERROR', async () => {
@@ -48,7 +47,7 @@ describe('Data -> Dishes -> Actions', () => {
         await DishesActions.fetchDishes(courseTypeId)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -59,7 +58,7 @@ describe('Data -> Dishes -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(courseTypeId).to.deep.equal(8);
+        expect(courseTypeId).toStrictEqual(8);
       }
     });
   });
@@ -74,7 +73,7 @@ describe('Data -> Dishes -> Actions', () => {
 
       const result = await DishesActions.fetchDish(dishId)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -87,7 +86,7 @@ describe('Data -> Dishes -> Actions', () => {
         },
       });
       // don't mutate
-      expect(dishId).to.deep.equal(8);
+      expect(dishId).toStrictEqual(8);
     });
 
     it('should dispatch FETCH_DISH_REQUEST and FETCH_DISH_ERROR', async () => {
@@ -98,7 +97,7 @@ describe('Data -> Dishes -> Actions', () => {
         await DishesActions.fetchDish(dishId)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -109,7 +108,7 @@ describe('Data -> Dishes -> Actions', () => {
           payload: {dishId, error},
         });
         // don't mutate
-        expect(dishId).to.deep.equal(8);
+        expect(dishId).toStrictEqual(8);
       }
     });
   });

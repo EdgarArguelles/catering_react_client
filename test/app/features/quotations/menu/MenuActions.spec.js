@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import MenuActions, {ACTION_TYPES} from 'app/features/quotations/menu/MenuActions';
 
 describe('Quotations -> Menu -> Actions', () => {
@@ -9,14 +8,14 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.changeName(name);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_CHANGE_NAME,
         payload: {
           name,
         },
       });
       // don't mutate
-      expect(name).to.deep.equal('test');
+      expect(name).toStrictEqual('test');
     });
   });
 
@@ -26,14 +25,14 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.changeQuantity(quantity);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_CHANGE_QUANTITY,
         payload: {
           quantity,
         },
       });
       // don't mutate
-      expect(quantity).to.deep.equal(5);
+      expect(quantity).toStrictEqual(5);
     });
   });
 
@@ -45,7 +44,7 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.addCourse(courseTypeId, dishesIds, position);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_ADD_COURSE,
         payload: {
           courseTypeId,
@@ -54,9 +53,9 @@ describe('Quotations -> Menu -> Actions', () => {
         },
       });
       // don't mutate
-      expect(courseTypeId).to.deep.equal('CT1');
-      expect(dishesIds).to.deep.equal(['D1', 'D2', 'D3']);
-      expect(position).to.deep.equal(5);
+      expect(courseTypeId).toStrictEqual('CT1');
+      expect(dishesIds).toStrictEqual(['D1', 'D2', 'D3']);
+      expect(position).toStrictEqual(5);
     });
   });
 
@@ -67,7 +66,7 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.removeCourse(courseTypeId, position);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_REMOVE_COURSE,
         payload: {
           courseTypeId,
@@ -75,8 +74,8 @@ describe('Quotations -> Menu -> Actions', () => {
         },
       });
       // don't mutate
-      expect(courseTypeId).to.deep.equal('CT1');
-      expect(position).to.deep.equal(5);
+      expect(courseTypeId).toStrictEqual('CT1');
+      expect(position).toStrictEqual(5);
     });
   });
 
@@ -86,14 +85,14 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.increasePrice(amount);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_INCREASE_PRICE,
         payload: {
           amount,
         },
       });
       // don't mutate
-      expect(amount).to.deep.equal(5);
+      expect(amount).toStrictEqual(5);
     });
   });
 
@@ -103,14 +102,14 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.decreasePrice(amount);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_DECREASE_PRICE,
         payload: {
           amount,
         },
       });
       // don't mutate
-      expect(amount).to.deep.equal(5);
+      expect(amount).toStrictEqual(5);
     });
   });
 
@@ -120,14 +119,14 @@ describe('Quotations -> Menu -> Actions', () => {
 
       const result = MenuActions.changeCoursesPosition(newCourses);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.MENU_CHANGE_COURSES_POSITION,
         payload: {
           newCourses,
         },
       });
       // don't mutate
-      expect(newCourses).to.deep.equal(['C1', 'C2', 'C3']);
+      expect(newCourses).toStrictEqual(['C1', 'C2', 'C3']);
     });
   });
 });

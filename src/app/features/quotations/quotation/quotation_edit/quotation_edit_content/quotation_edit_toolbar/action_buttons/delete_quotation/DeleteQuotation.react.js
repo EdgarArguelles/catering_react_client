@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 import History from 'app/router/History';
 import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
 import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton.react';
@@ -61,7 +62,7 @@ class DeleteQuotation extends React.Component {
                             onClose={() => this.setState({isDialogOpen: false, shouldDelete: false})}
                             onOK={() => this.setState({isDialogOpen: false, shouldDelete: true})}/>
         <Snackbar open={!!errors && errors.errorCode !== 401 && errors.errorCode !== 403 && shouldDelete}
-                  autoHideDuration={10000} onClose={cleanError}
+                  TransitionComponent={Slide} autoHideDuration={10000} onClose={cleanError}
                   message="Ocurrió un error al intentar eliminar el presupuesto"/>
       </span>
     );

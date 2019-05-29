@@ -37,6 +37,10 @@ body {
     display: none;
   }
 
+  .MuiSnackbar-root {
+    bottom: 0;
+  }
+
   .company-logo {
     cursor: pointer;
     max-width: 130px;

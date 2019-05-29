@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import React from 'react';
@@ -34,7 +33,7 @@ describe('PingServer', () => {
     it('should have all props', () => {
       mountComponent();
 
-      expect(component.props.ping).to.not.be.undefined;
+      expect(component.props.ping).toBeDefined();
     });
   });
 

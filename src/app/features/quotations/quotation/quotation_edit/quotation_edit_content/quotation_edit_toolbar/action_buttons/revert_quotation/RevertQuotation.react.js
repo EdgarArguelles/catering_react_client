@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
@@ -59,7 +60,7 @@ class RevertQuotation extends React.Component {
           </Fab>
         </Zoom>
 
-        <Snackbar open={isErrorOpen} autoHideDuration={3000} message="Usuario sin sesión"
+        <Snackbar open={isErrorOpen} autoHideDuration={3000} message="Usuario sin sesión" TransitionComponent={Slide}
                   onClose={() => this.setState({isErrorOpen: false})}/>
         <ConfirmationDialog title={`${labelAction} ${label}`} okID={idAction} okLabel={labelAction} open={isDialogOpen}
                             label={`¿Desea ${labelAction.toLowerCase()} ${labelDialog} ${name}?`}

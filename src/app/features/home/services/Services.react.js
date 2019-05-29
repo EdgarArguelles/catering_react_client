@@ -46,7 +46,7 @@ export default class Services extends React.Component {
               accusantium doloremque
             </SectionHeader>
           </Grid>
-          <Grid container spacing={16}>
+          <Grid container spacing={2}>
             {this.getServices().map((service, index) => <Grid key={index} item xs={12} sm={6} lg={4}>{service}</Grid>)}
           </Grid>
         </Grid>

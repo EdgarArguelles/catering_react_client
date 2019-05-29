@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import Api from 'app/common/Api';
 import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
@@ -17,7 +16,7 @@ describe('Data -> Quotations -> Actions', () => {
     it('should dispatch QUOTATIONS_CLEAN_ERROR', () => {
       const result = QuotationsActions.cleanError();
 
-      expect(result).to.deep.equal({type: ACTION_TYPES.QUOTATIONS_CLEAN_ERROR});
+      expect(result).toStrictEqual({type: ACTION_TYPES.QUOTATIONS_CLEAN_ERROR});
     });
   });
 
@@ -25,7 +24,7 @@ describe('Data -> Quotations -> Actions', () => {
     it('should dispatch QUOTATIONS_CLEAN_QUOTATIONS', () => {
       const result = QuotationsActions.cleanQuotations();
 
-      expect(result).to.deep.equal({type: ACTION_TYPES.QUOTATIONS_CLEAN_QUOTATIONS});
+      expect(result).toStrictEqual({type: ACTION_TYPES.QUOTATIONS_CLEAN_QUOTATIONS});
     });
   });
 
@@ -40,7 +39,7 @@ describe('Data -> Quotations -> Actions', () => {
 
       const result = await QuotationsActions.fetchQuotations(pagination)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -53,7 +52,7 @@ describe('Data -> Quotations -> Actions', () => {
         },
       });
       // don't mutate
-      expect(pagination).to.deep.equal({page: 5});
+      expect(pagination).toStrictEqual({page: 5});
     });
 
     it('should dispatch FETCH_QUOTATIONS_REQUEST and FETCH_QUOTATIONS_ERROR', async () => {
@@ -64,7 +63,7 @@ describe('Data -> Quotations -> Actions', () => {
         await QuotationsActions.fetchQuotations(pagination)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -75,7 +74,7 @@ describe('Data -> Quotations -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(pagination).to.deep.equal({page: 5});
+        expect(pagination).toStrictEqual({page: 5});
       }
     });
   });
@@ -92,7 +91,7 @@ describe('Data -> Quotations -> Actions', () => {
 
       const result = await QuotationsActions.fetchQuotation(quotationId, overwriteLocalChanges)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -104,8 +103,8 @@ describe('Data -> Quotations -> Actions', () => {
         },
       });
       // don't mutate
-      expect(quotationId).to.deep.equal(8);
-      expect(overwriteLocalChanges).to.deep.equal(false);
+      expect(quotationId).toStrictEqual(8);
+      expect(overwriteLocalChanges).toStrictEqual(false);
     });
 
     it('should dispatch FETCH_QUOTATION_REQUEST, FETCH_QUOTATION_SUCCESS and' +
@@ -115,7 +114,7 @@ describe('Data -> Quotations -> Actions', () => {
 
       const result = await QuotationsActions.fetchQuotation(quotationId)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 3);
@@ -133,7 +132,7 @@ describe('Data -> Quotations -> Actions', () => {
         },
       });
       // don't mutate
-      expect(quotationId).to.deep.equal(8);
+      expect(quotationId).toStrictEqual(8);
     });
 
     it('should dispatch FETCH_QUOTATION_REQUEST and FETCH_QUOTATION_ERROR ' +
@@ -146,7 +145,7 @@ describe('Data -> Quotations -> Actions', () => {
         await QuotationsActions.fetchQuotation(quotationId, overwriteLocalChanges)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -157,8 +156,8 @@ describe('Data -> Quotations -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(quotationId).to.deep.equal(8);
-        expect(overwriteLocalChanges).to.deep.equal(false);
+        expect(quotationId).toStrictEqual(8);
+        expect(overwriteLocalChanges).toStrictEqual(false);
       }
     });
 
@@ -172,7 +171,7 @@ describe('Data -> Quotations -> Actions', () => {
         await QuotationsActions.fetchQuotation(quotationId, overwriteLocalChanges)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -183,8 +182,8 @@ describe('Data -> Quotations -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(quotationId).to.deep.equal(8);
-        expect(overwriteLocalChanges).to.deep.equal(true);
+        expect(quotationId).toStrictEqual(8);
+        expect(overwriteLocalChanges).toStrictEqual(true);
       }
     });
   });
@@ -199,7 +198,7 @@ describe('Data -> Quotations -> Actions', () => {
 
       const result = await QuotationsActions.createQuotation(quotation)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -211,7 +210,7 @@ describe('Data -> Quotations -> Actions', () => {
         },
       });
       // don't mutate
-      expect(quotation).to.deep.equal({id: 8, menus: [{id: 1}, {id: 2}]});
+      expect(quotation).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
     });
 
     it('should dispatch CREATE_QUOTATIONS_REQUEST and CREATE_QUOTATIONS_ERROR', async () => {
@@ -222,7 +221,7 @@ describe('Data -> Quotations -> Actions', () => {
         await QuotationsActions.createQuotation(quotation)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -233,7 +232,7 @@ describe('Data -> Quotations -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(quotation).to.deep.equal({id: 8, menus: [{id: 1}, {id: 2}]});
+        expect(quotation).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
       }
     });
   });
@@ -248,7 +247,7 @@ describe('Data -> Quotations -> Actions', () => {
 
       const result = await QuotationsActions.editQuotation(quotation)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -260,7 +259,7 @@ describe('Data -> Quotations -> Actions', () => {
         },
       });
       // don't mutate
-      expect(quotation).to.deep.equal({id: 8, menus: [{id: 1}, {id: 2}]});
+      expect(quotation).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
     });
 
     it('should dispatch EDIT_QUOTATIONS_REQUEST and EDIT_QUOTATIONS_ERROR', async () => {
@@ -271,7 +270,7 @@ describe('Data -> Quotations -> Actions', () => {
         await QuotationsActions.editQuotation(quotation)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -282,7 +281,7 @@ describe('Data -> Quotations -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(quotation).to.deep.equal({id: 8, menus: [{id: 1}, {id: 2}]});
+        expect(quotation).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
       }
     });
   });
@@ -297,7 +296,7 @@ describe('Data -> Quotations -> Actions', () => {
 
       const result = await QuotationsActions.deleteQuotation(quotationId)(dispatchStub);
 
-      expect(result).to.deep.equal(jsonExpected);
+      expect(result).toStrictEqual(jsonExpected);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(dispatchStub, 2);
@@ -309,7 +308,7 @@ describe('Data -> Quotations -> Actions', () => {
         },
       });
       // don't mutate
-      expect(quotationId).to.deep.equal(5);
+      expect(quotationId).toStrictEqual(5);
     });
 
     it('should dispatch DELETE_QUOTATIONS_REQUEST and DELETE_QUOTATIONS_ERROR', async () => {
@@ -320,7 +319,7 @@ describe('Data -> Quotations -> Actions', () => {
         await QuotationsActions.deleteQuotation(quotationId)(dispatchStub);
         throw new Error('promise should fail but it did not!!!!');
       } catch (error) {
-        expect(error).to.deep.equal(errorExpected);
+        expect(error).toStrictEqual(errorExpected);
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -331,7 +330,7 @@ describe('Data -> Quotations -> Actions', () => {
           payload: errorExpected,
         });
         // don't mutate
-        expect(quotationId).to.deep.equal(5);
+        expect(quotationId).toStrictEqual(5);
       }
     });
   });

@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import {
   areAllDishesPresent,
@@ -24,10 +23,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.true;
+        expect(result).toBeTruthy();
         // don't mutate
-        expect(dishes).to.deep.equal(undefined);
-        expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+        expect(dishes).toStrictEqual(undefined);
+        expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
 
       it('should get true when dishes is null', () => {
@@ -35,10 +34,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.true;
+        expect(result).toBeTruthy();
         // don't mutate
-        expect(dishes).to.deep.equal(null);
-        expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+        expect(dishes).toStrictEqual(null);
+        expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
 
       it('should get true when dishes is empty', () => {
@@ -46,10 +45,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.true;
+        expect(result).toBeTruthy();
         // don't mutate
-        expect(dishes).to.deep.equal([]);
-        expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+        expect(dishes).toStrictEqual([]);
+        expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
 
       it('should get false when dishes is array and all dishes are not present', () => {
@@ -57,10 +56,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id6'}]);
-        expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+        expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id6'}]);
+        expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
 
       it('should get false when dishes is object and all dishes are not present', () => {
@@ -68,10 +67,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(dishes).to.deep.equal({id1: {id: 'id1'}, id6: {id: 'id6'}});
-        expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+        expect(dishes).toStrictEqual({id1: {id: 'id1'}, id6: {id: 'id6'}});
+        expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
 
       it('should get true when dishes is object and all dishes are present', () => {
@@ -79,10 +78,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.true;
+        expect(result).toBeTruthy();
         // don't mutate
-        expect(dishes).to.deep.equal({id1: {id: 'id1'}, id5: {id: 'id5'}});
-        expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+        expect(dishes).toStrictEqual({id1: {id: 'id1'}, id5: {id: 'id5'}});
+        expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
     });
 
@@ -92,10 +91,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id5'}]);
-        expect(allDishes).to.deep.equal(undefined);
+        expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id5'}]);
+        expect(allDishes).toStrictEqual(undefined);
       });
 
       it('should get false when allDishes is null', () => {
@@ -103,26 +102,26 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = areAllDishesPresent(dishes, allDishes);
 
-        expect(result).to.be.false;
+        expect(result).toBeFalsy();
         // don't mutate
-        expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id5'}]);
-        expect(allDishes).to.deep.equal(null);
+        expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id5'}]);
+        expect(allDishes).toStrictEqual(null);
       });
     });
 
     it('should get false when not parameters', () => {
       const result = areAllDishesPresent();
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
     });
 
     it('should get true when dishes are present in allDishes', () => {
       const result = areAllDishesPresent(dishes, allDishes);
 
-      expect(result).to.be.true;
+      expect(result).toBeTruthy();
       // don't mutate
-      expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id5'}]);
-      expect(allDishes).to.deep.equal({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
+      expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id5'}]);
+      expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
     });
   });
 
@@ -132,7 +131,7 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getActiveDishes();
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
     });
 
     it('should get empty array when dishes is null', () => {
@@ -141,9 +140,9 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getActiveDishes(dishes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(dishes).to.deep.equal(null);
+      expect(dishes).toStrictEqual(null);
     });
 
     it('should get empty array when dishes is empty', () => {
@@ -152,9 +151,9 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getActiveDishes(dishes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(dishes).to.deep.equal([]);
+      expect(dishes).toStrictEqual([]);
     });
 
     it('should exclude inactive when dishes is array', () => {
@@ -171,9 +170,9 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getActiveDishes(dishes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(dishes).to.deep.equal([
+      expect(dishes).toStrictEqual([
         {id: 5},
         {id: 1, status: 0},
         {id: 15, status: 1},
@@ -195,9 +194,9 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getActiveDishes(dishes);
 
-      expect(result).to.deep.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(dishes).to.deep.equal({
+      expect(dishes).toStrictEqual({
         a5: {id: 5},
         a1: {id: 1, status: 0},
         a15: {id: 15, status: 1},
@@ -222,11 +221,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: undefined,
           });
@@ -237,11 +236,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: null,
           });
@@ -252,11 +251,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [],
           });
@@ -269,11 +268,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal(undefined);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual(undefined);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
           });
@@ -284,11 +283,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([]);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([]);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
           });
@@ -299,14 +298,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
           });
@@ -319,11 +318,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal(undefined);
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual(undefined);
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
           });
@@ -334,11 +333,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal(null);
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual(null);
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
           });
@@ -349,11 +348,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d4');
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal({
+          expect(dishId).toStrictEqual('d4');
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
           });
@@ -363,11 +362,11 @@ describe('Quotations -> Dish -> Service', () => {
       it('should get true when dishId is present', () => {
         const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-        expect(result).to.be.true;
+        expect(result).toBeTruthy();
         // don't mutate
-        expect(dishId).to.deep.equal('d2');
-        expect(menuCourses).to.deep.equal(null);
-        expect(multipleDishesDialog).to.deep.equal({
+        expect(dishId).toStrictEqual('d2');
+        expect(menuCourses).toStrictEqual(null);
+        expect(multipleDishesDialog).toStrictEqual({
           isMultipleDishesDialogOpen: true,
           dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
         });
@@ -387,14 +386,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal(undefined);
+          expect(multipleDishesDialog).toStrictEqual(undefined);
         });
 
         it('should get true when isMultipleDishesDialogOpen is multipleDishesDialog is undefined', () => {
@@ -402,14 +401,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal({});
+          expect(multipleDishesDialog).toStrictEqual({});
         });
 
         it('should get true when isMultipleDishesDialogOpen is multipleDishesDialog is null', () => {
@@ -417,14 +416,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal({isMultipleDishesDialogOpen: null});
+          expect(multipleDishesDialog).toStrictEqual({isMultipleDishesDialogOpen: null});
         });
 
         it('should get true when isMultipleDishesDialogOpen is multipleDishesDialog is false', () => {
@@ -432,14 +431,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.true;
+          expect(result).toBeTruthy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal({isMultipleDishesDialogOpen: false});
+          expect(multipleDishesDialog).toStrictEqual({isMultipleDishesDialogOpen: false});
         });
       });
 
@@ -449,11 +448,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal(undefined);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual(undefined);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
 
         it('should get false when menuCourses is null', () => {
@@ -461,11 +460,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal(null);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual(null);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
 
         it('should get false when menuCourses is empty', () => {
@@ -473,11 +472,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([]);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([]);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
 
         it('should get false when menuCourses does not have dishes', () => {
@@ -485,11 +484,11 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d2');
-          expect(menuCourses).to.deep.equal([{id: 'c1'}, {id: 'c2'}]);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(dishId).toStrictEqual('d2');
+          expect(menuCourses).toStrictEqual([{id: 'c1'}, {id: 'c2'}]);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
       });
 
@@ -499,14 +498,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal(undefined);
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual(undefined);
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
 
         it('should get false when dishId is null', () => {
@@ -514,14 +513,14 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal(null);
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual(null);
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
 
         it('should get false when dishId is not present', () => {
@@ -529,35 +528,35 @@ describe('Quotations -> Dish -> Service', () => {
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-          expect(result).to.be.false;
+          expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).to.deep.equal('d3');
-          expect(menuCourses).to.deep.equal([
+          expect(dishId).toStrictEqual('d3');
+          expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).to.deep.equal(null);
+          expect(multipleDishesDialog).toStrictEqual(null);
         });
       });
 
       it('should get true when dishId is present', () => {
         const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
-        expect(result).to.be.true;
+        expect(result).toBeTruthy();
         // don't mutate
-        expect(dishId).to.deep.equal('d2');
-        expect(menuCourses).to.deep.equal([
+        expect(dishId).toStrictEqual('d2');
+        expect(menuCourses).toStrictEqual([
           {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
           {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
         ]);
-        expect(multipleDishesDialog).to.deep.equal(null);
+        expect(multipleDishesDialog).toStrictEqual(null);
       });
     });
 
     it('should get false when not parameters', () => {
       const result = isDishAdded();
 
-      expect(result).to.be.false;
+      expect(result).toBeFalsy();
     });
   });
 
@@ -580,10 +579,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = getDishesPrice(dishes, allDishes);
 
-        expect(result).to.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(dishes).to.deep.equal(undefined);
-        expect(allDishes).to.deep.equal({
+        expect(dishes).toStrictEqual(undefined);
+        expect(allDishes).toStrictEqual({
           id1: {price: 20},
           id2: {extra: 45},
           id4: {price: 23.5, extra: 'abc'},
@@ -596,10 +595,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = getDishesPrice(dishes, allDishes);
 
-        expect(result).to.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(dishes).to.deep.equal(null);
-        expect(allDishes).to.deep.equal({
+        expect(dishes).toStrictEqual(null);
+        expect(allDishes).toStrictEqual({
           id1: {price: 20},
           id2: {extra: 45},
           id4: {price: 23.5, extra: 'abc'},
@@ -612,10 +611,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = getDishesPrice(dishes, allDishes);
 
-        expect(result).to.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(dishes).to.deep.equal([]);
-        expect(allDishes).to.deep.equal({
+        expect(dishes).toStrictEqual([]);
+        expect(allDishes).toStrictEqual({
           id1: {price: 20},
           id2: {extra: 45},
           id4: {price: 23.5, extra: 'abc'},
@@ -630,10 +629,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = getDishesPrice(dishes, allDishes);
 
-        expect(result).to.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
-        expect(allDishes).to.deep.equal(undefined);
+        expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
+        expect(allDishes).toStrictEqual(undefined);
       });
 
       it('should get 0 when allDishes is null', () => {
@@ -642,10 +641,10 @@ describe('Quotations -> Dish -> Service', () => {
 
         const result = getDishesPrice(dishes, allDishes);
 
-        expect(result).to.equal(resultExpected);
+        expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
-        expect(allDishes).to.deep.equal(null);
+        expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
+        expect(allDishes).toStrictEqual(null);
       });
     });
 
@@ -654,7 +653,7 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getDishesPrice();
 
-      expect(result).to.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
     });
 
     it('should calculate price when data is correct', () => {
@@ -662,10 +661,10 @@ describe('Quotations -> Dish -> Service', () => {
 
       const result = getDishesPrice(dishes, allDishes);
 
-      expect(result).to.equal(resultExpected);
+      expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(dishes).to.deep.equal([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
-      expect(allDishes).to.deep.equal({
+      expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
+      expect(allDishes).toStrictEqual({
         id1: {price: 20},
         id2: {extra: 45},
         id4: {price: 23.5, extra: 'abc'},
@@ -691,9 +690,9 @@ describe('Quotations -> Dish -> Service', () => {
 
         sinon.assert.callCount(fetchDish, 0);
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal(undefined);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual(undefined);
       });
 
       it('should not call fetchDish when dishes is null', () => {
@@ -703,9 +702,9 @@ describe('Quotations -> Dish -> Service', () => {
 
         sinon.assert.callCount(fetchDish, 0);
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal(null);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual(null);
       });
 
       it('should not call fetchDish when dishes is empty', () => {
@@ -715,9 +714,9 @@ describe('Quotations -> Dish -> Service', () => {
 
         sinon.assert.callCount(fetchDish, 0);
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal([]);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual([]);
       });
 
       it('should call fetchDish 2 times when dishes does not have id', () => {
@@ -729,9 +728,9 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, undefined);
         sinon.assert.calledWithExactly(fetchDish, undefined);
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal([{id2: 'a1'}, {id2: 'a2'}]);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual([{id2: 'a1'}, {id2: 'a2'}]);
       });
     });
 
@@ -748,9 +747,9 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, 'a5');
         sinon.assert.calledWithExactly(fetchDish, 'a6');
         // don't mutate
-        expect(allDishes).to.deep.equal(undefined);
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+        expect(allDishes).toStrictEqual(undefined);
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
 
       it('should call fetchDish 5 times when allDishes is null', () => {
@@ -765,9 +764,9 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, 'a5');
         sinon.assert.calledWithExactly(fetchDish, 'a6');
         // don't mutate
-        expect(allDishes).to.deep.equal(null);
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+        expect(allDishes).toStrictEqual(null);
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
     });
 
@@ -784,9 +783,9 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, 'a4');
         sinon.assert.calledWithExactly(fetchDish, 'a6');
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal(undefined);
-        expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual(undefined);
+        expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
 
       it('should call fetchDish 5 times when dishFetching is null', () => {
@@ -801,9 +800,9 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, 'a4');
         sinon.assert.calledWithExactly(fetchDish, 'a6');
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal(null);
-        expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual(null);
+        expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
     });
 
@@ -814,9 +813,9 @@ describe('Quotations -> Dish -> Service', () => {
         fetchDishesList(dishes, allDishes, dishFetching, fetchDish);
 
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
 
       it('should not break when fetchDish is null', () => {
@@ -825,9 +824,9 @@ describe('Quotations -> Dish -> Service', () => {
         fetchDishesList(dishes, allDishes, dishFetching, fetchDish);
 
         // don't mutate
-        expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-        expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+        expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+        expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+        expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
     });
 
@@ -836,9 +835,9 @@ describe('Quotations -> Dish -> Service', () => {
 
       sinon.assert.callCount(fetchDish, 0);
       // don't mutate
-      expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-      expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-      expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+      expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+      expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+      expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
     });
 
     it('should call fetchDish 4 times when dishFetching includes 1 id and one id is present in allDishes', () => {
@@ -850,9 +849,9 @@ describe('Quotations -> Dish -> Service', () => {
       sinon.assert.calledWithExactly(fetchDish, 'a3');
       sinon.assert.calledWithExactly(fetchDish, 'a6');
       // don't mutate
-      expect(allDishes).to.deep.equal({a5: {}, a9: {}, a10: {}});
-      expect(dishFetching).to.deep.equal({a3: false, a4: true, a20: true});
-      expect(dishes).to.deep.equal([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
+      expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
+      expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
+      expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
     });
   });
 });

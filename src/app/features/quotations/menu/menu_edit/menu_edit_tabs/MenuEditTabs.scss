@@ -29,22 +29,28 @@ $tab-bar-height: 48px;
       background-color: $main-color;
     }
 
-    .avatar {
-      float: left;
-      width: 25px;
-      height: 25px;
-      margin: -5px 15px 0 0;
-      font-size: small;
-      background-color: $secondary-color;
+    .course-type-tab {
+      span {
+        display: initial;
+      }
+
+      .avatar {
+        float: left;
+        width: 25px;
+        height: 25px;
+        margin: -5px 15px 0 0;
+        font-size: small;
+        background-color: $secondary-color;
 
       @media (max-width: $screen-xs) {
         margin-right: 5px;
       }
 
-      @media (max-width: $screen-xxs) {
-        width: 20px;
-        height: 20px;
-        font-size: xx-small;
+        @media (max-width: $screen-xxs) {
+          width: 20px;
+          height: 20px;
+          font-size: xx-small;
+        }
       }
     }
 

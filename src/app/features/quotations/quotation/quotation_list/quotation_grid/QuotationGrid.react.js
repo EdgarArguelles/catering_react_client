@@ -60,7 +60,7 @@ class QuotationGrid extends React.Component {
     const {quotations} = this.props;
 
     return (
-      <Grid id="quotation-grid" container spacing={16} justify="flex-start">
+      <Grid id="quotation-grid" container spacing={2} justify="flex-start">
         {Object.values(quotations).sort(this.getSort()).map((quotation, index) =>
           this.getAnimatedGrid(quotation.id, <Quotation index={index} quotation={quotation}/>),
         )}

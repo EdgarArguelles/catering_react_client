@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import sinon from 'sinon';
 import temporalStorage from 'app/middlewares/TemporalStorage';
 
@@ -22,22 +21,22 @@ describe('Middlewares -> TemporalStorage', () => {
 
     const result = temporalStorage(store)(nextStub)(action);
 
-    expect(result).to.deep.equal(resultExpected);
-    expect(window.sessionStorage.getItem('quotationsState')).to.deep.equal(JSON.stringify({
+    expect(result).toStrictEqual(resultExpected);
+    expect(window.sessionStorage.getItem('quotationsState')).toStrictEqual(JSON.stringify({
       id: 'Q1',
       extra: 'abc',
       isRemoteProcessing: false,
     }));
-    expect(window.localStorage.getItem('dataState')).to.deep.equal(JSON.stringify({
+    expect(window.localStorage.getItem('dataState')).toStrictEqual(JSON.stringify({
       version: 'V1',
       dishes: [{id: 'd1'}, {id: 'd2'}],
     }));
-    expect(window.localStorage.getItem('courseTypesCached')).to.deep.equal(JSON.stringify({id: 'CT1'}));
+    expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual(JSON.stringify({id: 'CT1'}));
     sinon.assert.callCount(nextStub, 1);
     sinon.assert.calledWithExactly(nextStub, action);
     // don't mutate
-    expect(store).to.deep.equal({id: 'store 1', getState});
-    expect(action).to.deep.equal({type: 'action1'});
+    expect(store).toStrictEqual({id: 'store 1', getState});
+    expect(action).toStrictEqual({type: 'action1'});
     window.sessionStorage.removeItem('quotationsState');
     window.localStorage.removeItem('dataState');
     window.localStorage.removeItem('courseTypesCached');
@@ -57,22 +56,22 @@ describe('Middlewares -> TemporalStorage', () => {
 
     const result = temporalStorage(store)(nextStub)(action);
 
-    expect(result).to.deep.equal(resultExpected);
-    expect(window.sessionStorage.getItem('quotationsState')).to.deep.equal(JSON.stringify({
+    expect(result).toStrictEqual(resultExpected);
+    expect(window.sessionStorage.getItem('quotationsState')).toStrictEqual(JSON.stringify({
       id: 'Q1',
       extra: 'abc',
       isRemoteProcessing: false,
     }));
-    expect(window.localStorage.getItem('dataState')).to.deep.equal(JSON.stringify({
+    expect(window.localStorage.getItem('dataState')).toStrictEqual(JSON.stringify({
       version: undefined,
       dishes: [{id: 'd1'}, {id: 'd2'}],
     }));
-    expect(window.localStorage.getItem('courseTypesCached')).to.equal('OLD Value');
+    expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual('OLD Value');
     sinon.assert.callCount(nextStub, 1);
     sinon.assert.calledWithExactly(nextStub, action);
     // don't mutate
-    expect(store).to.deep.equal({id: 'store 1', getState});
-    expect(action).to.deep.equal({type: 'action1'});
+    expect(store).toStrictEqual({id: 'store 1', getState});
+    expect(action).toStrictEqual({type: 'action1'});
     window.sessionStorage.removeItem('quotationsState');
     window.localStorage.removeItem('dataState');
     window.localStorage.removeItem('courseTypesCached');

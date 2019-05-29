@@ -38,7 +38,7 @@ class MenuGrid extends React.Component {
     return (
       <ClickAwayListener onClickAway={() => selectedMenu && !isMenuDialogOpen && deselectMenu()}>
         <React.Fragment>
-          <Grid id="menu-grid" container spacing={16} justify="flex-start">
+          <Grid id="menu-grid" container spacing={2} justify="flex-start">
             {Object.values(quotation.menus).sort(Utils.getSortString('id')).map((menu, index) => (
               this.getAnimatedGrid(menu.id, () => <MenuItem index={index} menu={menu}/>)
             ))}

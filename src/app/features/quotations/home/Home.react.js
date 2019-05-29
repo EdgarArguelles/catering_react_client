@@ -29,7 +29,7 @@ class Home extends React.Component {
 
     return (
       <div id="quotations-home">
-        <Grid container spacing={16} justify="center" alignItems="center" className={`container ${className}`}>
+        <Grid container spacing={2} justify="center" alignItems="center" className={`container ${className}`}>
           <Grid item xs={12} sm={smSize} className="item"><MyQuotations/></Grid>
           <Grid item xs={12} sm={smSize} className="item"><CreateQuotation/></Grid>
           {isStarted && <Grid item xs={12} sm={smSize} className="item"><EditQuotation/></Grid>}

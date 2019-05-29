@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import {ACTION_TYPES} from 'app/data/course_types/CourseTypesActions';
 import {courseTypes, courseTypesFetching} from 'app/data/course_types/CourseTypesReducer';
@@ -12,7 +11,7 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypesFetching();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -20,9 +19,9 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypesFetching(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get true when action is FETCH_COURSE_TYPES_REQUEST', () => {
@@ -32,9 +31,9 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypesFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get false when action is FETCH_COURSE_TYPES_SUCCESS', () => {
@@ -44,9 +43,9 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypesFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is FETCH_COURSE_TYPES_ERROR', () => {
@@ -56,9 +55,9 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypesFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
   });
 
@@ -74,7 +73,7 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypes();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -86,9 +85,9 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypes(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1'},
         'id-2': {id: 'id-2', name: '123'},
         'id-3': {id: 'id-3'},
@@ -105,9 +104,9 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypes(state, action);
 
-      expect(result).to.deep.equal({id: 5});
+      expect(result).toStrictEqual({id: 5});
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1'},
         'id-2': {id: 'id-2', name: '123'},
         'id-3': {id: 'id-3'},
@@ -134,11 +133,11 @@ describe('Data -> CourseTypes -> Reducer', () => {
 
       const result = courseTypes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, data);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1'},
         'id-2': {id: 'id-2', name: '123'},
         'id-3': {id: 'id-3'},

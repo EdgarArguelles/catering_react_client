@@ -12,9 +12,7 @@ import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars.rea
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import MultipleDishesDialogActions from './MultipleDishesDialogActions';
 
-const Transition = props => {
-  return <Slide direction="up" {...props}/>;
-};
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props}/>);
 
 class MultipleDishesDialog extends React.Component {
   static propTypes = {

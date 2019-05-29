@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
 import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import {ACTION_TYPES} from 'app/features/quotations/QuotationsActions';
@@ -39,7 +38,7 @@ describe('Quotations -> Reducer', () => {
 
     const result = QuotationsReducer();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -76,9 +75,9 @@ describe('Quotations -> Reducer', () => {
 
     const result = QuotationsReducer(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       isRemoteProcessing: true,
       selectedTab: 5,
       isMenuDialogOpen: true,
@@ -174,9 +173,9 @@ describe('Quotations -> Reducer', () => {
 
     const result = QuotationsReducer(state, {type: AUTH_ACTION_TYPES.LOGOUT});
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       isRemoteProcessing: true,
       selectedTab: 5,
       isMenuDialogOpen: true,
@@ -272,9 +271,9 @@ describe('Quotations -> Reducer', () => {
 
     const result = QuotationsReducer(state, {type: ACTION_TYPES.QUOTATIONS_DELETE_LOCAL});
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal({
+    expect(state).toStrictEqual({
       isRemoteProcessing: true,
       selectedTab: 5,
       isMenuDialogOpen: true,
@@ -372,9 +371,9 @@ describe('Quotations -> Reducer', () => {
 
       const result = QuotationsReducer(state, {type: DATA_ACTION_TYPES.CREATE_QUOTATIONS_REQUEST});
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isRemoteProcessing: false,
         selectedTab: 5,
         isMenuDialogOpen: true,
@@ -471,9 +470,9 @@ describe('Quotations -> Reducer', () => {
 
       const result = QuotationsReducer(state, {type: DATA_ACTION_TYPES.EDIT_QUOTATIONS_REQUEST});
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isRemoteProcessing: false,
         selectedTab: 5,
         isMenuDialogOpen: true,
@@ -570,9 +569,9 @@ describe('Quotations -> Reducer', () => {
 
       const result = QuotationsReducer(state, {type: DATA_ACTION_TYPES.DELETE_QUOTATIONS_REQUEST});
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isRemoteProcessing: false,
         selectedTab: 5,
         isMenuDialogOpen: true,
@@ -669,9 +668,9 @@ describe('Quotations -> Reducer', () => {
 
       const result = QuotationsReducer(state, {type: ACTION_TYPES.QUOTATIONS_END_REMOTE_PROCESS});
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isRemoteProcessing: true,
         selectedTab: 5,
         isMenuDialogOpen: true,
@@ -770,9 +769,9 @@ describe('Quotations -> Reducer', () => {
 
       const result = QuotationsReducer(state, {type: ACTION_TYPES.QUOTATIONS_CHANGE_MENU_TAB, payload: {tab: 6}});
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isRemoteProcessing: true,
         selectedTab: 5,
         isMenuDialogOpen: true,
@@ -874,9 +873,9 @@ describe('Quotations -> Reducer', () => {
         payload: {isMenuDialogOpen: true},
       });
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         isRemoteProcessing: true,
         selectedTab: 5,
         isMenuDialogOpen: false,

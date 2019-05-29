@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 import FetchButton from 'app/common/components/fetch_button/FetchButton.react';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
@@ -42,7 +43,8 @@ class SaveQuotation extends React.Component {
                      onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <AuthDialog/>
-        <Snackbar open={!!errors} autoHideDuration={10000} onClose={cleanError} message={errors ? errorMessage : ''}/>
+        <Snackbar open={!!errors} TransitionComponent={Slide}
+                  autoHideDuration={10000} onClose={cleanError} message={errors ? errorMessage : ''}/>
       </span>
     );
   }

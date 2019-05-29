@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {ACTION_TYPES} from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import {isAuthDialogOpen} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 
@@ -8,7 +7,7 @@ describe('Quotations -> Auth Dialog -> Reducer', () => {
 
     const result = isAuthDialogOpen();
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
   });
 
   it('should get the same original status when action is not allow', () => {
@@ -16,9 +15,9 @@ describe('Quotations -> Auth Dialog -> Reducer', () => {
 
     const result = isAuthDialogOpen(state, {type: 'invalid'});
 
-    expect(result).to.deep.equal(state);
+    expect(result).toStrictEqual(state);
     // don't mutate
-    expect(state).to.deep.equal(true);
+    expect(state).toStrictEqual(true);
   });
 
   it('should take isAuthDialogOpen value from payload when action is CHANGE_IS_AUTH_DIALOG_OPEN', () => {
@@ -28,8 +27,8 @@ describe('Quotations -> Auth Dialog -> Reducer', () => {
 
     const result = isAuthDialogOpen(state, action);
 
-    expect(result).to.deep.equal(stateExpected);
+    expect(result).toStrictEqual(stateExpected);
     // don't mutate
-    expect(state).to.deep.equal(true);
+    expect(state).toStrictEqual(true);
   });
 });

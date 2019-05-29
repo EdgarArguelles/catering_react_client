@@ -35,7 +35,7 @@ class Access extends React.Component {
     }
 
     return (
-      <Grid id="access" container justify="center" spacing={40}>
+      <Grid id="access" container justify="center" spacing={5}>
         <Grid item xs={10} sm={6}>
           <NoSession/>
         </Grid>

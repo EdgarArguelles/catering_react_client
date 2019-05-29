@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import MultipleDishesDialogActions, {ACTION_TYPES}
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 
@@ -7,7 +6,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Actions', () =>
     it('should dispatch CHANGE_IS_MULTIPLE_DISHES_DIALOG_OPEN', () => {
       const result = MultipleDishesDialogActions.openDialog();
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CHANGE_IS_MULTIPLE_DISHES_DIALOG_OPEN,
         payload: {
           isMultipleDishesDialogOpen: true,
@@ -20,7 +19,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Actions', () =>
     it('should dispatch CHANGE_IS_MULTIPLE_DISHES_DIALOG_OPEN', () => {
       const result = MultipleDishesDialogActions.closeDialog();
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.CHANGE_IS_MULTIPLE_DISHES_DIALOG_OPEN,
         payload: {
           isMultipleDishesDialogOpen: false,
@@ -33,7 +32,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Actions', () =>
     it('should dispatch CLEAN_MULTIPLE_DISHES_DISHES', () => {
       const result = MultipleDishesDialogActions.cleanDishes();
 
-      expect(result).to.deep.equal({type: ACTION_TYPES.CLEAN_MULTIPLE_DISHES_DISHES});
+      expect(result).toStrictEqual({type: ACTION_TYPES.CLEAN_MULTIPLE_DISHES_DISHES});
     });
   });
 
@@ -43,14 +42,14 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Actions', () =>
 
       const result = MultipleDishesDialogActions.addDish(dishId);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.ADD_MULTIPLE_DISHES_DISH,
         payload: {
           dishId,
         },
       });
       // don't mutate
-      expect(dishId).to.deep.equal('test');
+      expect(dishId).toStrictEqual('test');
     });
   });
 
@@ -60,14 +59,14 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Actions', () =>
 
       const result = MultipleDishesDialogActions.removeDish(dishId);
 
-      expect(result).to.deep.equal({
+      expect(result).toStrictEqual({
         type: ACTION_TYPES.REMOVE_MULTIPLE_DISHES_DISH,
         payload: {
           dishId,
         },
       });
       // don't mutate
-      expect(dishId).to.deep.equal('test');
+      expect(dishId).toStrictEqual('test');
     });
   });
 });

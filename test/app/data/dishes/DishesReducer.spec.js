@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import {expect} from 'chai';
 import sinon from 'sinon';
 import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/DataActions';
 import {ACTION_TYPES} from 'app/data/dishes/DishesActions';
@@ -13,7 +12,7 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishesFetching();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -21,9 +20,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishesFetching(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get true when action is FETCH_DISHES_REQUEST', () => {
@@ -33,9 +32,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishesFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(false);
+      expect(state).toStrictEqual(false);
     });
 
     it('should get false when action is FETCH_DISHES_SUCCESS', () => {
@@ -45,9 +44,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishesFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
 
     it('should get false when action is FETCH_DISHES_ERROR', () => {
@@ -57,9 +56,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishesFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal(true);
+      expect(state).toStrictEqual(true);
     });
   });
 
@@ -69,7 +68,7 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -77,9 +76,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal({a: true, b: false});
+      expect(state).toStrictEqual({a: true, b: false});
     });
 
     it('should add a true when action is FETCH_DISH_REQUEST', () => {
@@ -89,9 +88,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({a: true, b: false});
+      expect(state).toStrictEqual({a: true, b: false});
     });
 
     it('should overwrite a true when action is FETCH_DISH_REQUEST', () => {
@@ -101,9 +100,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({a: true, b: false, abc: false});
+      expect(state).toStrictEqual({a: true, b: false, abc: false});
     });
 
     it('should remove a true when action is FETCH_DISH_SUCCESS', () => {
@@ -113,9 +112,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({aa: true, b: false});
+      expect(state).toStrictEqual({aa: true, b: false});
     });
 
     it('should remove a true when action is FETCH_DISH_ERROR', () => {
@@ -125,9 +124,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({bb: true});
+      expect(state).toStrictEqual({bb: true});
     });
 
     it('should get the same original status when action is FETCH_DISH_SUCCESS and dishId does not exist', () => {
@@ -137,9 +136,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({cc: true, aa: false});
+      expect(state).toStrictEqual({cc: true, aa: false});
     });
 
     it('should get the same original status when action is FETCH_DISH_ERROR and dishId does not exist', () => {
@@ -149,9 +148,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishFetching(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({cc: true});
+      expect(state).toStrictEqual({cc: true});
     });
   });
 
@@ -167,7 +166,7 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes();
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
     });
 
     it('should get the same original status when action is not allow', () => {
@@ -179,9 +178,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, {type: 'invalid'});
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1'},
         'id-2': {id: 'id-2', name: '123'},
         'id-3': {id: 'id-3'},
@@ -201,9 +200,9 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', courseTypeId: 'ct1'},
         'id-2': {id: 'id-2', courseTypeId: 'ct2'},
         'id-3': {id: 'id-3', name: '123', courseTypeId: 'ct1'},
@@ -230,11 +229,11 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, mixData);
       // don't mutate
-      expect(state).to.deep.equal(null);
+      expect(state).toStrictEqual(null);
     });
 
     it('should not load new Dishes when action is FETCH_DISHES_SUCCESS and data is empty', () => {
@@ -257,11 +256,11 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, mixData);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', courseTypeId: 'ct1'},
         'id-2': {id: 'id-2', name: 'old', courseTypeId: 'ct2'},
         'id-3': {id: 'id-3', name: '123', courseTypeId: 'ct1'},
@@ -293,11 +292,11 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, mixData);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', courseTypeId: 'ct1'},
         'id-2': {id: 'id-2', name: 'old', courseTypeId: 'ct2'},
         'id-3': {id: 'id-3', name: '123', courseTypeId: 'ct1'},
@@ -318,10 +317,10 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(state);
+      expect(result).toStrictEqual(state);
       sinon.assert.callCount(arrayToObjectStub, 0);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', courseTypeId: 'ct1'},
         'id-2': {id: 'id-2', courseTypeId: 'ct2'},
         'id-3': {id: 'id-3', name: '123', courseTypeId: 'ct1'},
@@ -349,11 +348,11 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, [data]);
       // don't mutate
-      expect(state).to.deep.equal({
+      expect(state).toStrictEqual({
         'id-1': {id: 'id-1', courseTypeId: 'ct1'},
         'id-2': {id: 'id-2', courseTypeId: 'ct2'},
         'id-3': {id: 'id-3', name: '123', courseTypeId: 'ct1'},
@@ -372,11 +371,11 @@ describe('Data -> Dishes -> Reducer', () => {
 
       const result = dishes(state, action);
 
-      expect(result).to.deep.equal(stateExpected);
+      expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
       sinon.assert.calledWithExactly(arrayToObjectStub, [data]);
       // don't mutate
-      expect(state).to.deep.equal(null);
+      expect(state).toStrictEqual(null);
     });
   });
 });

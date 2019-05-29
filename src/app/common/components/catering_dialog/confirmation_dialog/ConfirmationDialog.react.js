@@ -8,10 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import cateringDialog from 'app/common/components/catering_dialog/CateringDialog';
 
-const Transition = props => {
-  return <Zoom {...props}/>;
-};
-
 const CateringDialog = cateringDialog(Dialog);
 
 export default class ConfirmationDialog extends React.Component {
@@ -31,7 +27,7 @@ export default class ConfirmationDialog extends React.Component {
     const {className, title, label, content, okID, okLabel, open, onClose, onOK} = this.props;
 
     return (
-      <CateringDialog className={className} TransitionComponent={Transition} transitionDuration={500}
+      <CateringDialog className={className} TransitionComponent={Zoom} transitionDuration={500}
                       open={open} onClose={onClose}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>

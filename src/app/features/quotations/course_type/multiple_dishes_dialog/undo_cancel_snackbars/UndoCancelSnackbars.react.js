@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MultipleDishesDialogActions
@@ -31,7 +32,7 @@ class UndoCancelSnackbars extends React.Component {
     const isOpen = !isMultipleDishesDialogOpen && dishes.length > 0;
 
     return (
-      <Snackbar id="undo-cancel-snackbars" open={isOpen}
+      <Snackbar id="undo-cancel-snackbars" open={isOpen} TransitionComponent={Slide}
                 className="snackbar-in-tabs" style={{left: `calc(${tabToDisplay * 100}vw + 50%)`}}
                 onClose={this.handleClose} autoHideDuration={10000} message="Se descarto el Plato Fuerte"
                 action={[
