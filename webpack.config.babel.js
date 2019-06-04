@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import Analyzer from 'webpack-bundle-analyzer';
 import Visualizer from 'webpack-visualizer-plugin';
 import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
