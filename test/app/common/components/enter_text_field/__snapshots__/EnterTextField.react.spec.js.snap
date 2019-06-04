@@ -2,7 +2,7 @@
 
 exports[`Components -> EnterTextField snapshot should render TextField with props 1`] = `
 <div
-  className="MuiFormControl-root MuiFormControl-marginDense MuiTextField-root className test"
+  className="MuiFormControl-root MuiTextField-root className test MuiFormControl-marginDense"
   onKeyUp={[Function]}
 >
   <div
@@ -28,7 +28,7 @@ exports[`Components -> EnterTextField snapshot should render TextField with prop
 
 exports[`Components -> EnterTextField snapshot should render TextField without props 1`] = `
 <div
-  className="MuiFormControl-root MuiFormControl-marginDense MuiTextField-root"
+  className="MuiFormControl-root MuiTextField-root MuiFormControl-marginDense"
   onKeyUp={[Function]}
 >
   <div
