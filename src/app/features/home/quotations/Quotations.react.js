@@ -24,7 +24,7 @@ export default class Quotations extends React.Component {
             <Information/>
           </Grid>
           <Grid item className="video" xs={12} sm={6}>
-            <iframe src="https://www.youtube.com/embed/xQ3QpuvBSKE" frameBorder="0" allowFullScreen
+            <iframe src="https://www.youtube.com/embed/qq_5UQry3T4" frameBorder="0" allowFullScreen
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
           </Grid>
           <Grid item xs={12}>
