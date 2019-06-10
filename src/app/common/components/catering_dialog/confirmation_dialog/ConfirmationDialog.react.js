@@ -27,7 +27,7 @@ export default class ConfirmationDialog extends React.Component {
     const {open} = this.props;
 
     if (!open && nextProps.open) {
-      navigator.vibrate(500);
+      navigator && navigator.vibrate && navigator.vibrate(300);
     }
   }
 
