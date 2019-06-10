@@ -21,6 +21,7 @@ import logger from './middlewares/Logger';
 import temporalStorage from './middlewares/TemporalStorage';
 import reducers from './Reducers';
 import Router from './router/Router';
+import Offline from './common/components/offline/Offline.react';
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger, temporalStorage));
 
@@ -39,6 +40,7 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       {Router}
+      <Offline/>
     </MuiThemeProvider>
   </Provider>,
   document.getElementById('app'),

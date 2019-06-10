@@ -1,0 +1,17 @@
+@import '../../../Variables';
+
+#offline {
+  position: fixed;
+  bottom: 0;
+  width: 150px;
+  z-index: 1100;
+  text-align: center;
+  background-color: orange;
+  opacity: 0.7;
+  border-radius: 5px;
+
+  span {
+    height: 17px;
+    margin-top: -16px;
+  }
+}
