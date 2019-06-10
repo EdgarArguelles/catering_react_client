@@ -1,6 +1,6 @@
 {
   "name": "catering_react_client",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "This project is a React Client used by CATERING",
   "scripts": {
     "webpack-dev": "API_URL=https://cateringjavaapi.herokuapp.com webpack-dev-server -d --history-api-fallback --port 3001 --host 0.0.0.0",
