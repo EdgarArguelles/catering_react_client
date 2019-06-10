@@ -17,8 +17,6 @@ export default ComposedComponent => {
       if (open) {
         closeNavigationDialog(onClose);
       }
-
-      navigator.vibrate(500);
     }
 
     componentWillUpdate(nextProps) {

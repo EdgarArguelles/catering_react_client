@@ -23,6 +23,14 @@ export default class ConfirmationDialog extends React.Component {
     onOK: PropTypes.func.isRequired,
   };
 
+  componentWillUpdate(nextProps) {
+    const {open} = this.props;
+
+    if (!open && nextProps.open) {
+      navigator.vibrate(500);
+    }
+  }
+
   render() {
     const {className, title, label, content, okID, okLabel, open, onClose, onOK} = this.props;
 
