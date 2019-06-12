@@ -50,7 +50,7 @@ const Auth = ({onSuccess}) => {
   const getWaiting = () => {
     return (
       <div className="waiting">
-        <img src={loading} className="progress"/>
+        <img src={loading} className="progress" alt="progress"/>
         Conectando...
       </div>
     );
@@ -58,10 +58,10 @@ const Auth = ({onSuccess}) => {
 
   const getButtons = () => {
     return (
-      <React.Fragment>
+      <>
         <Facebook subscribe={subscribe}/>
         <Google subscribe={subscribe}/>
-      </React.Fragment>
+      </>
     );
   };
 
