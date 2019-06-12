@@ -68,6 +68,7 @@ export default {
     }),
   ],
   resolve: {
+    extensions: ['*', '.js', '.jsx'],
     alias: {
       app: `${srcPath}/app`, // allow to use import with 'app/'
       assets: `${srcPath}/assets`, // allow to use import with 'assets/'
@@ -77,7 +78,7 @@ export default {
   module: {
     rules: [
       // babel
-      {test: /\.js?$/, exclude: [/node_modules/], use: 'babel-loader'},
+      {test: /\.(js|jsx)?$/, exclude: [/node_modules/], use: 'babel-loader'},
       // index
       {test: /index.html$/, use: 'file-loader?name=[name].[ext]'},
       // assets

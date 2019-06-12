@@ -8,6 +8,7 @@
   },
   "plugins": [
     "react",
+    "react-hooks",
     "more"
   ],
   "settings": {
@@ -192,6 +193,13 @@
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
     "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
+    "react/jsx-filename-extension": [2, {"extensions": [".js", ".jsx"]}], // Force .jsx extension
+
+    //
+    // eslint-plugin-react-hooks
+    //
+    "react-hooks/rules-of-hooks": 2, // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": 2, // Checks effect dependencies
 
     //
     // eslint-plugin-more
