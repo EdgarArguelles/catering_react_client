@@ -9,7 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar';
-import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs.react';
+import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs';
 import CourseType from 'app/features/quotations/course_type/CourseType.react';
 import MenuSummary from 'app/features/quotations/menu/menu_summary/MenuSummary.react';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
