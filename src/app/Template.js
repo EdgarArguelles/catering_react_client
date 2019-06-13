@@ -129,9 +129,7 @@ export const initJQuery = () => {
         }
       }
 
-      $('html, body').animate({
-        scrollTop: target.offset().top - topSpace,
-      }, 1500, 'easeInOutExpo');
+      window.scroll({top: target.offset().top - topSpace, left: 0, behavior: 'smooth'});
 
       if ($('body').hasClass('mobile-nav-active')) {
         $('body').removeClass('mobile-nav-active');

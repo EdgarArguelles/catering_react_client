@@ -1,12 +1,11 @@
 import './BackToTop.scss';
-import jQuery from 'jquery';
 import React, {useEffect, useState} from 'react';
 import Zoom from '@material-ui/core/Zoom';
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
   const handleScroll = () => setVisible(window.pageYOffset > 100);
-  const scrollUp = () => jQuery('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+  const scrollUp = () => window.scroll({top: 0, left: 0, behavior: 'smooth'});
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
