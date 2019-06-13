@@ -1,67 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import DishesActions from './DishesActions';
 
-class DishesLoader extends React.Component {
-  static propTypes = {
-    children: PropTypes.object,
-    renderer: PropTypes.func,
-    loader: PropTypes.object,
-    dishes: PropTypes.array.isRequired,
-    dataVersion: PropTypes.number,
-    dishFetching: PropTypes.object.isRequired,
-    allDishes: PropTypes.object,
-    fetchDish: PropTypes.func.isRequired,
-  };
+const DishesLoader = ({children, renderer, loader, dishes}) => {
+  const dispatch = useDispatch();
+  const dishFetching = useSelector(state => state.data.fetching.dish);
+  const allDishes = useSelector(state => state.data.dishes);
 
-  componentWillMount() {
-    const {dishes, dishFetching, allDishes, fetchDish} = this.props;
+  useEffect(() => {
+    const fetchDish = dishId => dispatch(DishesActions.fetchDish(dishId));
+
     fetchDishesList(dishes, allDishes, dishFetching, fetchDish);
-  }
+  }, [dishes, dishFetching, allDishes, dispatch]);
 
-  componentWillUpdate(nextProps) {
-    const {dishes, dataVersion, dishFetching, allDishes, fetchDish} = nextProps;
-
-    if (this.props.dataVersion !== dataVersion) {
-      fetchDishesList(dishes, allDishes, dishFetching, fetchDish);
-    }
-  }
-
-  render() {
-    const {children, renderer, loader, dishes, allDishes} = this.props;
-
-    if (areAllDishesPresent(dishes, allDishes) || dishes.length === 0) {
-      if (renderer) {
-        return renderer();
-      }
-
-      return <React.Fragment>{children}</React.Fragment>;
+  if (areAllDishesPresent(dishes, allDishes) || dishes.length === 0) {
+    if (renderer) {
+      return renderer();
     }
 
-    if (loader) {
-      return loader;
-    }
-
-    return null;
+    return <>{children}</>;
   }
-}
 
-const mapStateToProps = state => {
-  return {
-    dataVersion: state.data.version,
-    dishFetching: state.data.fetching.dish,
-    allDishes: state.data.dishes,
-  };
+  if (loader) {
+    return loader;
+  }
+
+  return null;
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchDish: dishId => {
-      dispatch(DishesActions.fetchDish(dishId));
-    },
-  };
+DishesLoader.propTypes = {
+  children: PropTypes.object,
+  renderer: PropTypes.func,
+  loader: PropTypes.object,
+  dishes: PropTypes.array.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DishesLoader);
+export default React.memo(DishesLoader);

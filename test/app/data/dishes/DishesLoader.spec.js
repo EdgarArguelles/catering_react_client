@@ -48,19 +48,14 @@ describe('Data -> Dishes -> Loader', () => {
       expect(component.props.renderer).toBeUndefined();
       expect(component.props.loader).toBeUndefined();
       expect(component.props.dishes).toStrictEqual([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}]);
-      expect(component.props.dataVersion).toBeUndefined();
-      expect(component.props.dishFetching).toStrictEqual({});
-      expect(component.props.allDishes).toBeUndefined();
-      expect(component.props.fetchDish).toBeDefined();
     });
 
     it('should have all props', () => {
       mountComponent(
         {
           data: {
-            version: 5,
             fetching: {dish: {D1: false, D2: true}},
-            dishes: {D1: {id: 'D1'}, D2: {id: 'D2'}, D3: {id: 'D3'}},
+            dishes: {D1: {id: 'D1'}, D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
           },
         },
         {
@@ -75,84 +70,10 @@ describe('Data -> Dishes -> Loader', () => {
       expect(component.props.renderer).toStrictEqual(myRenderer);
       expect(component.props.loader).toStrictEqual(<div>loader</div>);
       expect(component.props.dishes).toStrictEqual([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]);
-      expect(component.props.dataVersion).toStrictEqual(5);
-      expect(component.props.dishFetching).toStrictEqual({D1: false, D2: true});
-      expect(component.props.allDishes).toStrictEqual({D1: {id: 'D1'}, D2: {id: 'D2'}, D3: {id: 'D3'}});
-      expect(component.props.fetchDish).toBeDefined();
     });
   });
 
-  describe('componentWillMount', () => {
-    it('should not call fetchDish', () => {
-      mountComponent(
-        {
-          data: {
-            version: 5,
-            fetching: {dish: {D1: true}},
-            dishes: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
-          },
-        },
-        {
-          dishes: [{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}],
-        },
-      );
-
-      sinon.assert.callCount(fetchDishStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    it('should call fetchDish', () => {
-      fetchDishStub.withArgs('D1').returns('response1');
-      fetchDishStub.withArgs('D4').returns('response2');
-      mountComponent(
-        {
-          data: {
-            version: 5,
-            fetching: {dish: {D1: false, D2: true}},
-            dishes: {D3: {id: 'D3'}},
-          },
-        },
-        {
-          dishes: [{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}],
-        },
-      );
-
-      sinon.assert.callCount(fetchDishStub, 2);
-      sinon.assert.calledWithExactly(fetchDishStub, 'D1');
-      sinon.assert.calledWithExactly(fetchDishStub, 'D4');
-      sinon.assert.callCount(dispatchStub, 2);
-      sinon.assert.calledWithExactly(dispatchStub, 'response1');
-      sinon.assert.calledWithExactly(dispatchStub, 'response2');
-    });
-
-    it('should call fetchDish when allDishes is empty', () => {
-      fetchDishStub.withArgs('D1').returns('response1');
-      fetchDishStub.withArgs('D2').returns('response2');
-      fetchDishStub.withArgs('D4').returns('response3');
-      mountComponent(
-        {
-          data: {
-            version: 5,
-            fetching: {dish: {D1: false, D3: true}},
-          },
-        },
-        {
-          dishes: [{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}],
-        },
-      );
-
-      sinon.assert.callCount(fetchDishStub, 3);
-      sinon.assert.calledWithExactly(fetchDishStub, 'D1');
-      sinon.assert.calledWithExactly(fetchDishStub, 'D2');
-      sinon.assert.calledWithExactly(fetchDishStub, 'D4');
-      sinon.assert.callCount(dispatchStub, 3);
-      sinon.assert.calledWithExactly(dispatchStub, 'response1');
-      sinon.assert.calledWithExactly(dispatchStub, 'response2');
-      sinon.assert.calledWithExactly(dispatchStub, 'response3');
-    });
-  });
-
-  describe('componentWillUpdate', () => {
+  describe('useEffect -> fetchDish', () => {
     beforeEach(() => {
       fetchDishStub.withArgs('D1').returns({type: 'TEST'});
       fetchDishStub.withArgs('D2').returns({type: 'TEST'});
@@ -161,7 +82,6 @@ describe('Data -> Dishes -> Loader', () => {
       mountComponent(
         {
           data: {
-            version: 5,
             fetching: {dish: {D1: true}},
             dishes: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
           },
@@ -174,15 +94,6 @@ describe('Data -> Dishes -> Loader', () => {
     });
 
     it('should not call fetchDish', () => {
-      sinon.assert.callCount(fetchDishStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    it('should not call fetchDish when dispatch FETCH_DISH_ERROR', () => {
-      act(() => {
-        store.dispatch({type: ACTION_TYPES.FETCH_DISH_ERROR, payload: {dishId: 'D1'}});
-      });
-
       sinon.assert.callCount(fetchDishStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
     });
