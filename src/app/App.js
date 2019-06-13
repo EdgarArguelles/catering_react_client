@@ -21,7 +21,7 @@ import logger from './middlewares/Logger';
 import temporalStorage from './middlewares/TemporalStorage';
 import reducers from './Reducers';
 import Router from './router/Router';
-import Offline from './common/components/offline/Offline.react';
+import Offline from './common/components/offline/Offline';
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger, temporalStorage));
 
