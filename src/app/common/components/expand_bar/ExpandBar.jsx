@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 
 const APP_BAR_ID = 'app-bar';
@@ -49,8 +49,10 @@ export const resetBarsTop = (elementIdAlwaysVisible, elementIdToCollapse = APP_B
 };
 
 const ExpandBar = ({shouldMoveNavigation, onChange, children}) => {
+  const latestOnChange = useRef(onChange); // avoid to re-run useEffect when onChange change
+
   useEffect(() => {
-    const myHandleScroll = event => handleScroll('expand-bar', shouldMoveNavigation, onChange)(event);
+    const myHandleScroll = event => handleScroll('expand-bar', shouldMoveNavigation, latestOnChange.current)(event);
     window.scrollTo(0, 0);
     window.addEventListener('scroll', myHandleScroll);
 
@@ -58,7 +60,7 @@ const ExpandBar = ({shouldMoveNavigation, onChange, children}) => {
       window.removeEventListener('scroll', myHandleScroll);
       resetAppBarTop();
     };
-  }, [shouldMoveNavigation, onChange]);
+  }, [shouldMoveNavigation]);
 
   return <div id="expand-bar">{children}</div>;
 };
