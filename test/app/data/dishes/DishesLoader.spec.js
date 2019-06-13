@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
 import reducers from 'app/Reducers';
-import DishesLoader from 'app/data/dishes/DishesLoader.react';
+import DishesLoader from 'app/data/dishes/DishesLoader';
 import DishesActions, {ACTION_TYPES} from 'app/data/dishes/DishesActions';
 import {ACTION_TYPES as DATA_TYPES} from 'app/data/DataActions';
 

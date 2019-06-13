@@ -11,7 +11,7 @@ import AuthActions from './AuthActions';
 
 let stompClient;
 
-const useStompClient = (socketConnected, dispatch) => {
+const useCreateStompClient = (socketConnected, dispatch) => {
   useEffect(() => {
     if (socketConnected) {
       return undefined;
@@ -38,7 +38,7 @@ const useStompClient = (socketConnected, dispatch) => {
 const Auth = ({onSuccess}) => {
   const dispatch = useDispatch();
   const socketConnected = useSelector(state => state.auth.socketConnected);
-  useStompClient(socketConnected, dispatch);
+  useCreateStompClient(socketConnected, dispatch);
 
   const subscribe = state => {
     return stompClient.subscribe(`/oauth/response/${state}`, response => {

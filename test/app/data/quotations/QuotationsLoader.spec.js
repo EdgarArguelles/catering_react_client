@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
 import reducers from 'app/Reducers';
-import QuotationsLoader from 'app/data/quotations/QuotationsLoader.react';
+import QuotationsLoader from 'app/data/quotations/QuotationsLoader';
 import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
 
@@ -31,23 +31,6 @@ describe('Data -> Quotations -> Loader', () => {
   };
 
   describe('load', () => {
-    it('should have required props', () => {
-      mountComponent({
-        auth: {},
-        quotations: {quotation: {id: 'Q1'}},
-        data: {
-          fetching: {quotations: false, quotationsUpdate: true},
-        },
-      });
-
-      expect(component.props.children).toStrictEqual(<h1>Test</h1>);
-      expect(component.props.loggedUser).toBeUndefined();
-      expect(component.props.quotation).toStrictEqual({id: 'Q1'});
-      expect(component.props.isFetching).toStrictEqual(true);
-      expect(component.props.quotations).toBeUndefined();
-      expect(component.props.fetchQuotation).toBeDefined();
-    });
-
     it('should have all props', () => {
       mountComponent({
         auth: {loggedUser: {id: 'user 1'}},
@@ -59,46 +42,10 @@ describe('Data -> Quotations -> Loader', () => {
       });
 
       expect(component.props.children).toStrictEqual(<h1>Test</h1>);
-      expect(component.props.loggedUser).toStrictEqual({id: 'user 1'});
-      expect(component.props.quotation).toStrictEqual({id: 'Q1'});
-      expect(component.props.isFetching).toStrictEqual(true);
-      expect(component.props.quotations).toStrictEqual({Q2: {id: 'Q2'}, Q3: {id: 'Q3'}});
-      expect(component.props.fetchQuotation).toBeDefined();
     });
   });
 
-  describe('componentWillMount', () => {
-    it('should not call fetchQuotation', () => {
-      mountComponent({
-        auth: {},
-        quotations: {quotation: {id: 'Q1'}},
-        data: {
-          fetching: {quotationsUpdate: true},
-        },
-      });
-
-      sinon.assert.callCount(fetchQuotationStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    it('should call fetchQuotation', () => {
-      fetchQuotationStub.withArgs('Q1', false).returns('response');
-      mountComponent({
-        auth: {},
-        quotations: {quotation: {id: 'Q1'}},
-        data: {
-          fetching: {quotations: false, quotationsUpdate: false},
-        },
-      });
-
-      sinon.assert.callCount(fetchQuotationStub, 1);
-      sinon.assert.calledWithExactly(fetchQuotationStub, 'Q1', false);
-      sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, 'response');
-    });
-  });
-
-  describe('componentWillUpdate', () => {
+  describe('useEffect -> fetchQuotation', () => {
     beforeEach(() => {
       fetchQuotationStub.withArgs('Q1', false).returns({type: 'TEST'});
       mountComponent({
@@ -163,6 +110,7 @@ describe('Data -> Quotations -> Loader', () => {
 
   describe('snapshot', () => {
     it('should render h1 Test', () => {
+      fetchQuotationStub.withArgs('Q1', false).returns({type: 'TEST'});
       mountComponent({
         auth: {},
         quotations: {quotation: {id: 'Q1'}},

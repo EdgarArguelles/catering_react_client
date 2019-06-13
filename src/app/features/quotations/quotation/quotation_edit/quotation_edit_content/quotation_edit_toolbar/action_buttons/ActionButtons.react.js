@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
-import QuotationsLoader from 'app/data/quotations/QuotationsLoader.react';
+import QuotationsLoader from 'app/data/quotations/QuotationsLoader';
 import DeleteQuotation from './delete_quotation/DeleteQuotation.react';
 import RevertQuotation from './revert_quotation/RevertQuotation.react';
 import SaveQuotation from './save_quotation/SaveQuotation.react';

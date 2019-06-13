@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {MultipleDishLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
-import DishesLoader from 'app/data/dishes/DishesLoader.react';
+import DishesLoader from 'app/data/dishes/DishesLoader';
 import DishThumbnail from './dish_thumbnail/DishThumbnail.react';
 import AddDish from './add_dish/AddDish.react';
 
