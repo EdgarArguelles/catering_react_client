@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 const APP_BAR_ID = 'app-bar';
@@ -48,31 +48,25 @@ export const resetBarsTop = (elementIdAlwaysVisible, elementIdToCollapse = APP_B
   resetAppBarTop(elementIdToCollapse);
 };
 
-export default class ExpandBar extends React.Component {
-  static propTypes = {
-    shouldMoveNavigation: PropTypes.bool,
-    onChange: PropTypes.func,
-    children: PropTypes.object.isRequired,
-  };
-
-  componentDidMount() {
+const ExpandBar = ({shouldMoveNavigation, onChange, children}) => {
+  useEffect(() => {
+    const myHandleScroll = event => handleScroll('expand-bar', shouldMoveNavigation, onChange)(event);
     window.scrollTo(0, 0);
-    window.addEventListener('scroll', this.myHandleScroll);
-  }
+    window.addEventListener('scroll', myHandleScroll);
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.myHandleScroll);
-    resetAppBarTop();
-  }
+    return () => {
+      window.removeEventListener('scroll', myHandleScroll);
+      resetAppBarTop();
+    };
+  }, [shouldMoveNavigation, onChange]);
 
-  myHandleScroll = event => {
-    const {shouldMoveNavigation, onChange} = this.props;
-    handleScroll('expand-bar', shouldMoveNavigation, onChange)(event);
-  };
+  return <div id="expand-bar">{children}</div>;
+};
 
-  render() {
-    const {children} = this.props;
+ExpandBar.propTypes = {
+  shouldMoveNavigation: PropTypes.bool,
+  onChange: PropTypes.func,
+  children: PropTypes.object.isRequired,
+};
 
-    return <div id="expand-bar">{children}</div>;
-  }
-}
+export default ExpandBar;

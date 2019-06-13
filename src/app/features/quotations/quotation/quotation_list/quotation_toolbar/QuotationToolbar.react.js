@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
-import ExpandBar from 'app/common/components/expand_bar/ExpandBar.react';
+import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
 import QuotationsActions from 'app/data/quotations/QuotationsActions';
 
 class QuotationToolbar extends React.Component {

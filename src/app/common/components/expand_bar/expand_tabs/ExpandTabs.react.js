@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {handleScroll, resetAppBarTop} from 'app/common/components/expand_bar/ExpandBar.react';
+import {handleScroll, resetAppBarTop} from 'app/common/components/expand_bar/ExpandBar';
 
 export default class ExpandTabs extends React.Component {
   static propTypes = {

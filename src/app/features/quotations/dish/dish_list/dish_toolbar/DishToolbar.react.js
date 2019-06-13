@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Toolbar from '@material-ui/core/Toolbar';
-import ExpandBar from 'app/common/components/expand_bar/ExpandBar.react';
+import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
 import SearchBox from 'app/common/components/search_box/SearchBox.react';
 import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
