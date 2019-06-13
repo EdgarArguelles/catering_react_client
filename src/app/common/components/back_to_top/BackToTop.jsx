@@ -4,10 +4,10 @@ import Zoom from '@material-ui/core/Zoom';
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
-  const handleScroll = () => setVisible(window.pageYOffset > 100);
   const scrollUp = () => window.scroll({top: 0, left: 0, behavior: 'smooth'});
 
   useEffect(() => {
+    const handleScroll = () => setVisible(window.pageYOffset > 100);
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
