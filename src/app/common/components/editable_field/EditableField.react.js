@@ -2,7 +2,7 @@ import './EditableField.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
-import EnterTextField from 'app/common/components/enter_text_field/EnterTextField.react';
+import EnterTextField from 'app/common/components/enter_text_field/EnterTextField';
 
 export default class EditableField extends React.Component {
   static propTypes = {
