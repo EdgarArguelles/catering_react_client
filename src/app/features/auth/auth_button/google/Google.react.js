@@ -1,7 +1,7 @@
 import './Google.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import AuthButton from 'app/features/auth/auth_button/AuthButton.react';
+import AuthButton from 'app/features/auth/auth_button/AuthButton';
 
 export default class Google extends React.Component {
   static propTypes = {

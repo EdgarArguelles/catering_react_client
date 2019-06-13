@@ -1,33 +1,18 @@
 import './AuthButton.scss';
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 
 const subscriptions = {};
+const randomState = Math.random().toString(36).substring(2);
 
-export default class AuthButton extends React.Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired,
-    url: PropTypes.string.isRequired,
-    children: PropTypes.array.isRequired,
-    subscribe: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-    this.randomState = Math.random().toString(36).substring(2);
-  }
-
-  componentDidMount() {
-    const {id, subscribe} = this.props;
-
+const AuthButton = ({id, classes, url, children, subscribe}) => {
+  useEffect(() => {
     subscriptions[id] && subscriptions[id].unsubscribe();
-    subscriptions[id] = subscribe(this.randomState);
-  }
+    subscriptions[id] = subscribe(id + randomState);
+  }, [id, subscribe]);
 
-  access = () => {
-    const {url} = this.props;
+  const access = () => {
     const w = 800;
     const h = 620;
     const dualScreenLeft = window.screenLeft ? window.screenLeft : window.screenX;
@@ -42,18 +27,20 @@ export default class AuthButton extends React.Component {
     const left = (width - w) / 2 / systemZoom + dualScreenLeft;
     const top = (height - h) / 2 / systemZoom + dualScreenTop;
 
-    const newWindow = window.open(`${process.env.API_URL}${url}?state=${this.randomState}`, 'authentication',
+    const newWindow = window.open(`${process.env.API_URL}${url}?state=${id + randomState}`, 'authentication',
       `width=${w / systemZoom},height=${h / systemZoom},left=${left},top=${top}`);
     window.focus && newWindow.focus();
   };
 
-  render() {
-    const {id, classes, children} = this.props;
+  return <Fab variant="extended" id={id} className="auth-button" classes={classes} onClick={access}>{children}</Fab>;
+};
 
-    return (
-      <Fab variant="extended" id={id} className="auth-button" classes={classes} onClick={this.access}>
-        {children}
-      </Fab>
-    );
-  }
-}
+AuthButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
+  children: PropTypes.array.isRequired,
+  subscribe: PropTypes.func.isRequired,
+};
+
+export default AuthButton;
