@@ -12,9 +12,8 @@ const QuotationsLoader = ({children}) => {
   const quotations = useSelector(state => state.data.quotations);
 
   useEffect(() => {
-    const fetchQuotation = quotationId => dispatch(QuotationsActions.fetchQuotation(quotationId, false));
-
     if (loggedUser) {
+      const fetchQuotation = quotationId => dispatch(QuotationsActions.fetchQuotation(quotationId, false));
       fetchCompleteQuotation(quotation, isFetching, quotations, fetchQuotation);
     }
   }, [loggedUser, quotation, isFetching, quotations, dispatch]);
