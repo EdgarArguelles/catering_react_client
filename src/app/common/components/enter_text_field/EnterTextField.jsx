@@ -27,4 +27,4 @@ EnterTextField.propTypes = {
   onSave: PropTypes.func.isRequired,
 };
 
-export default EnterTextField;
+export default React.memo(EnterTextField);

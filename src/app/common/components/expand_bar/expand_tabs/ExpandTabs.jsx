@@ -31,4 +31,4 @@ ExpandTabs.propTypes = {
   children: PropTypes.object.isRequired,
 };
 
-export default ExpandTabs;
+export default React.memo(ExpandTabs);

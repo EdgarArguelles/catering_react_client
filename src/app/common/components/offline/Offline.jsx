@@ -22,4 +22,4 @@ const Offline = () => {
   );
 };
 
-export default Offline;
+export default React.memo(Offline);

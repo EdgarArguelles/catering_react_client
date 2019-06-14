@@ -71,4 +71,4 @@ ExpandBar.propTypes = {
   children: PropTypes.object.isRequired,
 };
 
-export default ExpandBar;
+export default React.memo(ExpandBar);

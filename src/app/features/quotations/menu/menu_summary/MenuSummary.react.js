@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import formatCurrency from 'format-currency';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import EditableField from 'app/common/components/editable_field/EditableField.react';
+import EditableField from 'app/common/components/editable_field/EditableField';
 import MenuQuantity from './menu_quantity/MenuQuantity.react';
 import RemoveMenu from './remove_menu/RemoveMenu.react';
 import CompleteMenu from './complete_menu/CompleteMenu.react';

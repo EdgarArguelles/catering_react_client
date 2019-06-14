@@ -43,4 +43,4 @@ AuthButton.propTypes = {
   subscribe: PropTypes.func.isRequired,
 };
 
-export default AuthButton;
+export default React.memo(AuthButton);
