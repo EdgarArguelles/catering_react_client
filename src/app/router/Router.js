@@ -3,8 +3,8 @@ import {Redirect, Route, Router, Switch} from 'react-router-dom';
 import pingServer from 'app/features/PingServer';
 import History from './History';
 
-const Home = lazy(() => import('app/features/home/Layout.react'));
-const Quotations = lazy(() => import('app/features/quotations/Layout.react'));
+const Home = lazy(() => import('app/features/home/Layout'));
+const Quotations = lazy(() => import('app/features/quotations/Layout'));
 
 export default (
   <Router history={History}>
