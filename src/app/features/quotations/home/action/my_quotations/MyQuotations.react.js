@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import History from 'app/router/History';
 import Action from 'app/features/quotations/home/action/Action.react';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
-import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 
 class MyQuotations extends React.Component {
   static propTypes = {

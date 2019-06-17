@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import EmptyQuotationList from './empty_quotation_list/EmptyQuotationList.react';
 import NoSessionQuotationList from './no_session_quotation_list/NoSessionQuotationList.react';
 import QuotationToolbar from './quotation_toolbar/QuotationToolbar.react';

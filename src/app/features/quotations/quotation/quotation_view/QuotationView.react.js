@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
-import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog.react';
+import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
