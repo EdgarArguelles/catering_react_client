@@ -1,5 +1,5 @@
 import './SelectedDishDialog.scss';
-import React from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,7 +17,7 @@ import DishActions from 'app/features/quotations/dish/DishActions';
 const SelectedDishDialog = ({fullScreen}) => {
   const dispatch = useDispatch();
   const dish = useSelector(state => state.data.dishes ? state.data.dishes[state.quotations.dish.selected] : null);
-  const deselectDish = () => dispatch(DishActions.selectDish(''));
+  const deselectDish = useCallback(() => dispatch(DishActions.selectDish('')), [dispatch]);
   const dishName = dish ? `${dish.id} - ${dish.name}` : '';
   const visible = !!dish;
   const delayOut = 1000;
