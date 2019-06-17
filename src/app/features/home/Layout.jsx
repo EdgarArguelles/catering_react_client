@@ -6,7 +6,7 @@ import Header from './header/Header.react';
 import Home from './home/Home.react';
 import About from './about/About.react';
 import Services from './services/Services.react';
-import Quotations from './quotations/Quotations.react';
+import Quotations from './quotations/Quotations';
 import Contact from './contact/Contact.react';
 
 const Layout = () => {
