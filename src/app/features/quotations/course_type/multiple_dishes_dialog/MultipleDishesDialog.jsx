@@ -25,7 +25,7 @@ const MultipleDishesDialog = ({courseType, tabToDisplay, children}) => {
 
   useEffect(() => {
     if (shouldOverwriteCloseNavigationDialog) {
-      dispatch(NavigationActions.closeNavigationDialog(onClose));
+      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(onClose)), 700);
     }
   }, [shouldOverwriteCloseNavigationDialog, onClose, dispatch]);
 

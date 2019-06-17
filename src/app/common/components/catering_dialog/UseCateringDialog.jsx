@@ -5,6 +5,6 @@ import NavigationActions from 'app/features/quotations/header/navigation/Navigat
 export const useCateringDialog = (open, onClose) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(NavigationActions.closeNavigationDialog(open ? onClose : null));
+    setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(open ? onClose : null)), 500);
   }, [open, onClose, dispatch]);
 };
