@@ -8,7 +8,7 @@ const Home = lazy(() => import('app/features/quotations/home/Home.react'));
 const QuotationEdit = lazy(() => import('app/features/quotations/quotation/quotation_edit/QuotationEdit.react'));
 const QuotationList = lazy(() => import('app/features/quotations/quotation/quotation_list/QuotationList.react'));
 const MenuEdit = lazy(() => import('app/features/quotations/menu/menu_edit/MenuEdit.react'));
-const DishList = lazy(() => import('app/features/quotations/dish/dish_list/DishList.react'));
+const DishList = lazy(() => import('app/features/quotations/dish/dish_list/DishList'));
 const QuotationView = lazy(() => import('app/features/quotations/quotation/quotation_view/QuotationView.react'));
 
 class RedirectHome extends React.Component {

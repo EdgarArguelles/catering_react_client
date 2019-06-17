@@ -3,7 +3,7 @@ import loading from 'assets/img/loading-large.gif';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {completeLoading} from 'app/Template';
-import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog.react';
+import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog';
 import Header from './header/Header.react';
 import Router from './router/Router.react';
 import CourseTypesActions from 'app/data/course_types/CourseTypesActions';
