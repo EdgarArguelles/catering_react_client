@@ -6,6 +6,6 @@ export const useCateringDialog = (open, onClose) => {
   const dispatch = useDispatch();
   const latestOnClose = useRef(onClose); // avoid to re-run useEffect when onClose change
   useEffect(() => {
-    setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(open ? latestOnClose.current : null)), 500);
+    dispatch(NavigationActions.closeNavigationDialog(open ? latestOnClose.current : null));
   }, [open, dispatch]);
 };
