@@ -9,7 +9,7 @@ import EditableField from 'app/common/components/editable_field/EditableField';
 import MenuQuantity from './menu_quantity/MenuQuantity.react';
 import RemoveMenu from './remove_menu/RemoveMenu.react';
 import CompleteMenu from './complete_menu/CompleteMenu.react';
-import MenuDialog from './menu_dialog/MenuDialog.react';
+import MenuDialog from './menu_dialog/MenuDialog';
 import MenuActions from 'app/features/quotations/menu/MenuActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 

@@ -9,7 +9,7 @@ class MenuQuantity extends React.Component {
   static propTypes = {
     autoFocus: PropTypes.bool,
     hideLabels: PropTypes.bool,
-    menuQuantity: PropTypes.number.isRequired,
+    menu: PropTypes.object,
     onEnter: PropTypes.func,
     changeMenuQuantity: PropTypes.func.isRequired,
   };
@@ -37,7 +37,8 @@ class MenuQuantity extends React.Component {
 
   getTextField = () => {
     const {empty} = this.state;
-    const {autoFocus, menuQuantity} = this.props;
+    const {autoFocus, menu} = this.props;
+    const menuQuantity = menu ? menu.quantity : 0;
 
     return (
       <TextField type="number" className="menu-quantity-field" margin="dense" autoFocus={autoFocus}
@@ -59,7 +60,7 @@ class MenuQuantity extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    menuQuantity: state.quotations.quotation.menus.find(menu => menu.isSelected).quantity,
+    menu: state.quotations.quotation.menus.find(menu => menu.isSelected),
   };
 };
 
