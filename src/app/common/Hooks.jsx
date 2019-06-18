@@ -2,13 +2,13 @@ import {useEffect, useRef} from 'react';
 import {useDispatch} from 'react-redux';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 
-export const useCateringDialog = (open, onClose) => {
+export const useBrowserNavigation = (open, onClose) => {
   const dispatch = useDispatch();
   const latestOnClose = useRef(onClose); // avoid to re-run useEffect when onClose change
   const latestOpen = useRef(open);
   useEffect(() => {
     if (open) {
-      dispatch(NavigationActions.closeNavigationDialog(latestOnClose.current));
+      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(latestOnClose.current)), 500);
     } else if (latestOpen.current) {
       // only close when last open value was true
       dispatch(NavigationActions.closeNavigationDialog(null));

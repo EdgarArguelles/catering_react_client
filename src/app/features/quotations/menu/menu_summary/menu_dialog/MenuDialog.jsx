@@ -6,7 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import {useCateringDialog} from 'app/common/components/catering_dialog/UseCateringDialog';
+import {useBrowserNavigation} from 'app/common/Hooks';
 import Animate from 'app/common/components/animate/Animate.react';
 import Menu from 'app/features/quotations/menu/Menu.react';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
@@ -22,7 +22,7 @@ const MenuDialog = ({onClose}) => {
     dispatch(QuotationsActions.changeMenuDialogOpen(false));
     onClose && onClose();
   }, [onClose, dispatch]);
-  useCateringDialog(isMenuDialogOpen, closeDialog);
+  useBrowserNavigation(isMenuDialogOpen, closeDialog);
 
   useEffect(() => {
     if (shouldOverwriteCloseNavigationDialog) {

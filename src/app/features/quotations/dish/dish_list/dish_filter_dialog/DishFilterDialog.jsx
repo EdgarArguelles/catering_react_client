@@ -7,13 +7,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import {useCateringDialog} from 'app/common/components/catering_dialog/UseCateringDialog';
+import {useBrowserNavigation} from 'app/common/Hooks';
 import DishFilter from 'app/features/quotations/dish/dish_filter/DishFilter.react';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props}/>);
 
 const DishFilterDialog = ({open, onClose, fullScreen}) => {
-  useCateringDialog(open, onClose);
+  useBrowserNavigation(open, onClose);
 
   return (
     <Dialog id="dish-filter-dialog" fullWidth={true} maxWidth="md" fullScreen={fullScreen} open={open}

@@ -8,7 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import {useCateringDialog} from 'app/common/components/catering_dialog/UseCateringDialog';
+import {useBrowserNavigation} from 'app/common/Hooks';
 import Auth from 'app/features/auth/Auth';
 import AuthDialogActions from './AuthDialogActions';
 
@@ -16,7 +16,7 @@ const AuthDialog = ({onSuccess}) => {
   const dispatch = useDispatch();
   const open = useSelector(state => state.quotations.isAuthDialogOpen);
   const onClose = useCallback(() => dispatch(AuthDialogActions.closeAuthDialog()), [dispatch]);
-  useCateringDialog(open, onClose);
+  useBrowserNavigation(open, onClose);
 
   const handleSuccess = () => {
     onSuccess && onSuccess();

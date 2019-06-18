@@ -6,7 +6,7 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import {useCateringDialog} from 'app/common/components/catering_dialog/UseCateringDialog';
+import {useBrowserNavigation} from 'app/common/Hooks';
 import MultipleDishesActions from './multiple_dishes_actions/MultipleDishesActions.react';
 import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars.react';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
@@ -19,9 +19,10 @@ const MultipleDishesDialog = ({courseType, tabToDisplay, children}) => {
   const currentTab = useSelector(state => state.quotations.selectedTab);
   const selectedDish = useSelector(state => state.quotations.dish.selected);
   const open = useSelector(state => state.quotations.multipleDishesDialog.isMultipleDishesDialogOpen);
-  const shouldOverwriteCloseNavigationDialog = open && tabToDisplay === currentTab && selectedDish === '';
+  const isOpen = open && tabToDisplay === currentTab;
+  const shouldOverwriteCloseNavigationDialog = isOpen && selectedDish === '';
   const onClose = useCallback(() => dispatch(MultipleDishesDialogActions.closeDialog()), [dispatch]);
-  useCateringDialog(open, onClose);
+  useBrowserNavigation(isOpen, onClose);
 
   useEffect(() => {
     if (shouldOverwriteCloseNavigationDialog) {
@@ -33,7 +34,7 @@ const MultipleDishesDialog = ({courseType, tabToDisplay, children}) => {
   return (
     <>
       <Dialog className="multiple-dishes-dialog" TransitionComponent={Transition} transitionDuration={500}
-              onClose={onClose} open={open && tabToDisplay === currentTab}>
+              onClose={onClose} open={isOpen}>
         <DialogContent className="multiple-dishes-dialog-content">
           {children}
         </DialogContent>

@@ -7,11 +7,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import {useCateringDialog} from 'app/common/components/catering_dialog/UseCateringDialog';
+import {useBrowserNavigation} from 'app/common/Hooks';
 import Contact from 'app/features/home/contact/Contact.react';
 
 const ContactDialog = ({open, onClose, fullScreen}) => {
-  useCateringDialog(open, onClose);
+  useBrowserNavigation(open, onClose);
 
   return (
     <Dialog id="contact-dialog" fullWidth={true} maxWidth="md" fullScreen={fullScreen} open={open} onClose={onClose}

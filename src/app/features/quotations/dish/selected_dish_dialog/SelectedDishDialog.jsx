@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import {useCateringDialog} from 'app/common/components/catering_dialog/UseCateringDialog';
+import {useBrowserNavigation} from 'app/common/Hooks';
 import Animate from 'app/common/components/animate/Animate.react';
 import Dish from 'app/features/quotations/dish/Dish.react';
 import DishHeader from './dish_header/DishHeader.react';
@@ -21,7 +21,7 @@ const SelectedDishDialog = ({fullScreen}) => {
   const dishName = dish ? `${dish.id} - ${dish.name}` : '';
   const visible = !!dish;
   const delayOut = 1000;
-  useCateringDialog(visible, deselectDish);
+  useBrowserNavigation(visible, deselectDish);
 
   return (
     <Animate visible={visible} animationIn="zoomInUp" animationOut="zoomOutUp" delayOut={delayOut}>
