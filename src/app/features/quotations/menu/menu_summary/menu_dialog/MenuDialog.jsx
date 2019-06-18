@@ -27,7 +27,7 @@ const MenuDialog = ({onClose}) => {
   useEffect(() => {
     if (shouldOverwriteCloseNavigationDialog) {
       // handle back browser functionality when close SelectedDishDialog
-      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(closeDialog)), 500);
+      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(closeDialog)), 0);
     }
   }, [shouldOverwriteCloseNavigationDialog, closeDialog, dispatch]);
 
