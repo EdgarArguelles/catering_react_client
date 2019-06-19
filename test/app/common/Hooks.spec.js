@@ -11,7 +11,7 @@ import {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
 
 describe('Hooks', () => {
   const dispatchStub = sinon.stub();
-  let store;
+  let store, wrapper;
 
   afterEach(() => dispatchStub.reset());
 
@@ -24,15 +24,14 @@ describe('Hooks', () => {
     store = configureStore()(state);
     store.dispatch = dispatchStub;
     store = useRealStore ? createStore(reducers, state) : store;
-    renderer.create(<Provider store={store}><Component/></Provider>);
+    wrapper = renderer.create(<Provider store={store}><Component/></Provider>);
   };
 
   describe('useQuotationsLoader', () => {
     const fetchQuotationStub = sinon.stub(QuotationsActions, 'fetchQuotation');
 
-    afterEach(() => fetchQuotationStub.reset());
-
     beforeEach(() => {
+      fetchQuotationStub.reset();
       fetchQuotationStub.withArgs('Q1', false).returns({type: 'TEST'});
       mountComponent(() => useQuotationsLoader(), {
         auth: {},
@@ -44,6 +43,8 @@ describe('Hooks', () => {
     });
 
     it('should not call fetchQuotation', () => {
+      // call wrapper.update() to call useEffect the first time
+      wrapper.update();
       sinon.assert.callCount(fetchQuotationStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
     });
