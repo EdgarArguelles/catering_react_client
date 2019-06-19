@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {handleScroll, resetAppBarTop} from 'app/common/components/expand_bar/ExpandBar';
 
 const ExpandTabs = ({tabsElementId, slideClassName, onChange, children}) => {
-  const latestOnChange = useRef(onChange); // avoid to re-run useEffect when onChange change
+  const latestOnChange = useRef(onChange); // avoid to re-run useEffect when onChange changes
 
   useEffect(() => {
     const myHandleScroll = event => handleScroll(tabsElementId, false, latestOnChange.current)(event);

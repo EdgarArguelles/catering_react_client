@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
-import ActionButtons from './action_buttons/ActionButtons.react';
+import ActionButtons from './action_buttons/ActionButtons';
 
 class QuotationEditToolbar extends React.Component {
   static propTypes = {

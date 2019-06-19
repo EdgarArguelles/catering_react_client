@@ -49,7 +49,7 @@ export const resetBarsTop = (elementIdAlwaysVisible, elementIdToCollapse = APP_B
 };
 
 const ExpandBar = ({shouldMoveNavigation, onChange, children}) => {
-  const latestOnChange = useRef(onChange); // avoid to re-run useEffect when onChange change
+  const latestOnChange = useRef(onChange); // avoid to re-run useEffect when onChange changes
 
   useEffect(() => {
     const myHandleScroll = event => handleScroll('expand-bar', shouldMoveNavigation, latestOnChange.current)(event);
