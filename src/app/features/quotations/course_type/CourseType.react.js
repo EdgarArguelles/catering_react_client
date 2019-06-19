@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import {useMultipleDishes} from './CourseType.service';
-import Animate from 'app/common/components/animate/Animate.react';
+import Animate from 'app/common/components/animate/Animate';
 import CourseTypeContent from './course_type_content/CourseTypeContent.react';
 import MultipleDishesDialog from './multiple_dishes_dialog/MultipleDishesDialog';
 import MainCourse from './multiple_dishes_dialog/main_course/MainCourse.react';

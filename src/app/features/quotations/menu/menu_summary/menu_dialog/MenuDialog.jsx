@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
-import Animate from 'app/common/components/animate/Animate.react';
+import Animate from 'app/common/components/animate/Animate';
 import Menu from 'app/features/quotations/menu/Menu.react';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';

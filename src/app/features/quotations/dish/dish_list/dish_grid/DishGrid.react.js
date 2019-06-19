@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Utils from 'app/common/Utils';
-import Animate from 'app/common/components/animate/Animate.react';
+import Animate from 'app/common/components/animate/Animate';
 import {DishLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
 import DishItem from 'app/features/quotations/dish/dish_list/dish_item/DishItem.react';
 
