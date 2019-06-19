@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 

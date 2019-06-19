@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import History from 'app/router/History';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import AuthActions from 'app/features/auth/AuthActions';
 
 class UserMenu extends React.Component {

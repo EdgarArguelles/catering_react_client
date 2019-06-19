@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import MenuActions from 'app/features/quotations/menu/MenuActions';
 
 class RemoveDialog extends React.Component {

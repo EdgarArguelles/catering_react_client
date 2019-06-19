@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 class QuotationCompleteButton extends React.Component {

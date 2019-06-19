@@ -3,7 +3,7 @@ import image from 'assets/img/new-quotation.jpg';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import History from 'app/router/History';
 import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';

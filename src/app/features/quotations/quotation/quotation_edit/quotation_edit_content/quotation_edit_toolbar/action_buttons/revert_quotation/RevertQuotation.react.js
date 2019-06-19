@@ -7,7 +7,7 @@ import Slide from '@material-ui/core/Slide';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 

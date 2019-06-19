@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
-import ConfirmationDialog from 'app/common/components/catering_dialog/confirmation_dialog/ConfirmationDialog.react';
+import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 
 class QuotationNotify extends React.Component {
   static propTypes = {
