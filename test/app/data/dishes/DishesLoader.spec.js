@@ -94,6 +94,9 @@ describe('Data -> Dishes -> Loader', () => {
     });
 
     it('should not call fetchDish', () => {
+      // call wrapper.update() to call useEffect the first time
+      wrapper.update();
+
       sinon.assert.callCount(fetchDishStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
     });

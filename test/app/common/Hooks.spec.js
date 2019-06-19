@@ -45,6 +45,7 @@ describe('Hooks', () => {
     it('should not call fetchQuotation', () => {
       // call wrapper.update() to call useEffect the first time
       wrapper.update();
+
       sinon.assert.callCount(fetchQuotationStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
     });
