@@ -17,7 +17,7 @@ const MenuDialog = ({onClose}) => {
   const isMenuDialogOpen = useSelector(state => state.quotations.isMenuDialogOpen);
   const selectedDish = useSelector(state => state.quotations.dish.selected);
   const shouldOverwriteCloseNavigationDialog = isMenuDialogOpen && selectedDish === '';
-  const delayOut = 500;
+  const delayOut = 200;
   const closeDialog = useCallback(() => {
     dispatch(QuotationsActions.changeMenuDialogOpen(false));
     onClose && onClose();
@@ -33,7 +33,7 @@ const MenuDialog = ({onClose}) => {
 
   return (
     <Animate visible={isMenuDialogOpen} animationIn="fadeInDownBig" animationOut="fadeOutUpBig" delayOut={delayOut}>
-      <Dialog id="menu-dialog" open={isMenuDialogOpen} transitionDuration={delayOut} fullScreen={true}
+      <Dialog id="menu-dialog" open={isMenuDialogOpen} transitionDuration={delayOut + 300} fullScreen={true}
               onClose={closeDialog}>
         <DialogContent>
           <Menu/>
