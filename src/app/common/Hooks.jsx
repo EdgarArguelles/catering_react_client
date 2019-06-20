@@ -1,8 +1,10 @@
 import {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/data/quotations/QuotationsActions';
+import DishesActions from 'app/data/dishes/DishesActions';
 
 export const useBrowserNavigation = (open, onClose) => {
   const dispatch = useDispatch();
@@ -41,4 +43,22 @@ export const useQuotationsLoader = () => {
       latestIsFetching.current = true;
     }
   }, [loggedUser, dispatch]);
+};
+
+export const useAreDishesLoaded = dishes => {
+  const dispatch = useDispatch();
+  const dishFetching = useSelector(state => state.data.fetching.dish);
+  const allDishes = useSelector(state => state.data.dishes);
+
+  const latestDishes = useRef(dishes); // avoid to re-run useEffect when dishes changes
+  const latestDishFetching = useRef(dishFetching); // avoid to re-run useEffect when dishFetching changes
+  const latestAllDishes = useRef(allDishes); // avoid to re-run useEffect when allDishes changes
+
+  useEffect(() => {
+    const fetchDish = dishId => dispatch(DishesActions.fetchDish(dishId));
+
+    fetchDishesList(latestDishes.current, latestAllDishes.current, latestDishFetching.current, fetchDish);
+  }, [dispatch]);
+
+  return areAllDishesPresent(dishes, allDishes) || dishes.length === 0;
 };

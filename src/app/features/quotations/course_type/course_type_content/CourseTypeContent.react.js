@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import DragDrop from 'app/common/components/drag_drop/DragDrop.react';
-import Course from 'app/features/quotations/course/Course.react';
+import Course from 'app/features/quotations/course/Course';
 import EmptyCourseType from './empty_course_type/EmptyCourseType.react';
 import MenuActions from 'app/features/quotations/menu/MenuActions';
 

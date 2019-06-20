@@ -8,7 +8,7 @@ import {useMultipleDishes} from './CourseType.service';
 import Animate from 'app/common/components/animate/Animate';
 import CourseTypeContent from './course_type_content/CourseTypeContent.react';
 import MultipleDishesDialog from './multiple_dishes_dialog/MultipleDishesDialog';
-import MainCourse from './multiple_dishes_dialog/main_course/MainCourse.react';
+import MainCourse from './multiple_dishes_dialog/main_course/MainCourse';
 import DishActions from 'app/features/quotations/dish/DishActions';
 import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 import MultipleDishesDialogActions from './multiple_dishes_dialog/MultipleDishesDialogActions';
