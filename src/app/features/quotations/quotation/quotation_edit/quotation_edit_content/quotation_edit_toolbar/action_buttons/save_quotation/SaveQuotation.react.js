@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
-import FetchButton from 'app/common/components/fetch_button/FetchButton.react';
+import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';

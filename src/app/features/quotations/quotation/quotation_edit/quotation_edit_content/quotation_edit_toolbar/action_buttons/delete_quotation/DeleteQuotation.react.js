@@ -6,7 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import History from 'app/router/History';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton.react';
+import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton';
 import DataQuotationsActions from 'app/data/quotations/QuotationsActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
