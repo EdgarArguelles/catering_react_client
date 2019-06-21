@@ -3,9 +3,9 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {useQuotationsLoader} from 'app/common/Hooks';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
-import DeleteQuotation from './delete_quotation/DeleteQuotation.react';
-import RevertQuotation from './revert_quotation/RevertQuotation.react';
-import SaveQuotation from './save_quotation/SaveQuotation.react';
+import DeleteQuotation from './delete_quotation/DeleteQuotation';
+import RevertQuotation from './revert_quotation/RevertQuotation';
+import SaveQuotation from './save_quotation/SaveQuotation';
 
 const ActionButtons = () => {
   const quotation = useSelector(state => state.quotations.quotation);
