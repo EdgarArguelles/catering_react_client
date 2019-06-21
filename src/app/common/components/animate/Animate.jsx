@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 const Animate = ({visible, className, animationIn, animationOut, delayOut, children}) => {
   const timeout = useRef(null); // don't initialize timeout to null each render
+  useEffect(() => {
+    return () => clearTimeout(timeout.current);
+  }, []); // Clean timeout on Unmount
+
   const [removedFromDOM, setRemovedFromDOM] = useState(false);
   const animation = visible ? animationIn : animationOut;
   const classes = [];
   animation && classes.push('animated', animation);
   className && classes.push(className);
-  useEffect(() => {
-    return () => clearTimeout(timeout.current);
-  }, []);
 
   const toggleRemove = (delay = 0) => {
     const time = visible ? 0 : delay;
