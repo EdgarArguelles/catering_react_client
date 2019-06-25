@@ -11,7 +11,7 @@ import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseTy
 import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar';
 import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs';
 import CourseType from 'app/features/quotations/course_type/CourseType.react';
-import MenuSummary from 'app/features/quotations/menu/menu_summary/MenuSummary.react';
+import MenuSummary from 'app/features/quotations/menu/menu_summary/MenuSummary';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const tabsElementId = 'expand-bar';

@@ -6,7 +6,7 @@ import History from 'app/router/History';
 
 const Home = lazy(() => import('app/features/quotations/home/Home'));
 const QuotationEdit = lazy(() => import('app/features/quotations/quotation/quotation_edit/QuotationEdit.react'));
-const QuotationList = lazy(() => import('app/features/quotations/quotation/quotation_list/QuotationList.react'));
+const QuotationList = lazy(() => import('app/features/quotations/quotation/quotation_list/QuotationList'));
 const MenuEdit = lazy(() => import('app/features/quotations/menu/menu_edit/MenuEdit'));
 const DishList = lazy(() => import('app/features/quotations/dish/dish_list/DishList'));
 const QuotationView = lazy(() => import('app/features/quotations/quotation/quotation_view/QuotationView.react'));
