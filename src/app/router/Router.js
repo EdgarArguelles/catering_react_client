@@ -1,6 +1,5 @@
 import React, {lazy, Suspense} from 'react';
 import {Redirect, Route, Router, Switch} from 'react-router-dom';
-import pingServer from 'app/features/PingServer';
 import History from './History';
 
 const Home = lazy(() => import('app/features/home/Layout'));
@@ -10,8 +9,8 @@ export default (
   <Router history={History}>
     <Suspense fallback={<div>Cargando...</div>}>
       <Switch>
-        <Route exact path="/" component={pingServer(Home)}/>
-        <Route path="/presupuestos" component={pingServer(Quotations)}/>
+        <Route exact path="/" component={Home}/>
+        <Route path="/presupuestos" component={Quotations}/>
         <Redirect to="/"/>
       </Switch>
     </Suspense>

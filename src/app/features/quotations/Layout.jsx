@@ -3,6 +3,7 @@ import loading from 'assets/img/loading-large.gif';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {completeLoading} from 'app/Template';
+import {usePingServer} from 'app/common/Hooks';
 import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog';
 import Header from './header/Header.react';
 import Router from './router/Router';
@@ -10,6 +11,7 @@ import CourseTypesActions from 'app/data/course_types/CourseTypesActions';
 import DataActions from 'app/data/DataActions';
 
 const Layout = () => {
+  usePingServer();
   const dispatch = useDispatch();
   const dataVersion = useSelector(state => state.data.version);
   const courseTypes = useSelector(state => state.data.courseTypes);

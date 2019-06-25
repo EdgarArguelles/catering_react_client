@@ -5,6 +5,14 @@ import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotatio
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/data/quotations/QuotationsActions';
 import DishesActions from 'app/data/dishes/DishesActions';
+import AuthActions from 'app/features/auth/AuthActions';
+
+export const usePingServer = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(AuthActions.fetchPing());
+  });
+};
 
 export const useBrowserNavigation = (open, onClose) => {
   const dispatch = useDispatch();
