@@ -1,7 +1,6 @@
 import './Layout.scss';
 import React, {useEffect} from 'react';
 import {initJQuery} from 'app/Template';
-import {usePingServer} from 'app/common/Hooks';
 import BackToTop from 'app/common/components/back_to_top/BackToTop';
 import Header from './header/Header.react';
 import Home from './home/Home.react';
@@ -11,7 +10,6 @@ import Quotations from './quotations/Quotations';
 import Contact from './contact/Contact.react';
 
 const Layout = () => {
-  usePingServer();
   useEffect(() => {
     initJQuery();
   }, []);
