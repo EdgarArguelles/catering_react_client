@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {completeLoading} from 'app/Template';
 import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog';
 import Header from './header/Header.react';
-import Router from './router/Router.react';
+import Router from './router/Router';
 import CourseTypesActions from 'app/data/course_types/CourseTypesActions';
 import DataActions from 'app/data/DataActions';
 

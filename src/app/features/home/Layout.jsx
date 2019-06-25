@@ -10,7 +10,9 @@ import Quotations from './quotations/Quotations';
 import Contact from './contact/Contact.react';
 
 const Layout = () => {
-  useEffect(() => initJQuery(), []);
+  useEffect(() => {
+    initJQuery();
+  }, []);
 
   return (
     <div id="layout">
