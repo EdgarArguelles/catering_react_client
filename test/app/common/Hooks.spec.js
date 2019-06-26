@@ -6,10 +6,11 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
 import reducers from 'app/Reducers';
-import {useAreDishesLoaded, usePingServer, useQuotationsLoader} from 'app/common/Hooks';
+import {useAreDishesLoaded, useBrowserNavigation, usePingServer, useQuotationsLoader} from 'app/common/Hooks';
 import DishesActions from 'app/data/dishes/DishesActions';
 import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import AuthActions, {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
+import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 
 describe('Hooks', () => {
   const dispatchStub = sinon.stub();
@@ -19,9 +20,9 @@ describe('Hooks', () => {
 
   const mountComponent = (hook, state, useRealStore) => {
     const Component = () => {
-      const [value, setValue] = useState(true);
-      hookResponse = hook();
-      return <div value={value} onChange={() => setValue(!value)}/>;
+      const [value, setValue] = useState(null);
+      hookResponse = hook(value);
+      return <div value={value} onChange={newValue => setValue(newValue)}/>;
     };
 
     store = configureStore()(state);
@@ -179,6 +180,46 @@ describe('Hooks', () => {
         sinon.assert.calledWithExactly(fetchDishStub, 'D4');
         sinon.assert.callCount(dispatchStub, 4);
       });
+    });
+  });
+
+  describe('useBrowserNavigation', () => {
+    const closeNavigationDialogStub = sinon.stub(NavigationActions, 'closeNavigationDialog');
+
+    beforeEach(() => {
+      closeNavigationDialogStub.reset();
+      closeNavigationDialogStub.withArgs().returns({type: 'TEST'});
+      mountComponent(open => useBrowserNavigation(open, 'onClose'), {}, false);
+    });
+
+    it('should not call closeNavigationDialog', () => {
+      // call onChange to trigger useEffect
+      act(() => component.props.onChange());
+
+      sinon.assert.callCount(closeNavigationDialogStub, 0);
+      sinon.assert.callCount(dispatchStub, 0);
+    });
+
+    it('should call closeNavigationDialog', () => {
+      jest.useFakeTimers();
+      act(() => component.props.onChange(true));
+      jest.runAllTimers();
+
+      sinon.assert.callCount(closeNavigationDialogStub, 1);
+      sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
+      sinon.assert.callCount(dispatchStub, 1);
+    });
+
+    it('should call closeNavigationDialog twice', () => {
+      jest.useFakeTimers();
+      act(() => component.props.onChange(true));
+      act(() => component.props.onChange(false));
+      jest.runAllTimers();
+
+      sinon.assert.callCount(closeNavigationDialogStub, 2);
+      sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
+      sinon.assert.calledWithExactly(closeNavigationDialogStub, null);
+      sinon.assert.callCount(dispatchStub, 2);
     });
   });
 });
