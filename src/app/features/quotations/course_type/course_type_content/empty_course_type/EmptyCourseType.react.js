@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
-import Image from 'app/common/components/image/Image.react';
+import Image from 'app/common/components/image/Image';
 import MultipleDishesDialogActions
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';

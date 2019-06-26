@@ -2,7 +2,7 @@ import './About.scss';
 import image from 'assets/img/about-img.jpg';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Image from 'app/common/components/image/Image.react';
+import Image from 'app/common/components/image/Image';
 import SectionHeader from 'app/features/home/SectionHeader.react';
 import AboutItem from './about_item/AboutItem.react';
 

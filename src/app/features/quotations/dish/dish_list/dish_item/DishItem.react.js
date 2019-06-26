@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Utils from 'app/common/Utils';
 import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
-import Image from 'app/common/components/image/Image.react';
+import Image from 'app/common/components/image/Image';
 import DishActions from 'app/features/quotations/dish/DishActions';
 
 class DishItem extends React.Component {
