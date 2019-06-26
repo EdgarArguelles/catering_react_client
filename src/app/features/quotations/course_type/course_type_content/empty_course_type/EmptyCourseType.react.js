@@ -38,7 +38,7 @@ class EmptyCourseType extends React.Component {
 
     return (
       <div id="empty-course-type" className={className}>
-        <Image src={Utils.getDriveImage(courseType.picture)} onClick={this.add}/>
+        <Image src={Utils.getDriveImage(courseType.picture)} alt={courseType.name} onClick={this.add}/>
         <p className="title">Vacio</p>
         <p className="subtitle">Agregar una o más platillos</p>
       </div>
