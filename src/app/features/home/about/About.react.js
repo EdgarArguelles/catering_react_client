@@ -33,7 +33,7 @@ export default class About extends React.Component {
             </AboutItem>
           </Grid>
           <Grid item xs={12} lg={6}>
-            <Image src={image}/>
+            <Image src={image} alt="Quienes somos"/>
           </Grid>
         </Grid>
       </section>

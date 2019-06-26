@@ -18,7 +18,7 @@ class DishThumbnail extends React.Component {
 
     return (
       <Button className="dish-thumbnail" onClick={() => selectDish(dish.id)}>
-        <Image className="dish-image" src={Utils.getDriveImage(dish.picture)}/>
+        <Image className="dish-image" src={Utils.getDriveImage(dish.picture)} alt={dish.name}/>
       </Button>
     );
   }

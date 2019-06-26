@@ -18,7 +18,7 @@ export default class Action extends React.Component {
 
     return (
       <ButtonBase id={id} focusRipple className={`action ${className}`} onClick={onClick}>
-        <Image className="image" src={image}/>
+        <Image className="image" src={image} alt={id}/>
         <div className="image-backdrop absolute"/>
         <div className="image-content absolute">
           <div className="image-title">

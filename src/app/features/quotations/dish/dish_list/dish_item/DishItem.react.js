@@ -26,7 +26,7 @@ class DishItem extends React.Component {
         {isDishAdded(multipleDishesDialog, menuCourses, dish.id) &&
         <i className="added fas fa-check-circle" aria-hidden="true"/>}
         <ButtonBase focusRipple className="dish-btn" onClick={() => selectDish(dish.id)}>
-          <Image className="image" smallLoading={true} src={Utils.getDriveImage(dish.picture)}/>
+          <Image className="image" alt={dish.name} smallLoading={true} src={Utils.getDriveImage(dish.picture)}/>
           <div className="image-content image-backdrop"/>
           <div className="image-content">
             <div className="image-info">
