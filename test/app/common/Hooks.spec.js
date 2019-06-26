@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
 import renderer, {act} from 'react-test-renderer';
-import React from 'react';
+import React, {useState} from 'react';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
@@ -13,20 +13,22 @@ import AuthActions, {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthAct
 
 describe('Hooks', () => {
   const dispatchStub = sinon.stub();
-  let hookResponse, store, wrapper;
+  let component, hookResponse, store, wrapper;
 
   afterEach(() => dispatchStub.reset());
 
   const mountComponent = (hook, state, useRealStore) => {
     const Component = () => {
+      const [value, setValue] = useState(true);
       hookResponse = hook();
-      return <div/>;
+      return <div value={value} onChange={() => setValue(!value)}/>;
     };
 
     store = configureStore()(state);
     store.dispatch = dispatchStub;
     store = useRealStore ? createStore(reducers, state) : store;
     wrapper = renderer.create(<Provider store={store}><Component/></Provider>);
+    component = wrapper.root.find(el => el.type === 'div');
   };
 
   describe('usePingServer', () => {
@@ -38,12 +40,11 @@ describe('Hooks', () => {
       mountComponent(() => usePingServer(), {}, false);
     });
 
-    it('should call fetchPing', () => {
-      // call wrapper.update() to call useEffect the first time
-      wrapper.update();
+    it('should call fetchPing twice', () => {
+      act(() => component.props.onChange());
 
-      sinon.assert.callCount(fetchPingStub, 1);
-      sinon.assert.callCount(dispatchStub, 1);
+      sinon.assert.callCount(fetchPingStub, 2);
+      sinon.assert.callCount(dispatchStub, 2);
     });
   });
 
