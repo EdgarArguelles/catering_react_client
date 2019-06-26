@@ -44,6 +44,7 @@ describe('Hooks', () => {
       act(() => component.props.onChange());
 
       sinon.assert.callCount(fetchPingStub, 2);
+      sinon.assert.calledWithExactly(fetchPingStub);
       sinon.assert.callCount(dispatchStub, 2);
     });
   });
@@ -64,8 +65,8 @@ describe('Hooks', () => {
     });
 
     it('should not call fetchQuotation', () => {
-      // call wrapper.update() to call useEffect the first time
-      wrapper.update();
+      // call onChange to trigger useEffect
+      act(() => component.props.onChange());
 
       sinon.assert.callCount(fetchQuotationStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
@@ -133,8 +134,8 @@ describe('Hooks', () => {
       });
 
       it('should not call fetchDish', () => {
-        // call wrapper.update() to call useEffect the first time
-        wrapper.update();
+        // call onChange to trigger useEffect
+        act(() => component.props.onChange());
 
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 0);
@@ -167,8 +168,8 @@ describe('Hooks', () => {
       });
 
       it('should call fetchDish', () => {
-        // call wrapper.update() to call useEffect the first time
-        wrapper.update();
+        // call onChange to trigger useEffect
+        act(() => component.props.onChange());
 
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 4);
