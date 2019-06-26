@@ -116,7 +116,7 @@ describe('Hooks', () => {
           dishes: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
           fetching: {dish: {D1: true}},
         },
-      }, true);
+      }, false);
 
       expect(hookResponse).toBeTruthy();
       sinon.assert.callCount(fetchDishStub, 0);
