@@ -6,7 +6,7 @@ import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import EmptyQuotationList from './empty_quotation_list/EmptyQuotationList.react';
 import NoSessionQuotationList from './no_session_quotation_list/NoSessionQuotationList.react';
 import QuotationToolbar from './quotation_toolbar/QuotationToolbar.react';
-import QuotationGrid from './quotation_grid/QuotationGrid.react';
+import QuotationGrid from './quotation_grid/QuotationGrid';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/data/quotations/QuotationsActions';

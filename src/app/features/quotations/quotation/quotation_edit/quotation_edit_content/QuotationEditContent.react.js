@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {QuotationEditLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
 import EditableField from 'app/common/components/editable_field/EditableField';
 import QuotationEditToolbar from './quotation_edit_toolbar/QuotationEditToolbar.react';
-import MenuGrid from './menu_grid/MenuGrid.react';
+import MenuGrid from './menu_grid/MenuGrid';
 import QuotationNotify from './quotation_notify/QuotationNotify.react';
 import QuotationCompleteButton from './quotation_complete_button/QuotationCompleteButton.react';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
