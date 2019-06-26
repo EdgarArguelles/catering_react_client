@@ -50,6 +50,46 @@ describe('Hooks', () => {
     });
   });
 
+  describe('useBrowserNavigation', () => {
+    const closeNavigationDialogStub = sinon.stub(NavigationActions, 'closeNavigationDialog');
+
+    beforeEach(() => {
+      closeNavigationDialogStub.reset();
+      closeNavigationDialogStub.withArgs().returns({type: 'TEST'});
+      mountComponent(open => useBrowserNavigation(open, 'onClose'), {}, false);
+    });
+
+    it('should not call closeNavigationDialog', () => {
+      // call onChange to trigger useEffect
+      act(() => component.props.onChange());
+
+      sinon.assert.callCount(closeNavigationDialogStub, 0);
+      sinon.assert.callCount(dispatchStub, 0);
+    });
+
+    it('should call closeNavigationDialog', () => {
+      jest.useFakeTimers();
+      act(() => component.props.onChange(true));
+      jest.runAllTimers();
+
+      sinon.assert.callCount(closeNavigationDialogStub, 1);
+      sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
+      sinon.assert.callCount(dispatchStub, 1);
+    });
+
+    it('should call closeNavigationDialog twice', () => {
+      jest.useFakeTimers();
+      act(() => component.props.onChange(true));
+      act(() => component.props.onChange(false));
+      jest.runAllTimers();
+
+      sinon.assert.callCount(closeNavigationDialogStub, 2);
+      sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
+      sinon.assert.calledWithExactly(closeNavigationDialogStub, null);
+      sinon.assert.callCount(dispatchStub, 2);
+    });
+  });
+
   describe('useQuotationsLoader', () => {
     const fetchQuotationStub = sinon.stub(QuotationsActions, 'fetchQuotation');
 
@@ -180,46 +220,6 @@ describe('Hooks', () => {
         sinon.assert.calledWithExactly(fetchDishStub, 'D4');
         sinon.assert.callCount(dispatchStub, 4);
       });
-    });
-  });
-
-  describe('useBrowserNavigation', () => {
-    const closeNavigationDialogStub = sinon.stub(NavigationActions, 'closeNavigationDialog');
-
-    beforeEach(() => {
-      closeNavigationDialogStub.reset();
-      closeNavigationDialogStub.withArgs().returns({type: 'TEST'});
-      mountComponent(open => useBrowserNavigation(open, 'onClose'), {}, false);
-    });
-
-    it('should not call closeNavigationDialog', () => {
-      // call onChange to trigger useEffect
-      act(() => component.props.onChange());
-
-      sinon.assert.callCount(closeNavigationDialogStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    it('should call closeNavigationDialog', () => {
-      jest.useFakeTimers();
-      act(() => component.props.onChange(true));
-      jest.runAllTimers();
-
-      sinon.assert.callCount(closeNavigationDialogStub, 1);
-      sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
-      sinon.assert.callCount(dispatchStub, 1);
-    });
-
-    it('should call closeNavigationDialog twice', () => {
-      jest.useFakeTimers();
-      act(() => component.props.onChange(true));
-      act(() => component.props.onChange(false));
-      jest.runAllTimers();
-
-      sinon.assert.callCount(closeNavigationDialogStub, 2);
-      sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
-      sinon.assert.calledWithExactly(closeNavigationDialogStub, null);
-      sinon.assert.callCount(dispatchStub, 2);
     });
   });
 });
