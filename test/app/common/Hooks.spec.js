@@ -128,7 +128,7 @@ describe('Hooks', () => {
             dishes: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
             fetching: {dish: {D1: true}},
           },
-        }, true);
+        }, false);
       });
 
       it('should not call fetchDish', () => {
@@ -147,7 +147,7 @@ describe('Hooks', () => {
 
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 0);
-        sinon.assert.callCount(dispatchStub, 0);
+        sinon.assert.callCount(dispatchStub, 1);
       });
     });
 
@@ -162,7 +162,7 @@ describe('Hooks', () => {
             dishes: {},
             fetching: {dish: {}},
           },
-        }, true);
+        }, false);
       });
 
       it('should call fetchDish', () => {
@@ -175,7 +175,7 @@ describe('Hooks', () => {
         sinon.assert.calledWithExactly(fetchDishStub, 'D2');
         sinon.assert.calledWithExactly(fetchDishStub, 'D3');
         sinon.assert.calledWithExactly(fetchDishStub, 'D4');
-        sinon.assert.callCount(dispatchStub, 0);
+        sinon.assert.callCount(dispatchStub, 4);
       });
     });
   });
