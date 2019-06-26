@@ -6,10 +6,10 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
 import reducers from 'app/Reducers';
-import {useAreDishesLoaded, useQuotationsLoader} from 'app/common/Hooks';
+import {useAreDishesLoaded, usePingServer, useQuotationsLoader} from 'app/common/Hooks';
 import DishesActions from 'app/data/dishes/DishesActions';
 import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
-import {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
+import AuthActions, {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
 
 describe('Hooks', () => {
   const dispatchStub = sinon.stub();
@@ -28,6 +28,24 @@ describe('Hooks', () => {
     store = useRealStore ? createStore(reducers, state) : store;
     wrapper = renderer.create(<Provider store={store}><Component/></Provider>);
   };
+
+  describe('usePingServer', () => {
+    const fetchPingStub = sinon.stub(AuthActions, 'fetchPing');
+
+    beforeEach(() => {
+      fetchPingStub.reset();
+      fetchPingStub.withArgs().returns({type: 'TEST'});
+      mountComponent(() => usePingServer(), {}, false);
+    });
+
+    it('should call fetchPing', () => {
+      // call wrapper.update() to call useEffect the first time
+      wrapper.update();
+
+      sinon.assert.callCount(fetchPingStub, 1);
+      sinon.assert.callCount(dispatchStub, 1);
+    });
+  });
 
   describe('useQuotationsLoader', () => {
     const fetchQuotationStub = sinon.stub(QuotationsActions, 'fetchQuotation');
