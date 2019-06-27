@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Utils from 'app/common/Utils';
 import {getCurrentCourseTypeDishes} from 'app/features/quotations/course_type/CourseType.service';
 import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
-import {CategoryContentLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import {CategoryContentLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Category from './category/Category.react';
 import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 

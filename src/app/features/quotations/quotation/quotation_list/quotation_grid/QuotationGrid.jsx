@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Utils from 'app/common/Utils';
 import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
-import {QuotationItemLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import {QuotationItemLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Quotation from 'app/features/quotations/quotation/Quotation.react';
 import ContinueQuotation from './continue_quotation/ContinueQuotation.react';
 import CreateNewQuotation from './create_new_quotation/CreateNewQuotation.react';

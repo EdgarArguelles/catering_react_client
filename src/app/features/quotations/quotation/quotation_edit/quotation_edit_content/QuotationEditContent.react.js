@@ -2,7 +2,7 @@ import './QuotationEditContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {QuotationEditLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import {QuotationEditLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import EditableField from 'app/common/components/editable_field/EditableField';
 import QuotationEditToolbar from './quotation_edit_toolbar/QuotationEditToolbar.react';
 import MenuGrid from './menu_grid/MenuGrid';

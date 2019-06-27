@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import {useAreDishesLoaded} from 'app/common/Hooks';
-import {CourseContentLoader} from 'app/common/components/content_loaders/ContentLoaders.react';
+import {CourseContentLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import CourseContent from './course_content/CourseContent.react';
 import RemoveDialog from './remove_dialog/RemoveDialog.react';
 

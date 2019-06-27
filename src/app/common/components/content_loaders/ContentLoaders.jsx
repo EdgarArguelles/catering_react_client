@@ -61,7 +61,7 @@ export const QuotationItemLoader = props => (
 );
 
 export const QuotationEditLoader = () => (
-  <React.Fragment>
+  <>
     <Grid container spacing={2} justify="flex-start">
       <Grid item xs={12}>
         <ContentLoader height={10} width={200} speed={1}>
@@ -90,5 +90,5 @@ export const QuotationEditLoader = () => (
         </Grid>
       ))}
     </Grid>
-  </React.Fragment>
+  </>
 );
