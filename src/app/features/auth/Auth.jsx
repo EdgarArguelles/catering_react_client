@@ -5,8 +5,8 @@ import Stomp from 'stompjs';
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import Facebook from './auth_button/facebook/Facebook.react';
-import Google from './auth_button/google/Google.react';
+import Facebook from './auth_button/facebook/Facebook';
+import Google from './auth_button/google/Google';
 import AuthActions from './AuthActions';
 
 let stompClient;
