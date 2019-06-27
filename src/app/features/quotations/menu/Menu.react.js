@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {getShareMenuLink} from './Menu.service';
-import ShareButton from 'app/common/components/share_button/ShareButton.react';
+import ShareButton from 'app/common/components/share_button/ShareButton';
 import MenuCourses from './menu_courses/MenuCourses';
 
 class Menu extends React.Component {

@@ -1,5 +1,5 @@
 import './ShareButton.scss';
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -18,21 +18,16 @@ import {
 
 const TWITTER_ACCOUNT = 'edgar_bonifacio';
 
-export default class ShareButton extends React.Component {
-  static propTypes = {
-    link: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    description: PropTypes.string,
-    hashtag: PropTypes.string,
-  };
+const ShareButton = ({link, label, description, hashtag}) => {
+  const [isSpeedDialOpen, setIsSpeedDialOpen] = useState(false);
+  const speedDialIcon = isSpeedDialOpen
+    ? <i className="fas fa-times" aria-hidden="true"/>
+    : <i className="fas fa-share-alt" aria-hidden="true"/>;
+  const open = () => setIsSpeedDialOpen(true);
+  const close = () => setIsSpeedDialOpen(false);
+  const toggle = () => setIsSpeedDialOpen(!isSpeedDialOpen);
 
-  constructor(props) {
-    super(props);
-    this.state = {isSpeedDialOpen: false};
-  }
-
-  getShareActions = () => {
-    const {link, label, description, hashtag} = this.props;
+  const getShareActions = () => {
     const iconSize = 42;
     return [
       {
@@ -59,21 +54,20 @@ export default class ShareButton extends React.Component {
     ];
   };
 
-  render() {
-    const {isSpeedDialOpen} = this.state;
-    const speedDialIcon = isSpeedDialOpen
-      ? <i className="fas fa-times" aria-hidden="true"/>
-      : <i className="fas fa-share-alt" aria-hidden="true"/>;
-    const open = () => this.setState({isSpeedDialOpen: true});
-    const close = () => this.setState({isSpeedDialOpen: false});
-    const toggle = () => this.setState({isSpeedDialOpen: !isSpeedDialOpen});
+  return (
+    <SpeedDial ariaLabel="share" className="floating-button share-button animated zoomIn delay-1s"
+               icon={speedDialIcon} open={isSpeedDialOpen} onClick={toggle} onClose={close}
+               onMouseEnter={open} onMouseLeave={close}>
+      {getShareActions().map(({name, icon}) => <SpeedDialAction key={name} tooltipTitle={name} icon={icon}/>)}
+    </SpeedDial>
+  );
+};
 
-    return (
-      <SpeedDial ariaLabel="share" className="floating-button share-button animated zoomIn delay-1s"
-                 icon={speedDialIcon} open={isSpeedDialOpen} onClick={toggle} onClose={close}
-                 onMouseEnter={open} onMouseLeave={close}>
-        {this.getShareActions().map(({name, icon}) => <SpeedDialAction key={name} tooltipTitle={name} icon={icon}/>)}
-      </SpeedDial>
-    );
-  }
-}
+ShareButton.propTypes = {
+  link: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  description: PropTypes.string,
+  hashtag: PropTypes.string,
+};
+
+export default React.memo(ShareButton);
