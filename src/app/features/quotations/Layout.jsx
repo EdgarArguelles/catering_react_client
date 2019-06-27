@@ -46,7 +46,7 @@ const Layout = () => {
   }, [courseTypes, dataVersion, dispatch]);
 
   if (!courseTypes) {
-    return <div id="loading"><img src={loading}/><h1>Esperando conexión con el servidor.</h1></div>;
+    return <div id="loading"><img src={loading} alt="loading"/><h1>Esperando conexión con el servidor.</h1></div>;
   }
 
   return (

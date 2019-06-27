@@ -39,7 +39,7 @@ const Navigation = () => {
   }, [navigation]);
 
   if (navigation.title === '') {
-    return <img className="company-logo" src={image} onClick={() => History.navigate('/')}/>;
+    return <img className="company-logo" src={image} alt="logo" onClick={() => History.navigate('/')}/>;
   }
 
   return (

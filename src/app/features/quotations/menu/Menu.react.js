@@ -25,14 +25,14 @@ class Menu extends React.Component {
 
     return (
       <div id="menu-view">
-        <img id="start-separator" className="edge-separator" src={separator}/>
+        <img id="start-separator" className="edge-separator" src={separator} alt="separator"/>
         <div id="title">
           <p>{menu.name}</p>
-          <img src={title}/>
+          <img src={title} alt="title"/>
         </div>
         {sortedCourseTypes.map(courseType => <MenuCourses key={courseType.id} courseType={courseType}/>)}
-        <img id="end-separator" className="edge-separator" src={separator}/>
-        <img id="logo" src={logo}/>
+        <img id="end-separator" className="edge-separator" src={separator} alt="separator"/>
+        <img id="logo" src={logo} alt="logo"/>
         <ShareButton link={getShareMenuLink(menu)} label="Banquetes Areli" hashtag="banquetesareli"
                      description="Diseña el mejor banquete para tu evento"/>
       </div>

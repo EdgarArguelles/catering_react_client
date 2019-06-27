@@ -65,7 +65,7 @@ export const initJQuery = () => {
     } else {
       const mobileNav = $('#nav-menu-container').clone().prop({id: 'mobile-nav'});
       mobileNav.find('> ul').attr({class: '', id: ''});
-      mobileNav.append('<img id="mobile-nav-logo" class="company-logo" src="/assets/logo.png">');
+      mobileNav.append('<img id="mobile-nav-logo" class="company-logo" src="/assets/logo.png" alt="logo">');
       $('body').append(mobileNav);
       $('body')
         .prepend('<button type="button" id="mobile-nav-toggle"><i class="fas fa-bars" aria-hidden="true"/></button>');
