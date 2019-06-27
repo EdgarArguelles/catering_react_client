@@ -2,8 +2,8 @@ import './Quotations.scss';
 import React, {useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import SectionHeader from 'app/features/home/SectionHeader.react';
-import Information from './information/Information.react';
-import Access from './access/Access.react';
+import Information from './information/Information';
+import Access from './access/Access';
 
 const Quotations = () => {
   useEffect(() => {

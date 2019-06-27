@@ -2,12 +2,10 @@ import './Services.scss';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import SectionHeader from 'app/features/home/SectionHeader.react';
-import Service from './service/Service.react';
+import Service from './service/Service';
 
-export default class Services extends React.Component {
-  static propTypes = {};
-
-  getServices = () => {
+const Services = () => {
+  const getServices = () => {
     return [
       <Service title="Lorem Ipsum" iconClass="fas fa-desktop">
         Voluptatum deleniti atque corrupti quos dolores et quas molestias
@@ -36,21 +34,21 @@ export default class Services extends React.Component {
     ];
   };
 
-  render() {
-    return (
-      <section id="services">
-        <Grid container>
-          <Grid item xs={12}>
-            <SectionHeader title="Services">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque
-            </SectionHeader>
-          </Grid>
-          <Grid container spacing={2}>
-            {this.getServices().map((service, index) => <Grid key={index} item xs={12} sm={6} lg={4}>{service}</Grid>)}
-          </Grid>
+  return (
+    <section id="services">
+      <Grid container>
+        <Grid item xs={12}>
+          <SectionHeader title="Services">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque
+          </SectionHeader>
         </Grid>
-      </section>
-    );
-  }
-}
+        <Grid container spacing={2}>
+          {getServices().map((service, index) => <Grid key={index} item xs={12} sm={6} lg={4}>{service}</Grid>)}
+        </Grid>
+      </Grid>
+    </section>
+  );
+};
+
+export default React.memo(Services);

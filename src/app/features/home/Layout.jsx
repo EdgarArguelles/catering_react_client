@@ -5,7 +5,7 @@ import BackToTop from 'app/common/components/back_to_top/BackToTop';
 import Header from './header/Header';
 import Home from './home/Home';
 import About from './about/About';
-import Services from './services/Services.react';
+import Services from './services/Services';
 import Quotations from './quotations/Quotations';
 import Contact from './contact/Contact';
 
