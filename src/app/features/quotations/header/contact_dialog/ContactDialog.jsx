@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
-import Contact from 'app/features/home/contact/Contact.react';
+import Contact from 'app/features/home/contact/Contact';
 
 const ContactDialog = ({open, onClose, fullScreen}) => {
   useBrowserNavigation(open, onClose);

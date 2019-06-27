@@ -4,10 +4,10 @@ import {initJQuery} from 'app/Template';
 import BackToTop from 'app/common/components/back_to_top/BackToTop';
 import Header from './header/Header.react';
 import Home from './home/Home.react';
-import About from './about/About.react';
+import About from './about/About';
 import Services from './services/Services.react';
 import Quotations from './quotations/Quotations';
-import Contact from './contact/Contact.react';
+import Contact from './contact/Contact';
 
 const Layout = () => {
   useEffect(() => {
