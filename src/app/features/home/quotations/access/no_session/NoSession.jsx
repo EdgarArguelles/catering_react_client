@@ -13,8 +13,7 @@ const NoSession = () => {
         por esta visita y no podras acceder a él posteriormente o desde
         otro dispositivo.
       </p>
-      <Fab id="no-session-button" variant="extended" onClick={redirect}
-           classes={{label: 'no-session-button-label'}}>
+      <Fab id="no-session-button" variant="extended" onClick={redirect} classes={{label: 'no-session-button-label'}}>
         Acceder sin iniciar sesion
       </Fab>
     </div>

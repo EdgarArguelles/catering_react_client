@@ -1,7 +1,7 @@
 import './Services.scss';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import SectionHeader from 'app/features/home/SectionHeader.react';
+import SectionHeader from 'app/features/home/SectionHeader';
 import Service from './service/Service';
 
 const Services = () => {
