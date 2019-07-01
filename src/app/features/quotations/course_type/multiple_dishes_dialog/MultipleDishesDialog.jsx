@@ -8,7 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import {useBrowserNavigation} from 'app/common/Hooks';
 import MultipleDishesActions from './multiple_dishes_actions/MultipleDishesActions';
-import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars.react';
+import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import MultipleDishesDialogActions from './MultipleDishesDialogActions';
 
