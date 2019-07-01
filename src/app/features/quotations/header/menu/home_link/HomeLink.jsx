@@ -1,14 +1,14 @@
 import './HomeLink.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 
 const HOME_PATH = '/presupuestos';
 
-const HomeLink = () => {
-  const {location: {pathname}} = History;
-
-  if (pathname === HOME_PATH) {
+const HomeLink = ({location}) => {
+  if (location.pathname === HOME_PATH) {
     return null;
   }
 
@@ -20,4 +20,8 @@ const HomeLink = () => {
   );
 };
 
-export default React.memo(HomeLink);
+HomeLink.propTypes = {
+  location: PropTypes.object.isRequired,
+};
+
+export default React.memo(withRouter(HomeLink));
