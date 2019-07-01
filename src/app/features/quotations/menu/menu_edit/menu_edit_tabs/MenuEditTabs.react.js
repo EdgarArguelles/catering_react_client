@@ -10,7 +10,7 @@ import SwipeableViews from 'react-swipeable-views';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar';
 import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs';
-import CourseType from 'app/features/quotations/course_type/CourseType.react';
+import CourseType from 'app/features/quotations/course_type/CourseType';
 import MenuSummary from 'app/features/quotations/menu/menu_summary/MenuSummary';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
