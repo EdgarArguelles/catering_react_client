@@ -54,13 +54,13 @@
     "mini-css-extract-plugin": "0.7.0",
     "node-fetch": "2.6.0",
     "node-sass": "4.12.0",
-    "optimize-css-assets-webpack-plugin": "5.0.1",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss-loader": "3.0.0",
     "react-test-renderer": "16.8.6",
     "redux-mock-store": "1.5.3",
     "sass-loader": "7.1.0",
     "sinon": "7.3.2",
-    "webpack": "4.35.0",
+    "webpack": "4.35.2",
     "webpack-bundle-analyzer": "3.3.2",
     "webpack-cli": "3.3.5",
     "webpack-dev-server": "3.7.2",
@@ -91,6 +91,6 @@
     "redux-thunk": "2.3.0",
     "sockjs-client": "1.3.0",
     "stompjs": "2.3.3",
-    "url-search-params-polyfill": "6.0.0"
+    "url-search-params-polyfill": "7.0.0"
   }
 }

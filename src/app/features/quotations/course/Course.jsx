@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import {useAreDishesLoaded} from 'app/common/Hooks';
 import {CourseContentLoader} from 'app/common/components/content_loaders/ContentLoaders';
-import CourseContent from './course_content/CourseContent.react';
-import RemoveDialog from './remove_dialog/RemoveDialog.react';
+import CourseContent from './course_content/CourseContent';
+import RemoveDialog from './remove_dialog/RemoveDialog';
 
 const Course = ({course}) => {
   const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
