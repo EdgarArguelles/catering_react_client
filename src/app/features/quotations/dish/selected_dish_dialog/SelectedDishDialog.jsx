@@ -10,7 +10,7 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
 import Animate from 'app/common/components/animate/Animate';
-import Dish from 'app/features/quotations/dish/Dish.react';
+import Dish from 'app/features/quotations/dish/Dish';
 import DishHeader from './dish_header/DishHeader.react';
 import DishActions from 'app/features/quotations/dish/DishActions';
 

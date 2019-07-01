@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
-import DishFilter from 'app/features/quotations/dish/dish_filter/DishFilter.react';
+import DishFilter from 'app/features/quotations/dish/dish_filter/DishFilter';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props}/>);
 
