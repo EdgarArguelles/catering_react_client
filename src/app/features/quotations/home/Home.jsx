@@ -3,9 +3,9 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
-import CreateQuotation from './action/create_quotation/CreateQuotation.react';
-import EditQuotation from './action/edit_quotation/EditQuotation.react';
-import MyQuotations from './action/my_quotations/MyQuotations.react';
+import CreateQuotation from './action/create_quotation/CreateQuotation';
+import EditQuotation from './action/edit_quotation/EditQuotation';
+import MyQuotations from './action/my_quotations/MyQuotations';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 
 const Home = () => {
