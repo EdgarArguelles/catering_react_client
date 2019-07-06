@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import History from 'app/router/History';
 import {getMenuFromLink, getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
-import MenuEditTabs from './menu_edit_tabs/MenuEditTabs.react';
+import MenuEditTabs from './menu_edit_tabs/MenuEditTabs';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
