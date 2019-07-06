@@ -11,13 +11,15 @@ const MyQuotations = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
 
+  const navigateToList = () => History.navigate('/presupuestos/todos');
+
   const handleListRedirect = () => {
     if (!loggedUser) {
       dispatch(AuthDialogActions.openAuthDialog());
       return;
     }
 
-    History.navigate('/presupuestos/todos');
+    navigateToList();
   };
 
   return (
@@ -26,7 +28,7 @@ const MyQuotations = () => {
         Mis Presupuestos
       </Action>
 
-      <AuthDialog onSuccess={handleListRedirect}/>
+      <AuthDialog onSuccess={navigateToList}/>
     </>
   );
 };
