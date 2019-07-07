@@ -1,7 +1,7 @@
 import './QuotationEdit.scss';
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import QuotationEditContent from './quotation_edit_content/QuotationEditContent.react';
+import QuotationEditContent from './quotation_edit_content/QuotationEditContent';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
