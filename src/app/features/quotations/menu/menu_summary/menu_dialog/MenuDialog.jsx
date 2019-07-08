@@ -1,5 +1,5 @@
 import './MenuDialog.scss';
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
@@ -18,10 +18,11 @@ const MenuDialog = ({onClose}) => {
   const selectedDish = useSelector(state => state.quotations.dish.selected);
   const shouldOverwriteCloseNavigationDialog = isMenuDialogOpen && selectedDish === '';
   const delayOut = 500;
+  const latestOnClose = useRef(onClose); // avoid to re-run useEffect when onClose changes
   const closeDialog = useCallback(() => {
     dispatch(QuotationsActions.changeMenuDialogOpen(false));
-    onClose && onClose();
-  }, [onClose, dispatch]);
+    latestOnClose.current && latestOnClose.current();
+  }, [dispatch]);
   useBrowserNavigation(isMenuDialogOpen, closeDialog);
 
   useEffect(() => {
