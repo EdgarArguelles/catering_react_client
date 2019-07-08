@@ -16,7 +16,7 @@ const stats = {children: false}; // hide MiniCSSExtractPlugin information printe
 export default {
   entry: {
     polyfill: 'babel-polyfill',
-    app: './src/app/App.js',
+    app: './src/app/App.jsx',
   },
   output: {
     path: distPath,
@@ -68,6 +68,7 @@ export default {
     }),
   ],
   resolve: {
+    extensions: ['*', '.js', '.jsx'],
     alias: {
       app: `${srcPath}/app`, // allow to use import with 'app/'
       assets: `${srcPath}/assets`, // allow to use import with 'assets/'
@@ -77,7 +78,7 @@ export default {
   module: {
     rules: [
       // babel
-      {test: /\.js?$/, exclude: [/node_modules/], use: 'babel-loader'},
+      {test: /\.(js|jsx)?$/, exclude: [/node_modules/], use: 'babel-loader'},
       // index
       {test: /index.html$/, use: 'file-loader?name=[name].[ext]'},
       // assets

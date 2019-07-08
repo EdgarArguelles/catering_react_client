@@ -1,0 +1,42 @@
+import './UndoCancelSnackbars.scss';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {useDispatch, useSelector} from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MultipleDishesDialogActions
+  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+
+const UndoCancelSnackbars = ({tabToDisplay}) => {
+  const dispatch = useDispatch();
+  const multipleDishesDialog = useSelector(state => state.quotations.multipleDishesDialog);
+  const {isMultipleDishesDialogOpen, dishes} = multipleDishesDialog;
+  const isOpen = !isMultipleDishesDialogOpen && dishes.length > 0;
+  const openMultipleDishesDialog = () => dispatch(MultipleDishesDialogActions.openDialog());
+
+  const handleClose = () => {
+    if (!isMultipleDishesDialogOpen && dishes.length > 0) {
+      dispatch(MultipleDishesDialogActions.cleanDishes());
+    }
+  };
+
+  return (
+    <Snackbar id="undo-cancel-snackbars" open={isOpen} TransitionComponent={Slide}
+              className="snackbar-in-tabs" style={{left: `calc(${tabToDisplay * 100}vw + 50%)`}}
+              onClose={handleClose} autoHideDuration={10000} message="Se descarto el Plato Fuerte"
+              action={[
+                <Button key="undo" color="secondary" onClick={openMultipleDishesDialog}>DESHACER</Button>,
+                <IconButton key="close" color="inherit" onClick={handleClose}>
+                  <i className="fas fa-times close-icon" aria-hidden="true"/>
+                </IconButton>,
+              ]}/>
+  );
+};
+
+UndoCancelSnackbars.propTypes = {
+  tabToDisplay: PropTypes.number.isRequired,
+};
+
+export default React.memo(UndoCancelSnackbars);

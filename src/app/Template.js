@@ -65,7 +65,7 @@ export const initJQuery = () => {
     } else {
       const mobileNav = $('#nav-menu-container').clone().prop({id: 'mobile-nav'});
       mobileNav.find('> ul').attr({class: '', id: ''});
-      mobileNav.append('<img id="mobile-nav-logo" class="company-logo" src="/assets/logo.png">');
+      mobileNav.append('<img id="mobile-nav-logo" class="company-logo" src="/assets/logo.png" alt="logo">');
       $('body').append(mobileNav);
       $('body')
         .prepend('<button type="button" id="mobile-nav-toggle"><i class="fas fa-bars" aria-hidden="true"/></button>');
@@ -129,9 +129,7 @@ export const initJQuery = () => {
         }
       }
 
-      $('html, body').animate({
-        scrollTop: target.offset().top - topSpace,
-      }, 1500, 'easeInOutExpo');
+      window.scroll({top: target.offset().top - topSpace, left: 0, behavior: 'smooth'});
 
       if ($('body').hasClass('mobile-nav-active')) {
         $('body').removeClass('mobile-nav-active');
