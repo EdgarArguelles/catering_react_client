@@ -16,7 +16,7 @@ const stats = {children: false}; // hide MiniCSSExtractPlugin information printe
 export default {
   entry: {
     polyfill: 'babel-polyfill',
-    app: './src/app/App.js',
+    app: './src/app/App.jsx',
   },
   output: {
     path: distPath,
