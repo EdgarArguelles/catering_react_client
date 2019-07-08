@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
-import MenuItem from './menu_item/MenuItem.react';
+import MenuItem from './menu_item/MenuItem';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
