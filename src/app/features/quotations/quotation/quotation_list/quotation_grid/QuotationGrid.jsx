@@ -6,8 +6,8 @@ import Utils from 'app/common/Utils';
 import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 import {QuotationItemLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Quotation from 'app/features/quotations/quotation/Quotation';
-import ContinueQuotation from './continue_quotation/ContinueQuotation.react';
-import CreateNewQuotation from './create_new_quotation/CreateNewQuotation.react';
+import ContinueQuotation from './continue_quotation/ContinueQuotation';
+import CreateNewQuotation from './create_new_quotation/CreateNewQuotation';
 
 const QuotationGrid = () => {
   const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
