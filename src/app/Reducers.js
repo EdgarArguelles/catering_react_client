@@ -6,7 +6,9 @@ import data from './data/DataReducer';
 import auth from './features/auth/AuthReducer';
 import quotations from './features/quotations/QuotationsReducer';
 
-const theme = (state = 'light', action = {}) => {
+const defaultTheme = window.localStorage && window.localStorage.getItem('appTheme') ?
+  window.localStorage.getItem('appTheme') : 'light';
+const theme = (state = defaultTheme, action = {}) => {
   switch (action.type) {
     case 'CHANGE_APP_THEME':
       return action.payload.theme;
