@@ -76,7 +76,7 @@ $tab-bar-height: 48px;
 
     .swipeable {
       padding-top: $header-height + $tab-bar-height;
-      height: calc(100vh - #{$header-height} - #{$tab-bar-height});
+      height: 100vh;
 
       .tab-content {
         min-height: calc(100vh - #{$header-height} - #{$tab-bar-height} - #{$header-height} - #{$tab-bar-height});

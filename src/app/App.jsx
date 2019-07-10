@@ -12,9 +12,10 @@ import 'assets/img/icon-128x128.png';
 import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {blue, red} from '@material-ui/core/colors';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import logger from './middlewares/Logger';
@@ -25,26 +26,32 @@ import Offline from './common/components/offline/Offline';
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger, temporalStorage));
 
-// overwrite primary and secondary
-const theme = createMuiTheme({
-  palette: {
-    primary: blue,
-    secondary: red,
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
+const App = () => {
+  const type = useSelector(state => state.theme);
 
-ReactDOM.render(
-  <Provider store={store}>
+  // overwrite primary and secondary
+  const theme = createMuiTheme({
+    palette: {
+      primary: blue,
+      secondary: red,
+      type,
+    },
+    typography: {
+      fontFamily: 'Comic Sans MS',
+      useNextVariants: true,
+    },
+  });
+
+  return (
     <MuiThemeProvider theme={theme}>
+      <CssBaseline/>
       {Router}
       <Offline/>
     </MuiThemeProvider>
-  </Provider>,
-  document.getElementById('app'),
-);
+  );
+};
+
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('app'));
 
 // load worker for PWA
 if ('serviceWorker' in navigator) {

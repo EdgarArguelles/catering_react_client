@@ -4,6 +4,7 @@ $contact-avatar: 120px;
 
 #media {
   background: url(../../../../../assets/img/contact-bg.jpg) fixed center;
+  box-sizing: content-box;
 
   .card-media {
     height: $contact-card-normal-height;

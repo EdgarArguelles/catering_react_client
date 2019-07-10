@@ -1,15 +1,18 @@
 import './UserMenu.scss';
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import History from 'app/router/History';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
+import {changeTheme} from 'app/Reducers';
 import AuthActions from 'app/features/auth/AuthActions';
 
 const UserMenu = ({open, anchorEl, onClose}) => {
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.theme);
+  const themeIcon = theme === 'dark' ? 'fas fa-lightbulb' : 'far fa-lightbulb';
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const redirectToMyQuotations = () => {
@@ -28,6 +31,9 @@ const UserMenu = ({open, anchorEl, onClose}) => {
              anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
       <MenuItem onClick={redirectToMyQuotations}>
         <i className="fas fa-donate menu-icon" aria-hidden="true"/> Mis Presupuestos
+      </MenuItem>
+      <MenuItem onClick={() => dispatch(changeTheme(theme === 'dark' ? 'light' : 'dark'))}>
+        <i className={`${themeIcon} menu-icon`} aria-hidden="true"/> Tema {theme === 'dark' ? 'Claro' : 'Oscuro'}
       </MenuItem>
       <MenuItem onClick={() => setIsDialogOpen(true)}>
         <i className="fas fa-sign-out-alt menu-icon" aria-hidden="true"/> Salir

@@ -1,10 +1,13 @@
 import './Service.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useSelector} from 'react-redux';
 
 const Service = ({title, iconClass, children}) => {
+  const theme = useSelector(state => state.theme);
+
   return (
-    <div className="service">
+    <div className={`${theme} service`}>
       <div className="icon"><i className={iconClass} aria-hidden="true"/></div>
       <h4 className="title">{title}</h4>
       <p className="description">{children}</p>
