@@ -1,6 +1,6 @@
 import './DishFilter.scss';
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import DishFilterActions from './DishFilterActions';
@@ -9,6 +9,7 @@ import Sort from './sort/Sort';
 
 const DishFilter = () => {
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.theme);
   const resetFilters = () => {
     dispatch(DishFilterActions.changeSort('name'));
     dispatch(DishFilterActions.setCategories(null));
@@ -23,7 +24,7 @@ const DishFilter = () => {
         </Grid>
       </Grid>
       <Grid item xs={10} className="section-header">
-        <h2><span>Categorias</span></h2>
+        <h2><span className={theme}>Categorias</span></h2>
       </Grid>
       <Grid item xs={12}>
         <Categories/>

@@ -7,6 +7,10 @@
     background: linear-gradient(to right, #fdfcfb, #e2d1c3);
     width: 100%;
 
+    &.dark {
+      background: $dark-background;
+    }
+
     .avatar {
       background-color: $main-color;
       margin: auto;

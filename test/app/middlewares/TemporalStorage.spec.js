@@ -11,6 +11,7 @@ describe('Middlewares -> TemporalStorage', () => {
   it('should process action and store data in sessionStorage and localStorage when courseTypes is present', () => {
     const getState = () => ({
       id: 'state 1',
+      theme: 'dark',
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
       data: {id: 'D1', version: 'V1', courseTypes: {id: 'CT1'}, dishes: [{id: 'd1'}, {id: 'd2'}]},
     });
@@ -22,6 +23,7 @@ describe('Middlewares -> TemporalStorage', () => {
     const result = temporalStorage(store)(nextStub)(action);
 
     expect(result).toStrictEqual(resultExpected);
+    expect(window.localStorage.getItem('appTheme')).toStrictEqual('dark');
     expect(window.sessionStorage.getItem('quotationsState')).toStrictEqual(JSON.stringify({
       id: 'Q1',
       extra: 'abc',
@@ -37,6 +39,7 @@ describe('Middlewares -> TemporalStorage', () => {
     // don't mutate
     expect(store).toStrictEqual({id: 'store 1', getState});
     expect(action).toStrictEqual({type: 'action1'});
+    window.localStorage.removeItem('appTheme');
     window.sessionStorage.removeItem('quotationsState');
     window.localStorage.removeItem('dataState');
     window.localStorage.removeItem('courseTypesCached');
@@ -45,6 +48,7 @@ describe('Middlewares -> TemporalStorage', () => {
   it('should process action and store data in sessionStorage and localStorage when courseTypes is not present', () => {
     const getState = () => ({
       id: 'state 1',
+      theme: 'extra',
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
       data: {id: 'D1', dishes: [{id: 'd1'}, {id: 'd2'}]},
     });
@@ -57,6 +61,7 @@ describe('Middlewares -> TemporalStorage', () => {
     const result = temporalStorage(store)(nextStub)(action);
 
     expect(result).toStrictEqual(resultExpected);
+    expect(window.localStorage.getItem('appTheme')).toStrictEqual('extra');
     expect(window.sessionStorage.getItem('quotationsState')).toStrictEqual(JSON.stringify({
       id: 'Q1',
       extra: 'abc',
@@ -72,6 +77,7 @@ describe('Middlewares -> TemporalStorage', () => {
     // don't mutate
     expect(store).toStrictEqual({id: 'store 1', getState});
     expect(action).toStrictEqual({type: 'action1'});
+    window.localStorage.removeItem('appTheme');
     window.sessionStorage.removeItem('quotationsState');
     window.localStorage.removeItem('dataState');
     window.localStorage.removeItem('courseTypesCached');

@@ -22,6 +22,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: x-large;
+    transition: 0.5s;
 
     @media (max-width: $screen-xs) {
       font-size: large;

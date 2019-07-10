@@ -6,7 +6,13 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {createStore} from 'redux';
 import reducers from 'app/Reducers';
-import {useAreDishesLoaded, useBrowserNavigation, usePingServer, useQuotationsLoader} from 'app/common/Hooks';
+import {
+  useAppTheme,
+  useAreDishesLoaded,
+  useBrowserNavigation,
+  usePingServer,
+  useQuotationsLoader,
+} from 'app/common/Hooks';
 import DishesActions from 'app/data/dishes/DishesActions';
 import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
 import AuthActions, {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
@@ -31,6 +37,39 @@ describe('Hooks', () => {
     wrapper = renderer.create(<Provider store={store}><Component/></Provider>);
     component = wrapper.root.find(el => el.type === 'div');
   };
+
+  describe('useAppTheme', () => {
+    it('should init default theme value', () => {
+      mountComponent(() => useAppTheme(), {}, true);
+      const {theme, themeIcon} = hookResponse;
+
+      expect(theme).toStrictEqual('light');
+      expect(themeIcon).toStrictEqual('far fa-lightbulb');
+      sinon.assert.callCount(dispatchStub, 0);
+    });
+
+    it('should call CHANGE_APP_THEME with dark', () => {
+      mountComponent(() => useAppTheme(), {theme: 'light'}, false);
+      const {theme, themeIcon, changeTheme} = hookResponse;
+      changeTheme();
+
+      expect(theme).toStrictEqual('light');
+      expect(themeIcon).toStrictEqual('far fa-lightbulb');
+      sinon.assert.callCount(dispatchStub, 1);
+      sinon.assert.calledWithExactly(dispatchStub, {payload: {theme: 'dark'}, type: 'CHANGE_APP_THEME'});
+    });
+
+    it('should call CHANGE_APP_THEME with light', () => {
+      mountComponent(() => useAppTheme(), {theme: 'dark'}, false);
+      const {theme, themeIcon, changeTheme} = hookResponse;
+      changeTheme();
+
+      expect(theme).toStrictEqual('dark');
+      expect(themeIcon).toStrictEqual('fas fa-lightbulb');
+      sinon.assert.callCount(dispatchStub, 1);
+      sinon.assert.calledWithExactly(dispatchStub, {payload: {theme: 'light'}, type: 'CHANGE_APP_THEME'});
+    });
+  });
 
   describe('usePingServer', () => {
     const fetchPingStub = sinon.stub(AuthActions, 'fetchPing');
