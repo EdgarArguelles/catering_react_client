@@ -86,7 +86,7 @@
     "react-router-dom": "5.0.1",
     "react-share": "3.0.0",
     "react-swipeable-views": "0.13.3",
-    "redux": "4.0.3",
+    "redux": "4.0.4",
     "redux-thunk": "2.3.0",
     "sockjs-client": "1.3.0",
     "stompjs": "2.3.3",
