@@ -36,7 +36,7 @@ $header-fixed-height: 10px;
 $content-padding: 30px 40px;
 $content-padding-lg: 0 20px 60px;
 
-@mixin animate-hover($color: $main-color, $selector: '&') {
+@mixin animate-hover($color, $selector: '&') {
   #{$selector} {
     color: #fff;
     background-color: $color;
