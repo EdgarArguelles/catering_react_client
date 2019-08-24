@@ -36,6 +36,10 @@ $header-fixed-height: 10px;
 $content-padding: 30px 40px;
 $content-padding-lg: 0 20px 60px;
 
+@mixin font-size($sizeInPX) {
+  font-size: ($sizeInPX / 16) + rem;
+}
+
 @mixin animate-hover($color, $selector: '&') {
   #{$selector} {
     color: #fff;

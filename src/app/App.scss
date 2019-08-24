@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 
   .menu-icon {
     margin-right: 20px;
@@ -31,8 +32,6 @@ body {
 }
 
 #app {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-
   .hidden {
     display: none;
   }
