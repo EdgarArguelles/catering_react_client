@@ -11,12 +11,6 @@
   bottom: 15px;
   transition: background 0.5s;
 
-  &:focus {
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    outline: none;
-  }
-
   &:hover {
     background: $main-color;
     color: #fff;
