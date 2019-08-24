@@ -31,6 +31,7 @@
         button {
           font-size: large;
           text-transform: none;
+          @include animate-icon-hover();
 
           .button-label {
             float: right;
