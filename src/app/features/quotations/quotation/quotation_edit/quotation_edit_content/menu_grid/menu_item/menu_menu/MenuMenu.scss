@@ -1,4 +1,7 @@
 @import '../../../../../../../../Variables';
 
 #menu-menu {
+  li {
+    @include animate-icon-hover();
+  }
 }

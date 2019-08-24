@@ -31,7 +31,7 @@ const QuotationNotify = () => {
 
   const getCommentBox = () => {
     return (
-      <TextField fullWidth multiline rows="4" margin="normal" label="Comentario" value={comment}
+      <TextField fullWidth multiline rows="4" margin="normal" label="Agregue un comentario" value={comment}
                  onChange={event => setComment(event.target.value)}/>
     );
   };

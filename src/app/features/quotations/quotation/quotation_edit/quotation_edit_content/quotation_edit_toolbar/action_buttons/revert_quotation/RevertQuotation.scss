@@ -1,4 +1,7 @@
 @import '../../../../../../../../Variables';
 
 #revert-quotation {
+  .revert-button {
+    @include animate-icon-hover();
+  }
 }
