@@ -20,10 +20,10 @@
     }
 
     input {
-      font-size: xx-large;
+      @include font-size(32);
 
       @media (max-width: $screen-xs) {
-        font-size: 20px;
+        @include font-size(20);
       }
     }
   }

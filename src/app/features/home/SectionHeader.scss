@@ -3,8 +3,8 @@
 .section-header {
   .section-title {
     font-weight: 700;
-    font-size: 2em;
     font-style: oblique;
+    @include font-size(28);
   }
 
   .section-description {

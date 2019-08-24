@@ -12,14 +12,14 @@ body {
 
   .button-icon {
     margin-right: 20px;
-    font-size: x-large;
+    @include font-size(24);
   }
 
   .floating-button {
     position: fixed;
     bottom: $floating-button-bottom;
     right: $floating-button-right;
-    font-size: x-large;
+    @include font-size(24);
 
     @media (max-width: $screen-sm) {
       right: $floating-button-right-sm;
