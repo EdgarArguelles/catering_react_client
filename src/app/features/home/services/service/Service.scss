@@ -8,6 +8,7 @@
   height: 250px;
   position: relative;
   background: #fafafa;
+  @include animate-hover($main-color, '.icon');
 
   &.dark {
     border: $dark-background;
@@ -22,11 +23,9 @@
     border-radius: 50%;
     display: inline-block;
     border: 6px solid #fff;
-    background: $main-color;
     padding: 16px;
 
     i {
-      color: #fff;
       font-size: 1.5em;
     }
   }

@@ -8,6 +8,7 @@
     padding: 16px;
     border-radius: 50%;
     border: 2px solid $main-color;
+    @include animate-icon-hover();
 
     i {
       color: $main-color;
