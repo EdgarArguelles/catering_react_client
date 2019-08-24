@@ -6,7 +6,7 @@ import AuthButton from 'app/features/auth/auth_button/AuthButton';
 const Facebook = props => {
   return (
     <AuthButton id="facebook" url="/oauth/facebook/signin" classes={{label: 'facebook-label'}} {...props}>
-      <i id="facebook-icon" className="fab fa-facebook button-icon" aria-hidden="true"/>Acceder con Facebook
+      <i id="facebook-icon" className="fab fa-facebook-square button-icon" aria-hidden="true"/>Acceder con Facebook
     </AuthButton>
   );
 };
