@@ -1,6 +1,5 @@
 @import '../../../../Variables';
 
 #facebook {
-  color: #fff;
-  background-color: $facebook-color;
+  @include animate-hover($facebook-color);
 }

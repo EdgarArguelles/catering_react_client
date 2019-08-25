@@ -14,6 +14,9 @@ const Dish = ({dish}) => {
         <Image className="media" alt={dish.name} src={Utils.getDriveImage(dish.picture)}/>
         <CardContent>
           <p className="description">{dish.description}</p>
+          {dish.categories.length > 0 && <div className="sub-title">
+            <hr/>
+            Categoria</div>}
           {dish.categories.map(category => <Chip key={category.name} component="span" label={category.name}/>)}
         </CardContent>
       </Card>

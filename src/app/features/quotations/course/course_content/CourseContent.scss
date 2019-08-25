@@ -20,8 +20,8 @@
     }
 
     li {
-      font-size: large;
       font-style: italic;
+      @include font-size(18);
 
       &.deprecated-text {
         text-decoration: line-through;
@@ -42,7 +42,7 @@
 
   .price {
     margin-right: 10px;
-    font-size: small;
     color: $gray;
+    @include font-size(13);
   }
 }

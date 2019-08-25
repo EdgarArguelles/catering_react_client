@@ -20,8 +20,8 @@
         margin-bottom: 30px;
 
         p {
-          font-size: large;
           font-style: oblique;
+          @include font-size(18);
         }
 
         .email-button {
@@ -29,8 +29,9 @@
         }
 
         button {
-          font-size: large;
           text-transform: none;
+          @include font-size(18);
+          @include animate-icon-hover();
 
           .button-label {
             float: right;
@@ -41,9 +42,9 @@
 
           i {
             width: 32px;
-            font-size: 2em;
             color: $main-color;
             margin-right: 30px;
+            @include font-size(36);
           }
         }
       }

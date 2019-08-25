@@ -46,7 +46,7 @@
   .image-title {
     position: relative;
     padding: 5px;
-    font-size: x-large;
+    @include font-size(24);
   }
 
   .image-marked {

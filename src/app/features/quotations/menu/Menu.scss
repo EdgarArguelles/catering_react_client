@@ -25,12 +25,12 @@
   }
 
   #title {
-    font-size: 4em;
     font-style: oblique;
     margin-bottom: -30px;
+    @include font-size(56);
 
     @media (max-width: $screen-xs) {
-      font-size: 2.5em;
+      @include font-size(36);
     }
 
     p {
@@ -65,7 +65,7 @@
 
     button:first-child[aria-label='share'] {
       background-color: $main-color;
-      font-size: x-large;
+      @include font-size(24);
     }
   }
 }

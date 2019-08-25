@@ -15,9 +15,9 @@
     }
 
     i {
-      font-size: small;
       position: fixed;
       padding: 0 5px;
+      @include font-size(13);
     }
   }
 

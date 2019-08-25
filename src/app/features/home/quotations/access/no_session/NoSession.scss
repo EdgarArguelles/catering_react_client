@@ -3,18 +3,13 @@
 #no-session {
   text-align: center;
 
-  button {
+  #no-session-button {
     width: 260px;
-    color: #fff;
     margin: auto auto 30px auto;
-    background-color: $main-color;
+    @include animate-hover($main-color);
 
     @media (max-width: 349px) {
       margin-left: -15px;
-    }
-
-    &:hover {
-      opacity: 0.85;
     }
   }
 }

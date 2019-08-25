@@ -16,11 +16,11 @@ $tab-bar-height: 48px;
       }
 
       @media (max-width: $screen-xs) {
-        font-size: x-small;
+        @include font-size(10);
       }
 
       @media (max-width: $screen-xxs) {
-        font-size: xx-small;
+        @include font-size(9);
       }
     }
 
@@ -39,17 +39,17 @@ $tab-bar-height: 48px;
         width: 25px;
         height: 25px;
         margin: -5px 15px 0 0;
-        font-size: small;
         background-color: $secondary-color;
+        @include font-size(13);
 
-      @media (max-width: $screen-xs) {
-        margin-right: 5px;
-      }
+        @media (max-width: $screen-xs) {
+          margin-right: 5px;
+        }
 
         @media (max-width: $screen-xxs) {
           width: 20px;
           height: 20px;
-          font-size: xx-small;
+          @include font-size(9);
         }
       }
     }
@@ -64,9 +64,9 @@ $tab-bar-height: 48px;
       }
 
       i {
-        font-size: x-large;
         color: #FFFF00;
         margin-right: 5px;
+        @include font-size(24);
       }
     }
   }

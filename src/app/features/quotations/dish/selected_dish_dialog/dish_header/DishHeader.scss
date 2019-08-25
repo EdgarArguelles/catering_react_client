@@ -5,7 +5,7 @@
   align-items: center;
 
   .navigation {
-    font-size: 1.8em;
+    @include font-size(36);
   }
 
   .title {
@@ -14,7 +14,7 @@
 
     .sub-title {
       color: $gray;
-      font-size: medium;
+      @include font-size(16);
     }
   }
 
@@ -23,12 +23,12 @@
       margin-right: 5px;
 
       button {
-        font-size: x-small;
+        @include font-size(10);
       }
     }
 
     .title {
-      font-size: medium;
+      @include font-size(16);
     }
   }
 }

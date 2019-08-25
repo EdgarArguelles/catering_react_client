@@ -17,8 +17,8 @@
     }
 
     .price {
-      font-size: x-large;
       font-style: oblique;
+      @include font-size(24);
     }
 
     .menu-summary-price {

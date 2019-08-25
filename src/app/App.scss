@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 
   .menu-icon {
     margin-right: 20px;
@@ -11,14 +12,14 @@ body {
 
   .button-icon {
     margin-right: 20px;
-    font-size: x-large;
+    @include font-size(24);
   }
 
   .floating-button {
     position: fixed;
     bottom: $floating-button-bottom;
     right: $floating-button-right;
-    font-size: x-large;
+    @include font-size(24);
 
     @media (max-width: $screen-sm) {
       right: $floating-button-right-sm;
@@ -31,8 +32,6 @@ body {
 }
 
 #app {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-
   .hidden {
     display: none;
   }

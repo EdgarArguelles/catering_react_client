@@ -17,9 +17,9 @@ const Media = () => {
         <CardContent>
           <div onDoubleClick={printVersion}><Avatar src={image} className="avatar"/></div>
           <Grid container className="social-links" justify="space-around">
-            <Fab><i className="fab fa-twitter" aria-hidden="true"/></Fab>
-            <Fab><i className="fab fa-facebook" aria-hidden="true"/></Fab>
-            <Fab><i className="fab fa-instagram" aria-hidden="true"/></Fab>
+            <Fab className="twitter"><i className="fab fa-twitter" aria-hidden="true"/></Fab>
+            <Fab className="facebook"><i className="fab fa-facebook" aria-hidden="true"/></Fab>
+            <Fab className="instagram"><i className="fab fa-instagram" aria-hidden="true"/></Fab>
           </Grid>
         </CardContent>
       </Card>

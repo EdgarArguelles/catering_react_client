@@ -2,6 +2,6 @@
 
 .search-box-adornment {
   i {
-    font-size: x-large;
+    @include font-size(24);
   }
 }

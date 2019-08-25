@@ -1,8 +1,7 @@
 @import '../../../../Variables';
 
 #google {
-  color: #fff;
-  background-color: $google-color;
+  @include animate-hover($google-color);
 
   i {
     margin-right: 35px;

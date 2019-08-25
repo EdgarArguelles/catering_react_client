@@ -11,6 +11,8 @@ $error-color: #ff1744;
 $secondary-color: #2196f3;
 $google-color: #E8453C;
 $facebook-color: #3B5998;
+$twitter-color: #1DA1F2;
+$instagram-color: #FB3958;
 $gray: #888;
 $dark-background: #424242;
 
@@ -33,3 +35,31 @@ $contact-card-xs-height: 250px;
 $header-fixed-height: 10px;
 $content-padding: 30px 40px;
 $content-padding-lg: 0 20px 60px;
+
+@mixin font-size($sizeInPX) {
+  font-size: ($sizeInPX / 16) + rem;
+}
+
+@mixin animate-hover($color, $selector: '&') {
+  #{$selector} {
+    color: #fff;
+    background-color: $color;
+  }
+
+  &:hover {
+    #{$selector} {
+      color: $color;
+      background-color: #fff;
+    }
+  }
+
+  @include animate-icon-hover();
+}
+
+@mixin animate-icon-hover() {
+  &:hover {
+    svg, i {
+      transform: scale(1.5) rotate(15deg);
+    }
+  }
+}

@@ -8,6 +8,7 @@
   height: 250px;
   position: relative;
   background: #fafafa;
+  @include animate-hover($main-color, '.icon');
 
   &.dark {
     border: $dark-background;
@@ -22,24 +23,22 @@
     border-radius: 50%;
     display: inline-block;
     border: 6px solid #fff;
-    background: $main-color;
     padding: 16px;
 
     i {
-      color: #fff;
-      font-size: 1.5em;
+      @include font-size(21);
     }
   }
 
   .title {
     font-weight: 700;
-    font-size: 1.3em;
     margin-bottom: 15px;
     text-transform: uppercase;
+    @include font-size(18);
   }
 
   .description {
-    font-size: 0.8em;
     line-height: 24px;
+    @include font-size(11);
   }
 }

@@ -2,6 +2,6 @@
 
 #undo-cancel-snackbars {
   .close-icon {
-    font-size: small;
+    @include font-size(13);
   }
 }

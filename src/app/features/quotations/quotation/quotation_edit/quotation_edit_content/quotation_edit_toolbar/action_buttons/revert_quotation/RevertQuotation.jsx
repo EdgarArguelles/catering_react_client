@@ -49,7 +49,7 @@ const RevertQuotation = ({hidden}) => {
   return (
     <span id="revert-quotation">
         <Zoom in={!isRemoteProcessing && !isFetching && !hidden} timeout={1000} unmountOnExit>
-          <Fab variant="extended" color="secondary" onClick={handleClick}>
+          <Fab variant="extended" color="secondary" className="revert-button" onClick={handleClick}>
             <i className={`fas ${icon} button-icon`} aria-hidden="true"/>
             <div className="button-label">{`${labelAction} ${label}`}</div>
           </Fab>
