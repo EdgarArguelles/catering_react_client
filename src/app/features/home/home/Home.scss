@@ -18,34 +18,33 @@
 
   h1 {
     margin: 30px 0 10px 0;
-    font-size: 3em;
     font-weight: 700;
     line-height: 56px;
     text-transform: uppercase;
     color: #fff;
+    @include font-size(42);
 
     @media (max-width: $screen-xs) {
-      font-size: 1.8em;
       line-height: 36px;
+      @include font-size(25);
     }
   }
 
   h2 {
     color: #eee;
     margin-bottom: 50px;
-    font-size: 1.5em;
+    @include font-size(21);
 
     @media (max-width: $screen-xs) {
-      font-size: 1.3em;
       line-height: 24px;
       margin-bottom: 30px;
+      @include font-size(18);
     }
   }
 
   .btn-get-started {
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 1em;
     letter-spacing: 1px;
     display: inline-block;
     padding: 8px 28px;
@@ -54,6 +53,7 @@
     margin: 10px;
     border: 2px solid #fff;
     color: #fff;
+    @include font-size(14);
 
     &:hover {
       background: $main-color;

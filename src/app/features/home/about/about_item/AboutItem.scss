@@ -5,6 +5,7 @@
 
   .icon {
     float: left;
+    height: 53px;
     padding: 16px;
     border-radius: 50%;
     border: 2px solid $main-color;
@@ -12,7 +13,7 @@
 
     i {
       color: $main-color;
-      font-size: 1.5em;
+      @include font-size(20);
     }
   }
 
@@ -20,13 +21,13 @@
     margin-left: 80px;
     font-weight: 500;
     margin-bottom: 5px;
-    font-size: 1.3em;
     text-transform: uppercase;
+    @include font-size(16);
   }
 
   .description {
     margin-left: 80px;
     line-height: 24px;
-    font-size: 0.8em;
+    @include font-size(13);
   }
 }
