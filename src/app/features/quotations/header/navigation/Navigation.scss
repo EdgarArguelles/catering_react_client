@@ -22,16 +22,16 @@
     max-height: $header-height;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: x-large;
     transition: 0.5s;
+    @include font-size(24);
 
     @media (max-width: $screen-xs) {
-      font-size: large;
+      @include font-size(18);
     }
 
     @media (max-width: $screen-xxs) {
-      font-size: small;
       margin-left: -20px;
+      @include font-size(13);
     }
   }
 }

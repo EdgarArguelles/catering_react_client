@@ -9,8 +9,8 @@
 
   .name {
     font-style: oblique;
-    font-size: x-large;
     color: #E8453C;
+    @include font-size(24);
   }
 
   .loader {
