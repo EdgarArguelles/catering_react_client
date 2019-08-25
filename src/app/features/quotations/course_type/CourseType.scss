@@ -38,7 +38,7 @@ $btn-width: 56px;
       animation-fill-mode: initial;
 
       i {
-        font-size: initial;
+        @include font-size(16);
       }
     }
   }

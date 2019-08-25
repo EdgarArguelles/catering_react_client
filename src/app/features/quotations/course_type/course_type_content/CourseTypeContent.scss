@@ -10,11 +10,11 @@
 
   .title {
     text-align: center;
-    font-size: xx-large;
     font-style: italic;
+    @include font-size(32);
 
     @media (max-width: $screen-xs) {
-      font-size: 1.2em;
+      @include font-size(16);
     }
   }
 

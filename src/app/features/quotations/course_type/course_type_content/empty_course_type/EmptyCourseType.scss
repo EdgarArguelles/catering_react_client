@@ -21,12 +21,12 @@ $img-size: 180px;
 
   .title {
     text-align: center;
-    font-size: xx-large;
     margin-bottom: 0;
+    @include font-size(32);
   }
 
   .subtitle {
     text-align: center;
-    font-size: large;
+    @include font-size(18);
   }
 }

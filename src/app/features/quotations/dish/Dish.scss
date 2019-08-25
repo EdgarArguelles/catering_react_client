@@ -10,13 +10,13 @@
     }
 
     .description {
-      font-size: 1rem;
       line-height: 1.5;
+      @include font-size(16);
     }
 
     .sub-title {
       color: $gray;
-      font-size: medium;
+      @include font-size(16);
 
       hr {
         width: 80%;
