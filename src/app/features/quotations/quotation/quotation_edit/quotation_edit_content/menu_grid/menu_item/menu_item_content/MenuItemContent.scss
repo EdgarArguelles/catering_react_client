@@ -2,8 +2,8 @@
 
 .menu-item-content {
   .menu-description {
-    font-size: x-large;
     padding-bottom: 30px;
+    @include font-size(24);
   }
 
   .menu-footer {
@@ -15,9 +15,9 @@
     }
 
     i {
-      font-size: x-small;
       position: fixed;
       padding: 0 3px;
+      @include font-size(10);
     }
 
     .menu-quantity-field {

@@ -13,7 +13,7 @@
 
     i {
       padding: 25px 0;
-      font-size: xx-large;
+      @include font-size(32);
     }
   }
 }

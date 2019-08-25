@@ -18,11 +18,11 @@
 
     .title {
       color: #2196f3;
-      font-size: x-large;
+      @include font-size(24);
     }
 
     .price {
-      font-size: medium;
+      @include font-size(16);
 
       .amount {
         font-style: italic;
@@ -34,12 +34,12 @@
 
       .relative-date {
         margin-bottom: 0;
-        font-size: medium;
+        @include font-size(16);
       }
 
       .exact-date {
         margin-top: 0;
-        font-size: x-small;
+        @include font-size(10);
       }
     }
   }

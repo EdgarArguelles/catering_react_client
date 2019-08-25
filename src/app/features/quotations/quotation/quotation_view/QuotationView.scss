@@ -10,13 +10,13 @@
   color: $gray;
 
   i {
-    font-size: 10em;
+    @include font-size(140);
   }
 
   .title {
     text-align: center;
-    font-size: xx-large;
     margin-bottom: 0;
+    @include font-size(32);
   }
 
   .access {
