@@ -1,3 +1,5 @@
+import Vivus from 'vivus';
+
 /**
  * Common actions and tools used by all application
  */
@@ -62,7 +64,7 @@ export default class Utils {
         json
           .map(obj => `${Utils.stringifyObjectWithNoQuotesOnKeys(obj)}`)
           .join(',')
-        }]`;
+      }]`;
     }
 
     // if values is null or undefined
@@ -82,7 +84,7 @@ export default class Utils {
         .keys(json)
         .map(key => `${key}:${Utils.stringifyObjectWithNoQuotesOnKeys(json[key])}`)
         .join(',')
-      }}`;
+    }}`;
   }
 
   /**
@@ -93,5 +95,35 @@ export default class Utils {
    */
   static stringifyPageDataRequest(json) {
     return Utils.stringifyObjectWithNoQuotesOnKeys(json).replace('"ASC"', 'ASC').replace('"DESC"', 'DESC');
+  }
+
+  /**
+   * Create a drawing animation to a SVG icon
+   *
+   * @param {string} id SVG icon id
+   * @param {Object} configuration animation configuration
+   * @param {number} configuration.strokeWidth width of drawing stroke (default 10)
+   * @param {boolean} configuration.restoreOnComplete if true, icon will restore its original fill color (default true)
+   * @param {number} configuration.duration animation duration (default 50)
+   * @param {string} configuration.animation animation type (default 'sync'), it could be 'delayed', 'sync', 'oneByOne'
+   * @param {function} configuration.callback function to call when animation completes
+   * @return {Object} Vivus object
+   */
+  static animateIcon(id, configuration = {}) {
+    const {strokeWidth = 10, restoreOnComplete = true, duration = 50, animation = 'sync', callback} = configuration;
+    const paths = document.getElementById(id).querySelectorAll('path');
+    const restore = () => {
+      [].forEach.call(paths, element => element.setAttribute('fill', 'currentColor'));
+      if (callback) {
+        callback();
+      }
+    };
+
+    [].forEach.call(paths, element => {
+      element.setAttribute('fill', 'transparent');
+      element.setAttribute('stroke', 'currentColor');
+      element.setAttribute('stroke-width', strokeWidth);
+    });
+    return new Vivus(id, {duration, type: animation}, restoreOnComplete ? restore : callback);
   }
 }
