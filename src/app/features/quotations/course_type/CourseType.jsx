@@ -2,8 +2,11 @@ import './CourseType.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import {useMultipleDishes} from './CourseType.service';
 import Animate from 'app/common/components/animate/Animate';
 import CourseTypeContent from './course_type_content/CourseTypeContent';
@@ -38,8 +41,8 @@ const CourseType = ({className, courseType}) => {
       <div className="btn-container">
         <Animate visible={courseType.position - 1 === currentTab} animationIn="rubberBand"
                  className={isSnackBarOpen ? 'move-up' : ''}>
-          <Fab color="primary" onClick={add}>
-            <i className="fas fa-plus" aria-hidden="true"/>
+          <Fab color="primary" onClick={add} onMouseEnter={() => Utils.animateIcon(`plus-${courseType.position}-icon`)}>
+            <FontAwesomeIcon id={`plus-${courseType.position}-icon`} icon={faPlus}/>
           </Fab>
         </Animate>
       </div>

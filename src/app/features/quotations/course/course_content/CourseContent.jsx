@@ -3,9 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import formatCurrency from 'format-currency';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faGripVertical, faTrash} from '@fortawesome/free-solid-svg-icons';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
+import Utils from 'app/common/Utils';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
 import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
 import DishActions from 'app/features/quotations/dish/DishActions';
@@ -18,6 +21,11 @@ const CourseContent = ({course, onActionClick}) => {
   const dishes = useSelector(state => state.data.dishes);
   const selectDish = dishId => dispatch(DishActions.selectDish(dishId));
   const isMultipleDishes = useMultipleDishes(courseTypes[course.type.id]);
+  const animateIcon = () => Utils.animateIcon(`${course.type.id}-${course.position}-trash-icon`);
+  const handleRemoveClick = () => {
+    animateIcon();
+    onActionClick();
+  };
   const openMultipleDishesDialog = dishesInMultiple => {
     dishesInMultiple.forEach(d => dispatch(MultipleDishesDialogActions.addDish(d.id)));
     dispatch(MultipleDishesDialogActions.openDialog());
@@ -42,7 +50,7 @@ const CourseContent = ({course, onActionClick}) => {
     <CardHeader
       className="course-content"
       avatar={<div>
-        <i className="fas fa-grip-vertical course-drag-icon" aria-hidden="true"/>
+        <FontAwesomeIcon className="course-drag-icon" icon={faGripVertical}/>
         <Avatar className="avatar">{course.position}</Avatar>
       </div>}
       subheader={<ul>{getDishesList()}</ul>}
@@ -50,7 +58,9 @@ const CourseContent = ({course, onActionClick}) => {
         <p className="price">
           {formatCurrency(getDishesPrice(course.dishes, dishes), {format: '%s%v', symbol: '$'})}
         </p>
-        <IconButton onClick={onActionClick}><i className="fas fa-trash" aria-hidden="true"/></IconButton>
+        <IconButton onClick={handleRemoveClick} onMouseEnter={animateIcon}>
+          <FontAwesomeIcon id={`${course.type.id}-${course.position}-trash-icon`} icon={faTrash}/>
+        </IconButton>
       </>}/>
   );
 };

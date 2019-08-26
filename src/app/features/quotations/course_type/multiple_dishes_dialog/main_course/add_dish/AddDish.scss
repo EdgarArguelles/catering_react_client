@@ -6,8 +6,8 @@
   border: dashed $gray !important;
   border-radius: $radius !important;
 
-  i {
-    padding: 25px 0;
+  svg {
+    margin: 25px 0;
     color: $gray;
     @include font-size(32);
   }

@@ -2,6 +2,8 @@ import './UndoCancelSnackbars.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
@@ -29,7 +31,7 @@ const UndoCancelSnackbars = ({tabToDisplay}) => {
               action={[
                 <Button key="undo" color="secondary" onClick={openMultipleDishesDialog}>DESHACER</Button>,
                 <IconButton key="close" color="inherit" onClick={handleClose}>
-                  <i className="fas fa-times close-icon" aria-hidden="true"/>
+                  <FontAwesomeIcon className="close-icon" icon={faTimes}/>
                 </IconButton>,
               ]}/>
   );
