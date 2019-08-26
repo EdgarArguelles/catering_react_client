@@ -1,7 +1,7 @@
 @import '../../../Variables';
 
 .search-box-adornment {
-  i {
+  svg {
     @include font-size(24);
   }
 }
