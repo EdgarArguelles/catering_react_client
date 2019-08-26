@@ -60,6 +60,7 @@ $content-padding-lg: 0 20px 60px;
   &:hover {
     svg, i {
       transform: scale(1.5) rotate(15deg);
+      transition: 1s;
     }
   }
 }

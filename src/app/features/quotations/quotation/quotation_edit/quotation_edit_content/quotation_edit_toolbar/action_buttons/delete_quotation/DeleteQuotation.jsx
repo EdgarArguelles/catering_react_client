@@ -1,6 +1,7 @@
 import './DeleteQuotation.scss';
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import History from 'app/router/History';
@@ -53,7 +54,7 @@ const DeleteQuotation = () => {
   return (
     <span id="delete-quotation">
         <FetchButton color="secondary" label="Eliminar Presupuesto" successLabel="Presupuesto Eliminado"
-                     hidden={isRemoteProcessing || isFetching} iconClass="fas fa-trash button-icon"
+                     hidden={isRemoteProcessing || isFetching} icon={faTrash}
                      onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <ConfirmationDialog title="Eliminar presupuesto" okID="remove-remote-quotation-button" okLabel="Eliminar"

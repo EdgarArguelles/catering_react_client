@@ -1,7 +1,10 @@
 import './EditableField.scss';
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@material-ui/core/IconButton';
+import Utils from 'app/common/Utils';
 import EnterTextField from 'app/common/components/enter_text_field/EnterTextField';
 
 const EditableField = ({value, placeholder, onChange}) => {
@@ -11,8 +14,9 @@ const EditableField = ({value, placeholder, onChange}) => {
     return (
       <div className="not-editing">
         <h1>{value}</h1>
-        <IconButton className="edit-button" onClick={() => setIsEditing(true)}>
-          <i className="fas fa-pencil-alt" aria-hidden="true"/>
+        <IconButton className="edit-button" onClick={() => setIsEditing(true)}
+                    onMouseEnter={() => Utils.animateIcon('edit-button-icon')}>
+          <FontAwesomeIcon id="edit-button-icon" icon={faPencilAlt}/>
         </IconButton>
       </div>
     );

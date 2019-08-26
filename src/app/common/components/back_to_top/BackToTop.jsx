@@ -19,7 +19,7 @@ const BackToTop = () => {
   return (
     <Zoom in={visible}>
       <FontAwesomeIcon id="back-to-top" icon={faChevronUp} onClick={scrollUp}
-                       onMouseEnter={() => Utils.animateIcon('back-to-top', {strokeWidth: 40})}/>
+                       onMouseEnter={() => Utils.animateIcon('back-to-top')}/>
     </Zoom>
   );
 };

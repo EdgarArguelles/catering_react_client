@@ -102,7 +102,7 @@ export default class Utils {
    *
    * @param {string} id SVG icon id
    * @param {Object} configuration animation configuration
-   * @param {number} configuration.strokeWidth width of drawing stroke (default 10)
+   * @param {number} configuration.strokeWidth width of drawing stroke (default 40)
    * @param {boolean} configuration.restoreOnComplete if true, icon will restore its original fill color (default true)
    * @param {number} configuration.duration animation duration (default 50)
    * @param {string} configuration.animation animation type (default 'sync'), it could be 'delayed', 'sync', 'oneByOne'
@@ -110,10 +110,13 @@ export default class Utils {
    * @return {Object} Vivus object
    */
   static animateIcon(id, configuration = {}) {
-    const {strokeWidth = 10, restoreOnComplete = true, duration = 50, animation = 'sync', callback} = configuration;
+    const {strokeWidth = 40, restoreOnComplete = true, duration = 50, animation = 'sync', callback} = configuration;
     const paths = document.getElementById(id).querySelectorAll('path');
     const restore = () => {
-      [].forEach.call(paths, element => element.setAttribute('fill', 'currentColor'));
+      [].forEach.call(paths, element => {
+        element.setAttribute('fill', 'currentColor');
+        element.setAttribute('stroke-width', 0);
+      });
       if (callback) {
         callback();
       }
