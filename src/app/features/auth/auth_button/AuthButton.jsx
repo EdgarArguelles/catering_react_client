@@ -2,6 +2,7 @@ import './AuthButton.scss';
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
+import Utils from 'app/common/Utils';
 
 const subscriptions = {};
 const randomState = Math.random().toString(36).substring(2);
@@ -32,7 +33,10 @@ const AuthButton = ({id, classes, url, children, subscribe}) => {
     window.focus && newWindow.focus();
   };
 
-  return <Fab variant="extended" id={id} className="auth-button" classes={classes} onClick={access}>{children}</Fab>;
+  return (
+    <Fab variant="extended" id={id} className="auth-button" classes={classes} onClick={access}
+         onMouseEnter={() => Utils.animateIcon(`${id}-icon`)}>{children}</Fab>
+  );
 };
 
 AuthButton.propTypes = {

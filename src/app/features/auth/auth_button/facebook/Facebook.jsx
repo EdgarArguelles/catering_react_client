@@ -1,12 +1,14 @@
 import './Facebook.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFacebookSquare} from '@fortawesome/free-brands-svg-icons';
 import AuthButton from 'app/features/auth/auth_button/AuthButton';
 
 const Facebook = props => {
   return (
     <AuthButton id="facebook" url="/oauth/facebook/signin" classes={{label: 'facebook-label'}} {...props}>
-      <i id="facebook-icon" className="fab fa-facebook-square button-icon" aria-hidden="true"/>Acceder con Facebook
+      <FontAwesomeIcon id="facebook-icon" className="button-icon" icon={faFacebookSquare}/>Acceder con Facebook
     </AuthButton>
   );
 };
