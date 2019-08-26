@@ -36,7 +36,7 @@
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
     "autoprefixer": "9.6.1",
-    "babel-eslint": "10.0.2",
+    "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
     "babel-plugin-dynamic-import-webpack": "1.1.0",
     "clean-webpack-plugin": "3.0.0",
@@ -67,7 +67,9 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.10.2",
+    "@fortawesome/fontawesome-svg-core": "1.2.22",
+    "@fortawesome/free-solid-svg-icons": "5.10.2",
+    "@fortawesome/react-fontawesome": "0.1.4",
     "@material-ui/core": "4.3.3",
     "@material-ui/lab": "3.0.0-alpha.30",
     "animate.css": "3.7.2",
@@ -90,6 +92,7 @@
     "redux-thunk": "2.3.0",
     "sockjs-client": "1.4.0",
     "stompjs": "2.3.3",
-    "url-search-params-polyfill": "7.0.0"
+    "url-search-params-polyfill": "7.0.0",
+    "vivus": "0.4.4"
   }
 }

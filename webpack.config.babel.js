@@ -83,8 +83,6 @@ export default {
       {test: /index.html$/, use: 'file-loader?name=[name].[ext]'},
       // assets
       {test: /\.(png|jpg|gif)$/, use: 'file-loader?name=assets/[name].[ext]'},
-      // fonts
-      {test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: 'file-loader?name=fonts/[name].[ext]'},
       // sass
       {
         test: /\.scss$/, use: [
