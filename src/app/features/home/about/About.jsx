@@ -1,6 +1,7 @@
 import './About.scss';
 import image from 'assets/img/about-img.png';
 import React from 'react';
+import {faCameraRetro, faChartLine, faShoppingBag} from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import SectionHeader from 'app/features/home/SectionHeader';
 import AboutItem from './about_item/AboutItem';
@@ -15,15 +16,15 @@ const About = () => {
             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat.
           </SectionHeader>
-          <AboutItem title="Eiusmod Tempor" iconClass="fas fa-shopping-bag">
+          <AboutItem title="Eiusmod Tempor" icon={faShoppingBag}>
             Et harum quidem rerum facilis est et expedita distinctio. Nam libero
             tempore, cum soluta nobis est eligendi
           </AboutItem>
-          <AboutItem title="Magni Dolores" iconClass="fas fa-camera-retro">
+          <AboutItem title="Magni Dolores" icon={faCameraRetro}>
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
             deserunt mollit anim id est laborum
           </AboutItem>
-          <AboutItem title="Dolor Sitema" iconClass="fas fa-chart-line">
+          <AboutItem title="Dolor Sitema" icon={faChartLine}>
             Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
             ex ea commodo consequat tarad limino ata
           </AboutItem>

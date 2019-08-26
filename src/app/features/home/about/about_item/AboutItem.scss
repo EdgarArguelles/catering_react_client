@@ -2,6 +2,7 @@
 
 .about-item {
   padding: 0 0 30px 0;
+  @include animate-icon-hover();
 
   .icon {
     float: left;
@@ -9,9 +10,8 @@
     padding: 16px;
     border-radius: 50%;
     border: 2px solid $main-color;
-    @include animate-icon-hover();
 
-    i {
+    svg {
       color: $main-color;
       @include font-size(20);
     }
