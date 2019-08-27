@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import formatCurrency from 'format-currency';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheckCircle, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Utils from 'app/common/Utils';
@@ -19,7 +21,7 @@ const DishItem = ({dish}) => {
   return (
     <Paper className="dish-item" elevation={8}>
       {isDishAdded(multipleDishesDialog, menuCourses, dish.id) &&
-      <i className="added fas fa-check-circle" aria-hidden="true"/>}
+      <FontAwesomeIcon className="added" icon={faCheckCircle}/>}
       <ButtonBase focusRipple className="dish-btn" onClick={selectDish}>
         <Image className="image" alt={dish.name} smallLoading={true} src={Utils.getDriveImage(dish.picture)}/>
         <div className="image-content image-backdrop"/>
@@ -29,7 +31,7 @@ const DishItem = ({dish}) => {
             <p className="image-subtitle">{formatCurrency(dish.price, {format: '%s%v', symbol: '$'})}</p>
           </div>
           <div className="image-action">
-            <i className="fas fa-info-circle info-icon" aria-hidden="true"/>
+            <FontAwesomeIcon className="info-icon" icon={faInfoCircle}/>
           </div>
         </div>
       </ButtonBase>

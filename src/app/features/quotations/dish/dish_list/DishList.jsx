@@ -2,7 +2,10 @@ import './DishList.scss';
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFilter} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
+import Utils from 'app/common/Utils';
 import {getCourseTypeDishes, getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
 import DishCarButton from './dish_car_button/DishCarButton';
@@ -37,8 +40,9 @@ const DishList = ({location}) => {
       <DishGrid dishes={categoryDishes} isLoading={courseTypeDishes.length <= 0}/>
       <DishCarButton/>
       <Fab id="dish-filter-button" color="primary" className="floating-button animated fadeInRight"
-           classes={{label: 'dish-filter-button-label'}} onClick={() => setIsFilterOpen(true)}>
-        <i id="dish-filter-button-icon" className="fas fa-filter" aria-hidden="true"/>
+           classes={{label: 'dish-filter-button-label'}} onClick={() => setIsFilterOpen(true)}
+           onMouseEnter={() => Utils.animateIcon('dish-filter-button-icon')}>
+        <FontAwesomeIcon id="dish-filter-button-icon" icon={faFilter}/>
       </Fab>
 
       <DishFilterDialog open={isFilterOpen} onClose={() => setIsFilterOpen(false)}/>

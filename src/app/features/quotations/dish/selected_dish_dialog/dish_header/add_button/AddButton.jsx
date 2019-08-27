@@ -2,8 +2,11 @@ import './AddButton.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import MenuActions from 'app/features/quotations/menu/MenuActions';
 import MultipleDishesDialogActions
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
@@ -30,8 +33,9 @@ const AddButton = ({className, dish}) => {
 
   return (
     <Fab id="add-button" variant="extended" color="primary" onClick={handleAddCourse}
+         onMouseEnter={() => Utils.animateIcon('add-button-icon')}
          className={className} classes={{label: 'add-button-label'}}>
-      <i id="add-button-icon" className="fas fa-cart-plus button-icon" aria-hidden="true"/> Agregar
+      <FontAwesomeIcon id="add-button-icon" className="button-icon" icon={faCartPlus}/> Agregar
     </Fab>
   );
 };

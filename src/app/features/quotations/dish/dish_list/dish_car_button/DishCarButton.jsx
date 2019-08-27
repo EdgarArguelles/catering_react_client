@@ -1,9 +1,12 @@
 import './DishCarButton.scss';
 import React from 'react';
 import {useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import Badge from '@material-ui/core/Badge';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 
 const DishCarButton = () => {
@@ -15,10 +18,11 @@ const DishCarButton = () => {
 
   return (
     <Fab id="dish-car-button" className="floating-button animated fadeInRight"
-         classes={{label: 'dish-car-button-label'}} onClick={() => History.navigate('/presupuestos/menu/editar')}>
+         classes={{label: 'dish-car-button-label'}} onClick={() => History.navigate('/presupuestos/menu/editar')}
+         onMouseEnter={() => Utils.animateIcon('dish-car-button-icon')}>
       <Badge id="dish-car-button-badge" badgeContent={menuCourses.length} color="secondary"
              className="dish-car-badge" classes={{badge: 'dish-car-button-badge-label'}}>
-        <i id="dish-car-button-icon" className="fas fa-shopping-cart" aria-hidden="true"/>
+        <FontAwesomeIcon id="dish-car-button-icon" icon={faShoppingCart}/>
       </Badge>
     </Fab>
   );
