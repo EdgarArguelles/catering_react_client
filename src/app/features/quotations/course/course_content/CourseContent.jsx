@@ -26,6 +26,7 @@ const CourseContent = ({course, onActionClick}) => {
     animateIcon();
     onActionClick();
   };
+
   const openMultipleDishesDialog = dishesInMultiple => {
     dishesInMultiple.forEach(d => dispatch(MultipleDishesDialogActions.addDish(d.id)));
     dispatch(MultipleDishesDialogActions.openDialog());

@@ -29,10 +29,12 @@ const ShareButton = ({link, label, description, hashtag}) => {
     setIsSpeedDialOpen(true);
     animateIcon();
   };
+
   const close = () => {
     setIsSpeedDialOpen(false);
     animateIcon();
   };
+
   const toggle = () => {
     setIsSpeedDialOpen(!isSpeedDialOpen);
     animateIcon();

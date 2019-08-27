@@ -1,6 +1,8 @@
 import './MenuGrid.scss';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -24,7 +26,9 @@ const MenuGrid = () => {
     dispatch(QuotationsActions.changeMenuTab(0));
   };
 
+  const animateIcon = () => Utils.animateIcon('new-menu-icon');
   const handleNew = () => {
+    animateIcon();
     addAndSelectNewMenu();
     History.navigate('/presupuestos/menu/editar');
   };
@@ -41,8 +45,8 @@ const MenuGrid = () => {
             getAnimatedGrid(menu.id, <MenuItem index={index} menu={menu}/>)
           ))}
           {getAnimatedGrid('new-menu', (
-            <Button className="new-menu-button" onClick={handleNew}>
-              <i className="fas fa-plus-circle" aria-hidden="true"/>
+            <Button className="new-menu-button" onClick={handleNew} onMouseEnter={animateIcon}>
+              <FontAwesomeIcon id="new-menu-icon" icon={faPlusCircle}/>
               Crear un nuevo menú
             </Button>
           ))}

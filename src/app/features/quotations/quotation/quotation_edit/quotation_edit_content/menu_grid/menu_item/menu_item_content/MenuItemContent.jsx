@@ -2,18 +2,37 @@ import './MenuItemContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import formatCurrency from 'format-currency';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 import CardContent from '@material-ui/core/CardContent';
+import Utils from 'app/common/Utils';
 import MenuQuantity from 'app/features/quotations/menu/menu_summary/menu_quantity/MenuQuantity';
 
 const MenuItemContent = ({focus, menu, select, deselect}) => {
-  const {price, quantity, isSelected, courses} = menu;
+  const {id, price, quantity, isSelected, courses} = menu;
+
+  const animateIcon = () => {
+    if (!isSelected) {
+      Utils.animateIcon(`menu-${id}-quantity-icon`);
+    }
+  };
+
+  const handleSelect = () => {
+    animateIcon();
+    select();
+  };
 
   const getQuantity = () => {
     const input = isSelected
       ? <MenuQuantity hideLabels={true} onEnter={deselect} autoFocus={focus}/>
-      : <span>{quantity}<i className="fas fa-pencil-alt" aria-hidden="true"/></span>;
+      : <span>{quantity}<FontAwesomeIcon id={`menu-${id}-quantity-icon`} icon={faPencilAlt}/></span>;
 
-    return <span><span onClick={deselect}>Menús en presupuesto</span><b onClick={select}>x {input}</b></span>;
+    return (
+      <span>
+        <span onClick={deselect}>Menús en presupuesto</span>
+        <b onClick={handleSelect} onMouseEnter={animateIcon}>x {input}</b>
+      </span>
+    );
   };
 
   return (
