@@ -2,8 +2,11 @@ import './Navigation.scss';
 import image from 'assets/img/logo.png';
 import React, {useEffect, useRef} from 'react';
 import {useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@material-ui/core/IconButton';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 
 const Navigation = () => {
   const timeout = useRef(null); // don't initialize timeout to null each render
@@ -42,10 +45,16 @@ const Navigation = () => {
     return <img className="company-logo" src={image} alt="logo" onClick={() => History.navigate('/')}/>;
   }
 
+  const animateIcon = () => Utils.animateIcon('menu-back-icon');
+  const handleClick = () => {
+    animateIcon();
+    History.navigate(navigation.backLink);
+  };
+
   return (
     <div id="navigation">
-      <IconButton onClick={() => History.navigate(navigation.backLink)}>
-        <i className="fas fa-arrow-left" aria-hidden="true"/>
+      <IconButton onClick={handleClick} onMouseEnter={animateIcon}>
+        <FontAwesomeIcon id="menu-back-icon" icon={faArrowLeft}/>
       </IconButton>
       <p>{navigation.title}</p>
     </div>
