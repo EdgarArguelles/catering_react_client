@@ -15,6 +15,7 @@ import QuotationsDataActions from 'app/data/quotations/QuotationsActions';
 
 const QuotationView = ({match}) => {
   const dispatch = useDispatch();
+  const open = useSelector(state => state.quotations.isAuthDialogOpen);
   const loggedUser = useSelector(state => state.auth.loggedUser);
 
   const quotationId = useRef(match.params.id); // avoid to re-run useEffect when match changes
@@ -37,17 +38,18 @@ const QuotationView = ({match}) => {
     }
   }, [dispatch, loadQuotation, openAuthDialog]);
 
-  const animateIcon = () => Utils.animateIcon('quotation-view-info-icon', {strokeWidth: 20});
-  const handleClick = () => {
-    animateIcon();
-    openAuthDialog();
-  };
+  // animate icon when AuthDialog closes
+  useEffect(() => {
+    if (!open) {
+      Utils.animateIcon('quotation-view-info-icon', {strokeWidth: 20});
+    }
+  }, [open]);
 
   return (
     <div id="quotation-view">
-      <FontAwesomeIcon id="quotation-view-info-icon" icon={faInfoCircle} onMouseEnter={animateIcon}/>
+      <FontAwesomeIcon id="quotation-view-info-icon" icon={faInfoCircle}/>
       <p className="title">No tienes permisos para ver este presupuesto</p>
-      <Button variant="outlined" className="access" onClick={handleClick}>
+      <Button variant="outlined" className="access" onClick={openAuthDialog}>
         Iniciar sesión
       </Button>
       <AuthDialog onSuccess={loadQuotation}/>

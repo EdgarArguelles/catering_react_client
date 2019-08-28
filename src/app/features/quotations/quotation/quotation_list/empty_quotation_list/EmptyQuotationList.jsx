@@ -1,5 +1,5 @@
 import './EmptyQuotationList.scss';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,11 @@ const EmptyQuotationList = () => {
   const quotation = useSelector(state => state.quotations.quotation);
   const isStarted = isQuotationStarted(quotation);
 
-  const animateIcon = () => Utils.animateIcon('empty-quotation-info-icon', {strokeWidth: 20});
+  // animate icon when component loads
+  useEffect(() => {
+    Utils.animateIcon('empty-quotation-info-icon', {strokeWidth: 20});
+  }, []);
+
   const handleQuotationRedirect = () => {
     if (!isStarted) {
       const menuId = getRandomMenuId();
@@ -32,7 +36,7 @@ const EmptyQuotationList = () => {
 
   return (
     <div id="empty-quotation-list">
-      <FontAwesomeIcon id="empty-quotation-info-icon" icon={faInfoCircle} onMouseEnter={animateIcon}/>
+      <FontAwesomeIcon id="empty-quotation-info-icon" icon={faInfoCircle}/>
       <p className="title">Vacio</p>
       <p className="subtitle">Aún no has creado ningún presupuesto</p>
       <Button variant="outlined" className="create" onClick={handleQuotationRedirect}>

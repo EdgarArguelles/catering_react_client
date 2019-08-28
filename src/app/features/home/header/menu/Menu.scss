@@ -133,7 +133,7 @@
     display: inline;
   }
 
-  i {
+  svg {
     color: #fff;
   }
 }
@@ -185,7 +185,7 @@
     }
 
     .menu-has-children {
-      i {
+      svg {
         position: absolute;
         right: 0;
         padding: 15px;
@@ -193,7 +193,7 @@
         color: #fff;
       }
 
-      i.fa-chevron-up {
+      svg.fa-chevron-up {
         color: $main-color;
       }
     }
