@@ -9,7 +9,7 @@
     margin: 15px 10px auto auto;
     transition: 0.5s;
 
-    i {
+    svg {
       margin-left: 15px;
     }
 
@@ -28,7 +28,7 @@
         margin-top: 10px;
         @include font-size(10);
 
-        i {
+        svg {
           margin-left: 5px;
         }
       }

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faFilePdf} from '@fortawesome/free-regular-svg-icons';
+import {faFileImage} from '@fortawesome/free-regular-svg-icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Utils from 'app/common/Utils';
 import MenuDialog from 'app/features/quotations/menu/menu_summary/menu_dialog/MenuDialog';
@@ -29,7 +29,7 @@ const ViewMenu = ({menu, onClose}) => {
   return (
     <>
       <MenuItem id="view-menu" onClick={showMenuDialog} onMouseEnter={animateIcon}>
-        <FontAwesomeIcon id="view-menu-icon" className="menu-icon" icon={faFilePdf}/> Ver Menú
+        <FontAwesomeIcon id="view-menu-icon" className="menu-icon" icon={faFileImage}/> Ver Menú
       </MenuItem>
 
       <MenuDialog onClose={hideMenuDialog}/>

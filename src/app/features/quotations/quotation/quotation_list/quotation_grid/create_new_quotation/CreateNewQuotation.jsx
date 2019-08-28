@@ -1,8 +1,11 @@
 import './CreateNewQuotation.scss';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
@@ -24,7 +27,9 @@ const CreateNewQuotation = () => {
     History.navigate('/presupuestos/menu/editar');
   };
 
+  const animateIcon = () => Utils.animateIcon('create-new-quotation-icon');
   const handleShowDialog = () => {
+    animateIcon();
     const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
     const isEdited = !areEqual(selectedQuotation, quotations ? quotations[selectedQuotation.id] : null);
 
@@ -38,8 +43,8 @@ const CreateNewQuotation = () => {
 
   return (
     <>
-      <Button id="create-new-quotation" onClick={handleShowDialog}>
-        <i className="fas fa-plus-circle" aria-hidden="true"/>
+      <Button id="create-new-quotation" onClick={handleShowDialog} onMouseEnter={animateIcon}>
+        <FontAwesomeIcon id="create-new-quotation-icon" icon={faPlusCircle}/>
         Crear un nuevo presupuesto
       </Button>
 
