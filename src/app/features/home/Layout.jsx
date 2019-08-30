@@ -2,10 +2,10 @@ import './Layout.scss';
 import React, {useEffect} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import IconButton from '@material-ui/core/IconButton';
-import {initJQuery} from 'app/Template';
 import {useAppTheme} from 'app/common/Hooks';
 import Utils from 'app/common/Utils';
 import BackToTop from 'app/common/components/back_to_top/BackToTop';
+import SideMenu from './side_menu/SideMenu';
 import Header from './header/Header';
 import Home from './home/Home';
 import About from './about/About';
@@ -16,7 +16,7 @@ import Contact from './contact/Contact';
 const Layout = () => {
   const {themeIcon, changeTheme} = useAppTheme();
   useEffect(() => {
-    initJQuery();
+    Utils.completeLoading();
   }, []);
 
   const animateIcon = () => Utils.animateIcon('change-theme-icon');
@@ -27,6 +27,7 @@ const Layout = () => {
 
   return (
     <div id="layout">
+      <SideMenu/>
       <Header/>
       <main id="main">
         <Home/>

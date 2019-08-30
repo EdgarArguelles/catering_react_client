@@ -98,6 +98,16 @@ export default class Utils {
   }
 
   /**
+   * Hide loading animation and display application content
+   *
+   * @return {void}
+   */
+  static completeLoading() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  }
+
+  /**
    * Create a drawing animation to a SVG icon
    *
    * @param {string} id SVG icon id
