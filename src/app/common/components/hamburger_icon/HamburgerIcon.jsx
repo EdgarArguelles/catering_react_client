@@ -2,10 +2,10 @@ import './HamburgerIcon.scss';
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
-const HamburgerIcon = ({onOpen, onClose}) => {
-  const [open, setOpen] = useState(false);
+const HamburgerIcon = ({open, onOpen, onClose}) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [fixed, setFixed] = useState(false);
-  const className = (open ? 'open ' : '') + (fixed ? 'fixed' : '');
+  const className = (isOpen ? 'open ' : '') + (fixed ? 'fixed' : '');
 
   useEffect(() => {
     const handleScroll = () => setFixed(window.pageYOffset > 10);
@@ -14,12 +14,16 @@ const HamburgerIcon = ({onOpen, onClose}) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
+
   const handleClick = () => {
-    if (open) {
-      setOpen(false);
+    if (isOpen) {
+      setIsOpen(false);
       onClose && onClose();
     } else {
-      setOpen(true);
+      setIsOpen(true);
       onOpen && onOpen();
     }
   };
@@ -28,6 +32,7 @@ const HamburgerIcon = ({onOpen, onClose}) => {
 };
 
 HamburgerIcon.propTypes = {
+  open: PropTypes.bool,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
 };
