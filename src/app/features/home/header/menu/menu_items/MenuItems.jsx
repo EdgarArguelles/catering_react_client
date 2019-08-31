@@ -14,7 +14,7 @@ export const selectItem = () => {
   let selected = 'home';
   if (window.pageYOffset > 0) {
     Object.keys(MENU_ITEMS).forEach(key => {
-      if (window.pageYOffset >= document.getElementById(key).offsetTop - 60) {
+      if (window.pageYOffset >= document.getElementById(key).offsetTop - 65) {
         selected = key;
       }
     });
