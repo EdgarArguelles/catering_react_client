@@ -1,7 +1,6 @@
 @import '../../../Variables';
 
 #hamburger-icon {
-  display: none;
   position: fixed;
   right: 20px;
   top: 40px;
@@ -11,10 +10,6 @@
   z-index: 2000;
   cursor: pointer;
   transition: .20s ease-in-out;
-
-  @media (max-width: $screen-xs) {
-    display: block;
-  }
 
   span {
     position: absolute;

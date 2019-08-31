@@ -3,7 +3,15 @@
 #side-menu {
   div[role=document] {
     background: #363E42;
-    width: 300px;
+    width: 290px;
+
+    @media (max-width: $screen-xxs) {
+      width: 240px;
+
+      #logo {
+        margin: 30px 15px;
+      }
+    }
   }
 
   #logo {
