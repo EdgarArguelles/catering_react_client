@@ -26,9 +26,7 @@ const MenuGrid = () => {
     dispatch(QuotationsActions.changeMenuTab(0));
   };
 
-  const animateIcon = () => Utils.animateIcon('new-menu-icon');
   const handleNew = () => {
-    animateIcon();
     addAndSelectNewMenu();
     History.navigate('/presupuestos/menu/editar');
   };
@@ -45,7 +43,8 @@ const MenuGrid = () => {
             getAnimatedGrid(menu.id, <MenuItem index={index} menu={menu}/>)
           ))}
           {getAnimatedGrid('new-menu', (
-            <Button className="new-menu-button" onClick={handleNew} onMouseEnter={animateIcon}>
+            <Button className="new-menu-button" onClick={handleNew}
+                    onMouseEnter={() => Utils.animateIcon('new-menu-icon')}>
               <FontAwesomeIcon id="new-menu-icon" icon={faPlusCircle}/>
               Crear un nuevo menú
             </Button>

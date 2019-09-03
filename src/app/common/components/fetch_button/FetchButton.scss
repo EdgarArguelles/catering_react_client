@@ -12,10 +12,6 @@ $action-small-width: 50px;
   .action-button {
     transition: width 0.5s, transform 1s !important;
 
-    &.normal {
-      @include animate-icon-hover();
-    }
-
     &.fetching {
       width: $action-small-width !important;
       background-color: $gray !important;

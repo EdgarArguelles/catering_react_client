@@ -17,11 +17,6 @@ const MenuItemContent = ({focus, menu, select, deselect}) => {
     }
   };
 
-  const handleSelect = () => {
-    animateIcon();
-    select();
-  };
-
   const getQuantity = () => {
     const input = isSelected
       ? <MenuQuantity hideLabels={true} onEnter={deselect} autoFocus={focus}/>
@@ -30,7 +25,7 @@ const MenuItemContent = ({focus, menu, select, deselect}) => {
     return (
       <span>
         <span onClick={deselect}>Menús en presupuesto</span>
-        <b onClick={handleSelect} onMouseEnter={animateIcon}>x {input}</b>
+        <b onClick={select} onMouseEnter={animateIcon}>x {input}</b>
       </span>
     );
   };

@@ -34,14 +34,19 @@ const DishList = ({location}) => {
     }
   }, [courseType.id, courseType.name, courseTypeDishes.length, dispatch]);
 
+  const animateIcon = () => Utils.animateIcon('dish-filter-button-icon');
+  const handleClick = () => {
+    animateIcon();
+    setIsFilterOpen(true);
+  };
+
   return (
     <div id="dish-list">
       <DishToolbar/>
       <DishGrid dishes={categoryDishes} isLoading={courseTypeDishes.length <= 0}/>
       <DishCarButton/>
       <Fab id="dish-filter-button" color="primary" className="floating-button animated fadeInRight"
-           classes={{label: 'dish-filter-button-label'}} onClick={() => setIsFilterOpen(true)}
-           onMouseEnter={() => Utils.animateIcon('dish-filter-button-icon')}>
+           classes={{label: 'dish-filter-button-label'}} onClick={handleClick} onMouseEnter={animateIcon}>
         <FontAwesomeIcon id="dish-filter-button-icon" icon={faFilter}/>
       </Fab>
 

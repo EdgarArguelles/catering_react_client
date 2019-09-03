@@ -24,7 +24,9 @@ const CourseType = ({className, courseType}) => {
   const isMultipleDishes = useMultipleDishes(courseType);
   const isSnackBarOpen = !isMultipleDishesDialogOpen && dishes.length > 0;
 
+  const animateIcon = () => Utils.animateIcon(`plus-${courseType.position}-icon`);
   const add = () => {
+    animateIcon();
     if (isMultipleDishes) {
       dispatch(MultipleDishesDialogActions.openDialog());
       dispatch(MultipleDishesDialogActions.cleanDishes());
@@ -41,7 +43,7 @@ const CourseType = ({className, courseType}) => {
       <div className="btn-container">
         <Animate visible={courseType.position - 1 === currentTab} animationIn="rubberBand"
                  className={isSnackBarOpen ? 'move-up' : ''}>
-          <Fab color="primary" onClick={add} onMouseEnter={() => Utils.animateIcon(`plus-${courseType.position}-icon`)}>
+          <Fab color="primary" onClick={add} onMouseEnter={animateIcon}>
             <FontAwesomeIcon id={`plus-${courseType.position}-icon`} icon={faPlus}/>
           </Fab>
         </Animate>

@@ -38,11 +38,6 @@ const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
       }
     };
 
-    const handleSelect = () => {
-      animateIcon();
-      select();
-    };
-
     const handleSave = newValue => {
       dispatch(MenuActions.changeName(newValue !== '' ? newValue : name));
       dispatch(QuotationActions.selectMenu(''));
@@ -55,7 +50,7 @@ const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
     return (
       <div className="menu-title">
         <Avatar className="avatar" onClick={deselect}>{index + 1}</Avatar>
-        <span onClick={handleSelect} onMouseEnter={animateIcon}>{title}</span>
+        <span onClick={select} onMouseEnter={animateIcon}>{title}</span>
       </div>
     );
   };

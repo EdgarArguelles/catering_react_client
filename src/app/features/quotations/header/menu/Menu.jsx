@@ -10,12 +10,16 @@ import User from './user/User';
 
 const Menu = () => {
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const animateIcon = () => Utils.animateIcon('menu-phone-icon');
+  const handleClick = () => {
+    animateIcon();
+    setIsContactDialogOpen(true);
+  };
 
   return (
     <div id="menu">
       <HomeLink/>
-      <Button color="inherit" onClick={() => setIsContactDialogOpen(true)}
-              onMouseEnter={() => Utils.animateIcon('menu-phone-icon')}>
+      <Button color="inherit" onClick={handleClick} onMouseEnter={animateIcon}>
         <FontAwesomeIcon id="menu-phone-icon" icon={faPhone}/>
         <p>Contactanos</p>
       </Button>

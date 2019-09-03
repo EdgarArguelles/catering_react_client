@@ -21,8 +21,8 @@ const Layout = () => {
 
   const animateIcon = () => Utils.animateIcon('change-theme-icon');
   const handleClick = () => {
-    changeTheme();
     animateIcon();
+    changeTheme();
   };
 
   return (

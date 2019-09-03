@@ -26,18 +26,18 @@ const ShareButton = ({link, label, description, hashtag}) => {
   const speedDialIcon = <FontAwesomeIcon id="share-icon" icon={isSpeedDialOpen ? faTimes : faShareAlt}/>;
   const animateIcon = () => Utils.animateIcon('share-icon');
   const open = () => {
-    setIsSpeedDialOpen(true);
     animateIcon();
+    setIsSpeedDialOpen(true);
   };
 
   const close = () => {
-    setIsSpeedDialOpen(false);
     animateIcon();
+    setIsSpeedDialOpen(false);
   };
 
   const toggle = () => {
-    setIsSpeedDialOpen(!isSpeedDialOpen);
     animateIcon();
+    setIsSpeedDialOpen(!isSpeedDialOpen);
   };
 
   const getShareActions = () => {

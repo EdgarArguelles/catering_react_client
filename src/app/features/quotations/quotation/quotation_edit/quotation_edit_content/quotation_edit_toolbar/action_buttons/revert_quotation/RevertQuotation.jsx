@@ -46,9 +46,9 @@ const RevertQuotation = ({hidden}) => {
 
   const animateIcon = () => Utils.animateIcon('revert-button-icon');
   const handleClick = () => {
+    animateIcon();
     setIsDialogOpen(!showError);
     setIsErrorOpen(showError);
-    animateIcon();
   };
 
   return (

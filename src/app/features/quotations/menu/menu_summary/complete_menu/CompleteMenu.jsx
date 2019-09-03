@@ -7,15 +7,10 @@ import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 
 const CompleteMenu = () => {
-  const animateIcon = () => Utils.animateIcon('complete-menu-icon');
-  const handleClick = () => {
-    animateIcon();
-    History.navigate('/presupuestos/editar');
-  };
-
   return (
     <div id="complete-menu">
-      <Fab variant="extended" color="primary" onClick={handleClick} onMouseEnter={animateIcon}>
+      <Fab variant="extended" color="primary" onClick={() => History.navigate('/presupuestos/editar')}
+           onMouseEnter={() => Utils.animateIcon('complete-menu-icon')}>
         <FontAwesomeIcon id="complete-menu-icon" className="button-icon" icon={faCheck}/>
         <p>Menú listo</p>
       </Fab>

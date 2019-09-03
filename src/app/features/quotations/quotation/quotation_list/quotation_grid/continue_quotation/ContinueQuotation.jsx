@@ -15,14 +15,9 @@ const ContinueQuotation = () => {
     return null;
   }
 
-  const animateIcon = () => Utils.animateIcon('continue-quotation-icon');
-  const handleClick = () => {
-    animateIcon();
-    History.navigate(getEditPath(quotation));
-  };
-
   return (
-    <Button id="continue-quotation" onClick={handleClick} onMouseEnter={animateIcon}>
+    <Button id="continue-quotation" onClick={() => History.navigate(getEditPath(quotation))}
+            onMouseEnter={() => Utils.animateIcon('continue-quotation-icon')}>
       <FontAwesomeIcon id="continue-quotation-icon" icon={faBookOpen}/>
       Continuar con el presupuesto
     </Button>
