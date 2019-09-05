@@ -45,17 +45,14 @@ const Navigation = () => {
     return <img className="company-logo" src={image} alt="logo" onClick={() => History.navigate('/')}/>;
   }
 
-  const animateIcon = () => Utils.animateIcon('menu-back-icon');
   const handleClick = () => {
-    animateIcon();
+    Utils.animateIcon('menu-back-icon', {duration: 30});
     History.navigate(navigation.backLink);
   };
 
   return (
     <div id="navigation">
-      <IconButton onClick={handleClick} onMouseEnter={animateIcon}>
-        <FontAwesomeIcon id="menu-back-icon" icon={faArrowLeft}/>
-      </IconButton>
+      <IconButton onClick={handleClick}><FontAwesomeIcon id="menu-back-icon" icon={faArrowLeft}/></IconButton>
       <p>{navigation.title}</p>
     </div>
   );

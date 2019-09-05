@@ -7,7 +7,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
-import Utils from 'app/common/Utils';
 import MenuActions from 'app/features/quotations/menu/MenuActions';
 import MultipleDishesDialogActions
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
@@ -35,7 +34,6 @@ const RemoveButton = ({className, dish}) => {
 
   return (
     <Fab id="remove-button" variant="extended" color="secondary" onClick={handleRemoveCourse}
-         onMouseEnter={() => Utils.animateIcon('remove-button-icon')}
          className={className} classes={{label: 'remove-button-label'}}>
       <FontAwesomeIcon id="remove-button-icon" className="button-icon" icon={faMinusCircle}/> Remover
     </Fab>

@@ -5,7 +5,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFlagCheckered} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
-import Utils from 'app/common/Utils';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
@@ -25,9 +24,7 @@ const QuotationCompleteButton = () => {
     History.navigate(loggedUser ? '/presupuestos/todos' : '/presupuestos');
   };
 
-  const animateIcon = () => Utils.animateIcon('quotation-complete-button-icon', {strokeWidth: 20});
   const handleShowDialog = () => {
-    animateIcon();
     const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
     const isEdited = !areEqual(selectedQuotation, quotations ? quotations[selectedQuotation.id] : null);
 
@@ -46,7 +43,7 @@ const QuotationCompleteButton = () => {
   return (
     <>
       <Fab id="quotation-complete-button" className={`floating-button animated zoomIn ${errors ? 'move-up' : ''}`}
-           classes={{label: 'quotation-complete-button-label'}} onClick={handleShowDialog} onMouseEnter={animateIcon}>
+           classes={{label: 'quotation-complete-button-label'}} onClick={handleShowDialog}>
         <FontAwesomeIcon id="quotation-complete-button-icon" icon={faFlagCheckered}/>
       </Fab>
 
