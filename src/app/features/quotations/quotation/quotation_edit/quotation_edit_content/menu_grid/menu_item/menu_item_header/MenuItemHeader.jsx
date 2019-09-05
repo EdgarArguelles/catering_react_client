@@ -17,17 +17,14 @@ const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
   const {id, name, isSelected} = menu;
 
   const getMenuButton = () => {
-    const animateIcon = () => Utils.animateIcon(`menu-${id}-options-icon`);
     const onOpen = event => {
-      animateIcon();
+      Utils.animateIcon(`menu-${id}-options-icon`);
       deselect();
       openMenu(event);
     };
 
     return (
-      <IconButton onClick={onOpen} onMouseEnter={animateIcon}>
-        <FontAwesomeIcon id={`menu-${id}-options-icon`} icon={faEllipsisV}/>
-      </IconButton>
+      <IconButton onClick={onOpen}><FontAwesomeIcon id={`menu-${id}-options-icon`} icon={faEllipsisV}/></IconButton>
     );
   };
 

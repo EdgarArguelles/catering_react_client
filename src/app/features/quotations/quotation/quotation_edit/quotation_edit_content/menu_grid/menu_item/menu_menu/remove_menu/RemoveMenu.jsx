@@ -14,9 +14,8 @@ const RemoveMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const animateIcon = () => Utils.animateIcon('remove-menu-icon', {strokeWidth: 10});
   const handleOpen = () => {
-    animateIcon();
+    Utils.animateIcon('remove-menu-icon', {strokeWidth: 10});
     setIsDialogOpen(true);
   };
 
@@ -33,7 +32,7 @@ const RemoveMenu = ({menu, onClose}) => {
 
   return (
     <>
-      <MenuItem id="remove-menu" onClick={handleOpen} onMouseEnter={animateIcon}>
+      <MenuItem id="remove-menu" onClick={handleOpen}>
         <FontAwesomeIcon id="remove-menu-icon" className="menu-icon" icon={faTrashAlt}/> Eliminar Menú
       </MenuItem>
 

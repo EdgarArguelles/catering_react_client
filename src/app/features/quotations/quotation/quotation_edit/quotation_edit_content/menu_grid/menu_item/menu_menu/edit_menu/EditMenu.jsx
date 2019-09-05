@@ -13,9 +13,8 @@ import QuotationActions from 'app/features/quotations/quotation/QuotationActions
 const EditMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
 
-  const animateIcon = () => Utils.animateIcon('edit-menu-icon', {strokeWidth: 10});
   const editMenu = () => {
-    animateIcon();
+    Utils.animateIcon('edit-menu-icon', {strokeWidth: 10});
     dispatch(QuotationActions.selectMenu(menu.id));
     dispatch(QuotationsActions.changeMenuTab(0));
     onClose();
@@ -23,7 +22,7 @@ const EditMenu = ({menu, onClose}) => {
   };
 
   return (
-    <MenuItem id="edit-menu" onClick={editMenu} onMouseEnter={animateIcon}>
+    <MenuItem id="edit-menu" onClick={editMenu}>
       <FontAwesomeIcon id="edit-menu-icon" className="menu-icon" icon={faEdit}/> Editar Menú
     </MenuItem>
   );

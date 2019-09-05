@@ -16,23 +16,20 @@ const UserMenu = ({open, anchorEl, onClose}) => {
   const dispatch = useDispatch();
   const {theme, themeIcon, changeTheme} = useAppTheme();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const animateMyQuotationsIcon = () => Utils.animateIcon('menu-my-quotations-icon');
-  const animateThemeIcon = () => Utils.animateIcon('menu-theme-icon');
-  const animateSignOutIcon = () => Utils.animateIcon('menu-sign-out-icon');
 
   const redirectToMyQuotations = () => {
-    animateMyQuotationsIcon();
+    Utils.animateIcon('menu-my-quotations-icon');
     onClose();
     History.navigate('/presupuestos/todos');
   };
 
   const handleChangeTheme = () => {
-    animateThemeIcon();
+    Utils.animateIcon('menu-theme-icon');
     changeTheme();
   };
 
   const handleLogout = () => {
-    animateSignOutIcon();
+    Utils.animateIcon('menu-sign-out-icon');
     setIsDialogOpen(true);
   };
 
@@ -45,14 +42,14 @@ const UserMenu = ({open, anchorEl, onClose}) => {
   return (
     <Popover id="user-menu" open={open} anchorEl={anchorEl} onClose={onClose}
              anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
-      <MenuItem onClick={redirectToMyQuotations} onMouseEnter={animateMyQuotationsIcon}>
+      <MenuItem onClick={redirectToMyQuotations}>
         <FontAwesomeIcon id="menu-my-quotations-icon" className="menu-icon" icon={faDonate}/> Mis Presupuestos
       </MenuItem>
-      <MenuItem onClick={handleChangeTheme} onMouseEnter={animateThemeIcon}>
+      <MenuItem onClick={handleChangeTheme}>
         <FontAwesomeIcon id="menu-theme-icon" className="menu-icon" icon={themeIcon}/>
         Tema {theme === 'dark' ? 'Claro' : 'Oscuro'}
       </MenuItem>
-      <MenuItem onClick={handleLogout} onMouseEnter={animateSignOutIcon}>
+      <MenuItem onClick={handleLogout}>
         <FontAwesomeIcon id="menu-sign-out-icon" className="menu-icon" icon={faSignOutAlt}/> Salir
       </MenuItem>
 

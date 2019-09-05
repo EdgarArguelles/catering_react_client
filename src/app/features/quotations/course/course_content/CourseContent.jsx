@@ -21,9 +21,8 @@ const CourseContent = ({course, onActionClick}) => {
   const dishes = useSelector(state => state.data.dishes);
   const selectDish = dishId => dispatch(DishActions.selectDish(dishId));
   const isMultipleDishes = useMultipleDishes(courseTypes[course.type.id]);
-  const animateIcon = () => Utils.animateIcon(`${course.type.id}-${course.position}-trash-icon`);
   const handleRemoveClick = () => {
-    animateIcon();
+    Utils.animateIcon(`${course.type.id}-${course.position}-trash-icon`);
     onActionClick();
   };
 
@@ -59,7 +58,7 @@ const CourseContent = ({course, onActionClick}) => {
         <p className="price">
           {formatCurrency(getDishesPrice(course.dishes, dishes), {format: '%s%v', symbol: '$'})}
         </p>
-        <IconButton onClick={handleRemoveClick} onMouseEnter={animateIcon}>
+        <IconButton onClick={handleRemoveClick}>
           <FontAwesomeIcon id={`${course.type.id}-${course.position}-trash-icon`} icon={faTrash}/>
         </IconButton>
       </>}/>

@@ -12,9 +12,8 @@ import QuotationActions from 'app/features/quotations/quotation/QuotationActions
 const DuplicateMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
 
-  const animateIcon = () => Utils.animateIcon('duplicate-menu-icon', {strokeWidth: 10});
   const duplicateMenu = () => {
-    animateIcon();
+    Utils.animateIcon('duplicate-menu-icon', {strokeWidth: 10});
     const menuId = getRandomMenuId();
     const newMenu = {...menu, id: menuId, name: `${menu.name} 2`, courses: menu.courses.map(c => ({...c, id: null}))};
     dispatch(QuotationActions.addMenu(newMenu));
@@ -22,7 +21,7 @@ const DuplicateMenu = ({menu, onClose}) => {
   };
 
   return (
-    <MenuItem id="duplicate-menu" onClick={duplicateMenu} onMouseEnter={animateIcon}>
+    <MenuItem id="duplicate-menu" onClick={duplicateMenu}>
       <FontAwesomeIcon id="duplicate-menu-icon" className="menu-icon" icon={faCopy}/> Duplicar Menú
     </MenuItem>
   );

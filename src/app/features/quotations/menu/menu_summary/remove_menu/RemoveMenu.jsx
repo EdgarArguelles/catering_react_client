@@ -15,7 +15,7 @@ const RemoveMenu = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const {id, name} = menu;
 
-  const animateIcon = () => Utils.animateIcon('remove-menu-icon');
+  const animateIcon = () => Utils.animateIcon('remove-menu-icon', {strokeWidth: 30});
   const handleClick = () => {
     animateIcon();
     setIsDialogOpen(true);

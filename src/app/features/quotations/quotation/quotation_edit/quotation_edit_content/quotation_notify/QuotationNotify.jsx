@@ -17,9 +17,8 @@ const QuotationNotify = () => {
   const [comment, setComment] = useState('');
   const link = `${window.location.origin}/presupuestos/ver/${quotation.id}`;
   const body = `comentario:%0D%0A${encodeURI(comment)}%0D%0A%0D%0A%0D%0Alink: ${link}`;
-  const animateIcon = () => Utils.animateIcon('quotation-notify-button-icon', {strokeWidth: 20});
   const openSendDialog = () => {
-    animateIcon();
+    Utils.animateIcon('quotation-notify-button-icon', {strokeWidth: 20});
     setIsSendDialogOpen(true);
     setComment('');
   };
@@ -48,7 +47,7 @@ const QuotationNotify = () => {
   return (
     <div id="quotation-notify">
       <Fab id="quotation-notify-button" variant="extended" className="notify-chef animated zoomIn delay-1s"
-           onClick={openSendDialog} onMouseEnter={animateIcon} classes={{label: 'quotation-notify-button-label'}}>
+           onClick={openSendDialog} classes={{label: 'quotation-notify-button-label'}}>
         <FontAwesomeIcon id="quotation-notify-button-icon" className="button-icon" icon={faMailBulk}/>
         Notificar a Areli
       </Fab>

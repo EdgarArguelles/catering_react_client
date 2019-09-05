@@ -14,9 +14,8 @@ const ViewMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
   const selectMenu = menuId => dispatch(QuotationActions.selectMenu(menuId));
 
-  const animateIcon = () => Utils.animateIcon('view-menu-icon', {strokeWidth: 10});
   const showMenuDialog = () => {
-    animateIcon();
+    Utils.animateIcon('view-menu-icon', {strokeWidth: 10});
     selectMenu(menu.id);
     dispatch(QuotationsActions.changeMenuDialogOpen(true));
   };
@@ -28,7 +27,7 @@ const ViewMenu = ({menu, onClose}) => {
 
   return (
     <>
-      <MenuItem id="view-menu" onClick={showMenuDialog} onMouseEnter={animateIcon}>
+      <MenuItem id="view-menu" onClick={showMenuDialog}>
         <FontAwesomeIcon id="view-menu-icon" className="menu-icon" icon={faFileImage}/> Ver Menú
       </MenuItem>
 

@@ -12,17 +12,14 @@ const Sort = ({value, label, icon}) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.quotations.dish.filter);
   const className = filter.sort === value ? 'active' : '';
-  const animateIcon = () => Utils.animateIcon(`${label}-sort-icon`);
   const changeSort = () => {
-    animateIcon();
+    Utils.animateIcon(`${label}-sort-icon`);
     dispatch(DishFilterActions.changeSort(value));
   };
 
   return (
     <Grid item xs={6} sm={4} className="filter-sort">
-      <Fab className={className} onClick={changeSort} onMouseEnter={animateIcon}>
-        <FontAwesomeIcon id={`${label}-sort-icon`} icon={icon}/>
-      </Fab>
+      <Fab className={className} onClick={changeSort}><FontAwesomeIcon id={`${label}-sort-icon`} icon={icon}/></Fab>
       <p>{label}</p>
     </Grid>
   );
