@@ -44,9 +44,8 @@ const RevertQuotation = ({hidden}) => {
     }
   };
 
-  const animateIcon = () => Utils.animateIcon('revert-button-icon');
   const handleClick = () => {
-    animateIcon();
+    Utils.animateIcon('revert-button-icon');
     setIsDialogOpen(!showError);
     setIsErrorOpen(showError);
   };
@@ -54,8 +53,7 @@ const RevertQuotation = ({hidden}) => {
   return (
     <span id="revert-quotation">
         <Zoom in={!isRemoteProcessing && !isFetching && !hidden} timeout={1000} unmountOnExit>
-          <Fab variant="extended" color="secondary" className="revert-button" onClick={handleClick}
-               onMouseEnter={animateIcon}>
+          <Fab variant="extended" color="secondary" className="revert-button" onClick={handleClick}>
             <FontAwesomeIcon id="revert-button-icon" className="button-icon" icon={icon}/>
             <div className="button-label">{`${labelAction} ${label}`}</div>
           </Fab>

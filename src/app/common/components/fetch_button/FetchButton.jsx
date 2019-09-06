@@ -72,9 +72,8 @@ const FetchButton = props => {
     latestPreconditionCall.current = preconditionCall;
   }, [asyncCall, preconditionCall, isClicked, handleAsyncCall]);
 
-  const animateIcon = () => Utils.animateIcon('fetch-button-icon');
   const handleClick = () => {
-    animateIcon();
+    Utils.animateIcon('fetch-button-icon');
     setIsClicked(true);
     preconditionCall ? preconditionCall() : handleAsyncCall(asyncCall);
   };
@@ -83,8 +82,8 @@ const FetchButton = props => {
     <span className="fetch-button">
         {buttonState === 'fetching' && <CircularProgress size={50} thickness={4} className="action-progress"/>}
       <Zoom in={!hidden || buttonState !== 'normal'} unmountOnExit>
-          <Fab variant="extended" color={color} disabled={buttonState !== 'normal'}
-               onMouseEnter={animateIcon} onClick={handleClick} className={`action-button ${buttonState}`}>
+          <Fab variant="extended" color={color} disabled={buttonState !== 'normal'} onClick={handleClick}
+               className={`action-button ${buttonState}`}>
             {buttonIcon && <FontAwesomeIcon id="fetch-button-icon" className="button-icon" icon={buttonIcon}/>}
             <div className="button-label">{content}</div>
           </Fab>
