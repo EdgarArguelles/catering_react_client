@@ -2,8 +2,11 @@ import './QuotationView.scss';
 import React, {useCallback, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
@@ -12,6 +15,7 @@ import QuotationsDataActions from 'app/data/quotations/QuotationsActions';
 
 const QuotationView = ({match}) => {
   const dispatch = useDispatch();
+  const open = useSelector(state => state.quotations.isAuthDialogOpen);
   const loggedUser = useSelector(state => state.auth.loggedUser);
 
   const quotationId = useRef(match.params.id); // avoid to re-run useEffect when match changes
@@ -34,9 +38,16 @@ const QuotationView = ({match}) => {
     }
   }, [dispatch, loadQuotation, openAuthDialog]);
 
+  // animate icon when AuthDialog closes
+  useEffect(() => {
+    if (!open) {
+      Utils.animateIcon('quotation-view-info-icon', {strokeWidth: 20});
+    }
+  }, [open]);
+
   return (
     <div id="quotation-view">
-      <i className="fas fa-info-circle" aria-hidden="true"/>
+      <FontAwesomeIcon id="quotation-view-info-icon" icon={faInfoCircle}/>
       <p className="title">No tienes permisos para ver este presupuesto</p>
       <Button variant="outlined" className="access" onClick={openAuthDialog}>
         Iniciar sesión

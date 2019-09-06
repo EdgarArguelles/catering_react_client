@@ -2,7 +2,7 @@ import './Layout.scss';
 import loading from 'assets/img/loading-large.gif';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {completeLoading} from 'app/Template';
+import Utils from 'app/common/Utils';
 import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog';
 import Header from './header/Header';
 import Router from './router/Router';
@@ -39,10 +39,7 @@ const Layout = () => {
       fetchCourseTypesTry(0);
     }
 
-    completeLoading();
-    if (document.getElementById('mobile-nav-toggle')) {
-      document.getElementById('mobile-nav-toggle').classList.add('mobile-nav-hidden');
-    }
+    Utils.completeLoading();
   }, [courseTypes, dataVersion, dispatch]);
 
   if (!courseTypes) {

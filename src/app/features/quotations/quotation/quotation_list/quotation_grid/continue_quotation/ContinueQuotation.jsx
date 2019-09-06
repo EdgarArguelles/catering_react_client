@@ -1,8 +1,11 @@
 import './ContinueQuotation.scss';
 import React from 'react';
 import {useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBookOpen} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 
 const ContinueQuotation = () => {
@@ -13,8 +16,9 @@ const ContinueQuotation = () => {
   }
 
   return (
-    <Button id="continue-quotation" onClick={() => History.navigate(getEditPath(quotation))}>
-      <i className="fas fa-book-open" aria-hidden="true"/>
+    <Button id="continue-quotation" onClick={() => History.navigate(getEditPath(quotation))}
+            onMouseEnter={() => Utils.animateIcon('continue-quotation-icon')}>
+      <FontAwesomeIcon id="continue-quotation-icon" icon={faBookOpen}/>
       Continuar con el presupuesto
     </Button>
   );

@@ -1,8 +1,11 @@
 import './ShareButton.scss';
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faShareAlt, faTimes} from '@fortawesome/free-solid-svg-icons';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import Utils from 'app/common/Utils';
 import {
   EmailIcon,
   EmailShareButton,
@@ -20,12 +23,22 @@ const TWITTER_ACCOUNT = 'edgar_bonifacio';
 
 const ShareButton = ({link, label, description, hashtag}) => {
   const [isSpeedDialOpen, setIsSpeedDialOpen] = useState(false);
-  const speedDialIcon = isSpeedDialOpen
-    ? <i className="fas fa-times" aria-hidden="true"/>
-    : <i className="fas fa-share-alt" aria-hidden="true"/>;
-  const open = () => setIsSpeedDialOpen(true);
-  const close = () => setIsSpeedDialOpen(false);
-  const toggle = () => setIsSpeedDialOpen(!isSpeedDialOpen);
+  const speedDialIcon = <FontAwesomeIcon id="share-icon" icon={isSpeedDialOpen ? faTimes : faShareAlt}/>;
+  const animateIcon = () => Utils.animateIcon('share-icon');
+  const open = () => {
+    animateIcon();
+    setIsSpeedDialOpen(true);
+  };
+
+  const close = () => {
+    animateIcon();
+    setIsSpeedDialOpen(false);
+  };
+
+  const toggle = () => {
+    animateIcon();
+    setIsSpeedDialOpen(!isSpeedDialOpen);
+  };
 
   const getShareActions = () => {
     const iconSize = 42;

@@ -2,18 +2,21 @@
 import './FetchButton.scss';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faExclamationTriangle, faSync, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Utils from 'app/common/Utils';
 
 export const ANIMATION_DELAY = 3000;
 
 const FetchButton = props => {
-  const {hidden, color, iconClass, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
+  const {hidden, color, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
   const [buttonState, setButtonState] = useState('normal');
   const [isClicked, setIsClicked] = useState(false);
-  const iconClassName = buttonState === 'success' ? 'fas fa-thumbs-up button-icon' :
-    buttonState === 'error' ? 'fas fa-exclamation-triangle button-icon' : iconClass || 'fas fa-sync';
+  const buttonIcon = buttonState === 'success' ? faThumbsUp :
+    buttonState === 'error' ? faExclamationTriangle : icon || faSync;
   const content = buttonState === 'success' ? successLabel || 'Exito' :
     buttonState === 'error' ? errorLabel || 'Ocurrio un error' : label || null;
 
@@ -70,6 +73,7 @@ const FetchButton = props => {
   }, [asyncCall, preconditionCall, isClicked, handleAsyncCall]);
 
   const handleClick = () => {
+    Utils.animateIcon('fetch-button-icon');
     setIsClicked(true);
     preconditionCall ? preconditionCall() : handleAsyncCall(asyncCall);
   };
@@ -78,9 +82,9 @@ const FetchButton = props => {
     <span className="fetch-button">
         {buttonState === 'fetching' && <CircularProgress size={50} thickness={4} className="action-progress"/>}
       <Zoom in={!hidden || buttonState !== 'normal'} unmountOnExit>
-          <Fab variant="extended" color={color} disabled={buttonState !== 'normal'}
-               onClick={handleClick} className={`action-button ${buttonState}`}>
-            {iconClassName && <i className={iconClassName} aria-hidden="true"/>}
+          <Fab variant="extended" color={color} disabled={buttonState !== 'normal'} onClick={handleClick}
+               className={`action-button ${buttonState}`}>
+            {buttonIcon && <FontAwesomeIcon id="fetch-button-icon" className="button-icon" icon={buttonIcon}/>}
             <div className="button-label">{content}</div>
           </Fab>
       </Zoom>
@@ -91,7 +95,7 @@ const FetchButton = props => {
 FetchButton.propTypes = {
   hidden: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
-  iconClass: PropTypes.string,
+  icon: PropTypes.object,
   label: PropTypes.string,
   successLabel: PropTypes.string,
   errorLabel: PropTypes.string,

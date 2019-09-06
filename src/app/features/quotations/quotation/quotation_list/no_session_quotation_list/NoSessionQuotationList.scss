@@ -1,32 +1,6 @@
 @import '../../../../../Variables';
-@import '../../../header/Header';
+@import '../../quotation_view/QuotationView';
 
 #no-session-quotation-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - #{$header-height});
-  color: $gray;
-
-  i {
-    @include font-size(140);
-  }
-
-  .title {
-    text-align: center;
-    margin-bottom: 0;
-    @include font-size(32);
-  }
-
-  .access {
-    display: block;
-    margin: 40px auto;
-    border-radius: 50px;
-    width: 350px;
-
-    @media (max-width: 350px) {
-      width: auto;
-    }
-  }
+  @extend #quotation-view;
 }

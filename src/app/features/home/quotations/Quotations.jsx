@@ -12,8 +12,8 @@ const Quotations = () => {
       const shouldPause = video && document.visibilityState === 'hidden';
       shouldPause && video.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
     };
-    document.addEventListener('visibilitychange', handleVisibility);
 
+    document.addEventListener('visibilitychange', handleVisibility);
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 

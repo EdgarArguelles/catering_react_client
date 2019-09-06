@@ -18,215 +18,51 @@
     display: none;
   }
 
-  .nav-menu {
+  .menu-items {
     margin: 0;
     padding: 0;
-    list-style: none;
 
-    ul {
-      position: absolute;
-      display: none;
-      top: 100%;
-      left: 0;
-      margin: 4px 0 0 0;
-      border: 1px solid #e7e7e7;
-
-      ul {
-        top: 0;
-        left: 100%;
-        margin: 0;
-      }
-
-      li:first-child {
-        border-top: 0;
-      }
-
-      li {
-        min-width: 180px;
-        background: #fff;
-
-        a {
-          padding: 10px;
-          color: #333;
-          transition: 0.3s;
-          display: block;
-          text-transform: none;
-          @include font-size(11);
-        }
-      }
-    }
-
-    & > li {
+    li {
+      position: relative;
+      white-space: nowrap;
       float: left;
       margin-left: 10px;
 
       @media (max-width: $screen-sm) {
         margin-left: 0;
       }
-    }
-
-    li {
-      position: relative;
-      white-space: nowrap;
-    }
-
-    a {
-      padding: 0 8px 10px 8px;
-      text-decoration: none;
-      display: inline-block;
-      color: #fff;
-      font-weight: 400;
-      text-transform: uppercase;
-      outline: none;
-      @include font-size(11);
-
-      @media (max-width: 670px) {
-        padding: 0 4px 10px 4px;
-        @include font-size(10);
-      }
-    }
-  }
-}
-
-.nav-menu > li > a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: $main-color;
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.nav-menu .menu-active > a:before {
-  visibility: visible;
-  transform: scaleX(1);
-}
-
-/* Mobile Nav Toggle */
-.mobile-header-fixed {
-  top: 0 !important;
-}
-
-.mobile-nav-hidden {
-  display: none !important;
-}
-
-#mobile-nav-toggle {
-  position: fixed;
-  right: 0;
-  top: 20px;
-  z-index: 2;
-  margin: 20px 20px 0 0;
-  border: 0;
-  background: none;
-  display: none;
-  transition: all 0.4s;
-  outline: none;
-  cursor: pointer;
-  @include font-size(21);
-
-  @media (max-width: $screen-xs) {
-    display: inline;
-  }
-
-  i {
-    color: #fff;
-  }
-}
-
-/* Mobile Nav Styling */
-#mobile-nav {
-  position: fixed;
-  top: 0;
-  padding-top: 18px;
-  bottom: 0;
-  z-index: 2;
-  background: $header-color;
-  left: -260px;
-  width: 260px;
-  overflow-y: auto;
-  transition: 0.4s;
-
-  #mobile-nav-logo {
-    position: absolute;
-    top: 30px;
-    margin: 30px 25%;
-  }
-
-  ul {
-    position: absolute;
-    top: 130px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
-    li {
-      position: relative;
-
-      li {
-        padding-left: 30px;
-      }
 
       a {
-        color: #fff;
-        overflow: hidden;
-        padding: 10px 22px 10px 15px;
-        position: relative;
-        text-decoration: none;
-        width: 100%;
-        display: block;
+        padding: 0 8px 10px 8px;
+        display: inline-block;
+        font-weight: 400;
+        text-transform: uppercase;
         outline: none;
-        @include font-size(18);
+        @include font-size(11);
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: $main-color;
+          visibility: hidden;
+          transform: scaleX(0);
+          transition: all 0.3s ease-in-out 0s;
+        }
+
+        @media (max-width: 670px) {
+          padding: 0 4px 10px 4px;
+          @include font-size(10);
+        }
       }
     }
 
-    .menu-has-children {
-      i {
-        position: absolute;
-        right: 0;
-        padding: 15px;
-        cursor: pointer;
-        color: #fff;
-      }
-
-      i.fa-chevron-up {
-        color: $main-color;
-      }
+    .menu-active a:before {
+      visibility: visible;
+      transform: scaleX(1);
     }
-
-    .menu-active {
-      a {
-        color: $main-color;
-      }
-    }
-  }
-}
-
-/* Mobile Nav Body Pverly */
-#mobile-body-overly {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  position: fixed;
-  background: $header-color;
-  display: none;
-}
-
-/* Mobile Nav body classes */
-body.mobile-nav-active {
-  overflow: hidden;
-
-  #mobile-nav {
-    left: 0;
-  }
-
-  #mobile-nav-toggle {
-    color: #fff;
   }
 }

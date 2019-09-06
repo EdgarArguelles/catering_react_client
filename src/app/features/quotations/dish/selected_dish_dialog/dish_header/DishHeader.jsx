@@ -3,7 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import formatCurrency from 'format-currency';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@material-ui/core/IconButton';
+import Utils from 'app/common/Utils';
 import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
 import AddButton from './add_button/AddButton';
 import RemoveButton from './remove_button/RemoveButton';
@@ -20,8 +23,8 @@ const DishHeader = ({dish, onClose}) => {
     }
 
     return (
-      <IconButton className="navigation" onClick={onClose}>
-        <i className="fas fa-arrow-left" aria-hidden="true"/>
+      <IconButton className="navigation" onClick={onClose} onMouseEnter={() => Utils.animateIcon('dish-back-icon')}>
+        <FontAwesomeIcon id="dish-back-icon" icon={faArrowLeft}/>
       </IconButton>
     );
   };

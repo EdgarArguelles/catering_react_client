@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import isEqual from 'lodash/isEqual';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import MenuActions from 'app/features/quotations/menu/MenuActions';
@@ -33,7 +35,7 @@ const RemoveButton = ({className, dish}) => {
   return (
     <Fab id="remove-button" variant="extended" color="secondary" onClick={handleRemoveCourse}
          className={className} classes={{label: 'remove-button-label'}}>
-      <i id="remove-button-icon" className="fas fa-minus-circle button-icon" aria-hidden="true"/> Remover
+      <FontAwesomeIcon id="remove-button-icon" className="button-icon" icon={faMinusCircle}/> Remover
     </Fab>
   );
 };

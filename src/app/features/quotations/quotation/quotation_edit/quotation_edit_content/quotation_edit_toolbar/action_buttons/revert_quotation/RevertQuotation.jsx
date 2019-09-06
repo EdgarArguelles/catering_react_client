@@ -2,11 +2,14 @@ import './RevertQuotation.scss';
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHistory, faTrash} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
@@ -23,7 +26,7 @@ const RevertQuotation = ({hidden}) => {
 
   const {id, name} = quotation;
   const showError = !loggedUser && !!id;
-  const icon = id ? 'fa-history' : 'fa-trash';
+  const icon = id ? faHistory : faTrash;
   const idAction = id ? 'revert-quotation-button' : 'remove-quotation-button';
   const labelAction = id ? 'Revertir' : 'Eliminar';
   const label = id ? 'cambios' : 'presupuesto';
@@ -42,6 +45,7 @@ const RevertQuotation = ({hidden}) => {
   };
 
   const handleClick = () => {
+    Utils.animateIcon('revert-button-icon');
     setIsDialogOpen(!showError);
     setIsErrorOpen(showError);
   };
@@ -50,7 +54,7 @@ const RevertQuotation = ({hidden}) => {
     <span id="revert-quotation">
         <Zoom in={!isRemoteProcessing && !isFetching && !hidden} timeout={1000} unmountOnExit>
           <Fab variant="extended" color="secondary" className="revert-button" onClick={handleClick}>
-            <i className={`fas ${icon} button-icon`} aria-hidden="true"/>
+            <FontAwesomeIcon id="revert-button-icon" className="button-icon" icon={icon}/>
             <div className="button-label">{`${labelAction} ${label}`}</div>
           </Fab>
         </Zoom>

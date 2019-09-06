@@ -9,7 +9,7 @@
   min-height: calc(100vh - #{$header-height});
   color: $gray;
 
-  i {
+  svg {
     @include font-size(140);
   }
 

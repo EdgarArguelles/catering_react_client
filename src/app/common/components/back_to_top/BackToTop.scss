@@ -4,15 +4,15 @@
   position: fixed;
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
+  width: 36px;
   padding: 6px 12px 9px 12px;
   border-radius: 2px;
   right: 15px;
   bottom: 15px;
   transition: background 0.5s;
-  @include font-size(14);
+  @include font-size(29);
 
   &:hover {
     background: $main-color;
-    color: #fff;
   }
 }

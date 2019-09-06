@@ -1,6 +1,7 @@
 import './DishFilter.scss';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {faDollarSign, faSortAlphaUp} from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import DishFilterActions from './DishFilterActions';
@@ -19,8 +20,8 @@ const DishFilter = () => {
     <Grid id="dish-filter" container justify="center">
       <Grid item xs={12}>
         <Grid container justify="center">
-          <Sort key="sort-name" value="name" label="Ordenar por nombre" iconClass="fas fa-sort-alpha-up"/>
-          <Sort key="sort-price" value="price" label="Ordenar por precio" iconClass="fas fa-dollar-sign"/>
+          <Sort key="sort-name" value="name" label="Ordenar por nombre" icon={faSortAlphaUp}/>
+          <Sort key="sort-price" value="price" label="Ordenar por precio" icon={faDollarSign}/>
         </Grid>
       </Grid>
       <Grid item xs={10} className="section-header">

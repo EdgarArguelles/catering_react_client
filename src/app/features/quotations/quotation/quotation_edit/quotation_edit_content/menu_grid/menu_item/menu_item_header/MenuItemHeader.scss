@@ -14,9 +14,9 @@
       margin-top: -10px;
     }
 
-    i {
+    svg {
       position: fixed;
-      padding: 0 5px;
+      margin: 0 5px;
       @include font-size(13);
     }
   }

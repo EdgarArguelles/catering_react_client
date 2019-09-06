@@ -1,8 +1,11 @@
 import './RemoveMenu.scss';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
+import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
@@ -12,6 +15,12 @@ const RemoveMenu = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const {id, name} = menu;
 
+  const animateIcon = () => Utils.animateIcon('remove-menu-icon', {strokeWidth: 30});
+  const handleClick = () => {
+    animateIcon();
+    setIsDialogOpen(true);
+  };
+
   const handleRemove = () => {
     dispatch(QuotationActions.removeMenu(id));
     History.navigate('/presupuestos/editar');
@@ -19,8 +28,8 @@ const RemoveMenu = () => {
 
   return (
     <div id="remove-menu">
-      <Fab variant="extended" color="secondary" onClick={() => setIsDialogOpen(true)}>
-        <i className="fas fa-trash-alt button-icon" aria-hidden="true"/>
+      <Fab variant="extended" color="secondary" onClick={handleClick} onMouseEnter={animateIcon}>
+        <FontAwesomeIcon id="remove-menu-icon" className="button-icon" icon={faTrashAlt}/>
         <p>Eliminar Menú</p>
       </Fab>
 

@@ -1,8 +1,11 @@
 import './QuotationNotify.scss';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMailBulk} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
+import Utils from 'app/common/Utils';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 
@@ -15,6 +18,7 @@ const QuotationNotify = () => {
   const link = `${window.location.origin}/presupuestos/ver/${quotation.id}`;
   const body = `comentario:%0D%0A${encodeURI(comment)}%0D%0A%0D%0A%0D%0Alink: ${link}`;
   const openSendDialog = () => {
+    Utils.animateIcon('quotation-notify-button-icon', {strokeWidth: 20});
     setIsSendDialogOpen(true);
     setComment('');
   };
@@ -44,7 +48,7 @@ const QuotationNotify = () => {
     <div id="quotation-notify">
       <Fab id="quotation-notify-button" variant="extended" className="notify-chef animated zoomIn delay-1s"
            onClick={openSendDialog} classes={{label: 'quotation-notify-button-label'}}>
-        <i id="quotation-notify-button-icon" className="fas fa-mail-bulk button-icon" aria-hidden="true"/>
+        <FontAwesomeIcon id="quotation-notify-button-icon" className="button-icon" icon={faMailBulk}/>
         Notificar a Areli
       </Fab>
 

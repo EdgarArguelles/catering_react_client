@@ -37,7 +37,7 @@ $btn-width: 56px;
       transition: transform 1s;
       animation-fill-mode: initial;
 
-      i {
+      svg {
         @include font-size(16);
       }
     }

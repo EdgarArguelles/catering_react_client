@@ -31,7 +31,6 @@
         button {
           text-transform: none;
           @include font-size(18);
-          @include animate-icon-hover();
 
           .button-label {
             float: right;
@@ -40,8 +39,7 @@
             color: $gray;
           }
 
-          i {
-            width: 32px;
+          svg {
             color: $main-color;
             margin-right: 30px;
             @include font-size(36);

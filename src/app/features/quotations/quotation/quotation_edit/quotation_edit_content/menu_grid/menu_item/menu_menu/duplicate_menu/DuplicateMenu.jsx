@@ -2,7 +2,10 @@ import './DuplicateMenu.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCopy} from '@fortawesome/free-regular-svg-icons';
 import MenuItem from '@material-ui/core/MenuItem';
+import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
 
@@ -10,6 +13,7 @@ const DuplicateMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
 
   const duplicateMenu = () => {
+    Utils.animateIcon('duplicate-menu-icon', {strokeWidth: 10});
     const menuId = getRandomMenuId();
     const newMenu = {...menu, id: menuId, name: `${menu.name} 2`, courses: menu.courses.map(c => ({...c, id: null}))};
     dispatch(QuotationActions.addMenu(newMenu));
@@ -18,7 +22,7 @@ const DuplicateMenu = ({menu, onClose}) => {
 
   return (
     <MenuItem id="duplicate-menu" onClick={duplicateMenu}>
-      <i id="duplicate-menu-icon" className="far fa-copy menu-icon" aria-hidden="true"/> Duplicar Menú
+      <FontAwesomeIcon id="duplicate-menu-icon" className="menu-icon" icon={faCopy}/> Duplicar Menú
     </MenuItem>
   );
 };

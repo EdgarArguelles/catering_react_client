@@ -1,6 +1,7 @@
 import './SaveQuotation.scss';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {faSave} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
@@ -54,7 +55,7 @@ const SaveQuotation = () => {
   return (
     <span id="save-quotation">
         <FetchButton color="primary" label={`Guardar ${label}`} successLabel={`${label} ${labelAction}`}
-                     hidden={isRemoteProcessing || isFetching} iconClass="fas fa-save button-icon"
+                     hidden={isRemoteProcessing || isFetching} icon={faSave}
                      onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <AuthDialog/>

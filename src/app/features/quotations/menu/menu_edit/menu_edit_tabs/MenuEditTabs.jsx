@@ -1,11 +1,14 @@
 import './MenuEditTabs.scss';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faDollarSign} from '@fortawesome/free-solid-svg-icons';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
+import Utils from 'app/common/Utils';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar';
 import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs';
@@ -25,6 +28,9 @@ const MenuEditTabs = () => {
   const menuCourses = selectedMenu ? selectedMenu.courses : null;
 
   const changeTapValue = newValue => {
+    if (newValue === sortedCourseTypes.length) {
+      Utils.animateIcon('menu-edit-price-icon');
+    }
     dispatch(QuotationsActions.changeMenuTab(newValue));
     resetBarsTop(tabsElementId);
   };
@@ -49,7 +55,7 @@ const MenuEditTabs = () => {
         {sortedCourseTypes.map(courseType => getTabLabel(courseType))}
         <Tab className="summary-tab" icon={
           <Badge badgeContent={menuCourses.length} invisible={menuCourses.length === 0} color="secondary">
-            <i className="fas fa-dollar-sign" aria-hidden="true"/>
+            <FontAwesomeIcon id="menu-edit-price-icon" icon={faDollarSign}/>
           </Badge>
         }/>
       </Tabs>

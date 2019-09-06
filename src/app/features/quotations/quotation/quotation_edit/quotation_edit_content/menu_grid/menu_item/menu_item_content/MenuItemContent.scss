@@ -14,9 +14,9 @@
       float: right;
     }
 
-    i {
+    svg {
       position: fixed;
-      padding: 0 3px;
+      margin: 0 3px;
       @include font-size(10);
     }
 
