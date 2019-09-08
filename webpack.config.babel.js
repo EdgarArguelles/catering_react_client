@@ -83,6 +83,8 @@ export default {
       {test: /index.html$/, use: 'file-loader?name=[name].[ext]'},
       // assets
       {test: /\.(png|jpg|gif)$/, use: 'file-loader?name=assets/[name].[ext]'},
+      // svg
+      {test: /\.svg$/, use: '@svgr/webpack'},
       // sass
       {
         test: /\.scss$/, use: [

@@ -8,14 +8,18 @@
     @media (max-width: $screen-xxs) {
       width: 240px;
 
-      #logo {
-        margin: 30px 15px;
+      #side-logo {
+        margin: 0 20px;
       }
     }
   }
 
-  #logo {
-    margin: 30px;
+  #side-logo {
+    position: initial;
+    width: 200px;
+    height: 200px;
+    transform: translate(0, 0);
+    margin: 0 45px;
   }
 
   .menu-items {

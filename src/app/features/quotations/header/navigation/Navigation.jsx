@@ -1,5 +1,5 @@
 import './Navigation.scss';
-import image from 'assets/img/logo.png';
+import Logo from 'assets/img/logo.svg';
 import React, {useEffect, useRef} from 'react';
 import {useSelector} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -17,6 +17,12 @@ const Navigation = () => {
   const navigation = useSelector(state => state.quotations.navigation);
   const latestNavigation = useRef(navigation);
   const processed = useRef(false);
+  useEffect(() => {
+    if (navigation.title === '') {
+      Utils.animateIcon('navigation-logo', {strokeWidth: 1, duration: 75, animation: 'delayed'});
+    }
+  }, [navigation.title]);
+
   useEffect(() => {
     if (latestNavigation.current.closeDialog !== navigation.closeDialog
       || latestNavigation.current.backLink !== navigation.backLink) {
@@ -42,7 +48,7 @@ const Navigation = () => {
   }, [navigation]);
 
   if (navigation.title === '') {
-    return <img className="company-logo" src={image} alt="logo" onClick={() => History.navigate('/')}/>;
+    return <Logo id="navigation-logo" width="80px" height="80px" onClick={() => History.navigate('/')}/>;
   }
 
   const handleClick = () => {

@@ -10,55 +10,37 @@
   .container {
     background: rgba(0, 0, 0, 0.6);
     display: table-cell;
-    margin: 0;
     padding: 0 10px;
     text-align: center;
     vertical-align: middle;
-  }
 
-  h1 {
-    margin: 30px 0 10px 0;
-    font-weight: 700;
-    line-height: 56px;
-    text-transform: uppercase;
-    color: #fff;
-    @include font-size(42);
-
-    @media (max-width: $screen-xs) {
-      line-height: 36px;
+    h1 {
+      margin-top: 300px;
+      color: #fff;
       @include font-size(25);
+
+      @media (max-width: $screen-xs) {
+        @include font-size(20);
+      }
     }
-  }
 
-  h2 {
-    color: #eee;
-    margin-bottom: 50px;
-    @include font-size(21);
+    .btn-get-started {
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      padding: 8px 28px;
+      border-radius: 50px;
+      transition: 0.5s;
+      margin: 10px;
+      border: 2px solid #fff;
+      color: #fff;
+      @include font-size(14);
 
-    @media (max-width: $screen-xs) {
-      line-height: 24px;
-      margin-bottom: 30px;
-      @include font-size(18);
-    }
-  }
-
-  .btn-get-started {
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 8px 28px;
-    border-radius: 50px;
-    transition: 0.5s;
-    margin: 10px;
-    border: 2px solid #fff;
-    color: #fff;
-    @include font-size(14);
-
-    &:hover {
-      background: $main-color;
-      border: 2px solid $main-color;
+      &:hover {
+        background: $main-color;
+        border: 2px solid $main-color;
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "catering_react_client",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "This project is a React Client used by CATERING",
   "scripts": {
     "webpack-dev": "API_URL=https://cateringjavaapi.herokuapp.com webpack-dev-server -d --history-api-fallback --port 3001 --host 0.0.0.0",
@@ -31,10 +31,11 @@
   ],
   "devDependencies": {
     "@babel/core": "7.6.0",
-    "@babel/node": "7.6.0",
+    "@babel/node": "7.6.1",
     "@babel/plugin-transform-runtime": "7.6.0",
     "@babel/preset-env": "7.6.0",
     "@babel/preset-react": "7.0.0",
+    "@svgr/webpack": "4.3.2",
     "autoprefixer": "9.6.1",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
@@ -72,7 +73,7 @@
     "@fortawesome/free-regular-svg-icons": "5.10.2",
     "@fortawesome/free-solid-svg-icons": "5.10.2",
     "@fortawesome/react-fontawesome": "0.1.4",
-    "@material-ui/core": "4.4.0",
+    "@material-ui/core": "4.4.1",
     "@material-ui/lab": "3.0.0-alpha.30",
     "animate.css": "3.7.2",
     "compression": "1.7.4",

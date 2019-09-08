@@ -1,7 +1,8 @@
 @import '../../../../Variables';
 
 #nav-menu-container {
-  padding-right: 20px;
+  position: fixed;
+  right: 20px;
   margin: 0;
 
   a:hover,
@@ -35,7 +36,6 @@
       a {
         padding: 0 8px 10px 8px;
         display: inline-block;
-        font-weight: 400;
         text-transform: uppercase;
         outline: none;
         @include font-size(11);

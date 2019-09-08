@@ -17,6 +17,19 @@
 
     .header-container {
       margin-top: -15px;
+
+      #header-logo {
+        cursor: pointer;
+        width: 80px;
+        height: 80px;
+        top: -10px;
+        left: 35px;
+        transform: translate(0, 0);
+
+        @media (max-width: $screen-xs) {
+          left: 10px;
+        }
+      }
     }
   }
 }

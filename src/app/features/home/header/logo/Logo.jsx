@@ -1,22 +1,25 @@
 import './Logo.scss';
-import image from 'assets/img/logo.png';
-import React from 'react';
+import Image from 'assets/img/logo.svg';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import Utils from 'app/common/Utils';
 
-const Logo = ({onClick}) => {
+const Logo = ({id, animationDuration, onClick}) => {
+  useEffect(() => {
+    Utils.animateIcon(id, {strokeWidth: 3, duration: animationDuration || 150, animation: 'delayed'});
+  }, [id, animationDuration]);
+
   const handleClick = () => {
     window.scroll({top: 0, left: 0, behavior: 'smooth'});
     onClick && onClick();
   };
 
-  return (
-    <div id="logo">
-      <a onClick={handleClick}><img id="logo" className="company-logo" src={image} alt="logo"/></a>
-    </div>
-  );
+  return <Image id={id} className="logo" onClick={handleClick}/>;
 };
 
 Logo.propTypes = {
+  id: PropTypes.string.isRequired,
+  animationDuration: PropTypes.number,
   onClick: PropTypes.func,
 };
 

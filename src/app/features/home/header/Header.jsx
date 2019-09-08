@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <header id="header" className={fixed ? 'header-fixed' : ''}>
       <Grid container className="header-container" justify="space-between">
-        <Logo/>
+        <Logo id="header-logo"/>
         <Menu/>
       </Grid>
     </header>

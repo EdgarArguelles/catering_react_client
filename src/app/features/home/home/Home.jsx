@@ -22,8 +22,7 @@ const Home = () => {
   return (
     <section id="home">
       <div className="container">
-        <h1>Bienvenido a Catering.</h1>
-        <h2>Servicio de banquete para ocasiones especiales.</h2>
+        <h1>Servicio de banquete para ocasiones especiales.</h1>
         {getButton()}
       </div>
     </section>
