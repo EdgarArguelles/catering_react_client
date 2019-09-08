@@ -20,7 +20,7 @@ const SideMenu = ({width}) => {
     <>
       <HamburgerIcon open={open} onOpen={openMenu} onClose={closeMenu}/>
       <SwipeableDrawer id="side-menu" open={open} onOpen={openMenu} onClose={closeMenu}>
-        <Logo onClick={closeMenu}/>
+        <Logo id="side-logo" onClick={closeMenu}/>
         <MenuItems onClick={closeMenu}/>
       </SwipeableDrawer>
     </>
