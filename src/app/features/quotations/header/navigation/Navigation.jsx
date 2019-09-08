@@ -18,6 +18,12 @@ const Navigation = () => {
   const latestNavigation = useRef(navigation);
   const processed = useRef(false);
   useEffect(() => {
+    if (navigation.title === '') {
+      Utils.animateIcon('navigation-logo', {strokeWidth: 1, duration: 75, animation: 'delayed'});
+    }
+  }, [navigation.title]);
+
+  useEffect(() => {
     if (latestNavigation.current.closeDialog !== navigation.closeDialog
       || latestNavigation.current.backLink !== navigation.backLink) {
       // overwrite browser back button only when closeDialog or backLink change
