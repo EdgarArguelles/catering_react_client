@@ -14,12 +14,8 @@
     text-align: center;
     vertical-align: middle;
 
-    svg {
-      color: #fff;
-    }
-
     h1 {
-      margin-top: 0;
+      margin-top: 300px;
       color: #fff;
       @include font-size(25);
 
