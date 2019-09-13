@@ -4,6 +4,17 @@
  */
 import {ACTION_TYPES} from './DishFilterActions';
 
+const isDialogOpen = (state = false, action) => {
+  switch (action.type) {
+    case ACTION_TYPES.DISH_FILTER_DIALOG_OPEN:
+      return true;
+    case ACTION_TYPES.DISH_FILTER_DIALOG_CLOSE:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const search = (state = '', action) => {
   switch (action.type) {
     case ACTION_TYPES.DISH_FILTER_CLEAN_ALL:
@@ -43,6 +54,7 @@ const categories = (state = null, action) => {
 
 export default (state = {}, action = {}) => {
   return {
+    isDialogOpen: isDialogOpen(state.isDialogOpen, action),
     search: search(state.search, action),
     sort: sort(state.sort, action),
     categories: categories(state.categories, action),

@@ -6,7 +6,6 @@ import formatCurrency from 'format-currency';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@material-ui/core/IconButton';
-import Utils from 'app/common/Utils';
 import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
 import AddButton from './add_button/AddButton';
 import RemoveButton from './remove_button/RemoveButton';
@@ -22,11 +21,7 @@ const DishHeader = ({dish, onClose}) => {
       return null;
     }
 
-    return (
-      <IconButton className="navigation" onClick={onClose} onMouseEnter={() => Utils.animateIcon('dish-back-icon')}>
-        <FontAwesomeIcon id="dish-back-icon" icon={faArrowLeft}/>
-      </IconButton>
-    );
+    return <IconButton className="navigation" onClick={onClose}><FontAwesomeIcon icon={faArrowLeft}/></IconButton>;
   };
 
   const getAction = () => {

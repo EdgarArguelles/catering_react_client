@@ -3,10 +3,9 @@ import React, {useCallback, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
+import DialogBack from 'app/common/components/dialog_back/DialogBack';
 import Animate from 'app/common/components/animate/Animate';
 import Menu from 'app/features/quotations/menu/Menu';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
@@ -36,12 +35,10 @@ const MenuDialog = ({onClose}) => {
     <Animate visible={isMenuDialogOpen} animationIn="fadeInDownBig" animationOut="fadeOutUpBig" delayOut={delayOut}>
       <Dialog id="menu-dialog" open={isMenuDialogOpen} transitionDuration={delayOut} fullScreen={true}
               onClose={closeDialog}>
+        <DialogBack title="Modificar Menú" onClose={closeDialog}/>
         <DialogContent>
           <Menu/>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={closeDialog}>Cerrar</Button>
-        </DialogActions>
       </Dialog>
     </Animate>
   );

@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
+import DialogBack from 'app/common/components/dialog_back/DialogBack';
 import Contact from 'app/features/home/contact/Contact';
 
 const ContactDialog = ({open, onClose, fullScreen}) => {
@@ -16,12 +17,11 @@ const ContactDialog = ({open, onClose, fullScreen}) => {
   return (
     <Dialog id="contact-dialog" fullWidth={true} maxWidth="md" fullScreen={fullScreen} open={open} onClose={onClose}
             TransitionComponent={Slide} transitionDuration={500}>
+      {fullScreen && <DialogBack title="Contactanos" onClose={onClose}/>}
       <DialogContent>
         <Contact/>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Cerrar</Button>
-      </DialogActions>
+      {!fullScreen && <DialogActions><Button onClick={onClose}>Cerrar</Button></DialogActions>}
     </Dialog>
   );
 };

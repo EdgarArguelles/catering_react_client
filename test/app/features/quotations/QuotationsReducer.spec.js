@@ -20,6 +20,7 @@ describe('Quotations -> Reducer', () => {
         selected: '',
         showActions: true,
         filter: {
+          isDialogOpen: false,
           search: '',
           sort: 'name',
           categories: null,
@@ -56,6 +57,7 @@ describe('Quotations -> Reducer', () => {
         selected: 'test',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -91,6 +93,7 @@ describe('Quotations -> Reducer', () => {
         selected: 'test',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -124,6 +127,7 @@ describe('Quotations -> Reducer', () => {
         selected: 'test',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -155,6 +159,7 @@ describe('Quotations -> Reducer', () => {
         selected: '',
         showActions: true,
         filter: {
+          isDialogOpen: false,
           search: '',
           sort: 'name',
           categories: null,
@@ -189,6 +194,7 @@ describe('Quotations -> Reducer', () => {
         selected: 'test',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -222,6 +228,7 @@ describe('Quotations -> Reducer', () => {
         selected: 'test',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -253,6 +260,7 @@ describe('Quotations -> Reducer', () => {
         selected: '',
         showActions: true,
         filter: {
+          isDialogOpen: false,
           search: '',
           sort: 'name',
           categories: null,
@@ -287,6 +295,7 @@ describe('Quotations -> Reducer', () => {
         selected: 'test',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -321,6 +330,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -352,6 +362,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -387,6 +398,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -420,6 +432,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -451,6 +464,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -486,6 +500,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -519,6 +534,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -550,6 +566,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -585,6 +602,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -618,6 +636,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -649,6 +668,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -684,6 +704,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -719,6 +740,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -750,6 +772,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -785,6 +808,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -820,6 +844,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -851,6 +876,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],
@@ -889,6 +915,7 @@ describe('Quotations -> Reducer', () => {
           selected: 'test',
           showActions: false,
           filter: {
+            isDialogOpen: false,
             search: 'test',
             sort: 'price',
             categories: ['cat1', 'cat2'],

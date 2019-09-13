@@ -61,8 +61,6 @@
   }
 
   .share-button {
-    bottom: 60px;
-
     button:first-child[aria-label='share'] {
       background-color: $main-color;
       @include font-size(24);

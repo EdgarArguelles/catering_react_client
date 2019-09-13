@@ -8,6 +8,7 @@ describe('Quotations -> Dish -> Reducer', () => {
       selected: '',
       showActions: true,
       filter: {
+        isDialogOpen: false,
         search: '',
         sort: 'name',
         categories: null,
@@ -24,6 +25,7 @@ describe('Quotations -> Dish -> Reducer', () => {
       selected: 'abc',
       showActions: true,
       filter: {
+        isDialogOpen: false,
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2'],
@@ -38,6 +40,7 @@ describe('Quotations -> Dish -> Reducer', () => {
       selected: 'abc',
       showActions: true,
       filter: {
+        isDialogOpen: false,
         search: 'test',
         sort: 'price',
         categories: ['cat1', 'cat2'],
@@ -51,6 +54,7 @@ describe('Quotations -> Dish -> Reducer', () => {
         selected: 'abc',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -60,6 +64,7 @@ describe('Quotations -> Dish -> Reducer', () => {
         selected: '123',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -75,6 +80,7 @@ describe('Quotations -> Dish -> Reducer', () => {
         selected: 'abc',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -89,6 +95,7 @@ describe('Quotations -> Dish -> Reducer', () => {
         selected: 'abc',
         showActions: true,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -98,6 +105,7 @@ describe('Quotations -> Dish -> Reducer', () => {
         selected: 'abc',
         showActions: false,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
@@ -113,6 +121,7 @@ describe('Quotations -> Dish -> Reducer', () => {
         selected: 'abc',
         showActions: true,
         filter: {
+          isDialogOpen: false,
           search: 'test',
           sort: 'price',
           categories: ['cat1', 'cat2'],
