@@ -1,5 +1,5 @@
 import './DishList.scss';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -13,13 +13,13 @@ import DishFilterDialog from './dish_filter_dialog/DishFilterDialog';
 import DishToolbar from './dish_toolbar/DishToolbar';
 import DishGrid from './dish_grid/DishGrid';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 import DishesActions from 'app/data/dishes/DishesActions';
 
 const DishList = ({location}) => {
   const dispatch = useDispatch();
   const courseType = useSelector(state => getCurrentCourseType(state.data.courseTypes, state.quotations.selectedTab));
   const courseTypeDishes = useSelector(state => getCourseTypeDishes(getActiveDishes(state.data.dishes), courseType));
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const category = new URLSearchParams(location.search).get('categoria');
   const categoryDishes = category ?
     courseTypeDishes.filter(dish => dish.categories.map(c => c.name).includes(category)) :
@@ -37,7 +37,7 @@ const DishList = ({location}) => {
   const animateIcon = () => Utils.animateIcon('dish-filter-button-icon');
   const handleClick = () => {
     animateIcon();
-    setIsFilterOpen(true);
+    dispatch(DishFilterActions.openDishFilterDialog());
   };
 
   return (
@@ -50,7 +50,7 @@ const DishList = ({location}) => {
         <FontAwesomeIcon id="dish-filter-button-icon" icon={faFilter}/>
       </Fab>
 
-      <DishFilterDialog open={isFilterOpen} onClose={() => setIsFilterOpen(false)}/>
+      <DishFilterDialog/>
     </div>
   );
 };

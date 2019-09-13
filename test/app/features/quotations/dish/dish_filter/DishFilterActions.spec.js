@@ -1,6 +1,23 @@
+/* eslint-disable max-lines */
 import DishFilterActions, {ACTION_TYPES} from 'app/features/quotations/dish/dish_filter/DishFilterActions';
 
 describe('Quotations -> Dish -> Filter -> Actions', () => {
+  describe('openDishFilterDialog', () => {
+    it('should dispatch DISH_FILTER_DIALOG_OPEN', () => {
+      const result = DishFilterActions.openDishFilterDialog();
+
+      expect(result).toStrictEqual({type: ACTION_TYPES.DISH_FILTER_DIALOG_OPEN});
+    });
+  });
+
+  describe('closeDishFilterDialog', () => {
+    it('should dispatch DISH_FILTER_DIALOG_CLOSE', () => {
+      const result = DishFilterActions.closeDishFilterDialog();
+
+      expect(result).toStrictEqual({type: ACTION_TYPES.DISH_FILTER_DIALOG_CLOSE});
+    });
+  });
+
   describe('cleanFilters', () => {
     it('should dispatch DISH_FILTER_CLEAN_ALL', () => {
       const result = DishFilterActions.cleanFilters();

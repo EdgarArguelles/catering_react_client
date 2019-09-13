@@ -4,6 +4,8 @@
 import keyMirror from 'keymirror';
 
 export const ACTION_TYPES = keyMirror({
+  DISH_FILTER_DIALOG_OPEN: null,
+  DISH_FILTER_DIALOG_CLOSE: null,
   DISH_FILTER_CLEAN_ALL: null,
   DISH_FILTER_SEARCH: null,
   DISH_FILTER_SORT: null,
@@ -13,6 +15,18 @@ export const ACTION_TYPES = keyMirror({
 });
 
 export default class DishFilterActions {
+  static openDishFilterDialog() {
+    return {
+      type: ACTION_TYPES.DISH_FILTER_DIALOG_OPEN,
+    };
+  }
+
+  static closeDishFilterDialog() {
+    return {
+      type: ACTION_TYPES.DISH_FILTER_DIALOG_CLOSE,
+    };
+  }
+
   static cleanFilters() {
     return {
       type: ACTION_TYPES.DISH_FILTER_CLEAN_ALL,
