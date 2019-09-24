@@ -13,15 +13,19 @@
 
       hr {
         border-top: 3px solid #ccc;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
 
       div {
-        margin-bottom: 30px;
+        margin-bottom: 5px;
 
         p {
           font-style: oblique;
           @include font-size(18);
+        }
+
+        #whatsapp-icon {
+          margin-left: 5px;
         }
 
         .email-button {
