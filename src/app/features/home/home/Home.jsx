@@ -1,11 +1,14 @@
 import './Home.scss';
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
+import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
+import Welcome from 'app/features/welcome/Welcome';
 import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 
 const Home = () => {
   const quotation = useSelector(state => state.quotations.quotation);
+  const [open, setOpen] = useState(false);
   const redirect = () => History.navigate(getEditPath(quotation));
   const scroll = () => {
     const element = document.getElementById('quotations');
@@ -23,8 +26,13 @@ const Home = () => {
     <section id="home">
       <div className="container">
         <h1>Servicio de banquete para ocasiones especiales.</h1>
-        {getButton()}
+        <div>{getButton()}</div>
+        <Button className="welcome-button" size="small" onClick={() => setOpen(true)}>
+          Ver tutorial de Bienvenida
+        </Button>
       </div>
+
+      <Welcome open={open} onClose={() => setOpen(false)}/>
     </section>
   );
 };
