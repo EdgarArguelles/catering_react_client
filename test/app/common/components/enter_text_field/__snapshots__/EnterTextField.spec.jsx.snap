@@ -15,6 +15,7 @@ exports[`Components -> EnterTextField snapshot should render TextField with prop
       className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
       defaultValue="initValue test"
       disabled={false}
+      onAnimationStart={[Function]}
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
@@ -39,6 +40,7 @@ exports[`Components -> EnterTextField snapshot should render TextField without p
       aria-invalid={false}
       className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
       disabled={false}
+      onAnimationStart={[Function]}
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
