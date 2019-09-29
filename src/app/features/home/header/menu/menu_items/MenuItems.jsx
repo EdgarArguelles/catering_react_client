@@ -7,6 +7,7 @@ const MENU_ITEMS = {
   about: {label: 'Quienes Somos'},
   services: {label: 'Servicios'},
   quotations: {label: 'Presupuesto'},
+  social: {label: 'Comunidad'},
   contact: {label: 'Contactanos'},
 };
 

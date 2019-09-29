@@ -81,13 +81,15 @@ export default {
       {test: /\.(js|jsx)?$/, exclude: [/node_modules/], use: 'babel-loader'},
       // index
       {test: /index.html$/, use: 'file-loader?name=[name].[ext]'},
+      // fonts
+      {test: /\.(eot|woff|woff2|ttf)$/, use: 'file-loader?name=fonts/[name].[ext]'},
       // assets
       {test: /\.(png|jpg|gif)$/, use: 'file-loader?name=assets/[name].[ext]'},
       // svg
       {test: /\.svg$/, use: '@svgr/webpack'},
       // sass
       {
-        test: /\.scss$/, use: [
+        test: /\.(scss|css)$/, use: [
           MiniCSSExtractPlugin.loader,
           'css-loader',
           {loader: 'postcss-loader', options: {plugins: [require('autoprefixer')()]}}, // add vendor prefix (-webkit)

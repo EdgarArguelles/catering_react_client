@@ -1,4 +1,11 @@
+// animate styles
 @import '~animate.css/animate.css';
+
+// slick-carousel styles
+$slick-loader-path: '~slick-carousel/slick/';
+$slick-font-path: '~slick-carousel/slick/fonts/';
+@import '~slick-carousel/slick/slick';
+@import '~slick-carousel/slick/slick-theme';
 @import './Variables';
 
 body {
@@ -33,6 +40,10 @@ body {
 #app {
   .hidden {
     display: none;
+  }
+
+  .transparent {
+    opacity: 0;
   }
 
   .MuiSnackbar-root {
