@@ -13,7 +13,7 @@ const SectionHeader = ({title, children}) => {
 
 SectionHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
 };
 
 export default React.memo(SectionHeader);

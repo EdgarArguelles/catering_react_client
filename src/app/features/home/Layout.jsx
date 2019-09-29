@@ -11,6 +11,7 @@ import Home from './home/Home';
 import About from './about/About';
 import Services from './services/Services';
 import Quotations from './quotations/Quotations';
+import Social from './social/Social';
 import Contact from './contact/Contact';
 
 const Layout = () => {
@@ -35,6 +36,7 @@ const Layout = () => {
         <Services/>
         <section id="separation"/>
         <Quotations/>
+        <Social/>
         <Contact isHomeScreen={true}/>
       </main>
       <IconButton className="change-theme-button floating-button" onClick={handleClick} onMouseEnter={animateIcon}>

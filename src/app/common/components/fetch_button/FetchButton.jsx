@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import './FetchButton.scss';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -12,7 +11,7 @@ import Utils from 'app/common/Utils';
 export const ANIMATION_DELAY = 3000;
 
 const FetchButton = props => {
-  const {hidden, color, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
+  const {hidden, color, size, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
   const [buttonState, setButtonState] = useState('normal');
   const [isClicked, setIsClicked] = useState(false);
   const buttonIcon = buttonState === 'success' ? faThumbsUp :
@@ -83,7 +82,7 @@ const FetchButton = props => {
         {buttonState === 'fetching' && <CircularProgress size={50} thickness={4} className="action-progress"/>}
       <Zoom in={!hidden || buttonState !== 'normal'} unmountOnExit>
           <Fab variant="extended" color={color} disabled={buttonState !== 'normal'} onClick={handleClick}
-               className={`action-button ${buttonState}`}>
+               size={size || 'large'} className={`action-button ${buttonState}`}>
             {buttonIcon && <FontAwesomeIcon id="fetch-button-icon" className="button-icon" icon={buttonIcon}/>}
             <div className="button-label">{content}</div>
           </Fab>
@@ -95,6 +94,7 @@ const FetchButton = props => {
 FetchButton.propTypes = {
   hidden: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
+  size: PropTypes.string,
   icon: PropTypes.object,
   label: PropTypes.string,
   successLabel: PropTypes.string,
