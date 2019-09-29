@@ -13,6 +13,10 @@
     @include font-size(0);
   }
 
+  .action-button {
+    width: 300px;
+  }
+
   .post-slider {
     @media (max-width: 490px) and (min-width: 390px) {
       height: 350px;

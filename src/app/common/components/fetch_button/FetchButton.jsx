@@ -11,7 +11,7 @@ import Utils from 'app/common/Utils';
 export const ANIMATION_DELAY = 3000;
 
 const FetchButton = props => {
-  const {hidden, color, size, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
+  const {id, hidden, color, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
   const [buttonState, setButtonState] = useState('normal');
   const [isClicked, setIsClicked] = useState(false);
   const buttonIcon = buttonState === 'success' ? faThumbsUp :
@@ -72,7 +72,7 @@ const FetchButton = props => {
   }, [asyncCall, preconditionCall, isClicked, handleAsyncCall]);
 
   const handleClick = () => {
-    Utils.animateIcon('fetch-button-icon');
+    Utils.animateIcon(id);
     setIsClicked(true);
     preconditionCall ? preconditionCall() : handleAsyncCall(asyncCall);
   };
@@ -82,8 +82,8 @@ const FetchButton = props => {
         {buttonState === 'fetching' && <CircularProgress size={50} thickness={4} className="action-progress"/>}
       <Zoom in={!hidden || buttonState !== 'normal'} unmountOnExit>
           <Fab variant="extended" color={color} disabled={buttonState !== 'normal'} onClick={handleClick}
-               size={size || 'large'} className={`action-button ${buttonState}`}>
-            {buttonIcon && <FontAwesomeIcon id="fetch-button-icon" className="button-icon" icon={buttonIcon}/>}
+               className={`action-button ${buttonState}`}>
+            {buttonIcon && <FontAwesomeIcon id={id} className="button-icon" icon={buttonIcon}/>}
             <div className="button-label">{content}</div>
           </Fab>
       </Zoom>
@@ -92,9 +92,9 @@ const FetchButton = props => {
 };
 
 FetchButton.propTypes = {
+  id: PropTypes.string.isRequired,
   hidden: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
-  size: PropTypes.string,
   icon: PropTypes.object,
   label: PropTypes.string,
   successLabel: PropTypes.string,

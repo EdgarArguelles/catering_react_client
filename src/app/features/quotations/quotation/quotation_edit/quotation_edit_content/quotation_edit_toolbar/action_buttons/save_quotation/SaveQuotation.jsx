@@ -55,7 +55,7 @@ const SaveQuotation = () => {
   return (
     <span id="save-quotation">
         <FetchButton color="primary" label={`Guardar ${label}`} successLabel={`${label} ${labelAction}`}
-                     hidden={isRemoteProcessing || isFetching} icon={faSave}
+                     id="save-quotation-button" hidden={isRemoteProcessing || isFetching} icon={faSave}
                      onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <AuthDialog/>

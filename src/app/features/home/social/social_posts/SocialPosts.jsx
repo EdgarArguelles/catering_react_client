@@ -54,8 +54,9 @@ const SocialPosts = ({type}) => {
       <p className={showSlider ? 'social-label' : 'social-label-hidden'}>
         <Zoom in={showSlider} timeout={3000}><FontAwesomeIcon icon={icon}/></Zoom>{label}
       </p>
-      <FetchButton color="primary" size="small" label="Cargar desde Facebook" hidden={showSlider} icon={icon}
-                   asyncCall={() => setShowSlider(false)} onComplete={() => setShowSlider(true)}/>
+      <FetchButton id={`${type}-button`} color="primary" label="Cargar desde Facebook" hidden={showSlider} icon={icon}
+                   asyncCall={async () => await new Promise(resolve => setTimeout(resolve, 3000))}
+                   onComplete={() => setShowSlider(true)}/>
       {showSlider && getSlider()}
     </div>
   );

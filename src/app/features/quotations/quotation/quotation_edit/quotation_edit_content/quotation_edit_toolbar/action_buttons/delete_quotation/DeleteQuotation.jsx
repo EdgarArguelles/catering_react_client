@@ -54,7 +54,7 @@ const DeleteQuotation = () => {
   return (
     <span id="delete-quotation">
         <FetchButton color="secondary" label="Eliminar Presupuesto" successLabel="Presupuesto Eliminado"
-                     hidden={isRemoteProcessing || isFetching} icon={faTrash}
+                     id="delete-quotation-button" hidden={isRemoteProcessing || isFetching} icon={faTrash}
                      onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <ConfirmationDialog title="Eliminar presupuesto" okID="remove-remote-quotation-button" okLabel="Eliminar"
