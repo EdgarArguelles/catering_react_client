@@ -49,7 +49,7 @@ describe('Hooks', () => {
     });
 
     it('should call CHANGE_APP_THEME with dark', () => {
-      mountComponent(() => useAppTheme(), {theme: 'light'}, false);
+      mountComponent(() => useAppTheme(), {app: {theme: 'light'}}, false);
       const {theme, themeIcon, changeTheme} = hookResponse;
       changeTheme();
 
@@ -60,7 +60,7 @@ describe('Hooks', () => {
     });
 
     it('should call CHANGE_APP_THEME with light', () => {
-      mountComponent(() => useAppTheme(), {theme: 'dark'}, false);
+      mountComponent(() => useAppTheme(), {app: {theme: 'dark'}}, false);
       const {theme, themeIcon, changeTheme} = hookResponse;
       changeTheme();
 

@@ -4,10 +4,6 @@
   max-width: 800px;
   margin: 0 auto;
 
-  @media (max-width: $screen-sm) {
-    margin: 0;
-  }
-
   .title {
     text-align: center;
     font-style: italic;
@@ -19,6 +15,8 @@
   }
 
   #courses-draggable {
+    margin-bottom: 60px;
+
     @media (max-width: $screen-sm) {
       background: #808080;
     }

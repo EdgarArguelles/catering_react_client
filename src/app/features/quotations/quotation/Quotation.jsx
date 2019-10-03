@@ -15,7 +15,7 @@ import QuotationsActions from 'app/data/quotations/QuotationsActions';
 
 const Quotation = ({index, quotation}) => {
   const dispatch = useDispatch();
-  const theme = useSelector(state => state.theme);
+  const theme = useSelector(state => state.app.theme);
   const quotations = useSelector(state => state.data.quotations);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);

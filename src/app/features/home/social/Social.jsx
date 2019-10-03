@@ -15,7 +15,8 @@ import SectionHeader from 'app/features/home/SectionHeader';
 import SocialPosts from './social_posts/SocialPosts';
 
 const Social = ({fullScreen}) => {
-  const theme = useSelector(state => state.theme);
+  const isOnline = useSelector(state => state.app.isOnline);
+  const theme = useSelector(state => state.app.theme);
   const appId = '489262341460511';
   const pageId = '615026265632013';
   const href = 'https://www.facebook.com/cansigno.de.la.torre';
@@ -49,8 +50,8 @@ const Social = ({fullScreen}) => {
             </div>
           </Grid>
           <Grid item xs={12}>
-            <SocialPosts type={'review'}/>
-            <SocialPosts type={'photo'}/>
+            {isOnline && <SocialPosts type={'review'}/>}
+            {isOnline && <SocialPosts type={'photo'}/>}
           </Grid>
         </Grid>
       </FacebookProvider>

@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Utils from 'app/common/Utils';
 
 const Service = ({title, icon, children}) => {
-  const theme = useSelector(state => state.theme);
+  const theme = useSelector(state => state.app.theme);
 
   return (
     <div className={`${theme} service`} onMouseEnter={() => Utils.animateIcon(`${title}-icon`)}>

@@ -11,7 +11,7 @@ describe('Middlewares -> TemporalStorage', () => {
   it('should process action and store data in sessionStorage and localStorage when courseTypes is present', () => {
     const getState = () => ({
       id: 'state 1',
-      theme: 'dark',
+      app: {theme: 'dark'},
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
       data: {id: 'D1', version: 'V1', courseTypes: {id: 'CT1'}, dishes: [{id: 'd1'}, {id: 'd2'}]},
     });
@@ -48,7 +48,7 @@ describe('Middlewares -> TemporalStorage', () => {
   it('should process action and store data in sessionStorage and localStorage when courseTypes is not present', () => {
     const getState = () => ({
       id: 'state 1',
-      theme: 'extra',
+      app: {theme: 'extra'},
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
       data: {id: 'D1', dishes: [{id: 'd1'}, {id: 'd2'}]},
     });

@@ -27,7 +27,7 @@ import Offline from './common/components/offline/Offline';
 const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger, temporalStorage));
 
 const App = () => {
-  const type = useSelector(state => state.theme);
+  const type = useSelector(state => state.app.theme);
 
   // overwrite primary and secondary
   const theme = createMuiTheme({
