@@ -19,6 +19,8 @@
   }
 
   #courses-draggable {
+    margin-bottom: 60px;
+
     @media (max-width: $screen-sm) {
       background: #808080;
     }
