@@ -2,9 +2,9 @@ import {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
-import {changeTheme} from 'app/Reducers';
 import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
+import AppActions from 'app/AppActions';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/data/quotations/QuotationsActions';
 import DishesActions from 'app/data/dishes/DishesActions';
@@ -12,9 +12,9 @@ import AuthActions from 'app/features/auth/AuthActions';
 
 export const useAppTheme = () => {
   const dispatch = useDispatch();
-  const theme = useSelector(state => state.theme);
+  const theme = useSelector(state => state.app.theme);
   const themeIcon = theme === 'dark' ? faLightbulb : faLightbulbRegular;
-  const action = () => dispatch(changeTheme(theme === 'dark' ? 'light' : 'dark'));
+  const action = () => dispatch(AppActions.changeTheme(theme === 'dark' ? 'light' : 'dark'));
 
   return {theme, themeIcon, changeTheme: action};
 };

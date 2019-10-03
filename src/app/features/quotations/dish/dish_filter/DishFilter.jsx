@@ -10,7 +10,7 @@ import Sort from './sort/Sort';
 
 const DishFilter = () => {
   const dispatch = useDispatch();
-  const theme = useSelector(state => state.theme);
+  const theme = useSelector(state => state.app.theme);
   const resetFilters = () => {
     dispatch(DishFilterActions.changeSort('name'));
     dispatch(DishFilterActions.setCategories(null));
