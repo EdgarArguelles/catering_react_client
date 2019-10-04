@@ -21,8 +21,8 @@ const FetchButton = props => {
 
   // handle onComplete, latestOnComplete always keeps first onComplete's value (onmount), not changes each render
   const latestOnComplete = useRef(onComplete);
-  const callOnComplete = useCallback(() => {
-    latestOnComplete.current && latestOnComplete.current();
+  const callOnComplete = useCallback(result => {
+    latestOnComplete.current && latestOnComplete.current(result);
   }, []); // because this useCallback has inputs = [], callOnComplete never changes its value, not changes each render
 
   // clean timeout and handle unmount
@@ -31,14 +31,14 @@ const FetchButton = props => {
     return () => {
       clearTimeout(timeout.current);
       timeout.current = 'unmonted';
-      callOnComplete();
+      callOnComplete(false);
     };
   }, [callOnComplete]); // this is an unmount, because callOnComplete has inputs = [], this useEffect is [] as well
 
   const handleAsyncCall = useCallback(async action => {
     const updateStatus = newStatus => {
       if (timeout.current === 'unmonted') {
-        callOnComplete();
+        callOnComplete(newStatus === 'success');
         return;
       }
 
@@ -46,7 +46,7 @@ const FetchButton = props => {
       clearTimeout(timeout.current);
       timeout.current = setTimeout(() => {
         setButtonState('normal');
-        callOnComplete();
+        callOnComplete(newStatus === 'success');
       }, ANIMATION_DELAY);
     };
 

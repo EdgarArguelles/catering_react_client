@@ -47,7 +47,7 @@ const SocialPosts = ({type}) => {
         <Zoom in={showSlider} timeout={3000}><FontAwesomeIcon icon={icon}/></Zoom>{label}
       </p>
       <FetchButton id={`${type}-button`} color="primary" label="Cargar desde Facebook" errorLabel="Intentelo de nuevo"
-                   icon={icon} hidden={posts.length > 0} onComplete={() => setShowSlider(true)}
+                   icon={icon} hidden={posts.length > 0} onComplete={isSuccess => setShowSlider(isSuccess)}
                    preconditionCall={preconditionCall} asyncCall={asyncCall}/>
       {showSlider && <PostSlider posts={posts} showText={isReview}/>}
     </div>
