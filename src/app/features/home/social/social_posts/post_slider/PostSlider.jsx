@@ -17,12 +17,7 @@ const PostSlider = ({type}) => {
   const [waiting, setWaiting] = useState(false);
   const [posts, setPosts] = useState([]);
   const isReview = type === 'review';
-  const photo1 = 'https://www.facebook.com/cansigno.de.la.torre/posts/673138676487438';
-  const photo2 = 'https://www.facebook.com/cansigno.de.la.torre/posts/665773830557256';
-  const photo3 = 'https://www.facebook.com/cansigno.de.la.torre/posts/664455697355736';
-  const review1 = 'https://www.facebook.com/cansigno.de.la.torre/posts/10219500860331624';
-  const review2 = 'https://www.facebook.com/cansigno.de.la.torre/posts/2381837775409677';
-  const review3 = 'https://www.facebook.com/cansigno.de.la.torre/posts/10156532633444117';
+  const URL = 'https://www.facebook.com/cansigno.de.la.torre/posts';
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -67,6 +62,10 @@ const PostSlider = ({type}) => {
     setPaused(!paused);
   };
 
+  if (posts.length === 0) {
+    return null;
+  }
+
   return (
     <div className="post-slider">
       <div className="slider-controls">
@@ -74,19 +73,9 @@ const PostSlider = ({type}) => {
         <IconButton onClick={togglePause}><FontAwesomeIcon icon={paused ? faPlay : faPause}/></IconButton>
         <IconButton onClick={() => slider.slickNext()}><FontAwesomeIcon icon={faChevronRight}/></IconButton>
       </div>
-
       <Slider className="post-carousel" ref={element => setSlider(element)} lazyLoad={false} centerMode={true}
               variableWidth={true} adaptiveHeight={true} arrows={false} dots={true} autoplay={true}>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review2 : photo2} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review3 : photo3} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review2 : photo2} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review3 : photo3} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review2 : photo2} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review3 : photo3} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
+        {posts.map(post => <EmbeddedPost href={`${URL}/${post}`} showText={isReview}/>)}
       </Slider>
     </div>
   );
