@@ -7,16 +7,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronLeft, faChevronRight, faPause, faPlay} from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@material-ui/core/IconButton';
 
-const PostSlider = ({type}) => {
+const PostSlider = ({posts, showText}) => {
   const [slider, setSlider] = useState(null);
   const [paused, setPaused] = useState(false);
-  const isReview = type === 'review';
-  const photo1 = 'https://www.facebook.com/cansigno.de.la.torre/posts/673138676487438';
-  const photo2 = 'https://www.facebook.com/cansigno.de.la.torre/posts/665773830557256';
-  const photo3 = 'https://www.facebook.com/cansigno.de.la.torre/posts/664455697355736';
-  const review1 = 'https://www.facebook.com/cansigno.de.la.torre/posts/10219500860331624';
-  const review2 = 'https://www.facebook.com/cansigno.de.la.torre/posts/2381837775409677';
-  const review3 = 'https://www.facebook.com/cansigno.de.la.torre/posts/10156532633444117';
+  const url = 'https://www.facebook.com/cansigno.de.la.torre/posts';
 
   useEffect(() => {
     const fixSlider = () => {
@@ -41,26 +35,17 @@ const PostSlider = ({type}) => {
         <IconButton onClick={togglePause}><FontAwesomeIcon icon={paused ? faPlay : faPause}/></IconButton>
         <IconButton onClick={() => slider.slickNext()}><FontAwesomeIcon icon={faChevronRight}/></IconButton>
       </div>
-
       <Slider className="post-carousel" ref={element => setSlider(element)} lazyLoad={false} centerMode={true}
               variableWidth={true} adaptiveHeight={true} arrows={false} dots={true} autoplay={true}>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review2 : photo2} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review3 : photo3} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review2 : photo2} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review3 : photo3} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review2 : photo2} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review3 : photo3} showText={isReview}/>
-        <EmbeddedPost href={isReview ? review1 : photo1} showText={isReview}/>
+        {posts.map(post => <EmbeddedPost key={post} href={`${url}/${post}`} showText={showText}/>)}
       </Slider>
     </div>
   );
 };
 
 PostSlider.propTypes = {
-  type: PropTypes.oneOf(['review', 'photo']).isRequired,
+  posts: PropTypes.array.isRequired,
+  showText: PropTypes.bool.isRequired,
 };
 
 export default React.memo(PostSlider);
