@@ -27,9 +27,19 @@ const theme = (state = defaultTheme, action) => {
   }
 };
 
+const facebookAccessCode = (state = '', action) => {
+  switch (action.type) {
+    case ACTION_TYPES.CHANGE_APP_FACEBOOK_ACCESS_CODE:
+      return action.payload.data;
+    default:
+      return state;
+  }
+};
+
 export default (state = {}, action = {}) => {
   return {
     isOnline: isOnline(state.isOnline, action),
     theme: theme(state.theme, action),
+    facebookAccessCode: facebookAccessCode(state.facebookAccessCode, action),
   };
 };
