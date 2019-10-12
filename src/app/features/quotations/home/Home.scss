@@ -1,5 +1,5 @@
-@import '../../../Variables';
-@import '../header/Header';
+@use 'app/Variables' as *;
+@use 'app/features/quotations/header/Header';
 
 #quotations-home {
   margin-top: 10px;
@@ -7,7 +7,7 @@
   overflow: hidden;
 
   .container {
-    height: calc(100vh - #{$header-height} - 10px);
+    height: calc(100vh - #{Header.$header-height} - 10px);
     margin: 0;
   }
 

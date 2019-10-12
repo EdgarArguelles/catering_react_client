@@ -1,6 +1,6 @@
-@import '../../../../../Variables';
+@use 'app/Variables' as *;
 
-$avatar-size: 50px;
+$_avatar-size: 50px;
 
 #user {
   .user-name {
@@ -10,8 +10,8 @@ $avatar-size: 50px;
   }
 
   .avatar {
-    height: $avatar-size;
-    width: $avatar-size;
+    height: $_avatar-size;
+    width: $_avatar-size;
     margin-left: 10px;
   }
 }

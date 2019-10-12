@@ -1,4 +1,4 @@
-@import '../../../../../../Variables';
+@use 'app/Variables' as *;
 
 #quotation-edit-toolbar {
   height: $toolbar-height;

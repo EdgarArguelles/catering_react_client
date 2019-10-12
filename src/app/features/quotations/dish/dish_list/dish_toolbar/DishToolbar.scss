@@ -1,4 +1,4 @@
-@import '../../../../../Variables';
+@use 'app/Variables' as *;
 
 #dish-toolbar {
   height: $toolbar-height;

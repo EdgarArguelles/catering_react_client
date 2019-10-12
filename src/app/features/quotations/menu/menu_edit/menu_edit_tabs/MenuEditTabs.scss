@@ -1,12 +1,12 @@
-@import '../../../../../Variables';
-@import '../../../header/Header';
+@use 'app/Variables' as *;
+@use 'app/features/quotations/header/Header';
 
-$tab-bar-height: 48px;
+$_tab-bar-height: 48px;
 
 #menu-edit-tabs {
   #expand-bar {
-    top: $header-height;
-    height: $tab-bar-height;
+    top: Header.$header-height;
+    height: $_tab-bar-height;
     background: $header-color;
     color: #fff;
 
@@ -72,14 +72,14 @@ $tab-bar-height: 48px;
   }
 
   .swipeable-views {
-    margin-top: -$header-height;
+    margin-top: - Header.$header-height;
 
     .swipeable {
-      padding-top: $header-height + $tab-bar-height;
+      padding-top: Header.$header-height + $_tab-bar-height;
       height: 100vh;
 
       .tab-content {
-        min-height: calc(100vh - #{$header-height} - #{$tab-bar-height} - #{$header-height} - #{$tab-bar-height});
+        min-height: calc(100vh - #{Header.$header-height} - #{$_tab-bar-height} - #{Header.$header-height} - #{$_tab-bar-height});
       }
     }
   }

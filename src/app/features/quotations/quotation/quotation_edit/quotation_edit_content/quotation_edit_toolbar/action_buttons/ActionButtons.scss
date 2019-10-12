@@ -1,17 +1,17 @@
-@import '../../../../../../../Variables';
-@import '../../../../../../../common/components/fetch_button/FetchButton';
+@use 'app/Variables' as *;
+@use 'app/common/components/fetch_button/FetchButton';
 
-$action-margin-left: 20px;
+$_action-margin-left: 20px;
 
 #action-buttons {
   margin: auto 10px auto auto;
 
   .action-progress {
-    margin-left: $action-margin-left;
+    margin-left: $_action-margin-left;
   }
 
   button {
-    margin-left: $action-margin-left;
+    margin-left: $_action-margin-left;
     width: 230px;
 
     @media (max-width: $screen-sm) {
@@ -19,7 +19,7 @@ $action-margin-left: 20px;
     }
 
     @media (max-width: 649px) {
-      width: $action-small-width;
+      width: FetchButton.$action-small-width;
 
       .button-label {
         display: none;

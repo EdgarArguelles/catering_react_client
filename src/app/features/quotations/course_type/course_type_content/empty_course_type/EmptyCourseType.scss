@@ -1,6 +1,6 @@
-@import '../../../../../Variables';
+@use 'app/Variables' as *;
 
-$img-size: 180px;
+$_img-size: 180px;
 
 #empty-course-type {
   display: flex;
@@ -9,8 +9,8 @@ $img-size: 180px;
   align-items: center;
 
   img {
-    width: $img-size;
-    height: $img-size;
+    width: $_img-size;
+    height: $_img-size;
     border-radius: 50%;
     cursor: pointer;
   }

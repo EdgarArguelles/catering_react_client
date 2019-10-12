@@ -1,5 +1,5 @@
-@import '../../../../Variables';
-@import '../Header';
+@use 'app/Variables' as *;
+@use 'app/features/quotations/header/Header';
 
 #navigation {
   display: flex;
@@ -19,7 +19,7 @@
   }
 
   p {
-    max-height: $header-height;
+    max-height: Header.$header-height;
     overflow: hidden;
     text-overflow: ellipsis;
     transition: 0.5s;

@@ -1,4 +1,4 @@
-@import '../../../../../../Variables';
+@use 'app/Variables' as *;
 
 #remove-button {
   @media (max-width: $screen-sm) {

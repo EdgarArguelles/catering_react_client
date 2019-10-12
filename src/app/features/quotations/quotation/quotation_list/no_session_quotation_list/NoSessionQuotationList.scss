@@ -1,5 +1,5 @@
-@import '../../../../../Variables';
-@import '../../quotation_view/QuotationView';
+@use 'app/Variables';
+@use 'app/features/quotations/quotation/quotation_view/QuotationView';
 
 #no-session-quotation-list {
   @extend #quotation-view;

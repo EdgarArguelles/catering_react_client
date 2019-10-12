@@ -1,5 +1,4 @@
-@import '../../../../../Variables';
-@import '../dish_toolbar/DishToolbar';
+@use 'app/Variables' as *;
 
 #dish-grid {
   padding-top: $toolbar-height;

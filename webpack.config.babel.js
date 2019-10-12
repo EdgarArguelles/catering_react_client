@@ -11,7 +11,6 @@ import WorkboxPlugin from 'workbox-webpack-plugin';
 const srcPath = path.resolve('./src');
 const distPath = path.resolve('./dist');
 const nodeDir = path.resolve('./node_modules');
-const stats = {children: false}; // hide MiniCSSExtractPlugin information printed when build
 
 export default {
   entry: {
@@ -29,10 +28,7 @@ export default {
   performance: {
     hints: false, // use 'warning' to webpack notifies you of assets and entry points that exceed a specific file limit
   },
-  devServer: {
-    stats, // stats for webpack-dev-server
-  },
-  stats, // stats for webpack
+  stats: {children: false}, // hide MiniCSSExtractPlugin information printed when build
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -70,7 +66,7 @@ export default {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      app: `${srcPath}/app`, // allow to use import with 'app/'
+      app: `${srcPath}/app`, // allow to use import with absolute path (example 'app/')
       assets: `${srcPath}/assets`, // allow to use import with 'assets/'
       stompjs: `${nodeDir}/stompjs/lib/stomp.js`, // allow to use import Stomp from 'stompjs';
     },
@@ -93,7 +89,7 @@ export default {
           MiniCSSExtractPlugin.loader,
           'css-loader',
           {loader: 'postcss-loader', options: {plugins: [require('autoprefixer')()]}}, // add vendor prefix (-webkit)
-          'sass-loader?sourceMap',
+          'sass-loader',
         ],
       },
     ],

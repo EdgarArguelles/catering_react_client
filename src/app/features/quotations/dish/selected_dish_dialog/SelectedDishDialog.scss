@@ -1,4 +1,4 @@
-@import '../../../../Variables';
+@use 'app/Variables' as *;
 
 #selected-dish-dialog {
   div:first-child[aria-hidden=true] {

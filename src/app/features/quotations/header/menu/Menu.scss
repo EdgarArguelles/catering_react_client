@@ -1,5 +1,5 @@
-@import '../../../../Variables';
-@import '../Header';
+@use 'app/Variables' as *;
+@use 'app/features/quotations/header/Header';
 
 #menu {
   display: flex;
@@ -21,7 +21,7 @@
       }
     }
 
-    @media (max-width: $screen-menu) {
+    @media (max-width: Header.$screen-menu) {
       padding: 5px;
     }
 
