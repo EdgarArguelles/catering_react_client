@@ -1,4 +1,4 @@
-@import '../../../../../../Variables';
+@use 'app/Variables' as *;
 
 #add-button {
   @media (max-width: $screen-sm) {

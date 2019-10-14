@@ -1,5 +1,5 @@
-@import '../../../../../../Variables';
-@import '../MainCourse';
+@use 'app/Variables';
+@use 'app/features/quotations/course_type/multiple_dishes_dialog/main_course/MainCourse';
 
 .dish-thumbnail {
   padding: 0 !important;
@@ -8,7 +8,7 @@
   .dish-image {
     height: 104px;
     width: 88px;
-    border-radius: $radius;
+    border-radius: MainCourse.$radius;
 
     &:hover {
       opacity: 0.85;

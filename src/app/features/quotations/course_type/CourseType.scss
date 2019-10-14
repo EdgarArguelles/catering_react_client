@@ -1,20 +1,20 @@
-@import '../../../Variables';
+@use 'app/Variables' as *;
 
-$btn-width: 56px;
+$_btn-width: 56px;
 
 .course-type {
   .btn-container {
-    width: $btn-width;
+    width: $_btn-width;
     position: fixed;
     bottom: $floating-button-bottom;
-    margin-left: calc(100vw - #{$btn-width} - #{$floating-button-right});
+    margin-left: calc(100vw - #{$_btn-width} - #{$floating-button-right});
 
     @media (max-width: $screen-sm) {
-      margin-left: calc(100vw - #{$btn-width} - #{$floating-button-right-sm});
+      margin-left: calc(100vw - #{$_btn-width} - #{$floating-button-right-sm});
     }
 
     @media (max-width: $screen-xs) {
-      margin-left: calc(100vw - #{$btn-width} - #{$floating-button-right-xs});
+      margin-left: calc(100vw - #{$_btn-width} - #{$floating-button-right-xs});
     }
 
     button {

@@ -1,6 +1,6 @@
-@import '../../../../Variables';
+@use 'app/Variables' as *;
 
-$contact-avatar: 120px;
+$_contact-avatar: 120px;
 
 #media {
   background: url(../../../../../assets/img/contact-bg.jpg) fixed center;
@@ -17,8 +17,8 @@ $contact-avatar: 120px;
 
     .avatar {
       margin: 40px auto 50px auto;
-      height: $contact-avatar;
-      width: $contact-avatar;
+      height: $_contact-avatar;
+      width: $_contact-avatar;
       border: 5px solid #fff;
 
       @media (max-width: $screen-xs) {
