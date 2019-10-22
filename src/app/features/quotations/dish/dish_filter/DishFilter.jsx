@@ -1,16 +1,20 @@
 import './DishFilter.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {faDollarSign, faSortAlphaUp} from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
 import DishFilterActions from './DishFilterActions';
 import Categories from './categories/Categories';
 import Sort from './sort/Sort';
 
-const DishFilter = () => {
+const DishFilter = ({onClose}) => {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.app.theme);
+  const filter = useSelector(state => state.quotations.dish.filter);
+  const cleanVisible = filter.sort !== 'name' || filter.categories !== null;
   const resetFilters = () => {
     dispatch(DishFilterActions.changeSort('name'));
     dispatch(DishFilterActions.setCategories(null));
@@ -31,10 +35,17 @@ const DishFilter = () => {
         <Categories/>
       </Grid>
       <Grid item xs={12} className="clean-filter">
-        <Fab variant="extended" onClick={resetFilters}>Limpiar filtros</Fab>
+        <Zoom in={cleanVisible}><Fab variant="extended" onClick={resetFilters}>Limpiar filtros</Fab></Zoom>
+      </Grid>
+      <Grid item xs={12} className="done-filter">
+        <Fab variant="extended" onClick={onClose}>Listo</Fab>
       </Grid>
     </Grid>
   );
+};
+
+DishFilter.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default React.memo(DishFilter);

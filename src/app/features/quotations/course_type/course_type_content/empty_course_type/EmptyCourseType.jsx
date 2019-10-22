@@ -28,9 +28,10 @@ const EmptyCourseType = ({className, courseType}) => {
 
   return (
     <div id="empty-course-type" className={className}>
-      <Image src={Utils.getDriveImage(courseType.picture)} alt={courseType.name} onClick={add}/>
-      <p className="title">Vacio</p>
-      <p className="subtitle">Agregar uno o más platillos</p>
+      <Image src={Utils.getDriveImage(courseType.picture)} alt={courseType.name} className="animated fadeInLeft"
+             onClick={add}/>
+      <p className="title animated fadeInLeft">Vacio</p>
+      <p className="subtitle animated fadeInLeft">Agregar uno o más platillos</p>
     </div>
   );
 };
