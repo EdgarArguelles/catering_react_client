@@ -22,14 +22,31 @@
     }
   }
 
-  .clean-filter {
+  .clean-filter,
+  .done-filter {
     text-align: center;
 
     button {
       color: #fff;
-      background-color: $main-color;
       width: 260px;
-      margin-top: 50px;
+    }
+  }
+
+  .clean-filter button {
+    background-color: $error-color;
+    margin-top: 50px;
+  }
+
+  .done-filter {
+    display: none;
+
+    @media (max-width: $screen-sm) {
+      display: block;
+    }
+
+    button {
+      background-color: $main-color;
+      margin-top: 20px;
     }
   }
 }

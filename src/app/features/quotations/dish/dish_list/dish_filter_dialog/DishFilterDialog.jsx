@@ -26,7 +26,7 @@ const DishFilterDialog = ({fullScreen}) => {
             onClose={onClose} TransitionComponent={Transition} transitionDuration={500}>
       {fullScreen && <DialogBack title="Filtros" onClose={onClose}/>}
       <DialogContent>
-        <DishFilter/>
+        <DishFilter onClose={onClose}/>
       </DialogContent>
       {!fullScreen && <DialogActions><Button onClick={onClose}>Cerrar</Button></DialogActions>}
     </Dialog>
