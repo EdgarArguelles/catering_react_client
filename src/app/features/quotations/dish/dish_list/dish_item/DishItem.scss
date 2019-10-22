@@ -4,7 +4,7 @@
   position: relative;
   height: 300px;
   width: 100%;
-  transition: 0.5s;
+  transition: 0.5s !important;
   box-shadow: 5px 5px 5px grey !important;
 
   @media (max-width: $screen-sm) {
@@ -12,6 +12,7 @@
   }
 
   &:hover {
+    transform: scale(1.03);
     box-shadow: 50px 50px 50px grey !important;
   }
 

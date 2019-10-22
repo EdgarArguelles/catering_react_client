@@ -16,7 +16,7 @@ const Course = ({course}) => {
   }
 
   return (
-    <div className="course">
+    <div className="course animated lightSpeedIn">
       <Card><CourseContent course={course} onActionClick={() => setIsRemoveDialogOpen(true)}/></Card>
       <RemoveDialog course={course} open={isRemoveDialogOpen} onClose={() => setIsRemoveDialogOpen(false)}/>
     </div>
