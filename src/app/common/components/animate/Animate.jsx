@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
-const Animate = ({show, className, animationIn, animationOut, children}) => {
+const Animate = ({show, className, animationIn, animationOut, onUnmount, children}) => {
   const [shouldRender, setShouldRender] = useState(show);
   const animation = show ? animationIn : animationOut;
   const classes = [];
@@ -9,6 +9,7 @@ const Animate = ({show, className, animationIn, animationOut, children}) => {
   className && classes.push(className);
   const onAnimationEnd = () => {
     !show && setShouldRender(false);
+    onUnmount && onUnmount();
   };
 
   useEffect(() => {
@@ -29,6 +30,7 @@ Animate.propTypes = {
   className: PropTypes.string,
   animationIn: PropTypes.string.isRequired,
   animationOut: PropTypes.string,
+  onUnmount: PropTypes.func,
   children: PropTypes.object.isRequired,
 };
 
