@@ -41,7 +41,7 @@ const CourseType = ({className, courseType}) => {
     <div className={`${className} course-type`}>
       <CourseTypeContent className={className} courseType={courseType}/>
       <div className="btn-container">
-        <Animate visible={courseType.position - 1 === currentTab} animationIn="rubberBand"
+        <Animate show={courseType.position - 1 === currentTab} animationIn="rubberBand"
                  className={isSnackBarOpen ? 'move-up' : ''}>
           <Fab color="primary" onClick={add} onMouseEnter={animateIcon}>
             <FontAwesomeIcon id={`plus-${courseType.position}-icon`} icon={faPlus}/>
