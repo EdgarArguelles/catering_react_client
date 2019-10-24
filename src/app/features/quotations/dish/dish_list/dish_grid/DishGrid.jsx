@@ -48,8 +48,7 @@ const DishGrid = ({dishes, isLoading}) => {
     <Grid id="dish-grid" container spacing={2} justify="flex-start">
       {getContentLoader()}
       {[...dishes].sort(getSort()).map(dish => (
-        <Animate key={dish.id} visible={isDishVisible(dish)} animationIn="fadeInDown" animationOut="fadeOutUp"
-                 delayOut={400}>
+        <Animate key={dish.id} show={isDishVisible(dish)} animationIn="fadeInDown" animationOut="fadeOutUp faster">
           <Grid item xs={6} sm={4} md={4} lg={3} xl={2}><DishItem dish={dish}/></Grid>
         </Animate>
       ))}

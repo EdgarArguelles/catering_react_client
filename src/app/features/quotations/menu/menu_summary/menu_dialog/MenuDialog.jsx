@@ -16,7 +16,6 @@ const MenuDialog = ({onClose}) => {
   const isMenuDialogOpen = useSelector(state => state.quotations.isMenuDialogOpen);
   const selectedDish = useSelector(state => state.quotations.dish.selected);
   const shouldOverwriteCloseNavigationDialog = isMenuDialogOpen && selectedDish === '';
-  const delayOut = 500;
   const latestOnClose = useRef(onClose); // avoid to re-run useEffect when onClose changes
   const closeDialog = useCallback(() => {
     dispatch(QuotationsActions.changeMenuDialogOpen(false));
@@ -32,8 +31,8 @@ const MenuDialog = ({onClose}) => {
   }, [shouldOverwriteCloseNavigationDialog, closeDialog, dispatch]);
 
   return (
-    <Animate visible={isMenuDialogOpen} animationIn="fadeInDownBig" animationOut="fadeOutUpBig" delayOut={delayOut}>
-      <Dialog id="menu-dialog" open={isMenuDialogOpen} transitionDuration={delayOut} fullScreen={true}
+    <Animate show={isMenuDialogOpen} animationIn="fadeInDownBig" animationOut="fadeOutUpBig">
+      <Dialog id="menu-dialog" open={isMenuDialogOpen} transitionDuration={500} fullScreen={true}
               onClose={closeDialog}>
         <DialogBack title="Modificar Menú" onClose={closeDialog}/>
         <DialogContent>

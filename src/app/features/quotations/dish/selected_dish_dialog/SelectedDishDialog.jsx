@@ -20,13 +20,12 @@ const SelectedDishDialog = ({fullScreen}) => {
   const deselectDish = useCallback(() => dispatch(DishActions.selectDish('')), [dispatch]);
   const dishName = dish ? `${dish.id} - ${dish.name}` : '';
   const visible = !!dish;
-  const delayOut = 1000;
   useBrowserNavigation(visible, deselectDish);
 
   return (
-    <Animate visible={visible} animationIn="zoomInUp" animationOut="zoomOutUp" delayOut={delayOut}>
+    <Animate show={visible} animationIn="zoomInUp" animationOut="zoomOutUp">
       <Dialog id="selected-dish-dialog" fullWidth={true} maxWidth="sm" fullScreen={fullScreen}
-              dish-name={dishName} onClose={deselectDish} open={visible} transitionDuration={delayOut}>
+              dish-name={dishName} onClose={deselectDish} open={visible} transitionDuration={1000}>
         <DialogTitle className="selected-dish-dialog-title">
           {dish ? <DishHeader dish={dish} onClose={fullScreen ? deselectDish : null}/> : <div/>}
         </DialogTitle>

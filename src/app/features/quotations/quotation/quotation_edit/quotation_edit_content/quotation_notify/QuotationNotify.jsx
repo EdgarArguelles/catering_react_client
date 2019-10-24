@@ -7,6 +7,7 @@ import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import Utils from 'app/common/Utils';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
+import Animate from 'app/common/components/animate/Animate';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 
 const QuotationNotify = () => {
@@ -17,6 +18,7 @@ const QuotationNotify = () => {
   const [comment, setComment] = useState('');
   const link = `${window.location.origin}/presupuestos/ver/${quotation.id}`;
   const body = `comentario:%0D%0A${encodeURI(comment)}%0D%0A%0D%0A%0D%0Alink: ${link}`;
+  const visible = !isFetching && areEqual(quotation, quotations ? quotations[quotation.id] : null);
   const openSendDialog = () => {
     Utils.animateIcon('quotation-notify-button-icon', {strokeWidth: 20});
     setIsSendDialogOpen(true);
@@ -40,17 +42,15 @@ const QuotationNotify = () => {
     );
   };
 
-  if (isFetching || !areEqual(quotation, quotations ? quotations[quotation.id] : null)) {
-    return null;
-  }
-
   return (
     <div id="quotation-notify">
-      <Fab id="quotation-notify-button" variant="extended" className="notify-chef animated zoomIn delay-1s"
-           onClick={openSendDialog} classes={{label: 'quotation-notify-button-label'}}>
-        <FontAwesomeIcon id="quotation-notify-button-icon" className="button-icon" icon={faMailBulk}/>
-        Notificar a Areli
-      </Fab>
+      <Animate show={visible} className="notify-chef" animationIn="zoomIn delay-1s" animationOut="zoomOut">
+        <Fab id="quotation-notify-button" variant="extended" onClick={openSendDialog}
+             classes={{label: 'quotation-notify-button-label'}}>
+          <FontAwesomeIcon id="quotation-notify-button-icon" className="button-icon" icon={faMailBulk}/>
+          Notificar a Areli
+        </Fab>
+      </Animate>
 
       <ConfirmationDialog open={isSendDialogOpen} title="Notificar a Areli" content={getCommentBox()}
                           label="Notificar a Areli que usted esta interesado en este presupuesto" okLabel="Notificar"

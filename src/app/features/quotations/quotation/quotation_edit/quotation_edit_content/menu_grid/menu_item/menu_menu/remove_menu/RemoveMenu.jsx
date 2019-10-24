@@ -19,15 +19,18 @@ const RemoveMenu = ({menu, onClose}) => {
     setIsDialogOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = removeAction => {
     setIsDialogOpen(false);
-    onClose();
+    onClose(removeAction);
   };
 
   const handleRemove = () => {
-    dispatch(QuotationActions.removeMenu(menu.id));
-    dispatch(NavigationActions.closeNavigationDialog(null));
-    handleClose();
+    const removeAction = () => {
+      dispatch(QuotationActions.removeMenu(menu.id));
+      dispatch(NavigationActions.closeNavigationDialog(null));
+    };
+
+    handleClose(removeAction);
   };
 
   return (
