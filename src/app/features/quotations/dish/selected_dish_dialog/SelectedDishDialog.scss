@@ -11,7 +11,10 @@
     }
   }
 
-  .selected-dish-dialog-content, .selected-dish-dialog-title {
+  .selected-dish-dialog-title,
+  .selected-dish-dialog-content {
+    transition-duration: 500ms;
+
     @media (max-width: $screen-xxs) {
       padding: 15px 0;
     }
