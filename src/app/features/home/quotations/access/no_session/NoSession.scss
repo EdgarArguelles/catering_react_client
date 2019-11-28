@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #no-session {
   text-align: center;
@@ -6,7 +6,7 @@
   #no-session-button {
     width: 260px;
     margin: auto auto 30px auto;
-    @include animate-hover($main-color);
+    @include Variables.animate-hover(Variables.$main-color);
 
     @media (max-width: 349px) {
       margin-left: -15px;

@@ -1,28 +1,28 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #quotation-edit-toolbar {
-  height: $toolbar-height;
-  background-color: $header-color;
+  height: Variables.$toolbar-height;
+  background-color: Variables.$header-color;
 
   .quotation-price {
     color: #fff;
-    @include font-size(24);
+    @include Variables.font-size(24);
 
     @media (max-width: 369px) {
-      @include font-size(16);
+      @include Variables.font-size(16);
     }
 
     .price-question {
       margin-top: -15px;
       color: #fff;
-      @include font-size(10);
+      @include Variables.font-size(10);
     }
 
     @media (max-width: 810px) {
       margin-left: -15px;
 
       .price-label {
-        @include font-size(16);
+        @include Variables.font-size(16);
       }
     }
 

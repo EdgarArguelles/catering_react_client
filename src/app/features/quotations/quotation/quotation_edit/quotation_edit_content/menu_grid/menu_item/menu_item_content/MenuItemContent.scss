@@ -1,9 +1,9 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .menu-item-content {
   .menu-description {
     padding-bottom: 30px;
-    @include font-size(24);
+    @include Variables.font-size(24);
   }
 
   .menu-footer {
@@ -17,7 +17,7 @@
     svg {
       position: fixed;
       margin: 0 3px;
-      @include font-size(10);
+      @include Variables.font-size(10);
     }
 
     .menu-quantity-field {

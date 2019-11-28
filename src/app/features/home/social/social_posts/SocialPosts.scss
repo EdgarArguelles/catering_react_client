@@ -1,16 +1,16 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .social-posts {
   margin-bottom: 80px;
 
   .social-label svg {
-    color: $facebook-color;
+    color: Variables.$facebook-color;
     margin-right: 20px;
-    @include font-size(20);
+    @include Variables.font-size(20);
   }
 
   .social-label-hidden svg {
-    @include font-size(0);
+    @include Variables.font-size(0);
   }
 
   .action-button {

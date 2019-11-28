@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 @use 'app/common/components/fetch_button/FetchButton';
 
 $_action-margin-left: 20px;
@@ -14,7 +14,7 @@ $_action-margin-left: 20px;
     margin-left: $_action-margin-left;
     width: 230px;
 
-    @media (max-width: $screen-sm) {
+    @media (max-width: Variables.$screen-sm) {
       width: 175px;
     }
 
@@ -31,7 +31,7 @@ $_action-margin-left: 20px;
     }
 
     &:disabled {
-      background-color: $gray;
+      background-color: Variables.$gray;
     }
   }
 }

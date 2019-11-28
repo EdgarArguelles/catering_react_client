@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .course-type-content {
   max-width: 800px;
@@ -7,17 +7,17 @@
   .title {
     text-align: center;
     font-style: italic;
-    @include font-size(32);
+    @include Variables.font-size(32);
 
-    @media (max-width: $screen-xs) {
-      @include font-size(16);
+    @media (max-width: Variables.$screen-xs) {
+      @include Variables.font-size(16);
     }
   }
 
   #courses-draggable {
     margin-bottom: 60px;
 
-    @media (max-width: $screen-sm) {
+    @media (max-width: Variables.$screen-sm) {
       background: #808080;
     }
 

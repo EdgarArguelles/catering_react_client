@@ -1,8 +1,8 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #quotation-notify {
   .notify-chef {
     margin: 20px 0;
-    @include animate-hover($main-color);
+    @include Variables.animate-hover(Variables.$main-color);
   }
 }

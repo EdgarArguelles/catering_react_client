@@ -1,7 +1,7 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .auth-button {
-  @media (max-width: $screen-xs) {
+  @media (max-width: Variables.$screen-xs) {
     font-size: 0.8rem !important;
   }
 

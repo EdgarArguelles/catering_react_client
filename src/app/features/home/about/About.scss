@@ -1,10 +1,10 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #about {
-  padding: $content-padding;
+  padding: Variables.$content-padding;
 
-  @media (max-width: $screen-lg) {
-    padding: $content-padding-lg;
+  @media (max-width: Variables.$screen-lg) {
+    padding: Variables.$content-padding-lg;
   }
 
   p {

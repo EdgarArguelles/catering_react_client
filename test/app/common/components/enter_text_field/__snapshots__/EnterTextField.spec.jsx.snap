@@ -38,6 +38,7 @@ exports[`Components -> EnterTextField snapshot should render TextField without p
   >
     <input
       aria-invalid={false}
+      autoFocus={false}
       className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
       disabled={false}
       onAnimationStart={[Function]}

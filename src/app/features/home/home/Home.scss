@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #home {
   display: table;
@@ -17,10 +17,10 @@
     h1 {
       margin-top: 300px;
       color: #fff;
-      @include font-size(25);
+      @include Variables.font-size(25);
 
-      @media (max-width: $screen-xs) {
-        @include font-size(20);
+      @media (max-width: Variables.$screen-xs) {
+        @include Variables.font-size(20);
       }
     }
 
@@ -35,11 +35,11 @@
       margin: 10px;
       border: 2px solid #fff;
       color: #fff;
-      @include font-size(14);
+      @include Variables.font-size(14);
 
       &:hover {
-        background: $main-color;
-        border: 2px solid $main-color;
+        background: Variables.$main-color;
+        border: 2px solid Variables.$main-color;
       }
     }
 

@@ -1,16 +1,16 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .course-type {
   margin-top: 20px;
 
-  @media (max-width: $screen-xs) {
+  @media (max-width: Variables.$screen-xs) {
     margin-top: 0;
   }
 
   .name {
     font-style: oblique;
     color: #E8453C;
-    @include font-size(24);
+    @include Variables.font-size(24);
   }
 
   .loader {

@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 @use 'app/features/quotations/header/Header';
 
 #menu {
@@ -6,17 +6,17 @@
   margin: 0 0 0 auto;
 
   svg {
-    @include font-size(25);
+    @include Variables.font-size(25);
   }
 
   p {
     text-transform: uppercase;
-    @include font-size(13);
+    @include Variables.font-size(13);
   }
 
   a, button {
     p {
-      @media (max-width: $screen-xs) {
+      @media (max-width: Variables.$screen-xs) {
         display: none;
       }
     }
@@ -25,7 +25,7 @@
       padding: 5px;
     }
 
-    @media (max-width: $screen-xs) {
+    @media (max-width: Variables.$screen-xs) {
       min-width: 50px;
     }
   }

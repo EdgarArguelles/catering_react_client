@@ -1,11 +1,11 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 @use 'app/features/quotations/quotation/quotation_view/QuotationView';
 
 #empty-quotation-list {
   @extend #quotation-view;
 
   .subtitle {
-    @include font-size(18);
+    @include Variables.font-size(18);
   }
 
   .create {

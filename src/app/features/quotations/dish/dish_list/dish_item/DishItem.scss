@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .dish-item {
   position: relative;
@@ -7,7 +7,7 @@
   transition: 0.5s !important;
   box-shadow: 5px 5px 5px grey !important;
 
-  @media (max-width: $screen-sm) {
+  @media (max-width: Variables.$screen-sm) {
     height: 200px;
   }
 
@@ -17,7 +17,7 @@
   }
 
   .added {
-    color: $main-color;
+    color: Variables.$main-color;
     background-color: #fff;
     border-radius: 50%;
     height: 32px;
@@ -25,7 +25,7 @@
     top: -10px;
     right: -9px;
     z-index: 1;
-    @include font-size(32);
+    @include Variables.font-size(32);
   }
 
   .dish-btn {
@@ -64,24 +64,24 @@
 
         .image-title {
           font-weight: bold;
-          @include font-size(18);
+          @include Variables.font-size(18);
         }
 
         .image-subtitle {
           font-style: italic;
-          @include font-size(16);
+          @include Variables.font-size(16);
         }
       }
 
       .image-action {
         margin: 20px;
 
-        @media (max-width: $screen-xxs) {
+        @media (max-width: Variables.$screen-xxs) {
           margin: 0;
         }
 
         .info-icon {
-          @include font-size(24);
+          @include Variables.font-size(24);
         }
       }
     }

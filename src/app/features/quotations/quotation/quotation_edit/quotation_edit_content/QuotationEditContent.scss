@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #quotation-edit-content {
   text-align: center;
@@ -6,7 +6,7 @@
   overflow-x: hidden;
 
   .content {
-    padding-top: $toolbar-height;
+    padding-top: Variables.$toolbar-height;
 
     .editing {
       @media (max-width: 500px) {
@@ -17,6 +17,6 @@
 
   .quotation-folio {
     margin-top: 30px;
-    color: $gray;
+    color: Variables.$gray;
   }
 }

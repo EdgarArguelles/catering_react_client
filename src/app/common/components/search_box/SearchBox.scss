@@ -1,7 +1,7 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .search-box-adornment {
   svg {
-    @include font-size(24);
+    @include Variables.font-size(24);
   }
 }

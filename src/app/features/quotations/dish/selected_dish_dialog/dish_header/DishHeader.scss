@@ -1,11 +1,11 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #dish-header {
   display: flex;
   align-items: center;
 
   .navigation {
-    @include font-size(36);
+    @include Variables.font-size(36);
   }
 
   .title {
@@ -13,22 +13,22 @@
     margin-left: 15px;
 
     .sub-title {
-      color: $gray;
-      @include font-size(16);
+      color: Variables.$gray;
+      @include Variables.font-size(16);
     }
   }
 
-  @media (max-width: $screen-xxs) {
+  @media (max-width: Variables.$screen-xxs) {
     .actions {
       margin-right: 5px;
 
       button {
-        @include font-size(10);
+        @include Variables.font-size(10);
       }
     }
 
     .title {
-      @include font-size(16);
+      @include Variables.font-size(16);
     }
   }
 }

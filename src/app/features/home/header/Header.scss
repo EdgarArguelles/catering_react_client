@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #header {
   padding: 50px 0;
@@ -11,9 +11,9 @@
   z-index: 1;
 
   &.header-fixed {
-    background: $header-color;
+    background: Variables.$header-color;
     padding: 30px 0;
-    height: $header-fixed-height;
+    height: Variables.$header-fixed-height;
 
     .header-container {
       margin-top: -15px;
@@ -26,7 +26,7 @@
         left: 35px;
         transform: translate(0, 0);
 
-        @media (max-width: $screen-xs) {
+        @media (max-width: Variables.$screen-xs) {
           left: 10px;
         }
       }

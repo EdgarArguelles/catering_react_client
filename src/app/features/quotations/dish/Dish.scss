@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #dish {
   .card {
@@ -11,12 +11,12 @@
 
     .description {
       line-height: 1.5;
-      @include font-size(16);
+      @include Variables.font-size(16);
     }
 
     .sub-title {
-      color: $gray;
-      @include font-size(16);
+      color: Variables.$gray;
+      @include Variables.font-size(16);
 
       hr {
         width: 80%;

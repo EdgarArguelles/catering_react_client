@@ -1,7 +1,7 @@
 // slick-carousel styles
 @use '~slick-carousel/slick/slick';
 @use '~slick-carousel/slick/slick-theme' with ($slick-loader-path: '~slick-carousel/slick/', $slick-font-path: '~slick-carousel/slick/fonts/');
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 // animate styles
 @import '~animate.css/animate.css';
@@ -16,21 +16,21 @@ body {
 
   .button-icon {
     margin-right: 20px;
-    @include font-size(24);
+    @include Variables.font-size(24);
   }
 
   .floating-button {
     position: fixed;
-    bottom: $floating-button-bottom;
-    right: $floating-button-right;
-    @include font-size(24);
+    bottom: Variables.$floating-button-bottom;
+    right: Variables.$floating-button-right;
+    @include Variables.font-size(24);
 
-    @media (max-width: $screen-sm) {
-      right: $floating-button-right-sm;
+    @media (max-width: Variables.$screen-sm) {
+      right: Variables.$floating-button-right-sm;
     }
 
-    @media (max-width: $screen-xs) {
-      right: $floating-button-right-xs;
+    @media (max-width: Variables.$screen-xs) {
+      right: Variables.$floating-button-right-xs;
     }
   }
 }
@@ -54,7 +54,7 @@ body {
     z-index: 1;
   }
 
-  @media (max-width: $screen-sm) {
+  @media (max-width: Variables.$screen-sm) {
     .move-up {
       transition: transform 0.2s !important;
       transform: translate3d(0, -46px, 0) !important;

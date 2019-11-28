@@ -1,11 +1,11 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .menu-item-header {
   .menu-title {
     color: #E8453C;
 
     .avatar {
-      background-color: $main-color;
+      background-color: Variables.$main-color;
       float: left;
       margin-top: -10px;
     }
@@ -17,7 +17,7 @@
     svg {
       position: fixed;
       margin: 0 5px;
-      @include font-size(13);
+      @include Variables.font-size(13);
     }
   }
 

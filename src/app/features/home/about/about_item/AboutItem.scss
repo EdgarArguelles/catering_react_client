@@ -1,19 +1,19 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .about-item {
   padding: 0 0 30px 0;
-  @include animate-icon-hover();
+  @include Variables.animate-icon-hover();
 
   .icon {
     float: left;
     height: 53px;
     padding: 16px;
     border-radius: 50%;
-    border: 2px solid $main-color;
+    border: 2px solid Variables.$main-color;
 
     svg {
-      color: $main-color;
-      @include font-size(20);
+      color: Variables.$main-color;
+      @include Variables.font-size(20);
     }
   }
 
@@ -22,12 +22,12 @@
     font-weight: 500;
     margin-bottom: 5px;
     text-transform: uppercase;
-    @include font-size(16);
+    @include Variables.font-size(16);
   }
 
   .description {
     margin-left: 80px;
     line-height: 24px;
-    @include font-size(13);
+    @include Variables.font-size(13);
   }
 }

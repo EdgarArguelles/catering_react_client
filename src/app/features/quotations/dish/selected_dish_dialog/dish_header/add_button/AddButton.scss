@@ -1,7 +1,7 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #add-button {
-  @media (max-width: $screen-sm) {
+  @media (max-width: Variables.$screen-sm) {
     margin-right: 5px;
 
     svg {

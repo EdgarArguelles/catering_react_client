@@ -1,7 +1,7 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #dish-car-button {
-  color: $gray;
+  color: Variables.$gray;
   margin-bottom: 80px;
 
   .dish-car-badge {

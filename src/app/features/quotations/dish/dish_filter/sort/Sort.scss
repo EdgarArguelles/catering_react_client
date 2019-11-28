@@ -1,14 +1,14 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .filter-sort {
   text-align: center;
 
   .active {
     color: #fff;
-    background-color: $main-color;
+    background-color: Variables.$main-color;
 
     &:hover {
-      background: $main-color;
+      background: Variables.$main-color;
       color: #fff;
     }
   }

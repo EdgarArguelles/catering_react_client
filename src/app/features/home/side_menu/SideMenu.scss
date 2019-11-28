@@ -1,11 +1,11 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #side-menu {
   div[role=document] {
     background: #363E42;
     width: 290px;
 
-    @media (max-width: $screen-xxs) {
+    @media (max-width: Variables.$screen-xxs) {
       width: 240px;
 
       #side-logo {
@@ -27,11 +27,11 @@
       a {
         display: block;
         padding: 10px 22px 10px 15px;
-        @include font-size(18);
+        @include Variables.font-size(18);
       }
 
       &.menu-active a {
-        color: $main-color;
+        color: Variables.$main-color;
       }
     }
   }
