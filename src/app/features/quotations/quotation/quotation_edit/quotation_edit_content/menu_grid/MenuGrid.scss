@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #menu-grid {
   margin: 0;
@@ -10,9 +10,9 @@
   .new-menu-button {
     width: 95%;
     min-height: 325px;
-    border: dashed $gray;
-    color: $gray;
-    border-radius: $card-border-radius;
+    border: dashed Variables.$gray;
+    color: Variables.$gray;
+    border-radius: Variables.$card-border-radius;
 
     span {
       display: flex;
@@ -20,7 +20,7 @@
 
       svg {
         margin: 25px 0;
-        @include font-size(32);
+        @include Variables.font-size(32);
       }
     }
   }

@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #dish-filter {
   button:hover {
@@ -16,7 +16,7 @@
         padding: 0 15px;
 
         &.dark {
-          background: $dark-background;
+          background: Variables.$dark-background;
         }
       }
     }
@@ -33,19 +33,19 @@
   }
 
   .clean-filter button {
-    background-color: $error-color;
+    background-color: Variables.$error-color;
     margin-top: 50px;
   }
 
   .done-filter {
     display: none;
 
-    @media (max-width: $screen-sm) {
+    @media (max-width: Variables.$screen-sm) {
       display: block;
     }
 
     button {
-      background-color: $main-color;
+      background-color: Variables.$main-color;
       margin-top: 20px;
     }
   }

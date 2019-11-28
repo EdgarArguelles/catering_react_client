@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .quotation {
   width: 100%;
@@ -8,21 +8,21 @@
     width: 100%;
 
     &.dark {
-      background: $dark-background;
+      background: Variables.$dark-background;
     }
 
     .avatar {
-      background-color: $main-color;
+      background-color: Variables.$main-color;
       margin: auto;
     }
 
     .title {
       color: #2196f3;
-      @include font-size(24);
+      @include Variables.font-size(24);
     }
 
     .price {
-      @include font-size(16);
+      @include Variables.font-size(16);
 
       .amount {
         font-style: italic;
@@ -30,16 +30,16 @@
     }
 
     .date {
-      color: $gray;
+      color: Variables.$gray;
 
       .relative-date {
         margin-bottom: 0;
-        @include font-size(16);
+        @include Variables.font-size(16);
       }
 
       .exact-date {
         margin-top: 0;
-        @include font-size(10);
+        @include Variables.font-size(10);
       }
     }
   }

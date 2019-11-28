@@ -1,17 +1,17 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #social {
-  padding: $content-padding;
+  padding: Variables.$content-padding;
 
-  @media (max-width: $screen-lg) {
-    padding: $content-padding-lg;
+  @media (max-width: Variables.$screen-lg) {
+    padding: Variables.$content-padding-lg;
   }
 
   .social-section {
     text-align: center;
     margin-bottom: 40px;
 
-    @media (max-width: $screen-xs) {
+    @media (max-width: Variables.$screen-xs) {
       text-align: left;
     }
 
@@ -19,28 +19,28 @@
       margin-top: 20px;
 
       &.dark {
-        background-color: $gray;
+        background-color: Variables.$gray;
         border-radius: 5px;
       }
     }
 
     .social-contact-icons {
-      color: $gray;
+      color: Variables.$gray;
       margin-top: 30px;
-      @include font-size(48);
+      @include Variables.font-size(48);
 
-      @media (max-width: $screen-sm) {
-        @include font-size(35);
+      @media (max-width: Variables.$screen-sm) {
+        @include Variables.font-size(35);
       }
 
-      @media (max-width: $screen-xs) {
+      @media (max-width: Variables.$screen-xs) {
         display: none;
       }
     }
 
     button {
       margin-left: 20px;
-      @include animate-hover($facebook-color);
+      @include Variables.animate-hover(Variables.$facebook-color);
     }
   }
 }

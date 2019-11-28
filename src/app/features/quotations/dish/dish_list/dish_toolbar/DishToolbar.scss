@@ -1,8 +1,8 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #dish-toolbar {
-  height: $toolbar-height;
-  background-color: $header-color;
+  height: Variables.$toolbar-height;
+  background-color: Variables.$header-color;
 
   .search {
     width: 200px;
@@ -10,12 +10,12 @@
     color: #fff;
     transition-duration: 0.5s;
 
-    @media (max-width: $screen-xs) {
+    @media (max-width: Variables.$screen-xs) {
       width: 150px;
     }
 
     &:after {
-      border-bottom: 2px solid $main-color;
+      border-bottom: 2px solid Variables.$main-color;
     }
 
     .clear-search-box-btn {
@@ -26,7 +26,7 @@
   .search-active {
     width: 300px;
 
-    @media (max-width: $screen-xs) {
+    @media (max-width: Variables.$screen-xs) {
       width: 200px;
     }
 

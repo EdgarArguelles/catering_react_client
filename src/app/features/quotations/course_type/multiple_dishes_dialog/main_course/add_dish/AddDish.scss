@@ -1,14 +1,14 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 @use 'app/features/quotations/course_type/multiple_dishes_dialog/main_course/MainCourse';
 
 .add-dish {
   min-width: 88px !important;
-  border: dashed $gray !important;
+  border: dashed Variables.$gray !important;
   border-radius: MainCourse.$radius !important;
 
   svg {
     margin: 25px 0;
-    color: $gray;
-    @include font-size(32);
+    color: Variables.$gray;
+    @include Variables.font-size(32);
   }
 }

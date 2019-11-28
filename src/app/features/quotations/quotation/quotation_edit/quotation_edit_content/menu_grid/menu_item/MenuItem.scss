@@ -1,5 +1,5 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .menu-item {
-  border-radius: $card-border-radius !important;
+  border-radius: Variables.$card-border-radius !important;
 }

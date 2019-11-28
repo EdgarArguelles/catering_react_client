@@ -1,10 +1,10 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .section-header {
   .section-title {
     font-weight: 700;
     font-style: oblique;
-    @include font-size(28);
+    @include Variables.font-size(28);
   }
 
   .section-description {

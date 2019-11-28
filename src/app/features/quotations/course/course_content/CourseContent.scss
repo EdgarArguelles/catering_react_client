@@ -1,37 +1,37 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .course-content {
   .course-drag-icon {
-    color: $gray;
+    color: Variables.$gray;
     float: left;
     margin: 10px 15px 0 -10px;
   }
 
   .avatar {
-    background-color: $main-color;
+    background-color: Variables.$main-color;
   }
 
   ul {
     margin-right: 10px;
     list-style-type: none;
 
-    @media (max-width: $screen-xs) {
+    @media (max-width: Variables.$screen-xs) {
       padding-left: 5px;
     }
 
     li {
       font-style: italic;
-      @include font-size(18);
+      @include Variables.font-size(18);
 
       &.deprecated-text {
         text-decoration: line-through;
-        color: $gray;
+        color: Variables.$gray;
       }
 
       &:before {
         content: "•";
         padding-right: 8px;
-        color: $secondary-color;
+        color: Variables.$secondary-color;
       }
 
       a {
@@ -42,7 +42,7 @@
 
   .price {
     margin-right: 10px;
-    color: $gray;
-    @include font-size(13);
+    color: Variables.$gray;
+    @include Variables.font-size(13);
   }
 }

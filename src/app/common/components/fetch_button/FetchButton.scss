@@ -1,11 +1,11 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 $action-small-width: 50px;
 
 .fetch-button {
   .action-progress {
     position: absolute;
-    color: $main-color;
+    color: Variables.$main-color;
     z-index: 1;
   }
 
@@ -14,7 +14,7 @@ $action-small-width: 50px;
 
     &.fetching {
       width: $action-small-width !important;
-      background-color: $gray !important;
+      background-color: Variables.$gray !important;
 
       .button-label {
         display: none;
@@ -44,11 +44,11 @@ $action-small-width: 50px;
     }
 
     &.success {
-      background-color: $main-color !important;
+      background-color: Variables.$main-color !important;
     }
 
     &.error {
-      background-color: $error-color !important;
+      background-color: Variables.$error-color !important;
     }
   }
 }

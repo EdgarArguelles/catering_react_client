@@ -1,7 +1,7 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #undo-cancel-snackbars {
   .close-icon {
-    @include font-size(13);
+    @include Variables.font-size(13);
   }
 }

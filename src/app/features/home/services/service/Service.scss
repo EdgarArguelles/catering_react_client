@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .service {
   padding: 50px 20px;
@@ -8,11 +8,11 @@
   height: 250px;
   position: relative;
   background: #fafafa;
-  @include animate-hover($main-color, '.icon');
+  @include Variables.animate-hover(Variables.$main-color, '.icon');
 
   &.dark {
-    border: $dark-background;
-    background: $dark-background;
+    border: Variables.$dark-background;
+    background: Variables.$dark-background;
   }
 
   .icon {
@@ -26,7 +26,7 @@
     padding: 16px;
 
     svg {
-      @include font-size(21);
+      @include Variables.font-size(21);
     }
   }
 
@@ -34,11 +34,11 @@
     font-weight: 700;
     margin-bottom: 15px;
     text-transform: uppercase;
-    @include font-size(18);
+    @include Variables.font-size(18);
   }
 
   .description {
     line-height: 24px;
-    @include font-size(11);
+    @include Variables.font-size(11);
   }
 }

@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 .editable-field {
   .not-editing {
@@ -20,10 +20,10 @@
     }
 
     input {
-      @include font-size(32);
+      @include Variables.font-size(32);
 
-      @media (max-width: $screen-xs) {
-        @include font-size(20);
+      @media (max-width: Variables.$screen-xs) {
+        @include Variables.font-size(20);
       }
     }
   }

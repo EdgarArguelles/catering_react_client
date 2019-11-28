@@ -1,11 +1,11 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #create-new-quotation {
   width: 100%;
   min-height: 250px;
-  border: dashed $gray;
-  color: $gray;
-  border-radius: $card-border-radius;
+  border: dashed Variables.$gray;
+  color: Variables.$gray;
+  border-radius: Variables.$card-border-radius;
 
   span {
     display: flex;
@@ -13,7 +13,7 @@
 
     svg {
       margin: 25px 0;
-      @include font-size(32);
+      @include Variables.font-size(32);
     }
   }
 }

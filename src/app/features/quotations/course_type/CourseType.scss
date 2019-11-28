@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 $_btn-width: 56px;
 
@@ -6,15 +6,15 @@ $_btn-width: 56px;
   .btn-container {
     width: $_btn-width;
     position: fixed;
-    bottom: $floating-button-bottom;
-    margin-left: calc(100vw - #{$_btn-width} - #{$floating-button-right});
+    bottom: Variables.$floating-button-bottom;
+    margin-left: calc(100vw - #{$_btn-width} - #{Variables.$floating-button-right});
 
-    @media (max-width: $screen-sm) {
-      margin-left: calc(100vw - #{$_btn-width} - #{$floating-button-right-sm});
+    @media (max-width: Variables.$screen-sm) {
+      margin-left: calc(100vw - #{$_btn-width} - #{Variables.$floating-button-right-sm});
     }
 
-    @media (max-width: $screen-xs) {
-      margin-left: calc(100vw - #{$_btn-width} - #{$floating-button-right-xs});
+    @media (max-width: Variables.$screen-xs) {
+      margin-left: calc(100vw - #{$_btn-width} - #{Variables.$floating-button-right-xs});
     }
 
     button {
@@ -22,7 +22,7 @@ $_btn-width: 56px;
       animation-fill-mode: initial;
 
       svg {
-        @include font-size(16);
+        @include Variables.font-size(16);
       }
     }
   }

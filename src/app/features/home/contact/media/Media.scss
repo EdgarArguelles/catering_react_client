@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 $_contact-avatar: 120px;
 
@@ -7,11 +7,11 @@ $_contact-avatar: 120px;
   box-sizing: content-box;
 
   .card-media {
-    height: $contact-card-normal-height;
+    height: Variables.$contact-card-normal-height;
     background-color: rgba(0, 0, 0, 0.6);
 
-    @media (max-width: $screen-xs) {
-      height: $contact-card-xs-height;
+    @media (max-width:Variables.$screen-xs) {
+      height: Variables.$contact-card-xs-height;
       padding-top: 50px;
     }
 
@@ -21,7 +21,7 @@ $_contact-avatar: 120px;
       width: $_contact-avatar;
       border: 5px solid #fff;
 
-      @media (max-width: $screen-xs) {
+      @media (max-width: Variables.$screen-xs) {
         margin: 10px auto 35px auto;
       }
     }
@@ -33,20 +33,20 @@ $_contact-avatar: 120px;
         width: 50px;
         height: 50px;
         transition: 0.3s;
-        @include font-size(18);
-        @include animate-icon-hover();
+        @include Variables.font-size(18);
+        @include Variables.animate-icon-hover();
       }
 
       .twitter:hover {
-        background: $twitter-color;
+        background: Variables.$twitter-color;
       }
 
       .facebook:hover {
-        background: $facebook-color;
+        background: Variables.$facebook-color;
       }
 
       .instagram:hover {
-        background: $instagram-color;
+        background: Variables.$instagram-color;
       }
     }
   }

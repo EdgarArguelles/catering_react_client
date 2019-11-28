@@ -1,7 +1,7 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #google {
-  @include animate-hover($google-color);
+  @include Variables.animate-hover(Variables.$google-color);
 
   svg {
     margin-right: 35px;

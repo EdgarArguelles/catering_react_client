@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 @use 'app/features/quotations/header/Header';
 
 $_tab-bar-height: 48px;
@@ -7,7 +7,7 @@ $_tab-bar-height: 48px;
   #expand-bar {
     top: Header.$header-height;
     height: $_tab-bar-height;
-    background: $header-color;
+    background: Variables.$header-color;
     color: #fff;
 
     button {
@@ -15,18 +15,18 @@ $_tab-bar-height: 48px;
         background-color: rgba(255, 255, 255, 0.1);
       }
 
-      @media (max-width: $screen-xs) {
-        @include font-size(10);
+      @media (max-width: Variables.$screen-xs) {
+        @include Variables.font-size(10);
       }
 
-      @media (max-width: $screen-xxs) {
-        @include font-size(9);
+      @media (max-width: Variables.$screen-xxs) {
+        @include Variables.font-size(9);
       }
     }
 
     .indicator {
       height: 5px;
-      background-color: $main-color;
+      background-color: Variables.$main-color;
     }
 
     .course-type-tab {
@@ -39,17 +39,17 @@ $_tab-bar-height: 48px;
         width: 25px;
         height: 25px;
         margin: -5px 15px 0 0;
-        background-color: $secondary-color;
-        @include font-size(13);
+        background-color: Variables.$secondary-color;
+        @include Variables.font-size(13);
 
-        @media (max-width: $screen-xs) {
+        @media (max-width: Variables.$screen-xs) {
           margin-right: 5px;
         }
 
-        @media (max-width: $screen-xxs) {
+        @media (max-width: Variables.$screen-xxs) {
           width: 20px;
           height: 20px;
-          @include font-size(9);
+          @include Variables.font-size(9);
         }
       }
     }
@@ -58,7 +58,7 @@ $_tab-bar-height: 48px;
       min-width: 75px;
       max-width: 75px;
 
-      @media (max-width: $screen-xs) {
+      @media (max-width: Variables.$screen-xs) {
         min-width: 50px;
         max-width: 50px;
       }
@@ -66,7 +66,7 @@ $_tab-bar-height: 48px;
       svg {
         color: #FFFF00;
         margin-right: 5px;
-        @include font-size(24);
+        @include Variables.font-size(24);
       }
     }
   }

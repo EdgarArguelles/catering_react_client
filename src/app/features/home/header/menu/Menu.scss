@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #nav-menu-container {
   position: fixed;
@@ -15,7 +15,7 @@
     opacity: 1;
   }
 
-  @media (max-width: $screen-xs) {
+  @media (max-width: Variables.$screen-xs) {
     display: none;
   }
 
@@ -29,7 +29,7 @@
       float: left;
       margin-left: 10px;
 
-      @media (max-width: $screen-sm) {
+      @media (max-width: Variables.$screen-sm) {
         margin-left: 0;
       }
 
@@ -38,7 +38,7 @@
         display: inline-block;
         text-transform: uppercase;
         outline: none;
-        @include font-size(11);
+        @include Variables.font-size(11);
 
         &:before {
           content: "";
@@ -47,7 +47,7 @@
           height: 2px;
           bottom: 0;
           left: 0;
-          background-color: $main-color;
+          background-color: Variables.$main-color;
           visibility: hidden;
           transform: scaleX(0);
           transition: all 0.3s ease-in-out 0s;
@@ -55,7 +55,7 @@
 
         @media (max-width: 750px) {
           padding: 0 4px 10px 4px;
-          @include font-size(10);
+          @include Variables.font-size(10);
         }
       }
     }

@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #selected-dish-dialog {
   div:first-child[aria-hidden=true] {
@@ -15,7 +15,7 @@
   .selected-dish-dialog-content {
     transition-duration: 500ms;
 
-    @media (max-width: $screen-xxs) {
+    @media (max-width: Variables.$screen-xxs) {
       padding: 15px 0;
     }
   }

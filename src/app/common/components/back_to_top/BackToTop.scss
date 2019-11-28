@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 #back-to-top {
   position: fixed;
@@ -10,9 +10,9 @@
   right: 15px;
   bottom: 15px;
   transition: background 0.5s;
-  @include font-size(29);
+  @include Variables.font-size(29);
 
   &:hover {
-    background: $main-color;
+    background: Variables.$main-color;
   }
 }

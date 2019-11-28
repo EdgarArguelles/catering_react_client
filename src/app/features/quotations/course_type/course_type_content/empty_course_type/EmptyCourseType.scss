@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 $_img-size: 180px;
 
@@ -16,17 +16,17 @@ $_img-size: 180px;
   }
 
   p {
-    color: $gray;
+    color: Variables.$gray;
   }
 
   .title {
     text-align: center;
     margin-bottom: 0;
-    @include font-size(32);
+    @include Variables.font-size(32);
   }
 
   .subtitle {
     text-align: center;
-    @include font-size(18);
+    @include Variables.font-size(18);
   }
 }

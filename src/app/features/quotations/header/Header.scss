@@ -1,4 +1,4 @@
-@use 'app/Variables' as *;
+@use 'app/Variables';
 
 $header-height: 64px;
 $screen-menu: 734px;
@@ -8,7 +8,7 @@ $screen-menu: 734px;
 
   #app-bar {
     height: $header-height;
-    background: $header-color;
+    background: Variables.$header-color;
     box-shadow: none;
 
     .tool-bar {
