@@ -1,7 +1,7 @@
 @use 'app/Variables';
 
 #side-menu {
-  div[role=document] {
+  .MuiDrawer-paper {
     background: #363E42;
     width: 290px;
 

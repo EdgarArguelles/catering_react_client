@@ -6,7 +6,7 @@ exports[`Components -> EnterTextField snapshot should render TextField with prop
   onKeyUp={[Function]}
 >
   <div
-    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense MuiInput-marginDense"
     onClick={[Function]}
   >
     <input
@@ -33,7 +33,7 @@ exports[`Components -> EnterTextField snapshot should render TextField without p
   onKeyUp={[Function]}
 >
   <div
-    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense"
+    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense MuiInput-marginDense"
     onClick={[Function]}
   >
     <input
