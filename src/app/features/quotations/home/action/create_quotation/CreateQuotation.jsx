@@ -33,7 +33,7 @@ const CreateQuotation = () => {
 
   return (
     <>
-      <Action id="create-quotation" image={image} className="animated bounceInDown"
+      <Action id="create-quotation" image={image} className="animate__animated animate__bounceInDown"
               onClick={() => handleQuotationRedirect(false)}>
         Crear un nuevo Presupuesto
       </Action>

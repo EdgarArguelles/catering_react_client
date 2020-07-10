@@ -5,7 +5,7 @@ import Analyzer from 'webpack-bundle-analyzer';
 import Visualizer from 'webpack-visualizer-plugin';
 import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import WorkboxPlugin from 'workbox-webpack-plugin';
 
 const srcPath = path.resolve('./src');
@@ -50,7 +50,7 @@ export default {
         API_URL: JSON.stringify(process.env.API_URL),
       },
     }),
-    new CopyWebpackPlugin([{from: './src/manifest.json', to: distPath}]),
+    new CopyPlugin({patterns: [{from: './src/manifest.json', to: distPath}]}),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,

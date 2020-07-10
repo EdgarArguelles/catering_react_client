@@ -33,7 +33,11 @@ const QuotationGrid = () => {
   };
 
   const getAnimatedGrid = (id, component) => {
-    return <Grid key={id} item xs={12} sm={6} md={4} lg={3} xl={2} className="animated zoomIn">{component}</Grid>;
+    return (
+      <Grid key={id} item xs={12} sm={6} md={4} lg={3} xl={2} className="animate__animated animate__zoomIn">
+        {component}
+      </Grid>
+    );
   };
 
   const getExtraContent = () => {

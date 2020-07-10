@@ -5,7 +5,7 @@ const Animate = ({show, className, animationIn, animationOut, onUnmount, childre
   const [shouldRender, setShouldRender] = useState(show);
   const animation = show ? animationIn : animationOut;
   const classes = [];
-  animation && classes.push('animated', animation);
+  animation && classes.push('animate__animated', `animate__${animation}`);
   className && classes.push(className);
   const onAnimationEnd = () => {
     !show && setShouldRender(false);

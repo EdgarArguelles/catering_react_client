@@ -42,7 +42,8 @@ const QuotationCompleteButton = () => {
 
   return (
     <>
-      <Fab id="quotation-complete-button" className={`floating-button animated zoomIn ${errors ? 'move-up' : ''}`}
+      <Fab id="quotation-complete-button"
+           className={`floating-button animate__animated animate__zoomIn ${errors ? 'move-up' : ''}`}
            classes={{label: 'quotation-complete-button-label'}} onClick={handleShowDialog}>
         <FontAwesomeIcon id="quotation-complete-button-icon" icon={faFlagCheckered}/>
       </Fab>

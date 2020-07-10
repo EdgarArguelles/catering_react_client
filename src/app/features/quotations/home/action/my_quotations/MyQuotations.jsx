@@ -24,7 +24,8 @@ const MyQuotations = () => {
 
   return (
     <>
-      <Action id="my-quotations" image={image} className="animated bounceInDown" onClick={handleListRedirect}>
+      <Action id="my-quotations" image={image} onClick={handleListRedirect}
+              className="animate__animated animate__bounceInDown">
         Mis Presupuestos
       </Action>
 
