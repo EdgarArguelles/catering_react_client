@@ -68,8 +68,8 @@ const ShareButton = ({link, label, description, hashtag}) => {
   };
 
   return (
-    <SpeedDial ariaLabel="share" className="floating-button share-button animated zoomIn delay-1s"
-               icon={speedDialIcon} open={isSpeedDialOpen} onClick={toggle} onClose={close}
+    <SpeedDial ariaLabel="share" icon={speedDialIcon} open={isSpeedDialOpen} onClick={toggle} onClose={close}
+               className="floating-button share-button animate__animated animate__zoomIn animate__delay-1s"
                onMouseEnter={open} onMouseLeave={close}>
       {getShareActions().map(({name, icon}) => <SpeedDialAction key={name} tooltipTitle={name} icon={icon}/>)}
     </SpeedDial>

@@ -26,8 +26,8 @@ const DishHeader = ({dish, onClose}) => {
 
   const getAction = () => {
     return isDishAdded(multipleDishesDialog, menuCourses, dish.id)
-      ? <RemoveButton dish={dish} className="animated rubberBand"/>
-      : <AddButton dish={dish} className="animated rubberBand"/>;
+      ? <RemoveButton dish={dish} className="animate__animated animate__rubberBand"/>
+      : <AddButton dish={dish} className="animate__animated animate__rubberBand"/>;
   };
 
   return (

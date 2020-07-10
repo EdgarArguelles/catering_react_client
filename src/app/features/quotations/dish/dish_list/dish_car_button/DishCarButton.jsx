@@ -17,7 +17,7 @@ const DishCarButton = () => {
   const menuCourses = courses.filter(course => course.type.id === courseType.id);
 
   return (
-    <Fab id="dish-car-button" className="floating-button animated fadeInRight"
+    <Fab id="dish-car-button" className="floating-button animate__animated animate__fadeInRight"
          classes={{label: 'dish-car-button-label'}} onClick={() => History.navigate('/presupuestos/menu/editar')}
          onMouseEnter={() => Utils.animateIcon('dish-car-button-icon')}>
       <Badge id="dish-car-button-badge" badgeContent={menuCourses.length} color="secondary"

@@ -10,7 +10,7 @@ const EditQuotation = () => {
   const quotation = useSelector(state => state.quotations.quotation);
 
   return (
-    <Action id="edit-quotation" image={image} className="animated bounceInDown"
+    <Action id="edit-quotation" image={image} className="animate__animated animate__bounceInDown"
             onClick={() => History.navigate(getEditPath(quotation))}>
       Continuar con el Presupuesto
     </Action>

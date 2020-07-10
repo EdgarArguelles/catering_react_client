@@ -15,7 +15,7 @@
     }
 
     svg {
-      position: fixed;
+      position: absolute;
       margin: 0 5px;
       @include Variables.font-size(13);
     }

@@ -45,7 +45,7 @@ const DishList = ({location}) => {
       <DishToolbar/>
       <DishGrid dishes={categoryDishes} isLoading={courseTypeDishes.length <= 0}/>
       <DishCarButton/>
-      <Fab id="dish-filter-button" color="primary" className="floating-button animated fadeInRight"
+      <Fab id="dish-filter-button" color="primary" className="floating-button animate__animated animate__fadeInRight"
            classes={{label: 'dish-filter-button-label'}} onClick={handleClick} onMouseEnter={animateIcon}>
         <FontAwesomeIcon id="dish-filter-button-icon" icon={faFilter}/>
       </Fab>
