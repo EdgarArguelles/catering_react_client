@@ -4,7 +4,6 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "@babel/transform-runtime",
-    "dynamic-import-webpack"
+    "@babel/transform-runtime"
   ]
 }

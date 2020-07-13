@@ -1,6 +1,6 @@
 {
   "name": "catering_react_client",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "This project is a React Client used by CATERING",
   "scripts": {
     "webpack-dev": "cross-env API_URL=https://cateringjavaapi.herokuapp.com webpack-dev-server -d --history-api-fallback --port 3001 --host 0.0.0.0",
@@ -36,10 +36,9 @@
     "@babel/preset-env": "7.10.4",
     "@babel/preset-react": "7.10.4",
     "@svgr/webpack": "5.4.0",
-    "autoprefixer": "9.8.4",
+    "autoprefixer": "9.8.5",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
-    "babel-plugin-dynamic-import-webpack": "1.1.0",
     "babel-polyfill": "6.26.0",
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "6.0.3",
@@ -48,7 +47,7 @@
     "eslint": "7.4.0",
     "eslint-plugin-more": "1.0.0",
     "eslint-plugin-react": "7.20.3",
-    "eslint-plugin-react-hooks": "4.0.7",
+    "eslint-plugin-react-hooks": "4.0.8",
     "fetch-mock": "9.10.3",
     "file-loader": "6.0.0",
     "jest": "26.1.0",
