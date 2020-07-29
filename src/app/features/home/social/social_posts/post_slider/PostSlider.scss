@@ -8,6 +8,16 @@
   }
 
   .post-carousel {
+    &.dark {
+      .slick-dots {
+        li {
+          button:before {
+            color: #fff;
+          }
+        }
+      }
+    }
+
     .slick-slide {
       opacity: 0.7;
       transform: scale(.7);
