@@ -1,10 +1,5 @@
 /* eslint-disable max-lines */
-import keyMirror from 'keymirror';
-
-export const ACTION_TYPES = keyMirror({
-  FETCH_FAILURE: null,
-  SESSION_EXPIRED: null,
-});
+export const ACTION_TYPES = {FETCH_FAILURE: 'FETCH_FAILURE', SESSION_EXPIRED: 'SESSION_EXPIRED'};
 
 /**
  * Handle endpoint calls

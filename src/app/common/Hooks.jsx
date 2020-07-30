@@ -8,7 +8,7 @@ import {changeTheme} from 'app/AppReducer';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/data/quotations/QuotationsActions';
 import DishesActions from 'app/data/dishes/DishesActions';
-import AuthActions from 'app/features/auth/AuthActions';
+import {fetchPing} from 'app/features/auth/AuthReducer';
 
 export const useAppTheme = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export const useAppTheme = () => {
 export const usePingServer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(AuthActions.fetchPing());
+    dispatch(fetchPing());
   });
 };
 

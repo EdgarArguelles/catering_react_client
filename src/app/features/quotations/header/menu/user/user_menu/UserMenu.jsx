@@ -10,7 +10,7 @@ import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import {useAppTheme} from 'app/common/Hooks';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import AuthActions from 'app/features/auth/AuthActions';
+import {logout} from 'app/features/auth/AuthReducer';
 
 const UserMenu = ({open, anchorEl, onClose}) => {
   const dispatch = useDispatch();
@@ -33,8 +33,8 @@ const UserMenu = ({open, anchorEl, onClose}) => {
     setIsDialogOpen(true);
   };
 
-  const logout = () => {
-    dispatch(AuthActions.logout());
+  const doLogout = () => {
+    dispatch(logout());
     onClose();
     window.location.replace('/');
   };
@@ -54,7 +54,7 @@ const UserMenu = ({open, anchorEl, onClose}) => {
       </MenuItem>
 
       <ConfirmationDialog title="Salir" label="Al salir se perderan todos los cambios no guardados ¿Desea salir?"
-                          okLabel="Salir" open={isDialogOpen} onClose={() => setIsDialogOpen(false)} onOK={logout}/>
+                          okLabel="Salir" open={isDialogOpen} onClose={() => setIsDialogOpen(false)} onOK={doLogout}/>
     </Popover>
   );
 };
