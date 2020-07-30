@@ -1,45 +1,41 @@
-/**
- * This special reducer collect all reduces that store data from Backend
- *
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {ACTION_TYPES} from './AppActions';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import Api from 'app/common/Api';
+
+const SLICE_NAME = 'APP';
 
 const defaultTheme = window.localStorage && window.localStorage.getItem('appTheme') ?
   window.localStorage.getItem('appTheme') : 'light';
 
-const isOnline = (state = navigator.onLine, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.IS_APP_ONLINE:
-      return action.payload.isOnline;
-    default:
-      return state;
-  }
-};
+export const getFacebookAccessCode = createAsyncThunk(
+  `${SLICE_NAME}/getFacebookAccessCode`,
+  async (arg, thunkAPI) => {
+    const body = {query: '{getAccessCode(social: FACEBOOK)}'};
 
-const theme = (state = defaultTheme, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CHANGE_APP_THEME:
-      return action.payload.theme;
-    default:
-      return state;
-  }
-};
+    return await Api.graphql(thunkAPI.dispatch, body);
+  },
+);
 
-const facebookAccessCode = (state = '', action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CHANGE_APP_FACEBOOK_ACCESS_CODE:
-      return action.payload.data;
-    default:
-      return state;
-  }
-};
+const appSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: {
+    isOnline: navigator.onLine,
+    theme: defaultTheme,
+    facebookAccessCode: '',
+  },
+  reducers: {
+    changeIsOnline(state, action) {
+      state.isOnline = action.payload;
+    },
+    changeTheme(state, action) {
+      state.theme = action.payload;
+    },
+  },
+  extraReducers: {
+    [getFacebookAccessCode.fulfilled]: (state, action) => {
+      state.facebookAccessCode = action.payload.data.getAccessCode;
+    },
+  },
+});
 
-export default (state = {}, action = {}) => {
-  return {
-    isOnline: isOnline(state.isOnline, action),
-    theme: theme(state.theme, action),
-    facebookAccessCode: facebookAccessCode(state.facebookAccessCode, action),
-  };
-};
+export default appSlice.reducer;
+export const {changeIsOnline, changeTheme} = appSlice.actions;

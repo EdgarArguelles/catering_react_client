@@ -5,15 +5,15 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSlash, faWifi} from '@fortawesome/free-solid-svg-icons';
 import Slide from '@material-ui/core/Slide';
 import Utils from 'app/common/Utils';
-import AppActions from 'app/AppActions';
+import {changeIsOnline} from 'app/AppReducer';
 
 const Offline = () => {
   const dispatch = useDispatch();
   const isOnline = useSelector(state => state.app.isOnline);
   useEffect(() => {
-    window.addEventListener('online', () => dispatch(AppActions.changeIsOnline(true)));
+    window.addEventListener('online', () => dispatch(changeIsOnline(true)));
     window.addEventListener('offline', () => {
-      dispatch(AppActions.changeIsOnline(false));
+      dispatch(changeIsOnline(false));
       Utils.animateIcon('wifi-icon');
       Utils.animateIcon('slash-icon');
     });
