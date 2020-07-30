@@ -7,7 +7,7 @@ import {faTrophy, faUtensils} from '@fortawesome/free-solid-svg-icons';
 import Zoom from '@material-ui/core/Zoom';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import PostSlider from './post_slider/PostSlider';
-import AppActions from 'app/AppActions';
+import {getFacebookAccessCode} from 'app/AppReducer';
 
 const SocialPosts = ({type}) => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const SocialPosts = ({type}) => {
   const [showSlider, setShowSlider] = useState(false);
   const isReview = type === 'review';
   const icon = isReview ? faTrophy : faUtensils;
-  const getFacebookAccessCode = () => dispatch(AppActions.getFacebookAccessCode());
+  const getFacebookCode = () => dispatch(getFacebookAccessCode());
   const loadPosts = async () => {
     const endpoint = isReview ? 'ratings?fields=recommendation_type%2Copen_graph_story' : 'photos?type=uploaded';
     const url = `https://graph.facebook.com/v4.0/615026265632013/${endpoint}&limit=10&access_token=${token}`;
@@ -24,7 +24,7 @@ const SocialPosts = ({type}) => {
     const payload = await response.json();
 
     if (payload.error) {
-      await dispatch(AppActions.getFacebookAccessCode());
+      await dispatch(getFacebookAccessCode());
       throw payload.error;
     } else {
       const array = isReview ?
@@ -35,7 +35,7 @@ const SocialPosts = ({type}) => {
     }
   };
 
-  const preconditionCall = token ? null : getFacebookAccessCode;
+  const preconditionCall = token ? null : getFacebookCode;
   const asyncCall = token ? loadPosts : null;
   const label = isReview
     ? 'Revisa lo que nuestra comunidad piensa de nuestros servicios.'
