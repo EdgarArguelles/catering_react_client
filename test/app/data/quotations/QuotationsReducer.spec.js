@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
-import {ACTION_TYPES} from 'app/common/Api';
+import Api, {ACTION_TYPES} from 'app/common/Api';
 import Utils from 'app/common/Utils';
 import {fetchPing, logout} from 'app/features/auth/AuthReducer';
 import QuotationsReducer, {
@@ -438,6 +438,247 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       it('should change fetching to false and error, data and metaData to null ' +
         'when action is deleteQuotation.fulfilled', () => {
         validate({type: deleteQuotation.fulfilled.type});
+      });
+    });
+  });
+
+  describe('Actions', () => {
+    const dispatchStub = sinon.stub();
+    const graphqlStub = sinon.stub(Api, 'graphql');
+
+    afterEach(() => {
+      dispatchStub.reset();
+      graphqlStub.reset();
+    });
+
+    describe('fetchQuotations', () => {
+      const arg = {page: 5};
+      const meta = {arg, requestId: sinon.match.string};
+      const FIELDS = 'totalElements totalPages content{id name createdAt price}';
+      const body = {query: `{quotationPage(pageDataRequest: {page:5}) {${FIELDS}}}`};
+
+      it('should dispatch fetchQuotations.fulfilled', async () => {
+        const jsonExpected = {data: {quotationPage: {totalElements: 5, totalPages: 3, content: [{id: 1}, {id: 2}]}}};
+        const payload = {data: [{id: 1}, {id: 2}], metaData: {pagination: arg, totalElements: 5, totalPages: 3}};
+        graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+
+        const result = await fetchQuotations(arg)(dispatchStub);
+
+        expect(result.payload).toStrictEqual(payload);
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: fetchQuotations.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {type: fetchQuotations.fulfilled.type, payload, meta});
+        // don't mutate
+        expect(arg).toStrictEqual({page: 5});
+      });
+
+      it('should dispatch fetchQuotations.rejected', async () => {
+        const errorExpected = new Error('error 1');
+        graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+        const result = await fetchQuotations(arg)(dispatchStub);
+
+        expect(result.error.message).toStrictEqual('error 1');
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: fetchQuotations.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: fetchQuotations.rejected.type,
+          error: sinon.match.object,
+          payload: undefined,
+          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+        });
+        // don't mutate
+        expect(arg).toStrictEqual({page: 5});
+      });
+    });
+
+    describe('fetchQuotation', () => {
+      const arg = {quotationId: 8, overwriteLocalChanges: true};
+      const meta = {arg, requestId: sinon.match.string};
+      const FIELDS = 'id name createdAt price menus{id name quantity courses{id position type{id} dishes{id price}}}';
+      const body = {query: `{quotation(id: ${arg.quotationId}) {${FIELDS}}}`};
+
+      it('should dispatch fetchQuotation.fulfilled', async () => {
+        const jsonExpected = {data: {quotation: {value: 'test'}}};
+        const payload = {data: {value: 'test'}, overwriteLocalChanges: true};
+        graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+
+        const result = await fetchQuotation(arg)(dispatchStub);
+
+        expect(result.payload).toStrictEqual(payload);
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: fetchQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {type: fetchQuotation.fulfilled.type, payload, meta});
+        // don't mutate
+        expect(arg).toStrictEqual({quotationId: 8, overwriteLocalChanges: true});
+      });
+
+      it('should dispatch fetchQuotation.rejected', async () => {
+        const errorExpected = new Error('error 1');
+        graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+        const result = await fetchQuotation(arg)(dispatchStub);
+
+        expect(result.error.message).toStrictEqual('error 1');
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: fetchQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: fetchQuotation.rejected.type,
+          error: sinon.match.object,
+          payload: undefined,
+          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+        });
+        // don't mutate
+        expect(arg).toStrictEqual({quotationId: 8, overwriteLocalChanges: true});
+      });
+    });
+
+    describe('createQuotation', () => {
+      const arg = {id: 8, menus: [{id: 1}, {id: 2}]};
+      const meta = {arg, requestId: sinon.match.string};
+      const body = {query: 'mutation {createQuotation(quotation: {id:8,menus:[{id:1},{id:2}]}) {id}}'};
+
+      it('should dispatch createQuotation.fulfilled', async () => {
+        const jsonExpected = {data: {createQuotation: {value: 'test'}}};
+        graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+
+        const result = await createQuotation(arg)(dispatchStub);
+
+        expect(result.payload).toStrictEqual(jsonExpected);
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: createQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: createQuotation.fulfilled.type,
+          payload: jsonExpected,
+          meta,
+        });
+        // don't mutate
+        expect(arg).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
+      });
+
+      it('should dispatch createQuotation.rejected', async () => {
+        const errorExpected = new Error('error 1');
+        graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+        const result = await createQuotation(arg)(dispatchStub);
+
+        expect(result.error.message).toStrictEqual('error 1');
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: createQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: createQuotation.rejected.type,
+          error: sinon.match.object,
+          payload: undefined,
+          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+        });
+        // don't mutate
+        expect(arg).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
+      });
+    });
+
+    describe('editQuotation', () => {
+      const arg = {id: 8, menus: [{id: 1}, {id: 2}]};
+      const meta = {arg, requestId: sinon.match.string};
+      const body = {query: 'mutation {updateQuotation(quotation: {id:8,menus:[{id:1},{id:2}]}) {id}}'};
+
+      it('should dispatch editQuotation.fulfilled', async () => {
+        const jsonExpected = {data: {updateQuotation: {value: 'test'}}};
+        graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+
+        const result = await editQuotation(arg)(dispatchStub);
+
+        expect(result.payload).toStrictEqual(jsonExpected);
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: editQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: editQuotation.fulfilled.type,
+          payload: jsonExpected,
+          meta,
+        });
+        // don't mutate
+        expect(arg).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
+      });
+
+      it('should dispatch editQuotation.rejected', async () => {
+        const errorExpected = new Error('error 1');
+        graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+        const result = await editQuotation(arg)(dispatchStub);
+
+        expect(result.error.message).toStrictEqual('error 1');
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: editQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: editQuotation.rejected.type,
+          error: sinon.match.object,
+          payload: undefined,
+          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+        });
+        // don't mutate
+        expect(arg).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
+      });
+    });
+
+    describe('deleteQuotation', () => {
+      const arg = 5;
+      const meta = {arg, requestId: sinon.match.string};
+      const body = {query: 'mutation {deleteQuotation(id: 5) {id}}'};
+
+      it('should dispatch deleteQuotation.fulfilled', async () => {
+        const jsonExpected = {data: {deleteQuotation: {value: 'test'}}};
+        graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+
+        const result = await deleteQuotation(arg)(dispatchStub);
+
+        expect(result.payload).toStrictEqual(jsonExpected);
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: deleteQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: deleteQuotation.fulfilled.type,
+          payload: jsonExpected,
+          meta,
+        });
+        // don't mutate
+        expect(arg).toStrictEqual(5);
+      });
+
+      it('should dispatch deleteQuotation.rejected', async () => {
+        const errorExpected = new Error('error 1');
+        graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+        const result = await deleteQuotation(arg)(dispatchStub);
+
+        expect(result.error.message).toStrictEqual('error 1');
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {type: deleteQuotation.pending.type, payload: undefined, meta});
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: deleteQuotation.rejected.type,
+          error: sinon.match.object,
+          payload: undefined,
+          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+        });
+        // don't mutate
+        expect(arg).toStrictEqual(5);
       });
     });
   });
