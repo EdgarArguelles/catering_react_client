@@ -7,7 +7,7 @@ import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {removeMenu} from 'app/features/quotations/quotation/QuotationReducer';
 
 const RemoveMenu = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const RemoveMenu = () => {
   };
 
   const handleRemove = () => {
-    dispatch(QuotationActions.removeMenu(id));
+    dispatch(removeMenu(id));
     History.navigate('/presupuestos/editar');
   };
 
