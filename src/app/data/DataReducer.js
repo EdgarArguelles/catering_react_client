@@ -6,13 +6,7 @@
  */
 import {courseTypes, courseTypesFetching} from './course_types/CourseTypesReducer';
 import {dishes, dishesFetching, dishFetching} from './dishes/DishesReducer';
-import {
-  quotations,
-  quotationsError,
-  quotationsFetching,
-  quotationsMetaData,
-  quotationsUpdateFetching,
-} from './quotations/QuotationsReducer';
+import quotations from './quotations/QuotationsReducer';
 import {ACTION_TYPES} from './DataActions';
 
 const dataState = window.localStorage ? window.localStorage.getItem('dataState') : null;
@@ -32,20 +26,6 @@ const fetching = (state = {}, action) => {
     courseTypes: courseTypesFetching(state.courseTypes, action),
     dishes: dishesFetching(state.dishes, action),
     dish: dishFetching(state.dish, action),
-    quotations: quotationsFetching(state.quotations, action),
-    quotationsUpdate: quotationsUpdateFetching(state.quotationsUpdate, action),
-  };
-};
-
-const errors = (state = {}, action) => {
-  return {
-    quotations: quotationsError(state.quotations, action),
-  };
-};
-
-const metaData = (state = {}, action) => {
-  return {
-    quotations: quotationsMetaData(state.quotations, action),
   };
 };
 
@@ -53,8 +33,6 @@ export default (state = defaultValues, action = {}) => {
   return {
     version: version(state.version, action),
     fetching: fetching(state.fetching, action),
-    errors: errors(state.errors, action),
-    metaData: metaData(state.metaData, action),
     courseTypes: courseTypes(state.courseTypes, action),
     dishes: dishes(state.dishes, action),
     quotations: quotations(state.quotations, action),
