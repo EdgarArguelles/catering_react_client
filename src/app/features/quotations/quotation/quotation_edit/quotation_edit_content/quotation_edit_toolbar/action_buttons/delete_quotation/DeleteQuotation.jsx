@@ -64,7 +64,7 @@ const DeleteQuotation = () => {
                             open={isDialogOpen} label={`¿Desea eliminar definitivamente el presupuesto ${name}?`}
                             onClose={() => handleStates(false, false)}
                             onOK={() => handleStates(false, true)}/>
-        <Snackbar open={!!errors && errors.errorCode !== 401 && errors.errorCode !== 403 && shouldDelete}
+        <Snackbar open={!!errors && errors.message !== 'Unauthorized' && shouldDelete}
                   TransitionComponent={Slide} autoHideDuration={10000} onClose={handleCleanError}
                   message="Ocurrió un error al intentar eliminar el presupuesto"/>
       </span>
