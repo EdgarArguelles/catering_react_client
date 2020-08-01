@@ -8,28 +8,28 @@ import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
-import DataQuotationsActions from 'app/data/quotations/QuotationsActions';
+import {cleanError, createQuotation, editQuotation, fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 
 const SaveQuotation = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const errors = useSelector(state => state.data.errors.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const errors = useSelector(state => state.data.quotations.error);
   const openAuthDialog = () => dispatch(AuthDialogActions.openAuthDialog());
-  const cleanError = () => dispatch(DataQuotationsActions.cleanError());
+  const handleCleanError = () => dispatch(cleanError());
   const endRemoteProcess = () => dispatch(QuotationsActions.endRemoteProcess());
   const saveQuotation = async () => {
     let quotationId;
     if (!quotation.id) {
-      const response = await dispatch(DataQuotationsActions.createQuotation({
+      const response = await dispatch(createQuotation({
         ...quotation,
         menus: quotation.menus.map(menu => ({...menu, id: null})),
       }));
-      quotationId = response.data.createQuotation.id;
+      quotationId = response.payload.data.createQuotation.id;
     } else {
-      const response = await dispatch(DataQuotationsActions.editQuotation({
+      const response = await dispatch(editQuotation({
         ...quotation,
         menus: quotation.menus.map(menu => {
           if (menu.id.startsWith('local-')) {
@@ -39,12 +39,12 @@ const SaveQuotation = () => {
           return menu;
         }),
       }));
-      quotationId = response.data.updateQuotation.id;
+      quotationId = response.payload.data.updateQuotation.id;
     }
-    await dispatch(DataQuotationsActions.fetchQuotation(quotationId));
+    await dispatch(fetchQuotation({quotationId, overwriteLocalChanges: true}));
   };
 
-  const errorMessage = errors && (errors.errorCode === 401 || errors.errorCode === 403) ? 'Usuario sin sesión'
+  const errorMessage = errors && errors.message === 'Unauthorized' ? 'Usuario sin sesión'
     : quotation.menus && quotation.menus.filter(menu => menu.courses.length === 0).length > 0
       ? 'No puede haber menús vacíos' : 'Ocurrió un error al intentar guardar el presupuesto';
   const preconditionCall = loggedUser ? null : openAuthDialog;
@@ -60,7 +60,7 @@ const SaveQuotation = () => {
 
         <AuthDialog/>
         <Snackbar open={!!errors} TransitionComponent={Slide}
-                  autoHideDuration={10000} onClose={cleanError} message={errors ? errorMessage : ''}/>
+                  autoHideDuration={10000} onClose={handleCleanError} message={errors ? errorMessage : ''}/>
       </span>
   );
 };
