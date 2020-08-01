@@ -9,12 +9,12 @@ import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const CreateNewQuotation = () => {
   const dispatch = useDispatch();
-  const quotations = useSelector(state => state.data.quotations);
+  const quotations = useSelector(state => state.data.quotations.data);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogLabel = 'Al crear un nuevo presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
@@ -22,8 +22,8 @@ const CreateNewQuotation = () => {
   const createNewQuotation = () => {
     const menuId = getRandomMenuId();
     dispatch(QuotationsActions.deleteLocal());
-    dispatch(QuotationActions.addNewMenu(menuId));
-    dispatch(QuotationActions.selectMenu(menuId));
+    dispatch(addNewMenu(menuId));
+    dispatch(selectMenu(menuId));
     History.navigate('/presupuestos/menu/editar');
   };
 
