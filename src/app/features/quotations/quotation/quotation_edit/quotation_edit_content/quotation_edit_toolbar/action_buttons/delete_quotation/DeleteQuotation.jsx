@@ -7,7 +7,7 @@ import Slide from '@material-ui/core/Slide';
 import History from 'app/router/History';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton';
-import DataQuotationsActions from 'app/data/quotations/QuotationsActions';
+import {cleanError, deleteQuotation} from 'app/data/quotations/QuotationsReducer';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const DeleteQuotation = () => {
@@ -21,20 +21,23 @@ const DeleteQuotation = () => {
   const [shouldDelete, setShouldDelete] = useState(false);
   const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const errors = useSelector(state => state.data.errors.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const errors = useSelector(state => state.data.quotations.error);
 
   const {id, name} = quotation;
-  const cleanError = () => dispatch(DataQuotationsActions.cleanError());
+  const handleCleanError = () => dispatch(cleanError());
   const endRemoteProcess = () => dispatch(QuotationsActions.endRemoteProcess());
-  const deleteQuotation = async () => {
-    await dispatch(DataQuotationsActions.deleteQuotation(id));
+  const doDeleteQuotation = async () => {
+    const json = await dispatch(deleteQuotation(id));
+    if (json.error) {
+      throw json.error;
+    }
     dispatch(QuotationsActions.deleteLocal());
   };
 
   const handleDeleteQuotation = async () => {
     try {
-      await deleteQuotation();
+      await doDeleteQuotation();
     } catch (e) {
       throw e;
     } finally {
@@ -62,7 +65,7 @@ const DeleteQuotation = () => {
                             onClose={() => handleStates(false, false)}
                             onOK={() => handleStates(false, true)}/>
         <Snackbar open={!!errors && errors.errorCode !== 401 && errors.errorCode !== 403 && shouldDelete}
-                  TransitionComponent={Slide} autoHideDuration={10000} onClose={cleanError}
+                  TransitionComponent={Slide} autoHideDuration={10000} onClose={handleCleanError}
                   message="Ocurrió un error al intentar eliminar el presupuesto"/>
       </span>
   );
