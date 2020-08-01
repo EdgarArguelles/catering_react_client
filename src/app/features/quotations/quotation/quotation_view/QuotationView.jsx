@@ -11,7 +11,7 @@ import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
-import QuotationsDataActions from 'app/data/quotations/QuotationsActions';
+import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 
 const QuotationView = ({match}) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const QuotationView = ({match}) => {
   const openAuthDialog = useCallback(() => dispatch(AuthDialogActions.openAuthDialog()), [dispatch]);
   const loadQuotation = useCallback(async () => {
     dispatch(QuotationsActions.deleteLocal());
-    await dispatch(QuotationsDataActions.fetchQuotation(quotationId.current));
+    await dispatch(fetchQuotation({quotationId: quotationId.current, overwriteLocalChanges: true}));
     History.navigate('/presupuestos/editar');
   }, [dispatch]); // because this useCallback has inputs = [dispatch], loadQuotation never changes its value
 
