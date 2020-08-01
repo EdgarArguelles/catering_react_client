@@ -9,20 +9,20 @@ import MenuQuantity from './menu_quantity/MenuQuantity';
 import RemoveMenu from './remove_menu/RemoveMenu';
 import CompleteMenu from './complete_menu/CompleteMenu';
 import MenuDialog from './menu_dialog/MenuDialog';
-import MenuActions from 'app/features/quotations/menu/MenuActions';
+import {changeName} from 'app/features/quotations/menu/MenuReducer';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const MenuSummary = () => {
   const dispatch = useDispatch();
   const quotation = useSelector(state => state.quotations.quotation);
   const menu = quotation.menus.find(m => m.isSelected);
-  const changeMenuName = name => dispatch(MenuActions.changeName(name));
+  const changeMenuName = name => dispatch(changeName(name));
   const openMenuDialog = () => dispatch(QuotationsActions.changeMenuDialogOpen(true));
   const {name, price, quantity} = menu;
   const latestName = useRef(name); // avoid to re-run useEffect when name changes
   const newName = useRef(`Mi Menu ${quotation.menus.length}`); // avoid to re-run useEffect when quotation changes
   useEffect(() => {
-    latestName.current === '' && dispatch(MenuActions.changeName(newName.current));
+    latestName.current === '' && dispatch(changeName(newName.current));
   }, [dispatch]);
 
   return (
