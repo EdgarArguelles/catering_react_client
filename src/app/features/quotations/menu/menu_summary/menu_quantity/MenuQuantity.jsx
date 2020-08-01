@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import MenuActions from 'app/features/quotations/menu/MenuActions';
+import {changeQuantity} from 'app/features/quotations/menu/MenuReducer';
 
 const MenuQuantity = ({autoFocus, hideLabels, onEnter}) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const MenuQuantity = ({autoFocus, hideLabels, onEnter}) => {
 
     setEmpty(isNaN(value));
     if (value > 0) {
-      dispatch(MenuActions.changeQuantity(value));
+      dispatch(changeQuantity(value));
     }
   };
 
