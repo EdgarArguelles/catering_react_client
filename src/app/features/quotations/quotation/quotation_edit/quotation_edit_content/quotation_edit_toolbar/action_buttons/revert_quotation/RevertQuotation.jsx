@@ -12,7 +12,7 @@ import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
 
 const RevertQuotation = ({hidden}) => {
   const dispatch = useDispatch();
@@ -21,8 +21,8 @@ const RevertQuotation = ({hidden}) => {
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const quotation = useSelector(state => state.quotations.quotation);
   const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const quotations = useSelector(state => state.data.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const quotations = useSelector(state => state.data.quotations.data);
 
   const {id, name} = quotation;
   const showError = !loggedUser && !!id;
@@ -32,12 +32,12 @@ const RevertQuotation = ({hidden}) => {
   const label = id ? 'cambios' : 'presupuesto';
   const labelDialog = id ? 'los cambios de' : 'el presupuesto';
   const deleteLocal = () => dispatch(QuotationsActions.deleteLocal());
-  const revertQuotation = () => dispatch(QuotationActions.revertQuotation(quotations[id]));
+  const handleRevertQuotation = () => dispatch(revertQuotation(quotations[id]));
 
   const revertDeleteQuotation = () => {
     if (id) {
       setIsDialogOpen(false);
-      revertQuotation();
+      handleRevertQuotation();
     } else {
       deleteLocal();
       History.navigate('/presupuestos');
