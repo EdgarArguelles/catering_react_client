@@ -7,7 +7,7 @@ import {getMenuFromLink, getRandomMenuId} from 'app/features/quotations/menu/Men
 import MenuEditTabs from './menu_edit_tabs/MenuEditTabs';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {addMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
 
 const MenuEdit = ({location}) => {
   const dispatch = useDispatch();
@@ -21,8 +21,8 @@ const MenuEdit = ({location}) => {
     if (menuFromLink) {
       const menuId = getRandomMenuId();
       dispatch(QuotationsActions.deleteLocal());
-      dispatch(QuotationActions.addMenu({...menuFromLink, id: menuId}));
-      dispatch(QuotationActions.selectMenu(menuId));
+      dispatch(addMenu({...menuFromLink, id: menuId}));
+      dispatch(selectMenu(menuId));
       dispatch(QuotationsActions.changeMenuTab(lastTab.current));
       dispatch(QuotationsActions.changeMenuDialogOpen(true));
       History.navigate('/presupuestos/menu/editar');
