@@ -10,18 +10,15 @@ describe('Data -> Reducer', () => {
         courseTypes: false,
         dishes: false,
         dish: {},
-        quotations: false,
-        quotationsUpdate: false,
-      },
-      errors: {
-        quotations: null,
-      },
-      metaData: {
-        quotations: null,
       },
       courseTypes: null,
       dishes: null,
-      quotations: null,
+      quotations: {
+        fetching: false,
+        error: null,
+        data: null,
+        metaData: null,
+      },
     };
 
     const result = Data();
@@ -36,18 +33,15 @@ describe('Data -> Reducer', () => {
         courseTypes: true,
         dishes: true,
         dish: {a: true, b: false},
-        quotations: true,
-        quotationsUpdate: true,
-      },
-      errors: {
-        quotations: {id: 'error'},
-      },
-      metaData: {
-        quotations: {id: 'meta'},
       },
       courseTypes: {id: 'ID1'},
       dishes: {id: 'ID2'},
-      quotations: {id: 'ID3'},
+      quotations: {
+        fetching: true,
+        error: {id: 'error'},
+        data: {id: 'ID3'},
+        metaData: {id: 'meta'},
+      },
     };
 
     const result = Data(state, {type: 'invalid'});
@@ -60,18 +54,15 @@ describe('Data -> Reducer', () => {
         courseTypes: true,
         dishes: true,
         dish: {a: true, b: false},
-        quotations: true,
-        quotationsUpdate: true,
-      },
-      errors: {
-        quotations: {id: 'error'},
-      },
-      metaData: {
-        quotations: {id: 'meta'},
       },
       courseTypes: {id: 'ID1'},
       dishes: {id: 'ID2'},
-      quotations: {id: 'ID3'},
+      quotations: {
+        fetching: true,
+        error: {id: 'error'},
+        data: {id: 'ID3'},
+        metaData: {id: 'meta'},
+      },
     });
   });
 
@@ -82,18 +73,15 @@ describe('Data -> Reducer', () => {
         courseTypes: true,
         dishes: true,
         dish: {a: true, b: false},
-        quotations: true,
-        quotationsUpdate: true,
-      },
-      errors: {
-        quotations: {id: 'error'},
-      },
-      metaData: {
-        quotations: {id: 'meta'},
       },
       courseTypes: {id: 'ID1'},
       dishes: {id: 'ID2'},
-      quotations: {id: 'ID3'},
+      quotations: {
+        fetching: true,
+        error: {id: 'error'},
+        data: {id: 'ID3'},
+        metaData: {id: 'meta'},
+      },
     };
     const stateExpected = {
       version: '123',
@@ -101,18 +89,15 @@ describe('Data -> Reducer', () => {
         courseTypes: true,
         dishes: true,
         dish: {a: true, b: false},
-        quotations: true,
-        quotationsUpdate: true,
-      },
-      errors: {
-        quotations: {id: 'error'},
-      },
-      metaData: {
-        quotations: {id: 'meta'},
       },
       courseTypes: {id: 'ID1'},
       dishes: null,
-      quotations: {id: 'ID3'},
+      quotations: {
+        fetching: true,
+        error: {id: 'error'},
+        data: {id: 'ID3'},
+        metaData: {id: 'meta'},
+      },
     };
     const action = {type: ACTION_TYPES.DATA_CHANGE_VERSION, payload: {version: '123'}};
 
@@ -126,18 +111,15 @@ describe('Data -> Reducer', () => {
         courseTypes: true,
         dishes: true,
         dish: {a: true, b: false},
-        quotations: true,
-        quotationsUpdate: true,
-      },
-      errors: {
-        quotations: {id: 'error'},
-      },
-      metaData: {
-        quotations: {id: 'meta'},
       },
       courseTypes: {id: 'ID1'},
       dishes: {id: 'ID2'},
-      quotations: {id: 'ID3'},
+      quotations: {
+        fetching: true,
+        error: {id: 'error'},
+        data: {id: 'ID3'},
+        metaData: {id: 'meta'},
+      },
     });
   });
 });
