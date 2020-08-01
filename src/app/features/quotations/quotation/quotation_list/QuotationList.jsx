@@ -9,21 +9,21 @@ import QuotationToolbar from './quotation_toolbar/QuotationToolbar';
 import QuotationGrid from './quotation_grid/QuotationGrid';
 import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationsActions from 'app/data/quotations/QuotationsActions';
+import {fetchQuotations} from 'app/data/quotations/QuotationsReducer';
 
 const PAGINATION = {page: -1, size: 5, sort: ['createdAt'], direction: 'DESC'};
 
 const QuotationList = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const metaData = useSelector(state => state.data.metaData.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const metaData = useSelector(state => state.data.quotations.metaData);
   const closeNavigationDialog = () => dispatch(NavigationActions.closeNavigationDialog(null));
   const isComplete = metaData && metaData.totalPages <= metaData.pagination.page + 1;
 
   // because this useCallback has inputs = [dispatch], fetchNextPage never changes its value, not changes each render
   const fetchNextPage = useCallback(pagination => {
-    dispatch(QuotationsActions.fetchQuotations({...pagination, page: pagination.page + 1}));
+    dispatch(fetchQuotations({...pagination, page: pagination.page + 1}));
   }, [dispatch]);
   const latestLoggedUser = useRef(loggedUser); // avoid to re-run useEffect when loggedUser changes
   const latestMetaData = useRef(metaData); // avoid to re-run useEffect when metaData changes
