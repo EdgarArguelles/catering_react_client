@@ -6,7 +6,7 @@ import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import {changeTheme} from 'app/AppReducer';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationsActions from 'app/data/quotations/QuotationsActions';
+import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 import DishesActions from 'app/data/dishes/DishesActions';
 import {fetchPing} from 'app/features/auth/AuthReducer';
 
@@ -49,8 +49,8 @@ export const useQuotationsLoader = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const quotations = useSelector(state => state.data.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const quotations = useSelector(state => state.data.quotations.data);
 
   const latestQuotation = useRef(quotation); // avoid to re-run useEffect when quotation changes
   const latestIsFetching = useRef(isFetching); // avoid to re-run useEffect when isFetching changes
@@ -58,7 +58,7 @@ export const useQuotationsLoader = () => {
 
   useEffect(() => {
     if (loggedUser) {
-      const fetch = quotationId => dispatch(QuotationsActions.fetchQuotation(quotationId, false));
+      const fetch = quotationId => dispatch(fetchQuotation({quotationId, overwriteLocalChanges: false}));
       fetchCompleteQuotation(latestQuotation.current, latestIsFetching.current, latestQuotations.current, fetch);
       latestIsFetching.current = true;
     }
