@@ -11,19 +11,19 @@ import Avatar from '@material-ui/core/Avatar';
 import History from 'app/router/History';
 import {areEqual} from './Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationsActions from 'app/data/quotations/QuotationsActions';
+import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 
 const Quotation = ({index, quotation}) => {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.app.theme);
-  const quotations = useSelector(state => state.data.quotations);
+  const quotations = useSelector(state => state.data.quotations.data);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const {id} = quotation;
   const createdAt = quotation.createdAt ? moment(`${quotation.createdAt}Z`) : moment();
   const dialogLabel = 'Al seleccionar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
   const selectQuotation = () => {
-    dispatch(QuotationsActions.fetchQuotation(id));
+    dispatch(fetchQuotation({quotationId: id, overwriteLocalChanges: true}));
     History.navigate('/presupuestos/editar');
   };
 
