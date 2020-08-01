@@ -8,7 +8,7 @@ import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const EmptyQuotationList = () => {
@@ -25,8 +25,8 @@ const EmptyQuotationList = () => {
     if (!isStarted) {
       const menuId = getRandomMenuId();
       dispatch(QuotationsActions.deleteLocal());
-      dispatch(QuotationActions.addNewMenu(menuId));
-      dispatch(QuotationActions.selectMenu(menuId));
+      dispatch(addNewMenu(menuId));
+      dispatch(selectMenu(menuId));
       History.navigate('/presupuestos/menu/editar');
       return;
     }
