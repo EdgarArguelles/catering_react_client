@@ -3,7 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QuotationEditContent from './quotation_edit_content/QuotationEditContent';
 import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {changeName, selectMenu, setPrice} from 'app/features/quotations/quotation/QuotationReducer';
 import QuotationsActions from 'app/features/quotations/QuotationsActions';
 
 const QuotationEdit = () => {
@@ -19,11 +19,11 @@ const QuotationEdit = () => {
 
   useEffect(() => {
     // deselect Menu
-    dispatch(QuotationActions.selectMenu(''));
+    dispatch(selectMenu(''));
     dispatch(QuotationsActions.changeMenuDialogOpen(false));
 
     if (latestName.current === '') {
-      dispatch(QuotationActions.changeName('Mi Presupuesto'));
+      dispatch(changeName('Mi Presupuesto'));
     }
   }, [dispatch]);
 
@@ -33,7 +33,7 @@ const QuotationEdit = () => {
   }, [dispatch, backLink]);
 
   useEffect(() => {
-    dispatch(QuotationActions.setPrice(price));
+    dispatch(setPrice(price));
     latestPrice.current = price;
   }, [dispatch, price]);
 
