@@ -52,9 +52,9 @@ const authSlice = createSlice({
       removeToken();
       state.loggedUser = null;
     },
-    login(state, action) {
-      saveToken(action.payload.loggedUser);
-      state.loggedUser = action.payload.loggedUser;
+    login(state, {payload: {loggedUser}}) {
+      saveToken(loggedUser);
+      state.loggedUser = loggedUser;
     },
   },
   extraReducers: {
