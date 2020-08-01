@@ -1,51 +1,85 @@
 /* eslint-disable max-lines */
-import {ACTION_TYPES} from 'app/features/quotations/menu/MenuActions';
-import MenuReducer from 'app/features/quotations/menu/MenuReducer';
+import MenuReducer, {
+  cleanData, changeName, changeQuantity, addCourse, removeCourse, increasePrice, decreasePrice, changeCoursesPosition,
+} from 'app/features/quotations/menu/MenuReducer';
 
-describe('Quotations -> Menu -> Reducer', () => {
-  it('should get default state when empty', () => {
-    const state = {
-      name: '',
-      quantity: 1,
-      price: 0,
-      courses: [],
-    };
+describe('Quotations -> Menu -> Reducer/Actions', () => {
+  describe('Reducer', () => {
+    it('should get default state when undefined', () => {
+      const state = {
+        name: '',
+        quantity: 1,
+        price: 0,
+        courses: [],
+      };
 
-    const result = MenuReducer();
+      const result = MenuReducer(undefined, {});
 
-    expect(result).toStrictEqual(state);
-  });
-
-  it('should get the same original status when action is not allow', () => {
-    const state = {
-      id: 'ID1',
-      name: 'name 1',
-      quantity: 10,
-      price: 80,
-      courses: [
-        {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-        {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
-      ],
-    };
-
-    const result = MenuReducer(state, {type: 'invalid'});
-
-    expect(result).toStrictEqual(state);
-    // don't mutate
-    expect(state).toStrictEqual({
-      id: 'ID1',
-      name: 'name 1',
-      quantity: 10,
-      price: 80,
-      courses: [
-        {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-        {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
-      ],
+      expect(result).toStrictEqual(state);
     });
-  });
 
-  describe('name', () => {
-    it('should change name when action is MENU_CHANGE_NAME', () => {
+    it('should get the same original status when action is not allow', () => {
+      const state = {
+        id: 'ID1',
+        name: 'name 1',
+        quantity: 10,
+        price: 80,
+        courses: [
+          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
+          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
+        ],
+      };
+
+      const result = MenuReducer(state, {type: 'invalid'});
+
+      expect(result).toStrictEqual(state);
+      // don't mutate
+      expect(state).toStrictEqual({
+        id: 'ID1',
+        name: 'name 1',
+        quantity: 10,
+        price: 80,
+        courses: [
+          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
+          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
+        ],
+      });
+    });
+
+    it('should clean all data when action is cleanData', () => {
+      const state = {
+        name: 'name 1',
+        quantity: 10,
+        price: 80,
+        courses: [
+          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
+          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+        ],
+      };
+      const stateExpected = {
+        name: '',
+        quantity: 1,
+        price: 0,
+        courses: [],
+      };
+      const action = {type: cleanData.type};
+
+      const result = MenuReducer(state, action);
+
+      expect(result).toStrictEqual(stateExpected);
+      // don't mutate
+      expect(state).toStrictEqual({
+        name: 'name 1',
+        quantity: 10,
+        price: 80,
+        courses: [
+          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
+          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+        ],
+      });
+    });
+
+    it('should change name when action is changeName', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -64,7 +98,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 2, type: {id: 4}, dishes: [{id: 17}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_CHANGE_NAME, payload: {name: 'name 2'}};
+      const action = {type: changeName.type, payload: 'name 2'};
 
       const result = MenuReducer(state, action);
 
@@ -80,10 +114,8 @@ describe('Quotations -> Menu -> Reducer', () => {
         ],
       });
     });
-  });
 
-  describe('quantity', () => {
-    it('should change quantity when action is MENU_CHANGE_QUANTITY', () => {
+    it('should change quantity when action is changeQuantity', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -102,7 +134,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 2, type: {id: 4}, dishes: [{id: 17}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_CHANGE_QUANTITY, payload: {quantity: 5}};
+      const action = {type: changeQuantity.type, payload: 5};
 
       const result = MenuReducer(state, action);
 
@@ -118,10 +150,8 @@ describe('Quotations -> Menu -> Reducer', () => {
         ],
       });
     });
-  });
 
-  describe('price', () => {
-    it('should increase price when action is MENU_INCREASE_PRICE', () => {
+    it('should increase price when action is increasePrice', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -140,7 +170,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 2, type: {id: 4}, dishes: [{id: 17}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_INCREASE_PRICE, payload: {amount: 15.5}};
+      const action = {type: increasePrice.type, payload: 15.5};
 
       const result = MenuReducer(state, action);
 
@@ -157,7 +187,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should decrease price when action is MENU_DECREASE_PRICE', () => {
+    it('should decrease price when action is decreasePrice', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -176,7 +206,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 2, type: {id: 4}, dishes: [{id: 17}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_DECREASE_PRICE, payload: {amount: 15.5}};
+      const action = {type: decreasePrice.type, payload: 15.5};
 
       const result = MenuReducer(state, action);
 
@@ -192,10 +222,8 @@ describe('Quotations -> Menu -> Reducer', () => {
         ],
       });
     });
-  });
 
-  describe('courses', () => {
-    it('should add a course when action is MENU_ADD_COURSE and empty dishes', () => {
+    it('should add a course when action is addCourse and empty dishes', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -215,7 +243,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 3, type: {id: 5}, dishes: []},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_ADD_COURSE, payload: {position: 3, courseTypeId: 5, dishesIds: []}};
+      const action = {type: addCourse.type, payload: {position: 3, courseTypeId: 5, dishesIds: []}};
 
       const result = MenuReducer(state, action);
 
@@ -232,7 +260,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should add a course when action is MENU_ADD_COURSE and full dishes', () => {
+    it('should add a course when action is addCourse and full dishes', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -253,7 +281,7 @@ describe('Quotations -> Menu -> Reducer', () => {
         ],
       };
       const action = {
-        type: ACTION_TYPES.MENU_ADD_COURSE,
+        type: addCourse.type,
         payload: {position: 3, courseTypeId: 'a5', dishesIds: ['d1', 'd2', 'd3']},
       };
 
@@ -272,7 +300,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should get the same original status when action is MENU_REMOVE_COURSE and ' +
+    it('should get the same original status when action is removeCourse and ' +
       'position and courseTypeId invalid', () => {
       const state = {
         name: 'name 1',
@@ -306,7 +334,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_REMOVE_COURSE, payload: {position: 4, courseTypeId: 'a22'}};
+      const action = {type: removeCourse.type, payload: {position: 4, courseTypeId: 'a22'}};
 
       const result = MenuReducer(state, action);
 
@@ -330,7 +358,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should get the same original status when action is MENU_REMOVE_COURSE ' +
+    it('should get the same original status when action is removeCourse ' +
       'and position valid and courseTypeId invalid', () => {
       const state = {
         name: 'name 1',
@@ -364,7 +392,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_REMOVE_COURSE, payload: {position: 2, courseTypeId: 'a22'}};
+      const action = {type: removeCourse.type, payload: {position: 2, courseTypeId: 'a22'}};
 
       const result = MenuReducer(state, action);
 
@@ -388,7 +416,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should not remove a course when action is MENU_REMOVE_COURSE and position ' +
+    it('should not remove a course when action is removeCourse and position ' +
       'invalid and courseTypeId valid', () => {
       const state = {
         name: 'name 1',
@@ -422,7 +450,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_REMOVE_COURSE, payload: {position: 4, courseTypeId: 'a2'}};
+      const action = {type: removeCourse.type, payload: {position: 4, courseTypeId: 'a2'}};
 
       const result = MenuReducer(state, action);
 
@@ -446,7 +474,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should remove a course when action is MENU_REMOVE_COURSE and position and courseTypeId valid', () => {
+    it('should remove a course when action is removeCourse and position and courseTypeId valid', () => {
       const state = {
         name: 'name 1',
         quantity: 10,
@@ -478,7 +506,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 2, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
         ],
       };
-      const action = {type: ACTION_TYPES.MENU_REMOVE_COURSE, payload: {position: 2, courseTypeId: 'a2'}};
+      const action = {type: removeCourse.type, payload: {position: 2, courseTypeId: 'a2'}};
 
       const result = MenuReducer(state, action);
 
@@ -502,7 +530,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should get the same original status when action is MENU_CHANGE_COURSES_POSITION' +
+    it('should get the same original status when action is changeCoursesPosition' +
       ' and newCourses is empty', () => {
       const state = {
         tab: 5,
@@ -538,12 +566,7 @@ describe('Quotations -> Menu -> Reducer', () => {
           {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
         ],
       };
-      const action = {
-        type: ACTION_TYPES.MENU_CHANGE_COURSES_POSITION,
-        payload: {
-          newCourses: [],
-        },
-      };
+      const action = {type: changeCoursesPosition.type, payload: []};
 
       const result = MenuReducer(state, action);
 
@@ -568,7 +591,7 @@ describe('Quotations -> Menu -> Reducer', () => {
       });
     });
 
-    it('should reorder when action is MENU_CHANGE_COURSES_POSITION', () => {
+    it('should reorder when action is changeCoursesPosition', () => {
       const state = {
         tab: 5,
         name: 'name 1',
@@ -604,14 +627,12 @@ describe('Quotations -> Menu -> Reducer', () => {
         ],
       };
       const action = {
-        type: ACTION_TYPES.MENU_CHANGE_COURSES_POSITION,
-        payload: {
-          newCourses: [
-            {position: 1, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-            {position: 2, type: {id: 'a3'}, dishes: [{id: 'a217'}]},
-            {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          ],
-        },
+        type: changeCoursesPosition.type,
+        payload: [
+          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
+          {position: 2, type: {id: 'a3'}, dishes: [{id: 'a217'}]},
+          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
+        ],
       };
 
       const result = MenuReducer(state, action);
