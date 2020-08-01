@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {useAreDishesLoaded} from 'app/common/Hooks';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
-import MenuActions from 'app/features/quotations/menu/MenuActions';
+import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
 import MultipleDishesDialogActions
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 
@@ -15,15 +15,19 @@ const MultipleDishesActions = ({courseType, onClose}) => {
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
   const cleanDishes = () => dispatch(MultipleDishesDialogActions.cleanDishes());
-  const addCourse = (dishesIds, position) => dispatch(MenuActions.addCourse(courseType.id, dishesIds, position));
-  const increasePrice = amount => dispatch(MenuActions.increasePrice(amount));
+  const handleAddCourse = (dishesIds, position) => dispatch(addCourse({
+    courseTypeId: courseType.id,
+    dishesIds,
+    position,
+  }));
+  const handleIncreasePrice = amount => dispatch(increasePrice(amount));
   const areDishesLoaded = useAreDishesLoaded(multipleDishes);
 
   const save = () => {
     const courseTypeCourses = menuCourses.filter(course => course.type.id === courseType.id);
     const coursePrice = getDishesPrice(multipleDishes, allDishes);
-    addCourse(multipleDishes.map(dish => dish.id), courseTypeCourses.length + 1);
-    increasePrice(coursePrice);
+    handleAddCourse(multipleDishes.map(dish => dish.id), courseTypeCourses.length + 1);
+    handleIncreasePrice(coursePrice);
     cleanDishes();
     onClose();
   };
