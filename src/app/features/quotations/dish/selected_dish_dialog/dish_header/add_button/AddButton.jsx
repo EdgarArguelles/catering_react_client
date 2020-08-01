@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
-import MenuActions from 'app/features/quotations/menu/MenuActions';
+import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
 import MultipleDishesDialogActions
   from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
 import DishActions from 'app/features/quotations/dish/DishActions';
@@ -26,8 +26,12 @@ const AddButton = ({className, dish}) => {
     }
 
     const courseTypeCourses = menuCourses.filter(course => course.type.id === dish.courseTypeId);
-    dispatch(MenuActions.addCourse(dish.courseTypeId, [dish.id], courseTypeCourses.length + 1));
-    dispatch(MenuActions.increasePrice(dish.price));
+    dispatch(addCourse({
+      courseTypeId: dish.courseTypeId,
+      dishesIds: [dish.id],
+      position: courseTypeCourses.length + 1,
+    }));
+    dispatch(increasePrice(dish.price));
   };
 
   return (
