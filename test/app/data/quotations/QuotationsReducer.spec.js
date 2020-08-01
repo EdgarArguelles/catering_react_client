@@ -280,7 +280,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: false,
       };
       const validate = type => {
-        const result = QuotationsReducer(state, {type, payload: {id: 'new error'}});
+        const result = QuotationsReducer(state, {type, error: {id: 'new error'}});
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
