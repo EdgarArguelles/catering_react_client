@@ -23,11 +23,11 @@ const appSlice = createSlice({
     facebookAccessCode: '',
   },
   reducers: {
-    changeIsOnline(state, action) {
-      state.isOnline = action.payload;
+    changeIsOnline(state, {payload: isOnline}) {
+      state.isOnline = isOnline;
     },
-    changeTheme(state, action) {
-      state.theme = action.payload;
+    changeTheme(state, {payload: theme}) {
+      state.theme = theme;
     },
   },
   extraReducers: {
