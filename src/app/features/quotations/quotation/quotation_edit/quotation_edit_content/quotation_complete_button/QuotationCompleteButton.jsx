@@ -12,9 +12,9 @@ import QuotationsActions from 'app/features/quotations/QuotationsActions';
 const QuotationCompleteButton = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const quotations = useSelector(state => state.data.quotations);
-  const errors = useSelector(state => state.data.errors.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const quotations = useSelector(state => state.data.quotations.data);
+  const errors = useSelector(state => state.data.quotations.error);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogLabel = 'Al cerrar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
