@@ -48,14 +48,14 @@ describe('Api', () => {
           });
 
           it('should handle graphql errors', async () => {
-            const errorsExpected = [{id: 1}, {id: 2}];
+            const errorsExpected = [{message: 'error test'}];
             fetchMock.post('*', {hello: 'world', errors: errorsExpected});
 
             try {
               await Api.graphql(null, '/test');
               throw new Error('promise should fail but it did not!!!!');
             } catch (error) {
-              expect(error).toStrictEqual({errors: errorsExpected});
+              expect(error.message).toStrictEqual('error test');
             }
           });
         });

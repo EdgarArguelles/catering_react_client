@@ -76,9 +76,8 @@ export default class Api {
   static async graphql(dispatch, body, options = {}) {
     const json = await Api.postJSON(dispatch, '/graphql', body, options);
 
-    if (json.errors) {
-      const error = {errors: json.errors};
-      throw error;
+    if (json.errors && json.errors[0]) {
+      throw new Error(json.errors[0].message);
     }
 
     return json;
