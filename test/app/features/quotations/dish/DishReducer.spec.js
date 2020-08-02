@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import DishReducer, {selectDish} from 'app/features/quotations/dish/DishReducer';
+import DishReducer, {selectDish, selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 
 describe('Quotations -> Dish -> Reduce<r/Actions', () => {
   describe('Reducer', () => {
@@ -48,7 +48,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
       });
     });
 
-    it('should change selected value when action is selectDish and showActions is not present', () => {
+    it('should change selected value and set showActions to true when action is selectDish', () => {
       const state = {
         selected: 'abc',
         showActions: false,
@@ -69,7 +69,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
           categories: ['cat1', 'cat2'],
         },
       };
-      const action = {type: selectDish.type, payload: {dishId: '123'}};
+      const action = {type: selectDish.type, payload: '123'};
 
       const result = DishReducer(state, action);
 
@@ -87,7 +87,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
       });
     });
 
-    it('should change selected value when action is selectDish and showActions is present', () => {
+    it('should change selected value and set showActions to false when action is selectDishWithoutActions', () => {
       const state = {
         selected: 'abc',
         showActions: true,
@@ -108,7 +108,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
           categories: ['cat1', 'cat2'],
         },
       };
-      const action = {type: selectDish.type, payload: {dishId: '123', showActions: false}};
+      const action = {type: selectDishWithoutActions.type, payload: '123'};
 
       const result = DishReducer(state, action);
 
