@@ -3,7 +3,7 @@ import {ACTION_TYPES} from 'app/data/DataActions';
 import Data from 'app/data/DataReducer';
 
 describe('Data -> Reducer', () => {
-  it('should get default state when empty', () => {
+  it('should get default state when undefined', () => {
     const state = {
       version: null,
       fetching: {
@@ -21,7 +21,7 @@ describe('Data -> Reducer', () => {
       },
     };
 
-    const result = Data();
+    const result = Data(undefined, {type: 'invalid'});
 
     expect(result).toStrictEqual(state);
   });

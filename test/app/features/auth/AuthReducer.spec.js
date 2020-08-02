@@ -11,7 +11,7 @@ describe('Auth -> Reducer/Actions', () => {
         loggedUser: null,
       };
 
-      const result = AuthReducer(undefined, {});
+      const result = AuthReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });

@@ -57,18 +57,19 @@ const authSlice = createSlice({
       state.loggedUser = loggedUser;
     },
   },
-  extraReducers: {
-    [fetchPing.fulfilled]: (state, action) => {
-      saveToken(action.payload);
-      state.loggedUser = action.payload;
-    },
-    [fetchPing.rejected]: state => {
-      removeToken();
-      state.loggedUser = null;
-    },
-    [ACTION_TYPES.SESSION_EXPIRED]: state => {
-      state.loggedUser = null;
-    },
+  extraReducers: builder => {
+    return builder
+      .addCase(fetchPing.fulfilled, (state, action) => {
+        saveToken(action.payload);
+        state.loggedUser = action.payload;
+      })
+      .addCase(fetchPing.rejected, state => {
+        removeToken();
+        state.loggedUser = null;
+      })
+      .addCase(ACTION_TYPES.SESSION_EXPIRED, state => {
+        state.loggedUser = null;
+      });
   },
 });
 
