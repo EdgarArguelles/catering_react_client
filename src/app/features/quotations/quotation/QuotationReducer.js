@@ -57,7 +57,7 @@ const quotationSlice = createSlice({
         return state;
       })
       .addDefaultCase((state, action) => {
-        const selected = state.menus.find(menu => menu.isSelected);
+        const selected = state.menus && state.menus.find(menu => menu.isSelected);
         if (selected) {
           const noSelected = state.menus.filter(menu => !menu.isSelected);
           state.menus = [...noSelected, menuReducer(selected, action)];
