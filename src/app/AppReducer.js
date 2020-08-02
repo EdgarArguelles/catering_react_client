@@ -30,10 +30,11 @@ const appSlice = createSlice({
       state.theme = theme;
     },
   },
-  extraReducers: {
-    [getFacebookAccessCode.fulfilled]: (state, action) => {
-      state.facebookAccessCode = action.payload.data.getAccessCode;
-    },
+  extraReducers: builder => {
+    return builder
+      .addCase(getFacebookAccessCode.fulfilled, (state, action) => {
+        state.facebookAccessCode = action.payload.data.getAccessCode;
+      });
   },
 });
 
