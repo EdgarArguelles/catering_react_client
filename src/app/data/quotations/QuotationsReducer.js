@@ -85,27 +85,6 @@ export const deleteQuotation = createAsyncThunk(
   },
 );
 
-const setError = (state, action) => {
-  state.fetching = false;
-  state.error = action.error;
-};
-
-const setFetching = state => {
-  state.fetching = true;
-  state.error = null;
-};
-
-const cleanDataMetaData = state => {
-  state.data = null;
-  state.metaData = null;
-};
-
-const cleanData = state => {
-  state.fetching = false;
-  state.error = null;
-  cleanDataMetaData(state);
-};
-
 const quotationsDataSlice = createSlice({
   name: SLICE_NAME,
   initialState: {
@@ -123,34 +102,52 @@ const quotationsDataSlice = createSlice({
       state.error = null;
     },
   },
-  extraReducers: {
-    [fetchQuotations.pending]: setFetching,
-    [fetchQuotations.fulfilled]: (state, action) => {
-      state.data = {...Utils.arrayToObject(action.payload.data), ...state.data};
-      state.metaData = action.payload.metaData;
-      state.fetching = false;
-      state.error = null;
-    },
-    [fetchQuotations.rejected]: setError,
-    [fetchQuotation.pending]: setFetching,
-    [fetchQuotation.fulfilled]: (state, action) => {
-      state.data = {...state.data, ...Utils.arrayToObject([action.payload.data])};
-      state.fetching = false;
-      state.error = null;
-    },
-    [fetchQuotation.rejected]: setError,
-    [createQuotation.pending]: setFetching,
-    [createQuotation.fulfilled]: cleanData,
-    [createQuotation.rejected]: setError,
-    [editQuotation.pending]: setFetching,
-    [editQuotation.fulfilled]: cleanData,
-    [editQuotation.rejected]: setError,
-    [deleteQuotation.pending]: setFetching,
-    [deleteQuotation.fulfilled]: cleanData,
-    [deleteQuotation.rejected]: setError,
-    [ACTION_TYPES.SESSION_EXPIRED]: cleanDataMetaData,
-    [logout.type]: cleanDataMetaData,
-    [fetchPing.rejected]: cleanDataMetaData,
+  extraReducers: builder => {
+    return builder
+      .addCase(fetchQuotations.fulfilled, (state, action) => {
+        state.data = {...Utils.arrayToObject(action.payload.data), ...state.data};
+        state.metaData = action.payload.metaData;
+        state.fetching = false;
+        state.error = null;
+      })
+      .addCase(fetchQuotation.fulfilled, (state, action) => {
+        state.data = {...state.data, ...Utils.arrayToObject([action.payload.data])};
+        state.fetching = false;
+        state.error = null;
+      })
+      .addMatcher(Utils.anyMatcher(
+        ACTION_TYPES.SESSION_EXPIRED,
+        logout.type,
+        fetchPing.rejected.type,
+      ), state => {
+        state.data = null;
+        state.metaData = null;
+      })
+      .addMatcher(Utils.anyMatcher(
+        createQuotation.fulfilled.type,
+        editQuotation.fulfilled.type,
+        deleteQuotation.fulfilled.type,
+      ), state => {
+        state.fetching = false;
+        state.error = null;
+        state.data = null;
+        state.metaData = null;
+      })
+      .addMatcher(Utils.anyMatcher(
+        fetchQuotations.rejected.type,
+        fetchQuotation.rejected.type,
+        createQuotation.rejected.type,
+        editQuotation.rejected.type,
+        deleteQuotation.rejected.type,
+      ), (state, action) => {
+        state.fetching = false;
+        state.error = action.error;
+      })
+      .addMatcher(action => action.type.endsWith('/pending'), state => {
+          state.fetching = true;
+          state.error = null;
+        },
+      );
   },
 });
 
