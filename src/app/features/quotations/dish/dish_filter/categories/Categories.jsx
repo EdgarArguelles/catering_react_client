@@ -10,14 +10,14 @@ import {getCurrentCourseTypeDishes} from 'app/features/quotations/course_type/Co
 import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
 import {CategoryContentLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Category from './category/Category';
-import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
+import {setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
 const Categories = ({location}) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.quotations.dish.filter);
   const courseTypeDishes = useSelector(state => getCurrentCourseTypeDishes(getActiveDishes(state.data.dishes),
     state.data.courseTypes, state.quotations.selectedTab));
-  const setCategories = categories => dispatch(DishFilterActions.setCategories(categories));
+  const setCat = categories => dispatch(setCategories(categories));
 
   const getCategories = () => {
     const category = new URLSearchParams(location.search).get('categoria');
@@ -38,7 +38,7 @@ const Categories = ({location}) => {
   return (
     <Grid id="filter-categories" container>
       <Grid item xs={12}>
-        <Checkbox color="primary" checked={isAllSelected} onChange={() => setCategories(isAllSelected ? [] : null)}/>
+        <Checkbox color="primary" checked={isAllSelected} onChange={() => setCat(isAllSelected ? [] : null)}/>
         <b>Todos</b>
       </Grid>
       <Grid item xs={12}>
