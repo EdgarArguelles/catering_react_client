@@ -29,7 +29,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: false,
       };
 
-      const result = QuotationsReducer(undefined, {});
+      const result = QuotationsReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -395,7 +395,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       });
 
       it('should change data and metaData to null when action is fetchPing.rejected', () => {
-        validate({type: fetchPing.rejected});
+        validate({type: fetchPing.rejected.type});
       });
     });
 
