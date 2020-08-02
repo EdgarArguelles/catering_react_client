@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import Utils from 'app/common/Utils';
-import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 
 const NoSessionQuotationList = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const NoSessionQuotationList = () => {
     <div id="no-session-quotation-list">
       <FontAwesomeIcon id="no-session-quotation-icon" icon={faInfoCircle}/>
       <p className="title">Sin sesión</p>
-      <Button variant="outlined" className="access" onClick={() => dispatch(AuthDialogActions.openAuthDialog())}>
+      <Button variant="outlined" className="access" onClick={() => dispatch(openAuthDialog())}>
         Iniciar sesión
       </Button>
     </div>
