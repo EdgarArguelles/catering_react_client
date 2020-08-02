@@ -1,42 +1,25 @@
-/**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {ACTION_TYPES} from './NavigationActions';
+import {createSlice} from '@reduxjs/toolkit';
 
-const backLink = (state = '', action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CHANGE_NAVIGATION:
-      return action.payload.backLink;
-    default:
-      return state;
-  }
-};
+const SLICE_NAME = 'NAVIGATION';
 
-const title = (state = '', action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CHANGE_NAVIGATION:
-      return action.payload.title;
-    default:
-      return state;
-  }
-};
+const navigationSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: {
+    backLink: '',
+    title: '',
+    closeDialog: null,
+  },
+  reducers: {
+    changeNavigation(state, {payload: {backLink, title}}) {
+      state.backLink = backLink;
+      state.title = title || '';
+      state.closeDialog = null;
+    },
+    closeNavigationDialog(state, {payload: closeDialog}) {
+      state.closeDialog = closeDialog;
+    },
+  },
+});
 
-const closeDialog = (state = null, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CLOSE_NAVIGATION_DIALOG:
-      return action.payload.closeDialog;
-    case ACTION_TYPES.CHANGE_NAVIGATION:
-      return null;
-    default:
-      return state;
-  }
-};
-
-export default (state = {}, action = {}) => {
-  return {
-    backLink: backLink(state.backLink, action),
-    title: title(state.title, action),
-    closeDialog: closeDialog(state.closeDialog, action),
-  };
-};
+export default navigationSlice.reducer;
+export const {changeNavigation, closeNavigationDialog} = navigationSlice.actions;
