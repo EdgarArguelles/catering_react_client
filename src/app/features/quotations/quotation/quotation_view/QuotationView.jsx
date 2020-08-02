@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
+import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 
 const QuotationView = ({match}) => {
@@ -20,23 +20,23 @@ const QuotationView = ({match}) => {
 
   const quotationId = useRef(match.params.id); // avoid to re-run useEffect when match changes
   const latestLoggedUser = useRef(loggedUser); // avoid to re-run useEffect when loggedUser changes
-  const openAuthDialog = useCallback(() => dispatch(AuthDialogActions.openAuthDialog()), [dispatch]);
+  const handleOpenAuthDialog = useCallback(() => dispatch(openAuthDialog()), [dispatch]);
   const loadQuotation = useCallback(async () => {
-    dispatch(QuotationsActions.deleteLocal());
-    await dispatch(fetchQuotation({quotationId: quotationId.current, overwriteLocalChanges: true}));
-    History.navigate('/presupuestos/editar');
+    dispatch(deleteLocal());
+    const json = await dispatch(fetchQuotation({quotationId: quotationId.current, overwriteLocalChanges: true}));
+    !json.error && History.navigate('/presupuestos/editar');
   }, [dispatch]); // because this useCallback has inputs = [dispatch], loadQuotation never changes its value
 
-  // because loadQuotation and openAuthDialog are [dispatch], this useEffect is [dispatch] as well
+  // because loadQuotation and handleOpenAuthDialog are [dispatch], this useEffect is [dispatch] as well
   useEffect(() => {
-    dispatch(NavigationActions.changeNavigation('/presupuestos'));
+    dispatch(changeNavigation({backLink: '/presupuestos'}));
 
     if (latestLoggedUser.current) {
       loadQuotation();
     } else {
-      openAuthDialog();
+      handleOpenAuthDialog();
     }
-  }, [dispatch, loadQuotation, openAuthDialog]);
+  }, [dispatch, loadQuotation, handleOpenAuthDialog]);
 
   // animate icon when AuthDialog closes
   useEffect(() => {
@@ -49,7 +49,7 @@ const QuotationView = ({match}) => {
     <div id="quotation-view">
       <FontAwesomeIcon id="quotation-view-info-icon" icon={faInfoCircle}/>
       <p className="title">No tienes permisos para ver este presupuesto</p>
-      <Button variant="outlined" className="access" onClick={openAuthDialog}>
+      <Button variant="outlined" className="access" onClick={handleOpenAuthDialog}>
         Iniciar sesión
       </Button>
       <AuthDialog onSuccess={loadQuotation}/>
