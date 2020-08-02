@@ -6,8 +6,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
-import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
+import {endRemoteProcess} from 'app/features/quotations/QuotationsReducer';
 import {cleanError, createQuotation, editQuotation, fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 
 const SaveQuotation = () => {
@@ -17,9 +17,9 @@ const SaveQuotation = () => {
   const quotation = useSelector(state => state.quotations.quotation);
   const isFetching = useSelector(state => state.data.quotations.fetching);
   const errors = useSelector(state => state.data.quotations.error);
-  const openAuthDialog = () => dispatch(AuthDialogActions.openAuthDialog());
+  const handleOpenAuthDialog = () => dispatch(openAuthDialog());
   const handleCleanError = () => dispatch(cleanError());
-  const endRemoteProcess = () => dispatch(QuotationsActions.endRemoteProcess());
+  const handleEndRemoteProcess = () => dispatch(endRemoteProcess());
   const saveQuotation = async () => {
     let quotationId;
     if (!quotation.id) {
@@ -47,7 +47,7 @@ const SaveQuotation = () => {
   const errorMessage = errors && errors.message === 'Unauthorized' ? 'Usuario sin sesión'
     : quotation.menus && quotation.menus.filter(menu => menu.courses.length === 0).length > 0
       ? 'No puede haber menús vacíos' : 'Ocurrió un error al intentar guardar el presupuesto';
-  const preconditionCall = loggedUser ? null : openAuthDialog;
+  const preconditionCall = loggedUser ? null : handleOpenAuthDialog;
   const asyncCall = loggedUser ? async () => await saveQuotation() : null;
   const labelAction = quotation.id ? 'Guardados' : 'Guardado';
   const label = quotation.id ? 'Cambios' : 'Presupuesto';
@@ -56,7 +56,7 @@ const SaveQuotation = () => {
     <span id="save-quotation">
         <FetchButton color="primary" label={`Guardar ${label}`} successLabel={`${label} ${labelAction}`}
                      id="save-quotation-button" hidden={isRemoteProcessing || isFetching} icon={faSave}
-                     onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
+                     onComplete={handleEndRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <AuthDialog/>
         <Snackbar open={!!errors} TransitionComponent={Slide}
