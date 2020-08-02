@@ -13,7 +13,7 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         courses: [],
       };
 
-      const result = MenuReducer(undefined, {});
+      const result = MenuReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
