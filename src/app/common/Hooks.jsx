@@ -5,7 +5,7 @@ import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-i
 import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import {changeTheme} from 'app/AppReducer';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
 import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 import DishesActions from 'app/data/dishes/DishesActions';
 import {fetchPing} from 'app/features/auth/AuthReducer';
@@ -32,10 +32,10 @@ export const useBrowserNavigation = (open, onClose) => {
   const latestOpen = useRef(open);
   useEffect(() => {
     if (open) {
-      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(latestOnClose.current)), 500);
+      setTimeout(() => dispatch(closeNavigationDialog(latestOnClose.current)), 500);
     } else if (latestOpen.current) {
       // only close when last open value was true
-      dispatch(NavigationActions.closeNavigationDialog(null));
+      dispatch(closeNavigationDialog(null));
     }
   }, [open, dispatch]);
 
