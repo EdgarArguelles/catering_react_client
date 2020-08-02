@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {removeMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
 
 const RemoveMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const RemoveMenu = ({menu, onClose}) => {
   const handleRemove = () => {
     const removeAction = () => {
       dispatch(removeMenu(menu.id));
-      dispatch(NavigationActions.closeNavigationDialog(null));
+      dispatch(closeNavigationDialog(null));
     };
 
     handleClose(removeAction);
