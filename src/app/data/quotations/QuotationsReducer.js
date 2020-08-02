@@ -143,7 +143,13 @@ const quotationsDataSlice = createSlice({
         state.fetching = false;
         state.error = action.error;
       })
-      .addMatcher(action => action.type.endsWith('/pending'), state => {
+      .addMatcher(Utils.anyMatcher(
+        fetchQuotations.pending.type,
+        fetchQuotation.pending.type,
+        createQuotation.pending.type,
+        editQuotation.pending.type,
+        deleteQuotation.pending.type,
+        ), state => {
           state.fetching = true;
           state.error = null;
         },
