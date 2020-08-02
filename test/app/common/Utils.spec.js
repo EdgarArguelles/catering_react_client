@@ -2,6 +2,20 @@
 import Utils from 'app/common/Utils';
 
 describe('Utils', () => {
+  describe('anyMatcher', () => {
+    it('should get false if type is not present in list', () => {
+      const result = Utils.anyMatcher('A', 'B', 'C')({type: 'a'});
+
+      expect(result).toBeFalsy();
+    });
+
+    it('should get true if type is present in list', () => {
+      const result = Utils.anyMatcher('A', 'B', 'C')({type: 'A'});
+
+      expect(result).toBeTruthy();
+    });
+  });
+
   describe('getSortString', () => {
     describe('string', () => {
       it('should sort the strings array correctly when attribute is undefined', () => {
