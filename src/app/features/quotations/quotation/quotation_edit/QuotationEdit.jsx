@@ -2,9 +2,9 @@ import './QuotationEdit.scss';
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QuotationEditContent from './quotation_edit_content/QuotationEditContent';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
 import {changeName, selectMenu, setPrice} from 'app/features/quotations/quotation/QuotationReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {changeMenuDialogOpen} from 'app/features/quotations/QuotationsReducer';
 
 const QuotationEdit = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const QuotationEdit = () => {
   useEffect(() => {
     // deselect Menu
     dispatch(selectMenu(''));
-    dispatch(QuotationsActions.changeMenuDialogOpen(false));
+    dispatch(changeMenuDialogOpen(false));
 
     if (latestName.current === '') {
       dispatch(changeName('Mi Presupuesto'));
@@ -28,7 +28,7 @@ const QuotationEdit = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(NavigationActions.changeNavigation(backLink, 'Mi Presupuesto'));
+    dispatch(changeNavigation({backLink, title: 'Mi Presupuesto'}));
     latestBackLink.current = backLink;
   }, [dispatch, backLink]);
 
