@@ -1,62 +1,47 @@
-/**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {ACTION_TYPES} from './DishFilterActions';
+import {createSlice} from '@reduxjs/toolkit';
 
-const isDialogOpen = (state = false, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.DISH_FILTER_DIALOG_OPEN:
-      return true;
-    case ACTION_TYPES.DISH_FILTER_DIALOG_CLOSE:
-      return false;
-    default:
-      return state;
-  }
-};
+const SLICE_NAME = 'DISH_FILTER';
 
-const search = (state = '', action) => {
-  switch (action.type) {
-    case ACTION_TYPES.DISH_FILTER_CLEAN_ALL:
-      return '';
-    case ACTION_TYPES.DISH_FILTER_SEARCH:
-      return action.payload.search;
-    default:
-      return state;
-  }
-};
+const dishFilterSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: {
+    isDialogOpen: false,
+    search: '',
+    sort: 'name',
+    categories: null,
+  },
+  reducers: {
+    openDishFilterDialog(state) {
+      state.isDialogOpen = true;
+    },
+    closeDishFilterDialog(state) {
+      state.isDialogOpen = false;
+    },
+    cleanFilters(state) {
+      state.search = '';
+      state.sort = 'name';
+      state.categories = null;
+    },
+    changeSearch(state, {payload: search}) {
+      state.search = search;
+    },
+    changeSort(state, {payload: sort}) {
+      state.sort = sort;
+    },
+    setCategories(state, {payload: categories}) {
+      state.categories = categories;
+    },
+    addCategory(state, {payload: category}) {
+      state.categories.push(category);
+    },
+    removeCategory(state, {payload: category}) {
+      state.categories = state.categories.filter(cat => cat !== category);
+    },
+  },
+});
 
-const sort = (state = 'name', action) => {
-  switch (action.type) {
-    case ACTION_TYPES.DISH_FILTER_CLEAN_ALL:
-      return 'name';
-    case ACTION_TYPES.DISH_FILTER_SORT:
-      return action.payload.sort;
-    default:
-      return state;
-  }
-};
-
-const categories = (state = null, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.DISH_FILTER_CLEAN_ALL:
-      return null;
-    case ACTION_TYPES.DISH_FILTER_SET_CATEGORIES:
-      return action.payload.categories;
-    case ACTION_TYPES.DISH_FILTER_ADD_CATEGORY:
-      return [...state, action.payload.category];
-    case ACTION_TYPES.DISH_FILTER_REMOVE_CATEGORY:
-      return state.filter(category => category !== action.payload.category);
-    default:
-      return state;
-  }
-};
-
-export default (state = {}, action = {}) => {
-  return {
-    isDialogOpen: isDialogOpen(state.isDialogOpen, action),
-    search: search(state.search, action),
-    sort: sort(state.sort, action),
-    categories: categories(state.categories, action),
-  };
-};
+export default dishFilterSlice.reducer;
+export const {
+  openDishFilterDialog, closeDishFilterDialog, cleanFilters, changeSearch, changeSort, setCategories, addCategory,
+  removeCategory,
+} = dishFilterSlice.actions;
