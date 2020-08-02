@@ -11,14 +11,14 @@ import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
 import DialogBack from 'app/common/components/dialog_back/DialogBack';
 import DishFilter from 'app/features/quotations/dish/dish_filter/DishFilter';
-import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
+import {closeDishFilterDialog} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props}/>);
 
 const DishFilterDialog = ({fullScreen}) => {
   const dispatch = useDispatch();
   const isDialogOpen = useSelector(state => state.quotations.dish.filter.isDialogOpen);
-  const onClose = () => dispatch(DishFilterActions.closeDishFilterDialog());
+  const onClose = () => dispatch(closeDishFilterDialog());
   useBrowserNavigation(isDialogOpen, onClose);
 
   return (
