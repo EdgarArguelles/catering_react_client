@@ -13,7 +13,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         price: 0,
       };
 
-      const result = QuotationReducer(undefined, {});
+      const result = QuotationReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });

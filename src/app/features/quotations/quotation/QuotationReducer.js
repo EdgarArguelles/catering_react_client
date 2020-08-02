@@ -47,8 +47,8 @@ const quotationSlice = createSlice({
       return overwriteLocal(quotation);
     },
   },
-  extraReducers: builder =>
-    builder
+  extraReducers: builder => {
+    return builder
       .addCase(fetchQuotation.fulfilled, (state, action) => {
         if (action.payload.overwriteLocalChanges) {
           return overwriteLocal(action.payload.data);
@@ -62,7 +62,8 @@ const quotationSlice = createSlice({
           const noSelected = state.menus.filter(menu => !menu.isSelected);
           state.menus = [...noSelected, menuReducer(selected, action)];
         }
-      }),
+      });
+  },
 });
 
 export default quotationSlice.reducer;
