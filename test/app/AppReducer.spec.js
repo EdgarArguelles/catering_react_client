@@ -118,11 +118,11 @@ describe('App -> Reducer/Actions', () => {
     });
 
     describe('getFacebookAccessCode', () => {
+      const arg = null;
+      const meta = {arg, requestId: sinon.match.string};
       const body = {query: '{getAccessCode(social: FACEBOOK)}'};
 
       it('should dispatch getFacebookAccessCode.fulfilled', async () => {
-        const arg = undefined;
-        const meta = {arg, requestId: sinon.match.string};
         const jsonExpected = {data: {getAccessCode: 'test token'}};
         graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
 
@@ -142,6 +142,33 @@ describe('App -> Reducer/Actions', () => {
           payload: jsonExpected,
           meta,
         });
+        // don't mutate
+        expect(arg).toStrictEqual(null);
+      });
+
+      it('should dispatch getFacebookAccessCode.rejected', async () => {
+        const errorExpected = new Error('error 1');
+        graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+        const result = await getFacebookAccessCode(arg)(dispatchStub);
+
+        expect(result.error.message).toStrictEqual('error 1');
+        sinon.assert.callCount(graphqlStub, 1);
+        sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+        sinon.assert.callCount(dispatchStub, 2);
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: getFacebookAccessCode.pending.type,
+          payload: undefined,
+          meta,
+        });
+        sinon.assert.calledWithExactly(dispatchStub, {
+          type: getFacebookAccessCode.rejected.type,
+          error: sinon.match.object,
+          payload: undefined,
+          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+        });
+        // don't mutate
+        expect(arg).toStrictEqual(null);
       });
     });
   });
