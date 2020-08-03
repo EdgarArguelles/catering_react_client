@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import DishReducer, {selectDish, selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
+import dishReducer, {selectDish, selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 
 describe('Quotations -> Dish -> Reduce<r/Actions', () => {
   describe('Reducer', () => {
@@ -15,7 +15,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
         },
       };
 
-      const result = DishReducer(undefined, {type: 'invalid'});
+      const result = dishReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -32,7 +32,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
         },
       };
 
-      const result = DishReducer(state, {type: 'invalid'});
+      const result = dishReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -71,7 +71,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
       };
       const action = {type: selectDish.type, payload: '123'};
 
-      const result = DishReducer(state, action);
+      const result = dishReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -110,7 +110,7 @@ describe('Quotations -> Dish -> Reduce<r/Actions', () => {
       };
       const action = {type: selectDishWithoutActions.type, payload: '123'};
 
-      const result = DishReducer(state, action);
+      const result = dishReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate

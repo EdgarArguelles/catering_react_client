@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import DishFilterReducer, {
+import dishFilterReducer, {
   addCategory,
   changeSearch,
   changeSort,
@@ -20,7 +20,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         categories: null,
       };
 
-      const result = DishFilterReducer(undefined, {type: 'invalid'});
+      const result = dishFilterReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -33,7 +33,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         categories: ['cat1', 'cat2'],
       };
 
-      const result = DishFilterReducer(state, {type: 'invalid'});
+      const result = dishFilterReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -60,7 +60,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: cleanFilters.type};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -87,7 +87,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: openDishFilterDialog.type};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -114,7 +114,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: closeDishFilterDialog.type};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -141,7 +141,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: changeSearch.type, payload: '123'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -168,7 +168,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: changeSort.type, payload: 'price'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -195,7 +195,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: setCategories.type, payload: ['aa1', 'aa2', 'aa3']};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -222,7 +222,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: addCategory.type, payload: 'cat3'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -249,7 +249,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: removeCategory.type, payload: 'cat2'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -276,7 +276,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       };
       const action = {type: removeCategory.type, payload: 'cat 2'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
