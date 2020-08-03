@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
 import Api, {ACTION_TYPES} from 'app/common/Api';
-import AuthReducer, {connectSocket, logout, login, fetchPing} from 'app/features/auth/AuthReducer';
+import authReducer, {connectSocket, fetchPing, login, logout} from 'app/features/auth/AuthReducer';
 
 describe('Auth -> Reducer/Actions', () => {
   describe('Reducer', () => {
@@ -11,7 +11,7 @@ describe('Auth -> Reducer/Actions', () => {
         loggedUser: null,
       };
 
-      const result = AuthReducer(undefined, {type: 'invalid'});
+      const result = authReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -22,7 +22,7 @@ describe('Auth -> Reducer/Actions', () => {
         loggedUser: {id: 'ID1'},
       };
 
-      const result = AuthReducer(state, {type: 'invalid'});
+      const result = authReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -43,7 +43,7 @@ describe('Auth -> Reducer/Actions', () => {
       };
       const action = {type: connectSocket.type};
 
-      const result = AuthReducer(state, action);
+      const result = authReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -64,7 +64,7 @@ describe('Auth -> Reducer/Actions', () => {
       };
       const action = {type: ACTION_TYPES.SESSION_EXPIRED};
 
-      const result = AuthReducer(state, action);
+      const result = authReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -87,7 +87,7 @@ describe('Auth -> Reducer/Actions', () => {
       };
       const action = {type: fetchPing.rejected.type};
 
-      const result = AuthReducer(state, action);
+      const result = authReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -112,7 +112,7 @@ describe('Auth -> Reducer/Actions', () => {
       };
       const action = {type: logout.type};
 
-      const result = AuthReducer(state, action);
+      const result = authReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -137,7 +137,7 @@ describe('Auth -> Reducer/Actions', () => {
       };
       const action = {type: login.type, payload: {loggedUser: {token: 'token 1', image: 'image 1'}}};
 
-      const result = AuthReducer(state, action);
+      const result = authReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -164,7 +164,7 @@ describe('Auth -> Reducer/Actions', () => {
       };
       const action = {type: fetchPing.fulfilled.type, payload: {token: 'token 11'}};
 
-      const result = AuthReducer(state, action);
+      const result = authReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate

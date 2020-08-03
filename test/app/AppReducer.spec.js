@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
 import Api from 'app/common/Api';
-import AppReducer, {changeIsOnline, changeTheme, getFacebookAccessCode} from 'app/AppReducer';
+import appReducer, {changeIsOnline, changeTheme, getFacebookAccessCode} from 'app/AppReducer';
 
 describe('App -> Reducer/Actions', () => {
   describe('Reducer', () => {
@@ -12,7 +12,7 @@ describe('App -> Reducer/Actions', () => {
         facebookAccessCode: '',
       };
 
-      const result = AppReducer(undefined, {type: 'invalid'});
+      const result = appReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -24,7 +24,7 @@ describe('App -> Reducer/Actions', () => {
         facebookAccessCode: '123',
       };
 
-      const result = AppReducer(state, {type: 'invalid'});
+      const result = appReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -48,7 +48,7 @@ describe('App -> Reducer/Actions', () => {
       };
       const action = {type: changeIsOnline.type, payload: true};
 
-      const result = AppReducer(state, action);
+      const result = appReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -72,7 +72,7 @@ describe('App -> Reducer/Actions', () => {
       };
       const action = {type: changeTheme.type, payload: 'dark'};
 
-      const result = AppReducer(state, action);
+      const result = appReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -96,7 +96,7 @@ describe('App -> Reducer/Actions', () => {
       };
       const action = {type: getFacebookAccessCode.fulfilled.type, payload: {data: {getAccessCode: '456'}}};
 
-      const result = AppReducer(state, action);
+      const result = appReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate

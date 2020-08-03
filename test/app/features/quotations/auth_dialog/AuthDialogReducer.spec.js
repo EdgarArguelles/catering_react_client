@@ -1,4 +1,4 @@
-import AuthDialogReducer, {
+import authDialogReducer, {
   closeAuthDialog,
   openAuthDialog,
 } from 'app/features/quotations/auth_dialog/AuthDialogReducer';
@@ -8,7 +8,7 @@ describe('Quotations -> Auth Dialog -> Reducer/Actions', () => {
     it('should get default state when undefined', () => {
       const state = false;
 
-      const result = AuthDialogReducer(undefined, {type: 'invalid'});
+      const result = authDialogReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -16,7 +16,7 @@ describe('Quotations -> Auth Dialog -> Reducer/Actions', () => {
     it('should get the same original status when action is not allow', () => {
       const state = true;
 
-      const result = AuthDialogReducer(state, {type: 'invalid'});
+      const result = authDialogReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -28,7 +28,7 @@ describe('Quotations -> Auth Dialog -> Reducer/Actions', () => {
       const stateExpected = true;
       const action = {type: openAuthDialog.type};
 
-      const result = AuthDialogReducer(state, action);
+      const result = authDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -40,7 +40,7 @@ describe('Quotations -> Auth Dialog -> Reducer/Actions', () => {
       const stateExpected = false;
       const action = {type: closeAuthDialog.type};
 
-      const result = AuthDialogReducer(state, action);
+      const result = authDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
