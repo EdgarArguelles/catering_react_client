@@ -8,10 +8,10 @@ describe('Data -> Reducer/Actions', () => {
         courseTypes: {data: null},
         dishes: {data: null, fetching: {}},
         quotations: {
-          fetching: false,
-          error: null,
           data: null,
           metaData: null,
+          error: null,
+          fetching: false,
         },
       };
 
@@ -26,10 +26,10 @@ describe('Data -> Reducer/Actions', () => {
         courseTypes: {data: {id: 'ID1'}},
         dishes: {data: {id: 'ID2'}, fetching: {a: true, b: false}},
         quotations: {
-          fetching: true,
-          error: {id: 'error'},
           data: {id: 'ID3'},
           metaData: {id: 'meta'},
+          error: {id: 'error'},
+          fetching: true,
         },
       };
 
@@ -42,10 +42,10 @@ describe('Data -> Reducer/Actions', () => {
         courseTypes: {data: {id: 'ID1'}},
         dishes: {data: {id: 'ID2'}, fetching: {a: true, b: false}},
         quotations: {
-          fetching: true,
-          error: {id: 'error'},
           data: {id: 'ID3'},
           metaData: {id: 'meta'},
+          error: {id: 'error'},
+          fetching: true,
         },
       });
     });
@@ -56,10 +56,10 @@ describe('Data -> Reducer/Actions', () => {
         courseTypes: {data: {id: 'ID1'}},
         dishes: {data: {id: 'ID2'}, fetching: {a: true, b: false}},
         quotations: {
-          fetching: true,
-          error: {id: 'error'},
           data: {id: 'ID3'},
           metaData: {id: 'meta'},
+          error: {id: 'error'},
+          fetching: true,
         },
       };
       const stateExpected = {
@@ -67,10 +67,10 @@ describe('Data -> Reducer/Actions', () => {
         courseTypes: {data: {id: 'ID1'}},
         dishes: {data: null, fetching: {a: true, b: false}},
         quotations: {
-          fetching: true,
-          error: {id: 'error'},
           data: {id: 'ID3'},
           metaData: {id: 'meta'},
+          error: {id: 'error'},
+          fetching: true,
         },
       };
       const action = {type: changeVersion.type, payload: '123'};
@@ -84,10 +84,10 @@ describe('Data -> Reducer/Actions', () => {
         courseTypes: {data: {id: 'ID1'}},
         dishes: {data: {id: 'ID2'}, fetching: {a: true, b: false}},
         quotations: {
-          fetching: true,
-          error: {id: 'error'},
           data: {id: 'ID3'},
           metaData: {id: 'meta'},
+          error: {id: 'error'},
+          fetching: true,
         },
       });
     });
