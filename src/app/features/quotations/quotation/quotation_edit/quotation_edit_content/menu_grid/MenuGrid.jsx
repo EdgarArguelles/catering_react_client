@@ -11,7 +11,7 @@ import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuItem from './menu_item/MenuItem';
 import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {changeMenuTab} from 'app/features/quotations/QuotationsReducer';
 
 const MenuGrid = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const MenuGrid = () => {
     const menuId = getRandomMenuId();
     dispatch(addNewMenu(menuId));
     dispatch(selectMenu(menuId));
-    dispatch(QuotationsActions.changeMenuTab(0));
+    dispatch(changeMenuTab(0));
   };
 
   const handleNew = () => {
