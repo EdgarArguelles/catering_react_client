@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import dataReducer, {changeVersion} from 'app/data/DataReducer';
 
 describe('Data -> Reducer/Actions', () => {
