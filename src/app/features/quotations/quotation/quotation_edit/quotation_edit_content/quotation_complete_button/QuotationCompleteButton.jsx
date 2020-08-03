@@ -7,7 +7,7 @@ import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const QuotationCompleteButton = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const QuotationCompleteButton = () => {
   const dialogLabel = 'Al cerrar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
 
   const completeQuotation = () => {
-    dispatch(QuotationsActions.deleteLocal());
+    dispatch(deleteLocal());
     History.navigate(loggedUser ? '/presupuestos/todos' : '/presupuestos');
   };
 
