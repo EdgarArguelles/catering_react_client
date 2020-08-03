@@ -1,5 +1,6 @@
 import './SaveQuotation.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {faSave} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -10,7 +11,7 @@ import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogRedu
 import {endRemoteProcess} from 'app/features/quotations/QuotationsReducer';
 import {cleanError, createQuotation, editQuotation, fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 
-const SaveQuotation = () => {
+const SaveQuotation = ({isErrorVisible}) => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
@@ -59,10 +60,14 @@ const SaveQuotation = () => {
                      onComplete={handleEndRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <AuthDialog/>
-        <Snackbar open={!!errors} TransitionComponent={Slide}
+        <Snackbar open={!!errors && isErrorVisible} TransitionComponent={Slide}
                   autoHideDuration={10000} onClose={handleCleanError} message={errors ? errorMessage : ''}/>
       </span>
   );
+};
+
+SaveQuotation.propTypes = {
+  isErrorVisible: PropTypes.bool.isRequired,
 };
 
 export default React.memo(SaveQuotation);
