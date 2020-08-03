@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import dishReducer, {selectDish, selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 
-describe('Quotations -> Dish -> Reduce<r/Actions', () => {
+describe('Quotations -> Dish -> Reducer/Actions', () => {
   describe('Reducer', () => {
     it('should get default state when undefined', () => {
       const state = {
