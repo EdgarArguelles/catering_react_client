@@ -14,7 +14,7 @@ import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar';
 import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs';
 import CourseType from 'app/features/quotations/course_type/CourseType';
 import MenuSummary from 'app/features/quotations/menu/menu_summary/MenuSummary';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {changeMenuTab} from 'app/features/quotations/QuotationsReducer';
 
 const tabsElementId = 'expand-bar';
 const slideClassName = 'swipeable';
@@ -31,7 +31,7 @@ const MenuEditTabs = () => {
     if (newValue === sortedCourseTypes.length) {
       Utils.animateIcon('menu-edit-price-icon');
     }
-    dispatch(QuotationsActions.changeMenuTab(newValue));
+    dispatch(changeMenuTab(newValue));
     resetBarsTop(tabsElementId);
   };
 
