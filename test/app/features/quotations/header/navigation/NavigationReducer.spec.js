@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import NavigationReducer, {
+import navigationReducer, {
   changeNavigation,
   closeNavigationDialog,
 } from 'app/features/quotations/header/navigation/NavigationReducer';
@@ -13,7 +13,7 @@ describe('Quotations -> Header -> Navigation -> Reducer/Actions', () => {
         closeDialog: null,
       };
 
-      const result = NavigationReducer(undefined, {type: 'invalid'});
+      const result = navigationReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -25,7 +25,7 @@ describe('Quotations -> Header -> Navigation -> Reducer/Actions', () => {
         closeDialog: {id: 'ID1'},
       };
 
-      const result = NavigationReducer(state, {type: 'invalid'});
+      const result = navigationReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -49,7 +49,7 @@ describe('Quotations -> Header -> Navigation -> Reducer/Actions', () => {
       };
       const action = {type: changeNavigation.type, payload: {backLink: 'abc123'}};
 
-      const result = NavigationReducer(state, action);
+      const result = navigationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -73,7 +73,7 @@ describe('Quotations -> Header -> Navigation -> Reducer/Actions', () => {
       };
       const action = {type: changeNavigation.type, payload: {title: '123abc'}};
 
-      const result = NavigationReducer(state, action);
+      const result = navigationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -97,7 +97,7 @@ describe('Quotations -> Header -> Navigation -> Reducer/Actions', () => {
       };
       const action = {type: changeNavigation.type, payload: {backLink: 'a', title: 'b'}};
 
-      const result = NavigationReducer(state, action);
+      const result = navigationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -121,7 +121,7 @@ describe('Quotations -> Header -> Navigation -> Reducer/Actions', () => {
       };
       const action = {type: closeNavigationDialog.type, payload: {id: 'ID22'}};
 
-      const result = NavigationReducer(state, action);
+      const result = navigationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate

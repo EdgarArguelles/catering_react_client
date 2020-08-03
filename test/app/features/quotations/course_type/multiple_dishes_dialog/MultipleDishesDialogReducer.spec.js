@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import MultipleDishesDialogReducer, {
+import multipleDishesDialogReducer, {
   addDish,
   cleanDishes,
   closeDialog,
@@ -15,7 +15,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
         dishes: [],
       };
 
-      const result = MultipleDishesDialogReducer(undefined, {type: 'invalid'});
+      const result = multipleDishesDialogReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -26,7 +26,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
       };
 
-      const result = MultipleDishesDialogReducer(state, {type: 'invalid'});
+      const result = multipleDishesDialogReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -47,7 +47,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       };
       const action = {type: openDialog.type};
 
-      const result = MultipleDishesDialogReducer(state, action);
+      const result = multipleDishesDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -68,7 +68,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       };
       const action = {type: closeDialog.type};
 
-      const result = MultipleDishesDialogReducer(state, action);
+      const result = multipleDishesDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -89,7 +89,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       };
       const action = {type: cleanDishes.type};
 
-      const result = MultipleDishesDialogReducer(state, action);
+      const result = multipleDishesDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -110,7 +110,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       };
       const action = {type: addDish.type, payload: 'id 4'};
 
-      const result = MultipleDishesDialogReducer(state, action);
+      const result = multipleDishesDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -131,7 +131,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       };
       const action = {type: removeDish.type, payload: 'id 2'};
 
-      const result = MultipleDishesDialogReducer(state, action);
+      const result = multipleDishesDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -152,7 +152,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       };
       const action = {type: removeDish.type, payload: 'id 4'};
 
-      const result = MultipleDishesDialogReducer(state, action);
+      const result = multipleDishesDialogReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
