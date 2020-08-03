@@ -11,7 +11,7 @@ import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
 
 const RevertQuotation = ({hidden}) => {
@@ -31,7 +31,7 @@ const RevertQuotation = ({hidden}) => {
   const labelAction = id ? 'Revertir' : 'Eliminar';
   const label = id ? 'cambios' : 'presupuesto';
   const labelDialog = id ? 'los cambios de' : 'el presupuesto';
-  const deleteLocal = () => dispatch(QuotationsActions.deleteLocal());
+  const handleDeleteLocal = () => dispatch(deleteLocal());
   const handleRevertQuotation = () => dispatch(revertQuotation(quotations[id]));
 
   const revertDeleteQuotation = () => {
@@ -39,7 +39,7 @@ const RevertQuotation = ({hidden}) => {
       setIsDialogOpen(false);
       handleRevertQuotation();
     } else {
-      deleteLocal();
+      handleDeleteLocal();
       History.navigate('/presupuestos');
     }
   };
