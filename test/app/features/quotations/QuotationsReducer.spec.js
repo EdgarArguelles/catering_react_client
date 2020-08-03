@@ -117,511 +117,230 @@ describe('Quotations -> Reducer/Actions', () => {
       });
     });
 
-    it('should reset values when action is logout', () => {
-      const state = {
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
+    describe('resetData', () => {
+      const validateResetData = action => {
+        const state = {
+          isRemoteProcessing: true,
+          selectedTab: 5,
+          isMenuDialogOpen: true,
+          isAuthDialogOpen: true,
+          navigation: {
+            backLink: 'abc',
+            title: '123',
+            closeDialog: {id: 'ID1'},
           },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
+          dish: {
+            selected: 'test',
+            showActions: false,
+            filter: {
+              isDialogOpen: true,
+              search: 'test',
+              sort: 'price',
+              categories: ['cat1', 'cat2'],
+            },
+          },
+          multipleDishesDialog: {
+            isMultipleDishesDialogOpen: true,
+            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          },
+          quotation: {
+            id: 'ID1',
+            name: 'name 1',
+            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            price: 500.5,
+          },
+        };
+
+        const stateExpected = {
+          isRemoteProcessing: true,
+          selectedTab: 0,
+          isMenuDialogOpen: false,
+          isAuthDialogOpen: false,
+          navigation: {
+            backLink: '',
+            title: '',
+            closeDialog: null,
+          },
+          dish: {
+            selected: '',
+            showActions: true,
+            filter: {
+              isDialogOpen: false,
+              search: '',
+              sort: 'name',
+              categories: null,
+            },
+          },
+          multipleDishesDialog: {
+            isMultipleDishesDialogOpen: false,
+            dishes: [],
+          },
+          quotation: {
+            name: '',
+            menus: [],
+            price: 0,
+          },
+        };
+
+        const result = quotationsReducer(state, action);
+
+        expect(result).toStrictEqual(stateExpected);
+        // don't mutate
+        expect(state).toStrictEqual({
+          isRemoteProcessing: true,
+          selectedTab: 5,
+          isMenuDialogOpen: true,
+          isAuthDialogOpen: true,
+          navigation: {
+            backLink: 'abc',
+            title: '123',
+            closeDialog: {id: 'ID1'},
+          },
+          dish: {
+            selected: 'test',
+            showActions: false,
+            filter: {
+              isDialogOpen: true,
+              search: 'test',
+              sort: 'price',
+              categories: ['cat1', 'cat2'],
+            },
+          },
+          multipleDishesDialog: {
+            isMultipleDishesDialogOpen: true,
+            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          },
+          quotation: {
+            id: 'ID1',
+            name: 'name 1',
+            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            price: 500.5,
+          },
+        });
       };
 
-      const stateExpected = {
-        isRemoteProcessing: true,
-        selectedTab: 0,
-        isMenuDialogOpen: false,
-        isAuthDialogOpen: false,
-        navigation: {
-          backLink: '',
-          title: '',
-          closeDialog: null,
-        },
-        dish: {
-          selected: '',
-          showActions: true,
-          filter: {
-            isDialogOpen: false,
-            search: '',
-            sort: 'name',
-            categories: null,
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: false,
-          dishes: [],
-        },
-        quotation: {
-          name: '',
-          menus: [],
-          price: 0,
-        },
-      };
+      it('should reset values when action is logout', () => {
+        validateResetData({type: logout.type});
+      });
 
-      const result = quotationsReducer(state, {type: logout.type});
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
+      it('should reset values when action is deleteLocal', () => {
+        validateResetData({type: deleteLocal.type});
       });
     });
 
-    it('should reset values when action is deleteLocal', () => {
-      const state = {
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
+    describe('isRemoteProcessing to true', () => {
+      const validateIsRemoteProcessing = action => {
+        const state = {
+          isRemoteProcessing: false,
+          selectedTab: 5,
+          isMenuDialogOpen: true,
+          isAuthDialogOpen: true,
+          navigation: {
+            backLink: 'abc',
+            title: '123',
+            closeDialog: {id: 'ID1'},
           },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
+          dish: {
+            selected: 'test',
+            showActions: false,
+            filter: {
+              isDialogOpen: false,
+              search: 'test',
+              sort: 'price',
+              categories: ['cat1', 'cat2'],
+            },
+          },
+          multipleDishesDialog: {
+            isMultipleDishesDialogOpen: true,
+            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          },
+          quotation: {
+            id: 'ID1',
+            name: 'name 1',
+            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            price: 500.5,
+          },
+        };
+
+        const stateExpected = {
+          isRemoteProcessing: true,
+          selectedTab: 5,
+          isMenuDialogOpen: true,
+          isAuthDialogOpen: true,
+          navigation: {
+            backLink: 'abc',
+            title: '123',
+            closeDialog: {id: 'ID1'},
+          },
+          dish: {
+            selected: 'test',
+            showActions: false,
+            filter: {
+              isDialogOpen: false,
+              search: 'test',
+              sort: 'price',
+              categories: ['cat1', 'cat2'],
+            },
+          },
+          multipleDishesDialog: {
+            isMultipleDishesDialogOpen: true,
+            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          },
+          quotation: {
+            id: 'ID1',
+            name: 'name 1',
+            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            price: 500.5,
+          },
+        };
+
+        const result = quotationsReducer(state, action);
+
+        expect(result).toStrictEqual(stateExpected);
+        // don't mutate
+        expect(state).toStrictEqual({
+          isRemoteProcessing: false,
+          selectedTab: 5,
+          isMenuDialogOpen: true,
+          isAuthDialogOpen: true,
+          navigation: {
+            backLink: 'abc',
+            title: '123',
+            closeDialog: {id: 'ID1'},
+          },
+          dish: {
+            selected: 'test',
+            showActions: false,
+            filter: {
+              isDialogOpen: false,
+              search: 'test',
+              sort: 'price',
+              categories: ['cat1', 'cat2'],
+            },
+          },
+          multipleDishesDialog: {
+            isMultipleDishesDialogOpen: true,
+            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          },
+          quotation: {
+            id: 'ID1',
+            name: 'name 1',
+            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            price: 500.5,
+          },
+        });
       };
 
-      const stateExpected = {
-        isRemoteProcessing: true,
-        selectedTab: 0,
-        isMenuDialogOpen: false,
-        isAuthDialogOpen: false,
-        navigation: {
-          backLink: '',
-          title: '',
-          closeDialog: null,
-        },
-        dish: {
-          selected: '',
-          showActions: true,
-          filter: {
-            isDialogOpen: false,
-            search: '',
-            sort: 'name',
-            categories: null,
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: false,
-          dishes: [],
-        },
-        quotation: {
-          name: '',
-          menus: [],
-          price: 0,
-        },
-      };
-
-      const result = quotationsReducer(state, {type: deleteLocal.type});
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
+      it('should change isRemoteProcessing to true when action is createQuotation.pending', () => {
+        validateIsRemoteProcessing({type: createQuotation.pending.type});
       });
-    });
 
-    it('should change isRemoteProcessing to true when action is createQuotation.pending', () => {
-      const state = {
-        isRemoteProcessing: false,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      };
-
-      const stateExpected = {
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      };
-
-      const result = quotationsReducer(state, {type: createQuotation.pending.type});
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        isRemoteProcessing: false,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
+      it('should change isRemoteProcessing to true when action is editQuotation.pending', () => {
+        validateIsRemoteProcessing({type: editQuotation.pending.type});
       });
-    });
 
-    it('should change isRemoteProcessing to true when action is editQuotation.pending', () => {
-      const state = {
-        isRemoteProcessing: false,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      };
-
-      const stateExpected = {
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      };
-
-      const result = quotationsReducer(state, {type: editQuotation.pending.type});
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        isRemoteProcessing: false,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      });
-    });
-
-    it('should change isRemoteProcessing to true when action is deleteQuotation.pending', () => {
-      const state = {
-        isRemoteProcessing: false,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      };
-
-      const stateExpected = {
-        isRemoteProcessing: true,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
-      };
-
-      const result = quotationsReducer(state, {type: deleteQuotation.pending.type});
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        isRemoteProcessing: false,
-        selectedTab: 5,
-        isMenuDialogOpen: true,
-        isAuthDialogOpen: true,
-        navigation: {
-          backLink: 'abc',
-          title: '123',
-          closeDialog: {id: 'ID1'},
-        },
-        dish: {
-          selected: 'test',
-          showActions: false,
-          filter: {
-            isDialogOpen: false,
-            search: 'test',
-            sort: 'price',
-            categories: ['cat1', 'cat2'],
-          },
-        },
-        multipleDishesDialog: {
-          isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
-        },
-        quotation: {
-          id: 'ID1',
-          name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
-          price: 500.5,
-        },
+      it('should change isRemoteProcessing to true when action is deleteQuotation.pending', () => {
+        validateIsRemoteProcessing({type: deleteQuotation.pending.type});
       });
     });
 
