@@ -7,9 +7,8 @@ import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
-import MultipleDishesDialogActions
-  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
-import DishActions from 'app/features/quotations/dish/DishActions';
+import {addDish} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
 const AddButton = ({className, dish}) => {
   const dispatch = useDispatch();
@@ -19,8 +18,8 @@ const AddButton = ({className, dish}) => {
 
   const handleAddCourse = () => {
     if (isMultipleDishesDialogOpen) {
-      dispatch(MultipleDishesDialogActions.addDish(dish.id));
-      dispatch(DishActions.selectDish(''));
+      dispatch(addDish(dish.id));
+      dispatch(selectDish(''));
       History.navigate('/presupuestos/menu/editar');
       return;
     }
