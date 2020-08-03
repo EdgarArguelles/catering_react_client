@@ -207,7 +207,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
       });
     });
 
-    it('should add a category when action is DISH_FILTER_ADD_CATEGORY', () => {
+    it('should add a category when action is addCategory', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
