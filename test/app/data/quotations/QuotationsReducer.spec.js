@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import Api, {ACTION_TYPES} from 'app/common/Api';
 import Utils from 'app/common/Utils';
 import {fetchPing, logout} from 'app/features/auth/AuthReducer';
-import QuotationsReducer, {
+import quotationsReducer, {
   cleanQuotations,
   cleanError,
   fetchQuotations,
@@ -29,7 +29,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: false,
       };
 
-      const result = QuotationsReducer(undefined, {type: 'invalid'});
+      const result = quotationsReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -42,7 +42,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: true,
       };
 
-      const result = QuotationsReducer(state, {type: 'invalid'});
+      const result = quotationsReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -69,7 +69,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       };
       const action = {type: cleanQuotations.type};
 
-      const result = QuotationsReducer(state, action);
+      const result = quotationsReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -96,7 +96,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       };
       const action = {type: cleanError.type};
 
-      const result = QuotationsReducer(state, action);
+      const result = quotationsReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -145,7 +145,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       const action = {type: fetchQuotations.fulfilled.type, payload: {metaData: {id: 'new meta'}, data}};
       arrayToObjectStub.withArgs(data).returns(stateMocked);
 
-      const result = QuotationsReducer(state, action);
+      const result = quotationsReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
@@ -199,7 +199,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         },
       });
 
-      const result = QuotationsReducer(state, action);
+      const result = quotationsReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
@@ -247,7 +247,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       const action = {type: fetchQuotation.fulfilled.type, payload: {data}};
       arrayToObjectStub.withArgs([data]).returns({'id-5': {id: 'id-5', name: 'abc'}});
 
-      const result = QuotationsReducer(state, action);
+      const result = quotationsReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       sinon.assert.callCount(arrayToObjectStub, 1);
@@ -280,7 +280,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: false,
       };
       const validate = type => {
-        const result = QuotationsReducer(state, {type, error: {id: 'new error'}});
+        const result = quotationsReducer(state, {type, error: {id: 'new error'}});
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
@@ -327,7 +327,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: true,
       };
       const validate = action => {
-        const result = QuotationsReducer(state, action);
+        const result = quotationsReducer(state, action);
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
@@ -374,7 +374,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: true,
       };
       const validate = action => {
-        const result = QuotationsReducer(state, action);
+        const result = quotationsReducer(state, action);
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
@@ -413,7 +413,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         fetching: false,
       };
       const validate = action => {
-        const result = QuotationsReducer(state, action);
+        const result = quotationsReducer(state, action);
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate

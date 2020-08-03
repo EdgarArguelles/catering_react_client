@@ -1,7 +1,13 @@
 /* eslint-disable max-lines */
 import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
-import QuotationReducer, {
-  changeName, selectMenu, addNewMenu, addMenu, removeMenu, setPrice, revertQuotation,
+import quotationReducer, {
+  changeName,
+  selectMenu,
+  addNewMenu,
+  addMenu,
+  removeMenu,
+  setPrice,
+  revertQuotation,
 } from 'app/features/quotations/quotation/QuotationReducer';
 
 describe('Quotations -> Quotation -> Reducer/Actions', () => {
@@ -13,7 +19,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         price: 0,
       };
 
-      const result = QuotationReducer(undefined, {type: 'invalid'});
+      const result = quotationReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -26,7 +32,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         price: 500.5,
       };
 
-      const result = QuotationReducer(state, {type: 'invalid'});
+      const result = quotationReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -65,7 +71,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -108,7 +114,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -141,7 +147,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -181,7 +187,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -211,7 +217,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -237,7 +243,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: changeName.type, payload: 'namE 2'};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -264,7 +270,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: addNewMenu.type, payload: 'menu 3'};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -291,7 +297,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: addMenu.type, payload: {id: 'menu 3', name: 'abc'}};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -318,7 +324,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: removeMenu.type, payload: 'menu2'};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -345,7 +351,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: removeMenu.type, payload: 'menu 2'};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -380,7 +386,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: selectMenu.type, payload: 'menu2'};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -421,7 +427,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: selectMenu.type, payload: 'menu 2'};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -453,7 +459,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
           price: 500.5,
         };
 
-        const result = QuotationReducer(state, {type: 'invalid'});
+        const result = quotationReducer(state, {type: 'invalid'});
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
@@ -488,7 +494,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
           price: 500.5,
         };
 
-        const result = QuotationReducer(state, {type: 'invalid'});
+        const result = quotationReducer(state, {type: 'invalid'});
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
@@ -521,7 +527,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       };
       const action = {type: setPrice.type, payload: 100};
 
-      const result = QuotationReducer(state, action);
+      const result = quotationReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate

@@ -1,9 +1,9 @@
 /* eslint-disable max-lines */
 import {logout} from 'app/features/auth/AuthReducer';
 import {createQuotation, deleteQuotation, editQuotation} from 'app/data/quotations/QuotationsReducer';
-import QuotationsReducer, {
-  changeMenuTab,
+import quotationsReducer, {
   changeMenuDialogOpen,
+  changeMenuTab,
   deleteLocal,
   endRemoteProcess,
 } from 'app/features/quotations/QuotationsReducer';
@@ -42,7 +42,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(undefined, {type: 'invalid'});
+      const result = quotationsReducer(undefined, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
     });
@@ -80,7 +80,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: 'invalid'});
+      const result = quotationsReducer(state, {type: 'invalid'});
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -181,7 +181,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: logout.type});
+      const result = quotationsReducer(state, {type: logout.type});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -282,7 +282,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: deleteLocal.type});
+      const result = quotationsReducer(state, {type: deleteLocal.type});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -384,7 +384,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: createQuotation.pending.type});
+      const result = quotationsReducer(state, {type: createQuotation.pending.type});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -486,7 +486,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: editQuotation.pending.type});
+      const result = quotationsReducer(state, {type: editQuotation.pending.type});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -588,7 +588,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: deleteQuotation.pending.type});
+      const result = quotationsReducer(state, {type: deleteQuotation.pending.type});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -690,7 +690,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: endRemoteProcess.type});
+      const result = quotationsReducer(state, {type: endRemoteProcess.type});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -792,7 +792,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: changeMenuTab.type, payload: 6});
+      const result = quotationsReducer(state, {type: changeMenuTab.type, payload: 6});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -894,7 +894,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = QuotationsReducer(state, {type: changeMenuDialogOpen.type, payload: true});
+      const result = quotationsReducer(state, {type: changeMenuDialogOpen.type, payload: true});
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
