@@ -135,7 +135,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         error: null,
         fetching: false,
       };
-      const stateMocked = {
+      const dataMocked = {
         'id-1': {id: 'id-1', name: 'ct111'},
         'id-2': {id: 'id-2', name: 'ct222'},
         'id-5': {id: 'id-5'},
@@ -143,7 +143,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       };
       const data = 'test';
       const action = {type: fetchQuotations.fulfilled.type, payload: {metaData: {id: 'new meta'}, data}};
-      arrayToObjectStub.withArgs(data).returns(stateMocked);
+      arrayToObjectStub.withArgs(data).returns(dataMocked);
 
       const result = quotationsReducer(state, action);
 
