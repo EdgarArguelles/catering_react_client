@@ -8,7 +8,7 @@ import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.se
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import Action from 'app/features/quotations/home/action/Action';
 import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const CreateQuotation = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const CreateQuotation = () => {
     }
 
     const menuId = getRandomMenuId();
-    dispatch(QuotationsActions.deleteLocal());
+    dispatch(deleteLocal());
     dispatch(addNewMenu(menuId));
     dispatch(selectMenu(menuId));
     History.navigate('/presupuestos/menu/editar');
