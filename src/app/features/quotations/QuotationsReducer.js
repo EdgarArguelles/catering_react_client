@@ -1,74 +1,73 @@
-/**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {ACTION_TYPES as AUTH_ACTION_TYPES} from 'app/features/auth/AuthActions';
-import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
-import {ACTION_TYPES} from './QuotationsActions';
-import {isAuthDialogOpen} from './auth_dialog/AuthDialogReducer';
-import navigation from './header/navigation/NavigationReducer';
-import dish from './dish/DishReducer';
-import multipleDishesDialog from './course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
-import quotation from './quotation/QuotationReducer';
+import {createSlice} from '@reduxjs/toolkit';
+import Utils from 'app/common/Utils';
+import {logout} from 'app/features/auth/AuthReducer';
+import {createQuotation, deleteQuotation, editQuotation} from 'app/data/quotations/QuotationsReducer';
+import authDialogReducer from './auth_dialog/AuthDialogReducer';
+import navigationReducer from './header/navigation/NavigationReducer';
+import dishReducer from './dish/DishReducer';
+import multipleDishesDialogReducer from './course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
+import quotationReducer from './quotation/QuotationReducer';
+
+const SLICE_NAME = 'QUOTATIONS';
 
 const quotationsState = window.sessionStorage ? window.sessionStorage.getItem('quotationsState') : null;
-const defaultValues = quotationsState ? JSON.parse(quotationsState) : {};
-
-const isRemoteProcessing = (state = false, action) => {
-  switch (action.type) {
-    case DATA_ACTION_TYPES.CREATE_QUOTATIONS_REQUEST:
-    case DATA_ACTION_TYPES.EDIT_QUOTATIONS_REQUEST:
-    case DATA_ACTION_TYPES.DELETE_QUOTATIONS_REQUEST:
-      return true;
-    case ACTION_TYPES.QUOTATIONS_END_REMOTE_PROCESS:
-      return false;
-    default:
-      return state;
-  }
+const defaultValues = quotationsState ? JSON.parse(quotationsState) : {
+  isRemoteProcessing: false,
+  selectedTab: 0,
+  isMenuDialogOpen: false,
+  isAuthDialogOpen: authDialogReducer(undefined, Utils.INITIAL_ACTION),
+  navigation: navigationReducer(undefined, Utils.INITIAL_ACTION),
+  dish: dishReducer(undefined, Utils.INITIAL_ACTION),
+  multipleDishesDialog: multipleDishesDialogReducer(undefined, Utils.INITIAL_ACTION),
+  quotation: quotationReducer(undefined, Utils.INITIAL_ACTION),
 };
 
-const selectedTab = (state = 0, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.QUOTATIONS_CHANGE_MENU_TAB:
-      return action.payload.tab;
-    default:
-      return state;
-  }
+const resetData = state => {
+  state.selectedTab = 0;
+  state.isMenuDialogOpen = false;
+  state.isAuthDialogOpen = authDialogReducer(undefined, Utils.INITIAL_ACTION);
+  state.navigation = navigationReducer(undefined, Utils.INITIAL_ACTION);
+  state.dish = dishReducer(undefined, Utils.INITIAL_ACTION);
+  state.multipleDishesDialog = multipleDishesDialogReducer(undefined, Utils.INITIAL_ACTION);
+  state.quotation = quotationReducer(undefined, Utils.INITIAL_ACTION);
 };
 
-const isMenuDialogOpen = (state = false, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.QUOTATIONS_CHANGE_IS_MENU_DIALOG_OPEN:
-      return action.payload.isMenuDialogOpen;
-    default:
-      return state;
-  }
-};
+const quotationsSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: defaultValues,
+  reducers: {
+    changeMenuTab(state, {payload: tab}) {
+      state.selectedTab = tab;
+    },
+    changeMenuDialogOpen(state, {payload: isMenuDialogOpen}) {
+      state.isMenuDialogOpen = isMenuDialogOpen;
+    },
+    deleteLocal(state) {
+      resetData(state);
+    },
+    endRemoteProcess(state) {
+      state.isRemoteProcessing = false;
+    },
+  },
+  extraReducers: builder => {
+    return builder
+      .addCase(logout, resetData)
+      .addMatcher(Utils.anyMatcher(
+        createQuotation.pending.type,
+        editQuotation.pending.type,
+        deleteQuotation.pending.type,
+      ), state => {
+        state.isRemoteProcessing = true;
+      })
+      .addDefaultCase((state, action) => {
+        state.isAuthDialogOpen = authDialogReducer(state.isAuthDialogOpen, action);
+        state.navigation = navigationReducer(state.navigation, action);
+        state.dish = dishReducer(state.dish, action);
+        state.multipleDishesDialog = multipleDishesDialogReducer(state.multipleDishesDialog, action);
+        state.quotation = quotationReducer(state.quotation, action);
+      });
+  },
+});
 
-export default (state = defaultValues, action = {}) => {
-  switch (action.type) {
-    case AUTH_ACTION_TYPES.LOGOUT:
-    case ACTION_TYPES.QUOTATIONS_DELETE_LOCAL:
-      return {
-        isRemoteProcessing: isRemoteProcessing(state.isRemoteProcessing, action),
-        selectedTab: selectedTab(undefined, action),
-        isMenuDialogOpen: isMenuDialogOpen(undefined, action),
-        isAuthDialogOpen: isAuthDialogOpen(undefined, action),
-        navigation: navigation(undefined, action),
-        dish: dish(undefined, action),
-        multipleDishesDialog: multipleDishesDialog(undefined, action),
-        quotation: quotation(undefined, action),
-      };
-    default:
-      return {
-        isRemoteProcessing: isRemoteProcessing(state.isRemoteProcessing, action),
-        selectedTab: selectedTab(state.selectedTab, action),
-        isMenuDialogOpen: isMenuDialogOpen(state.isMenuDialogOpen, action),
-        isAuthDialogOpen: isAuthDialogOpen(state.isAuthDialogOpen, action),
-        navigation: navigation(state.navigation, action),
-        dish: dish(state.dish, action),
-        multipleDishesDialog: multipleDishesDialog(state.multipleDishesDialog, action),
-        quotation: quotation(state.quotation, action),
-      };
-  }
-};
+export default quotationsSlice.reducer;
+export const {changeMenuTab, changeMenuDialogOpen, deleteLocal, endRemoteProcess} = quotationsSlice.actions;
