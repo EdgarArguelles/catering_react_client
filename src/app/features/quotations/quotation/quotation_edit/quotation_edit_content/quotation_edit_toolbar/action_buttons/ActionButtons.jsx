@@ -20,8 +20,8 @@ const ActionButtons = () => {
   return (
     <div id="action-buttons">
       <RevertQuotation hidden={!showRevert}/>
-      {(isRemoteProcessing || showDelete) && <DeleteQuotation/>}
-      {(isRemoteProcessing || showSave) && <SaveQuotation/>}
+      {(isRemoteProcessing || showDelete) && <DeleteQuotation isErrorVisible={showDelete}/>}
+      {(isRemoteProcessing || showSave) && <SaveQuotation isErrorVisible={showSave}/>}
     </div>
   );
 };
