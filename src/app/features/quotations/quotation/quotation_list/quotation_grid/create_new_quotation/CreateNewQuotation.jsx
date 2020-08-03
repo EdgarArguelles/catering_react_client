@@ -10,7 +10,7 @@ import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const CreateNewQuotation = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const CreateNewQuotation = () => {
 
   const createNewQuotation = () => {
     const menuId = getRandomMenuId();
-    dispatch(QuotationsActions.deleteLocal());
+    dispatch(deleteLocal());
     dispatch(addNewMenu(menuId));
     dispatch(selectMenu(menuId));
     History.navigate('/presupuestos/menu/editar');
