@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Utils from 'app/common/Utils';
 import MenuDialog from 'app/features/quotations/menu/menu_summary/menu_dialog/MenuDialog';
 import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {changeMenuDialogOpen} from 'app/features/quotations/QuotationsReducer';
 
 const ViewMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const ViewMenu = ({menu, onClose}) => {
   const showMenuDialog = () => {
     Utils.animateIcon('view-menu-icon', {strokeWidth: 10});
     handleSelectMenu(menu.id);
-    dispatch(QuotationsActions.changeMenuDialogOpen(true));
+    dispatch(changeMenuDialogOpen(true));
   };
 
   const hideMenuDialog = () => {
