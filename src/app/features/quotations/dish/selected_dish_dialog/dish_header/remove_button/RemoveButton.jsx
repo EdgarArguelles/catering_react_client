@@ -8,9 +8,8 @@ import {faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import {decreasePrice, removeCourse} from 'app/features/quotations/menu/MenuReducer';
-import MultipleDishesDialogActions
-  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
-import DishActions from 'app/features/quotations/dish/DishActions';
+import {removeDish} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
 const RemoveButton = ({className, dish}) => {
   const dispatch = useDispatch();
@@ -20,8 +19,8 @@ const RemoveButton = ({className, dish}) => {
 
   const handleRemoveCourse = () => {
     if (isMultipleDishesDialogOpen) {
-      dispatch(MultipleDishesDialogActions.removeDish(dish.id));
-      dispatch(DishActions.selectDish(''));
+      dispatch(removeDish(dish.id));
+      dispatch(selectDish(''));
       History.navigate('/presupuestos/menu/editar');
       return;
     }
