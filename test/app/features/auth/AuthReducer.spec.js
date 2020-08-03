@@ -153,7 +153,7 @@ describe('Auth -> Reducer/Actions', () => {
 
     it('should assign loggedUser value when action is fetchPing.fulfilled', () => {
       window.sessionStorage.removeItem('accessToken');
-      window.sessionStorage.removeItem('userImage');
+      window.sessionStorage.setItem('userImage', 'OLD value');
       const state = {
         socketConnected: true,
         loggedUser: {id: 'ID1'},
@@ -173,8 +173,9 @@ describe('Auth -> Reducer/Actions', () => {
         loggedUser: {id: 'ID1'},
       });
       expect(window.sessionStorage.getItem('accessToken')).toStrictEqual('token 11');
-      expect(window.sessionStorage.getItem('userImage')).toBeNull();
+      expect(window.sessionStorage.getItem('userImage')).toStrictEqual('OLD value');
       window.sessionStorage.removeItem('accessToken');
+      window.sessionStorage.removeItem('userImage');
     });
   });
 
@@ -188,10 +189,10 @@ describe('Auth -> Reducer/Actions', () => {
     });
 
     describe('fetchPing', () => {
-      const body = {query: '{ping {id fullName image role token permissions}}'};
-      const arg = undefined;
+      const arg = null;
       const meta = {arg, requestId: sinon.match.string};
-      const checkSinon = () => {
+      const body = {query: '{ping {id fullName image role token permissions}}'};
+      const checkPending = () => {
         sinon.assert.callCount(graphqlStub, 1);
         sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
         sinon.assert.callCount(dispatchStub, 2);
@@ -200,6 +201,8 @@ describe('Auth -> Reducer/Actions', () => {
           payload: undefined,
           meta,
         });
+        // don't mutate
+        expect(arg).toStrictEqual(null);
       };
 
       it('should dispatch fetchPing.fulfilled', async () => {
@@ -209,7 +212,7 @@ describe('Auth -> Reducer/Actions', () => {
         const result = await fetchPing(arg)(dispatchStub);
 
         expect(result.payload).toStrictEqual(jsonExpected.data.ping);
-        checkSinon();
+        checkPending();
         sinon.assert.calledWithExactly(dispatchStub, {
           type: fetchPing.fulfilled.type,
           payload: jsonExpected.data.ping,
@@ -218,7 +221,7 @@ describe('Auth -> Reducer/Actions', () => {
       });
 
       describe('fetchPing.rejected', () => {
-        const checkErrorSinon = () => {
+        const checkError = () => {
           sinon.assert.calledWithExactly(dispatchStub, {
             type: fetchPing.rejected.type,
             error: sinon.match.object,
@@ -234,8 +237,8 @@ describe('Auth -> Reducer/Actions', () => {
           const result = await fetchPing(arg)(dispatchStub);
 
           expect(result.error.message).toStrictEqual('loggedUser not present');
-          checkSinon();
-          checkErrorSinon();
+          checkPending();
+          checkError();
         });
 
         it('should dispatch fetchPing.rejected when not data', async () => {
@@ -245,8 +248,8 @@ describe('Auth -> Reducer/Actions', () => {
           const result = await fetchPing(arg)(dispatchStub);
 
           expect(result.error.message).toStrictEqual('loggedUser not present');
-          checkSinon();
-          checkErrorSinon();
+          checkPending();
+          checkError();
         });
 
         it('should dispatch fetchPing.rejected when not ping', async () => {
@@ -256,8 +259,8 @@ describe('Auth -> Reducer/Actions', () => {
           const result = await fetchPing(arg)(dispatchStub);
 
           expect(result.error.message).toStrictEqual('loggedUser not present');
-          checkSinon();
-          checkErrorSinon();
+          checkPending();
+          checkError();
         });
 
         it('should dispatch fetchPing.rejected when not id', async () => {
@@ -267,8 +270,8 @@ describe('Auth -> Reducer/Actions', () => {
           const result = await fetchPing(arg)(dispatchStub);
 
           expect(result.error.message).toStrictEqual('loggedUser not present');
-          checkSinon();
-          checkErrorSinon();
+          checkPending();
+          checkError();
         });
 
         it('should dispatch fetchPing.rejected when error', async () => {
@@ -278,8 +281,8 @@ describe('Auth -> Reducer/Actions', () => {
           const result = await fetchPing(arg)(dispatchStub);
 
           expect(result.error.message).toStrictEqual(errorExpected.message);
-          checkSinon();
-          checkErrorSinon();
+          checkPending();
+          checkError();
         });
       });
     });
