@@ -5,13 +5,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {BulletList} from 'react-content-loader';
 import {useAreDishesLoaded} from 'app/common/Hooks';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
-import DishActions from 'app/features/quotations/dish/DishActions';
+import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 
 const MenuCourses = ({courseType}) => {
   const dispatch = useDispatch();
   const allDishes = useSelector(state => state.data.dishes);
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
-  const selectDish = dishId => dispatch(DishActions.selectDish(dishId, false));
+  const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
   const areDishesLoaded = useAreDishesLoaded(courses.map(course => course.dishes).flatten());
 
