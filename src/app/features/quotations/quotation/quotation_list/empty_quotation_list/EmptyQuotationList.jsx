@@ -9,7 +9,7 @@ import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const EmptyQuotationList = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const EmptyQuotationList = () => {
   const handleQuotationRedirect = () => {
     if (!isStarted) {
       const menuId = getRandomMenuId();
-      dispatch(QuotationsActions.deleteLocal());
+      dispatch(deleteLocal());
       dispatch(addNewMenu(menuId));
       dispatch(selectMenu(menuId));
       History.navigate('/presupuestos/menu/editar');
