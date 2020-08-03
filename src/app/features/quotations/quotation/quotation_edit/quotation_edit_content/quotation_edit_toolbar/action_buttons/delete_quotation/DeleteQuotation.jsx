@@ -1,5 +1,6 @@
 import './DeleteQuotation.scss';
 import React, {useEffect, useRef, useState} from 'react';
+import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -8,9 +9,9 @@ import History from 'app/router/History';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton';
 import {cleanError, deleteQuotation} from 'app/data/quotations/QuotationsReducer';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal, endRemoteProcess} from 'app/features/quotations/QuotationsReducer';
 
-const DeleteQuotation = () => {
+const DeleteQuotation = ({isErrorVisible}) => {
   const timeout = useRef(null); // don't initialize timeout to null each render
   useEffect(() => {
     return () => clearTimeout(timeout.current);
@@ -26,13 +27,13 @@ const DeleteQuotation = () => {
 
   const {id, name} = quotation;
   const handleCleanError = () => dispatch(cleanError());
-  const endRemoteProcess = () => dispatch(QuotationsActions.endRemoteProcess());
+  const handleEndRemoteProcess = () => dispatch(endRemoteProcess());
   const doDeleteQuotation = async () => {
     const json = await dispatch(deleteQuotation(id));
     if (json.error) {
       throw json.error;
     }
-    dispatch(QuotationsActions.deleteLocal());
+    dispatch(deleteLocal());
   };
 
   const handleDeleteQuotation = async () => {
@@ -58,17 +59,21 @@ const DeleteQuotation = () => {
     <span id="delete-quotation">
         <FetchButton color="secondary" label="Eliminar Presupuesto" successLabel="Presupuesto Eliminado"
                      id="delete-quotation-button" hidden={isRemoteProcessing || isFetching} icon={faTrash}
-                     onComplete={endRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
+                     onComplete={handleEndRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <ConfirmationDialog title="Eliminar presupuesto" okID="remove-remote-quotation-button" okLabel="Eliminar"
                             open={isDialogOpen} label={`¿Desea eliminar definitivamente el presupuesto ${name}?`}
                             onClose={() => handleStates(false, false)}
                             onOK={() => handleStates(false, true)}/>
-        <Snackbar open={!!errors && errors.message !== 'Unauthorized' && shouldDelete}
+        <Snackbar open={!!errors && errors.message !== 'Unauthorized' && shouldDelete && isErrorVisible}
                   TransitionComponent={Slide} autoHideDuration={10000} onClose={handleCleanError}
                   message="Ocurrió un error al intentar eliminar el presupuesto"/>
       </span>
   );
+};
+
+DeleteQuotation.propTypes = {
+  isErrorVisible: PropTypes.bool.isRequired,
 };
 
 export default React.memo(DeleteQuotation);
