@@ -2,12 +2,6 @@
 import Utils from 'app/common/Utils';
 
 describe('Utils', () => {
-  describe('INITIAL_ACTION', () => {
-    it('should get INITIAL_ACTION value', () => {
-      expect(Utils.INITIAL_ACTION).toStrictEqual({type: 'initial'});
-    });
-  });
-
   describe('anyMatcher', () => {
     it('should get false if type is not present in list', () => {
       const result = Utils.anyMatcher('A', 'B', 'C')({type: 'a'});

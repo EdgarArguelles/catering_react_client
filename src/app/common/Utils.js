@@ -4,10 +4,6 @@ import Vivus from 'vivus';
  * Common actions and tools used by all application
  */
 export default class Utils {
-  static get INITIAL_ACTION() {
-    return {type: 'initial'};
-  }
-
   /**
    * Validate if action.type is present in values list
    *
