@@ -6,13 +6,13 @@ import Utils from 'app/common/Utils';
 import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog';
 import Header from './header/Header';
 import Router from './router/Router';
-import CourseTypesActions from 'app/data/course_types/CourseTypesActions';
-import DataActions from 'app/data/DataActions';
+import {fetchCourseTypes, setCourseTypesData} from 'app/data/course_types/CourseTypesReducer';
+import {changeVersion} from 'app/data/DataReducer';
 
 const Layout = () => {
   const dispatch = useDispatch();
   const dataVersion = useSelector(state => state.data.version);
-  const courseTypes = useSelector(state => state.data.courseTypes);
+  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const quotation = useSelector(state => state.quotations.quotation);
   const isMenuSelected = !!quotation.menus && !!quotation.menus.find(menu => menu.isSelected);
 
@@ -20,9 +20,12 @@ const Layout = () => {
     if (!courseTypes) {
       const fetchCourseTypesTry = async call => {
         try {
-          const json = await dispatch(CourseTypesActions.fetchCourseTypes());
-          if (json.metaData.version !== dataVersion) {
-            dispatch(DataActions.changeVersion(json.metaData.version));
+          const json = await dispatch(fetchCourseTypes());
+          if (json.error) {
+            throw json.error;
+          }
+          if (json.payload.metaData.version !== dataVersion) {
+            dispatch(changeVersion(json.payload.metaData.version));
           }
         } catch (error) {
           if (call < 5) {
@@ -30,7 +33,7 @@ const Layout = () => {
           } else {
             const courseTypesCached = window.localStorage.getItem('courseTypesCached');
             if (courseTypesCached) {
-              dispatch(CourseTypesActions.setCourseTypes(JSON.parse(courseTypesCached)));
+              dispatch(setCourseTypesData(JSON.parse(courseTypesCached)));
             }
           }
         }
