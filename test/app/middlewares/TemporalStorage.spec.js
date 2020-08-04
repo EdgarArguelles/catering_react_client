@@ -33,7 +33,7 @@ describe('Middlewares -> TemporalStorage', () => {
       version: 'V1',
       dishes: {data: [{id: 'd1'}, {id: 'd2'}]},
     }));
-    expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual(JSON.stringify({data: {id: 'CT1'}}));
+    expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual(JSON.stringify({id: 'CT1'}));
     sinon.assert.callCount(nextStub, 1);
     sinon.assert.calledWithExactly(nextStub, action);
     // don't mutate
@@ -50,7 +50,7 @@ describe('Middlewares -> TemporalStorage', () => {
       id: 'state 1',
       app: {theme: 'extra'},
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
-      data: {id: 'D1', dishes: {data: [{id: 'd1'}, {id: 'd2'}]}},
+      data: {id: 'D1', courseTypes: {}, dishes: {data: [{id: 'd1'}, {id: 'd2'}]}},
     });
     window.localStorage.setItem('courseTypesCached', 'OLD Value');
     const store = {id: 'store 1', getState};
