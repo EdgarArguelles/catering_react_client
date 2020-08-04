@@ -2,7 +2,7 @@
 import sinon from 'sinon';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
-import courseTypesReducer, {fetchCourseTypes, setCourseTypes} from 'app/data/course_types/CourseTypesReducer';
+import courseTypesReducer, {fetchCourseTypes, setCourseTypesData} from 'app/data/course_types/CourseTypesReducer';
 
 describe('Data -> CourseTypes -> Reducer/Actions', () => {
   describe('Reducer', () => {
@@ -42,7 +42,7 @@ describe('Data -> CourseTypes -> Reducer/Actions', () => {
       });
     });
 
-    it('should load CourseTypes when action is setCourseTypes', () => {
+    it('should load CourseTypes when action is setCourseTypesData', () => {
       const state = {
         data: {
           'id-1': {id: 'id-1'},
@@ -50,7 +50,7 @@ describe('Data -> CourseTypes -> Reducer/Actions', () => {
           'id-3': {id: 'id-3'},
         },
       };
-      const action = {type: setCourseTypes.type, payload: {id: 5}};
+      const action = {type: setCourseTypesData.type, payload: {id: 5}};
 
       const result = courseTypesReducer(state, action);
 
