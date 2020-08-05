@@ -15,21 +15,16 @@ const defaultValues = quotationsState ? JSON.parse(quotationsState) : {
   isRemoteProcessing: false,
   selectedTab: 0,
   isMenuDialogOpen: false,
-  isAuthDialogOpen: authDialogReducer(undefined, Utils.INITIAL_ACTION),
-  navigation: navigationReducer(undefined, Utils.INITIAL_ACTION),
-  dish: dishReducer(undefined, Utils.INITIAL_ACTION),
-  multipleDishesDialog: multipleDishesDialogReducer(undefined, Utils.INITIAL_ACTION),
-  quotation: quotationReducer(undefined, Utils.INITIAL_ACTION),
 };
 
-const resetData = state => {
+const resetData = (state, action) => {
   state.selectedTab = 0;
   state.isMenuDialogOpen = false;
-  state.isAuthDialogOpen = authDialogReducer(undefined, Utils.INITIAL_ACTION);
-  state.navigation = navigationReducer(undefined, Utils.INITIAL_ACTION);
-  state.dish = dishReducer(undefined, Utils.INITIAL_ACTION);
-  state.multipleDishesDialog = multipleDishesDialogReducer(undefined, Utils.INITIAL_ACTION);
-  state.quotation = quotationReducer(undefined, Utils.INITIAL_ACTION);
+  state.isAuthDialogOpen = authDialogReducer(undefined, action);
+  state.navigation = navigationReducer(undefined, action);
+  state.dish = dishReducer(undefined, action);
+  state.multipleDishesDialog = multipleDishesDialogReducer(undefined, action);
+  state.quotation = quotationReducer(undefined, action);
 };
 
 const quotationsSlice = createSlice({
@@ -42,8 +37,8 @@ const quotationsSlice = createSlice({
     changeMenuDialogOpen(state, {payload: isMenuDialogOpen}) {
       state.isMenuDialogOpen = isMenuDialogOpen;
     },
-    deleteLocal(state) {
-      resetData(state);
+    deleteLocal(state, action) {
+      resetData(state, action);
     },
     endRemoteProcess(state) {
       state.isRemoteProcessing = false;
