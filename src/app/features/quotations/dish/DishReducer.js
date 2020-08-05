@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import Utils from 'app/common/Utils';
 import dishFilterReducer from './dish_filter/DishFilterReducer';
 
 const SLICE_NAME = 'DISH';
@@ -9,7 +8,6 @@ const dishSlice = createSlice({
   initialState: {
     selected: '',
     showActions: true,
-    filter: dishFilterReducer(undefined, Utils.INITIAL_ACTION),
   },
   reducers: {
     selectDish(state, {payload: dishId}) {
