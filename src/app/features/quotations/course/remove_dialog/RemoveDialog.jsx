@@ -8,7 +8,7 @@ import {decreasePrice, removeCourse} from 'app/features/quotations/menu/MenuRedu
 
 const RemoveDialog = ({course, open, onClose}) => {
   const dispatch = useDispatch();
-  const dishes = useSelector(state => state.data.dishes);
+  const dishes = useSelector(state => state.data.dishes.data);
   const removeAction = () => {
     dispatch(removeCourse({courseTypeId: course.type.id, position: course.position}));
     dispatch(decreasePrice(getDishesPrice(course.dishes, dishes)));
