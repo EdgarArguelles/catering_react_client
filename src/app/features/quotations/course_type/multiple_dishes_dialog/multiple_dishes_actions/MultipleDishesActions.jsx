@@ -10,7 +10,7 @@ import {cleanDishes} from 'app/features/quotations/course_type/multiple_dishes_d
 
 const MultipleDishesActions = ({courseType, onClose}) => {
   const dispatch = useDispatch();
-  const allDishes = useSelector(state => state.data.dishes);
+  const allDishes = useSelector(state => state.data.dishes.data);
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
   const handleCleanDishes = () => dispatch(cleanDishes());
