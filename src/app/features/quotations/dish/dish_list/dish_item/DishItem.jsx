@@ -17,7 +17,8 @@ const DishItem = ({dish}) => {
   const dispatch = useDispatch();
   const multipleDishesDialog = useSelector(state => state.quotations.multipleDishesDialog);
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
-  const selected = useSelector(state => state.data.dishes ? state.data.dishes[state.quotations.dish.selected] : null);
+  const selected = useSelector(state =>
+    state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
   const show = !selected || selected.id !== dish.id;
   const handleSelectDish = () => dispatch(selectDish(dish.id));
 
