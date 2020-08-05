@@ -9,7 +9,7 @@ import DishThumbnail from './dish_thumbnail/DishThumbnail';
 import AddDish from './add_dish/AddDish';
 
 const MainCourse = () => {
-  const allDishes = useSelector(state => state.data.dishes);
+  const allDishes = useSelector(state => state.data.dishes.data);
   const dishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
   const areDishesLoaded = useAreDishesLoaded(dishes);
   const sections = ['Proteina', 'Guarnición'];

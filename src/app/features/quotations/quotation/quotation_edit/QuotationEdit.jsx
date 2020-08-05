@@ -2,9 +2,9 @@ import './QuotationEdit.scss';
 import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QuotationEditContent from './quotation_edit_content/QuotationEditContent';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
+import {changeName, selectMenu, setPrice} from 'app/features/quotations/quotation/QuotationReducer';
+import {changeMenuDialogOpen} from 'app/features/quotations/QuotationsReducer';
 
 const QuotationEdit = () => {
   const dispatch = useDispatch();
@@ -19,21 +19,21 @@ const QuotationEdit = () => {
 
   useEffect(() => {
     // deselect Menu
-    dispatch(QuotationActions.selectMenu(''));
-    dispatch(QuotationsActions.changeMenuDialogOpen(false));
+    dispatch(selectMenu(''));
+    dispatch(changeMenuDialogOpen(false));
 
     if (latestName.current === '') {
-      dispatch(QuotationActions.changeName('Mi Presupuesto'));
+      dispatch(changeName('Mi Presupuesto'));
     }
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(NavigationActions.changeNavigation(backLink, 'Mi Presupuesto'));
+    dispatch(changeNavigation({backLink, title: 'Mi Presupuesto'}));
     latestBackLink.current = backLink;
   }, [dispatch, backLink]);
 
   useEffect(() => {
-    dispatch(QuotationActions.setPrice(price));
+    dispatch(setPrice(price));
     latestPrice.current = price;
   }, [dispatch, price]);
 

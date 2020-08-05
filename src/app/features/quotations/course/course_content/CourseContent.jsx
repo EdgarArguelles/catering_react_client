@@ -11,15 +11,17 @@ import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
 import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
-import DishActions from 'app/features/quotations/dish/DishActions';
-import MultipleDishesDialogActions
-  from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogActions';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
+import {
+  addDish,
+  openDialog,
+} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
 
 const CourseContent = ({course, onActionClick}) => {
   const dispatch = useDispatch();
-  const courseTypes = useSelector(state => state.data.courseTypes);
-  const dishes = useSelector(state => state.data.dishes);
-  const selectDish = dishId => dispatch(DishActions.selectDish(dishId));
+  const courseTypes = useSelector(state => state.data.courseTypes.data);
+  const dishes = useSelector(state => state.data.dishes.data);
+  const handleSelectDish = dishId => dispatch(selectDish(dishId));
   const isMultipleDishes = useMultipleDishes(courseTypes[course.type.id]);
   const handleRemoveClick = () => {
     Utils.animateIcon(`${course.type.id}-${course.position}-trash-icon`);
@@ -27,8 +29,8 @@ const CourseContent = ({course, onActionClick}) => {
   };
 
   const openMultipleDishesDialog = dishesInMultiple => {
-    dishesInMultiple.forEach(d => dispatch(MultipleDishesDialogActions.addDish(d.id)));
-    dispatch(MultipleDishesDialogActions.openDialog());
+    dishesInMultiple.forEach(d => dispatch(addDish(d.id)));
+    dispatch(openDialog());
   };
 
   const getDishesList = () => {
@@ -38,7 +40,7 @@ const CourseContent = ({course, onActionClick}) => {
       isMultipleDishes && dish && dishesInMultiple.push(dish);
       return !dish ? null : (
         <li key={dish.id} className={dish.status === 0 ? 'deprecated-text' : ''}>
-          <a onClick={() => isMultipleDishes ? openMultipleDishesDialog(dishesInMultiple) : selectDish(dish.id)}>
+          <a onClick={() => isMultipleDishes ? openMultipleDishesDialog(dishesInMultiple) : handleSelectDish(dish.id)}>
             {`${dish.name}${dish.status === 0 ? ' (platillo dado de baja)' : ''}`}
           </a>
         </li>

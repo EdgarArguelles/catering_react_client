@@ -14,9 +14,9 @@ export default store => next => action => {
     dishes: store.getState().data.dishes,
   }));
 
-  const courseTypes = store.getState().data.courseTypes;
-  if (courseTypes) {
-    window.localStorage.setItem('courseTypesCached', JSON.stringify(courseTypes));
+  const courseTypesData = store.getState().data.courseTypes.data;
+  if (courseTypesData) {
+    window.localStorage.setItem('courseTypesCached', JSON.stringify(courseTypesData));
   }
 
   return result;

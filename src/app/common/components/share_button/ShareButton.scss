@@ -1,4 +1,9 @@
 @use 'app/Variables';
 
 .share-button {
+  #share-actions {
+    .MuiFab-label {
+      margin-top: 6px;
+    }
+  }
 }

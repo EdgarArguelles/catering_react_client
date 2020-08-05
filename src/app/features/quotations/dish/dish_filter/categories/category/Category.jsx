@@ -3,28 +3,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Switch from '@material-ui/core/Switch';
-import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
+import {addCategory, removeCategory, setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
 const Category = ({category, categories, isAllSelected}) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.quotations.dish.filter);
-  const setCategories = newCategories => dispatch(DishFilterActions.setCategories(newCategories));
+  const handleSetCategories = newCategories => dispatch(setCategories(newCategories));
 
   const handleChangeCategory = () => {
     const categoriesWithoutThis = categories.filter(c => c !== category);
 
     if (filter.categories === null) {
-      setCategories(categoriesWithoutThis);
+      handleSetCategories(categoriesWithoutThis);
       return;
     }
 
     if (filter.categories.includes(category)) {
-      dispatch(DishFilterActions.removeCategory(category));
+      dispatch(removeCategory(category));
     } else if (categoriesWithoutThis.length === filter.categories.length) {
       // adding this category, all categories will be selected, so set null instead to indicate category is not required
-      setCategories(null);
+      handleSetCategories(null);
     } else {
-      dispatch(DishFilterActions.addCategory(category));
+      dispatch(addCategory(category));
     }
   };
 

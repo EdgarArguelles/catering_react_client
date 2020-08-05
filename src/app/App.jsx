@@ -13,18 +13,20 @@ import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider, useSelector} from 'react-redux';
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 import {blue, red} from '@material-ui/core/colors';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {applyMiddleware, createStore} from 'redux';
-import thunkMiddleware from 'redux-thunk';
 import logger from './middlewares/Logger';
 import temporalStorage from './middlewares/TemporalStorage';
-import reducers from './Reducers';
+import reducer from './Reducers';
 import Router from './router/Router';
 import Offline from './common/components/offline/Offline';
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger, temporalStorage));
+const store = configureStore({
+  reducer,
+  middleware: [...getDefaultMiddleware({serializableCheck: false}), logger, temporalStorage],
+});
 
 const App = () => {
   const type = useSelector(state => state.app.theme);

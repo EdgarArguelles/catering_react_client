@@ -1,14 +1,19 @@
-/**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {ACTION_TYPES} from './AuthDialogActions';
+import {createSlice} from '@reduxjs/toolkit';
 
-export const isAuthDialogOpen = (state = false, action = {}) => {
-  switch (action.type) {
-    case ACTION_TYPES.CHANGE_IS_AUTH_DIALOG_OPEN:
-      return action.payload.isAuthDialogOpen;
-    default:
-      return state;
-  }
-};
+const SLICE_NAME = 'AUTH_DIALOG';
+
+const authDialogSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: false,
+  reducers: {
+    openAuthDialog() {
+      return true;
+    },
+    closeAuthDialog() {
+      return false;
+    },
+  },
+});
+
+export default authDialogSlice.reducer;
+export const {openAuthDialog, closeAuthDialog} = authDialogSlice.actions;

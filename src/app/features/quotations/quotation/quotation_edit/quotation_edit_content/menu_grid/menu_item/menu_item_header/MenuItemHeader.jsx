@@ -9,8 +9,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
 import EnterTextField from 'app/common/components/enter_text_field/EnterTextField';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
-import MenuActions from 'app/features/quotations/menu/MenuActions';
+import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
+import {changeName} from 'app/features/quotations/menu/MenuReducer';
 
 const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
   const dispatch = useDispatch();
@@ -36,8 +36,8 @@ const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
     };
 
     const handleSave = newValue => {
-      dispatch(MenuActions.changeName(newValue !== '' ? newValue : name));
-      dispatch(QuotationActions.selectMenu(''));
+      dispatch(changeName(newValue !== '' ? newValue : name));
+      dispatch(selectMenu(''));
     };
 
     const title = isSelected

@@ -1,34 +1,31 @@
-/**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {ACTION_TYPES} from './MultipleDishesDialogActions';
+import {createSlice} from '@reduxjs/toolkit';
 
-const isMultipleDishesDialogOpen = (state = false, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CHANGE_IS_MULTIPLE_DISHES_DIALOG_OPEN:
-      return action.payload.isMultipleDishesDialogOpen;
-    default:
-      return state;
-  }
-};
+const SLICE_NAME = 'MULTIPLE_DISHES_DIALOG';
 
-const dishes = (state = [], action) => {
-  switch (action.type) {
-    case ACTION_TYPES.CLEAN_MULTIPLE_DISHES_DISHES:
-      return [];
-    case ACTION_TYPES.ADD_MULTIPLE_DISHES_DISH:
-      return [...state, {id: action.payload.dishId}];
-    case ACTION_TYPES.REMOVE_MULTIPLE_DISHES_DISH:
-      return state.filter(dish => dish.id !== action.payload.dishId);
-    default:
-      return state;
-  }
-};
+const multipleDishesDialogSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: {
+    isMultipleDishesDialogOpen: false,
+    dishes: [],
+  },
+  reducers: {
+    openDialog(state) {
+      state.isMultipleDishesDialogOpen = true;
+    },
+    closeDialog(state) {
+      state.isMultipleDishesDialogOpen = false;
+    },
+    cleanDishes(state) {
+      state.dishes = [];
+    },
+    addDish(state, {payload: dishId}) {
+      state.dishes.push({id: dishId});
+    },
+    removeDish(state, {payload: dishId}) {
+      state.dishes = state.dishes.filter(dish => dish.id !== dishId);
+    },
+  },
+});
 
-export default (state = {}, action = {}) => {
-  return {
-    isMultipleDishesDialogOpen: isMultipleDishesDialogOpen(state.isMultipleDishesDialogOpen, action),
-    dishes: dishes(state.dishes, action),
-  };
-};
+export default multipleDishesDialogSlice.reducer;
+export const {openDialog, closeDialog, cleanDishes, addDish, removeDish} = multipleDishesDialogSlice.actions;

@@ -9,8 +9,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import {useBrowserNavigation} from 'app/common/Hooks';
 import MultipleDishesActions from './multiple_dishes_actions/MultipleDishesActions';
 import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import MultipleDishesDialogActions from './MultipleDishesDialogActions';
+import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
+import {closeDialog} from './MultipleDishesDialogReducer';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props}/>);
 
@@ -21,13 +21,13 @@ const MultipleDishesDialog = ({courseType, tabToDisplay, children}) => {
   const open = useSelector(state => state.quotations.multipleDishesDialog.isMultipleDishesDialogOpen);
   const isOpen = open && tabToDisplay === currentTab;
   const shouldOverwriteCloseNavigationDialog = isOpen && selectedDish === '';
-  const onClose = useCallback(() => dispatch(MultipleDishesDialogActions.closeDialog()), [dispatch]);
+  const onClose = useCallback(() => dispatch(closeDialog()), [dispatch]);
   useBrowserNavigation(isOpen, onClose);
 
   useEffect(() => {
     if (shouldOverwriteCloseNavigationDialog) {
       // handle back browser functionality when close SelectedDishDialog
-      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(onClose)), 0);
+      setTimeout(() => dispatch(closeNavigationDialog(onClose)), 0);
     }
   }, [shouldOverwriteCloseNavigationDialog, onClose, dispatch]);
 

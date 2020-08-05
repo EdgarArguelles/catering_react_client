@@ -7,13 +7,13 @@ import QuotationEditToolbar from './quotation_edit_toolbar/QuotationEditToolbar'
 import MenuGrid from './menu_grid/MenuGrid';
 import QuotationNotify from './quotation_notify/QuotationNotify';
 import QuotationCompleteButton from './quotation_complete_button/QuotationCompleteButton';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {changeName} from 'app/features/quotations/quotation/QuotationReducer';
 
 const QuotationEditContent = () => {
   const dispatch = useDispatch();
   const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const changeQuotationName = name => dispatch(QuotationActions.changeName(name));
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const changeQuotationName = name => dispatch(changeName(name));
   const {id, name} = quotation;
 
   const getContent = () => {

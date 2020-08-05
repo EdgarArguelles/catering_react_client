@@ -1,10 +1,5 @@
 /* eslint-disable max-lines */
-import keyMirror from 'keymirror';
-
-export const ACTION_TYPES = keyMirror({
-  FETCH_FAILURE: null,
-  SESSION_EXPIRED: null,
-});
+export const ACTION_TYPES = {FETCH_FAILURE: 'FETCH_FAILURE', SESSION_EXPIRED: 'SESSION_EXPIRED'};
 
 /**
  * Handle endpoint calls
@@ -81,9 +76,8 @@ export default class Api {
   static async graphql(dispatch, body, options = {}) {
     const json = await Api.postJSON(dispatch, '/graphql', body, options);
 
-    if (json.errors) {
-      const error = {errors: json.errors};
-      throw error;
+    if (json.errors && json.errors[0]) {
+      throw new Error(json.errors[0].message);
     }
 
     return json;

@@ -7,8 +7,8 @@ import {faTrashAlt} from '@fortawesome/free-regular-svg-icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Utils from 'app/common/Utils';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import {removeMenu} from 'app/features/quotations/quotation/QuotationReducer';
+import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
 
 const RemoveMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ const RemoveMenu = ({menu, onClose}) => {
 
   const handleRemove = () => {
     const removeAction = () => {
-      dispatch(QuotationActions.removeMenu(menu.id));
-      dispatch(NavigationActions.closeNavigationDialog(null));
+      dispatch(removeMenu(menu.id));
+      dispatch(closeNavigationDialog(null));
     };
 
     handleClose(removeAction);

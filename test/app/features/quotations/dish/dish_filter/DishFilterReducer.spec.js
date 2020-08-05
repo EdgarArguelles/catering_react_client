@@ -1,70 +1,78 @@
 /* eslint-disable max-lines */
-import {ACTION_TYPES} from 'app/features/quotations/dish/dish_filter/DishFilterActions';
-import DishFilterReducer from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
+import dishFilterReducer, {
+  addCategory,
+  changeSearch,
+  changeSort,
+  cleanFilters,
+  closeDishFilterDialog,
+  openDishFilterDialog,
+  removeCategory,
+  setCategories,
+} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
-describe('Quotations -> Dish -> Filter -> Reducer', () => {
-  it('should get default state when empty', () => {
-    const state = {
-      isDialogOpen: false,
-      search: '',
-      sort: 'name',
-      categories: null,
-    };
+describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
+  describe('Reducer', () => {
+    it('should get default state when undefined', () => {
+      const state = {
+        isDialogOpen: false,
+        search: '',
+        sort: 'name',
+        categories: null,
+      };
 
-    const result = DishFilterReducer();
+      const result = dishFilterReducer(undefined, {type: 'invalid'});
 
-    expect(result).toStrictEqual(state);
-  });
-
-  it('should get the same original status when action is not allow', () => {
-    const state = {
-      isDialogOpen: true,
-      search: 'test',
-      sort: 'price',
-      categories: ['cat1', 'cat2'],
-    };
-
-    const result = DishFilterReducer(state, {type: 'invalid'});
-
-    expect(result).toStrictEqual(state);
-    // don't mutate
-    expect(state).toStrictEqual({
-      isDialogOpen: true,
-      search: 'test',
-      sort: 'price',
-      categories: ['cat1', 'cat2'],
+      expect(result).toStrictEqual(state);
     });
-  });
 
-  it('should clean all values when action is DISH_FILTER_CLEAN_ALL', () => {
-    const state = {
-      isDialogOpen: true,
-      search: 'test',
-      sort: 'price',
-      categories: ['cat1', 'cat2'],
-    };
-    const stateExpected = {
-      isDialogOpen: true,
-      search: '',
-      sort: 'name',
-      categories: null,
-    };
-    const action = {type: ACTION_TYPES.DISH_FILTER_CLEAN_ALL};
+    it('should get the same original status when action is not allow', () => {
+      const state = {
+        isDialogOpen: true,
+        search: 'test',
+        sort: 'price',
+        categories: ['cat1', 'cat2'],
+      };
 
-    const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, {type: 'invalid'});
 
-    expect(result).toStrictEqual(stateExpected);
-    // don't mutate
-    expect(state).toStrictEqual({
-      isDialogOpen: true,
-      search: 'test',
-      sort: 'price',
-      categories: ['cat1', 'cat2'],
+      expect(result).toStrictEqual(state);
+      // don't mutate
+      expect(state).toStrictEqual({
+        isDialogOpen: true,
+        search: 'test',
+        sort: 'price',
+        categories: ['cat1', 'cat2'],
+      });
     });
-  });
 
-  describe('isDialogOpen', () => {
-    it('should set isDialogOpen to true when action is DISH_FILTER_DIALOG_OPEN', () => {
+    it('should clean all values when action is cleanFilters', () => {
+      const state = {
+        isDialogOpen: true,
+        search: 'test',
+        sort: 'price',
+        categories: ['cat1', 'cat2'],
+      };
+      const stateExpected = {
+        isDialogOpen: true,
+        search: '',
+        sort: 'name',
+        categories: null,
+      };
+      const action = {type: cleanFilters.type};
+
+      const result = dishFilterReducer(state, action);
+
+      expect(result).toStrictEqual(stateExpected);
+      // don't mutate
+      expect(state).toStrictEqual({
+        isDialogOpen: true,
+        search: 'test',
+        sort: 'price',
+        categories: ['cat1', 'cat2'],
+      });
+    });
+
+    it('should set isDialogOpen to true when action is openDishFilterDialog', () => {
       const state = {
         isDialogOpen: false,
         search: 'test',
@@ -77,9 +85,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_DIALOG_OPEN};
+      const action = {type: openDishFilterDialog.type};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -91,7 +99,7 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
       });
     });
 
-    it('should set isDialogOpen to false when action is DISH_FILTER_DIALOG_CLOSE', () => {
+    it('should set isDialogOpen to false when action is closeDishFilterDialog', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -104,9 +112,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_DIALOG_CLOSE};
+      const action = {type: closeDishFilterDialog.type};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -117,10 +125,8 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         categories: ['cat1', 'cat2'],
       });
     });
-  });
 
-  describe('search', () => {
-    it('should change search value when action is DISH_FILTER_SEARCH', () => {
+    it('should change search value when action is changeSearch', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -133,9 +139,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_SEARCH, payload: {search: '123'}};
+      const action = {type: changeSearch.type, payload: '123'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -146,10 +152,8 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         categories: ['cat1', 'cat2'],
       });
     });
-  });
 
-  describe('sort', () => {
-    it('should change sort value when action is DISH_FILTER_SORT', () => {
+    it('should change sort value when action is changeSort', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -162,9 +166,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_SORT, payload: {sort: 'price'}};
+      const action = {type: changeSort.type, payload: 'price'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -175,10 +179,8 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         categories: ['cat1', 'cat2'],
       });
     });
-  });
 
-  describe('categories', () => {
-    it('should set categories when action is DISH_FILTER_SET_CATEGORIES', () => {
+    it('should set categories when action is setCategories', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -191,9 +193,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['aa1', 'aa2', 'aa3'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_SET_CATEGORIES, payload: {categories: ['aa1', 'aa2', 'aa3']}};
+      const action = {type: setCategories.type, payload: ['aa1', 'aa2', 'aa3']};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -205,7 +207,7 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
       });
     });
 
-    it('should add a category when action is DISH_FILTER_ADD_CATEGORY', () => {
+    it('should add a category when action is addCategory', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -218,9 +220,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat2', 'cat3'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_ADD_CATEGORY, payload: {category: 'cat3'}};
+      const action = {type: addCategory.type, payload: 'cat3'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -232,7 +234,7 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
       });
     });
 
-    it('should remove a category when action is DISH_FILTER_REMOVE_CATEGORY and category exist', () => {
+    it('should remove a category when action is removeCategory and category exist', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -245,9 +247,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat3'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_REMOVE_CATEGORY, payload: {category: 'cat2'}};
+      const action = {type: removeCategory.type, payload: 'cat2'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -259,7 +261,7 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
       });
     });
 
-    it('should keep same value when action is DISH_FILTER_REMOVE_CATEGORY and category does not exist', () => {
+    it('should keep same value when action is removeCategory and category does not exist', () => {
       const state = {
         isDialogOpen: true,
         search: 'test',
@@ -272,9 +274,9 @@ describe('Quotations -> Dish -> Filter -> Reducer', () => {
         sort: 'price',
         categories: ['cat1', 'cat2', 'cat3'],
       };
-      const action = {type: ACTION_TYPES.DISH_FILTER_REMOVE_CATEGORY, payload: {category: 'cat 2'}};
+      const action = {type: removeCategory.type, payload: 'cat 2'};
 
-      const result = DishFilterReducer(state, action);
+      const result = dishFilterReducer(state, action);
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate

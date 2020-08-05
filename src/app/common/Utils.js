@@ -5,6 +5,16 @@ import Vivus from 'vivus';
  */
 export default class Utils {
   /**
+   * Validate if action.type is present in values list
+   *
+   * @param {array} values all values where to search
+   * @return {function} get action and validate if action.type is present in values list
+   */
+  static anyMatcher(...values) {
+    return action => values.includes(action.type);
+  }
+
+  /**
    * Get a sort function that sorts a String Asc
    *
    * @param {String} attribute attribute to be sorted if array contains objects

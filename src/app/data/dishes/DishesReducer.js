@@ -1,49 +1,62 @@
-/**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
-import {ACTION_TYPES as DATA_ACTION_TYPES} from 'app/data/DataActions';
-import {ACTION_TYPES} from './DishesActions';
 
-export const dishesFetching = (state = false, action = {}) => {
-  switch (action.type) {
-    case ACTION_TYPES.FETCH_DISHES_REQUEST:
-      return true;
-    case ACTION_TYPES.FETCH_DISHES_SUCCESS:
-    case ACTION_TYPES.FETCH_DISHES_ERROR:
-      return false;
-    default:
-      return state;
-  }
-};
+const SLICE_NAME = 'DATA_DISHES';
+const FIELDS = 'id name description picture price status categories{name}';
 
-export const dishFetching = (state = {}, action = {}) => {
-  switch (action.type) {
-    case ACTION_TYPES.FETCH_DISH_REQUEST:
-      return {...state, [action.payload.dishId]: true};
-    case ACTION_TYPES.FETCH_DISH_SUCCESS:
-    case ACTION_TYPES.FETCH_DISH_ERROR:
-      const newState = {...state};
-      delete newState[action.payload.dishId];
-      return newState;
-    default:
-      return state;
-  }
-};
+export const fetchDishes = createAsyncThunk(
+  `${SLICE_NAME}/fetchDishes`,
+  async (courseTypeId, thunkAPI) => {
+    const body = {query: `{courseType(id: ${courseTypeId}) {activeDishes{${FIELDS}}}}`};
 
-export const dishes = (state = null, action = {}) => {
-  switch (action.type) {
-    case DATA_ACTION_TYPES.DATA_CHANGE_VERSION:
-      return null;
-    case ACTION_TYPES.FETCH_DISHES_SUCCESS:
-      const oldData = state ? Object.values(state).filter(d => d.courseTypeId !== action.payload.courseTypeId) : [];
-      const newData = action.payload.data.map(dish => ({...dish, courseTypeId: action.payload.courseTypeId}));
-      return Utils.arrayToObject([...oldData, ...newData]);
-    case ACTION_TYPES.FETCH_DISH_SUCCESS:
-      return state && state[action.payload.data.id] ? state
-        : {...state, ...Utils.arrayToObject([action.payload.data])};
-    default:
-      return state;
-  }
-};
+    const json = await Api.graphql(thunkAPI.dispatch, body);
+    return {
+      courseTypeId,
+      data: json.data.courseType.activeDishes,
+    };
+  },
+);
+
+export const fetchDish = createAsyncThunk(
+  `${SLICE_NAME}/fetchDish`,
+  async (dishId, thunkAPI) => {
+    const body = {query: `{dish(id: ${dishId}) {${FIELDS}}}`};
+
+    const json = await Api.graphql(thunkAPI.dispatch, body);
+    return {
+      dishId,
+      data: json.data.dish,
+    };
+  },
+);
+
+const dishesDataSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: {
+    data: null,
+    fetching: {},
+  },
+  extraReducers: builder => {
+    return builder
+      .addCase(fetchDishes.fulfilled, (state, action) => {
+        const oldData = state.data ? Object.values(state.data)
+          .filter(d => d.courseTypeId !== action.payload.courseTypeId) : [];
+        const newData = action.payload.data.map(dish => ({...dish, courseTypeId: action.payload.courseTypeId}));
+        state.data = Utils.arrayToObject([...oldData, ...newData]);
+      })
+      .addCase(fetchDish.fulfilled, (state, action) => {
+        state.data = state.data && state.data[action.payload.data.id] ? state.data
+          : {...state.data, ...Utils.arrayToObject([action.payload.data])};
+        delete state.fetching[action.payload.dishId];
+      })
+      .addCase(fetchDish.rejected, (state, action) => {
+        delete state.fetching[action.meta.arg];
+      })
+      .addCase(fetchDish.pending, (state, action) => {
+        state.fetching[action.meta.arg] = true;
+      });
+  },
+});
+
+export default dishesDataSlice.reducer;

@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import MenuActions from 'app/features/quotations/menu/MenuActions';
+import {decreasePrice, removeCourse} from 'app/features/quotations/menu/MenuReducer';
 
 const RemoveDialog = ({course, open, onClose}) => {
   const dispatch = useDispatch();
-  const dishes = useSelector(state => state.data.dishes);
+  const dishes = useSelector(state => state.data.dishes.data);
   const removeAction = () => {
-    dispatch(MenuActions.removeCourse(course.type.id, course.position));
-    dispatch(MenuActions.decreasePrice(getDishesPrice(course.dishes, dishes)));
+    dispatch(removeCourse({courseTypeId: course.type.id, position: course.position}));
+    dispatch(decreasePrice(getDishesPrice(course.dishes, dishes)));
   };
 
   return (

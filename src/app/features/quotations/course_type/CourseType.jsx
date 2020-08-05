@@ -12,9 +12,9 @@ import Animate from 'app/common/components/animate/Animate';
 import CourseTypeContent from './course_type_content/CourseTypeContent';
 import MultipleDishesDialog from './multiple_dishes_dialog/MultipleDishesDialog';
 import MainCourse from './multiple_dishes_dialog/main_course/MainCourse';
-import DishActions from 'app/features/quotations/dish/DishActions';
-import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
-import MultipleDishesDialogActions from './multiple_dishes_dialog/MultipleDishesDialogActions';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
+import {cleanFilters} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
+import {cleanDishes, openDialog} from './multiple_dishes_dialog/MultipleDishesDialogReducer';
 
 const CourseType = ({className, courseType}) => {
   const dispatch = useDispatch();
@@ -28,11 +28,11 @@ const CourseType = ({className, courseType}) => {
   const add = () => {
     animateIcon();
     if (isMultipleDishes) {
-      dispatch(MultipleDishesDialogActions.openDialog());
-      dispatch(MultipleDishesDialogActions.cleanDishes());
+      dispatch(openDialog());
+      dispatch(cleanDishes());
     } else {
-      dispatch(DishFilterActions.cleanFilters());
-      dispatch(DishActions.selectDish(''));
+      dispatch(cleanFilters());
+      dispatch(selectDish(''));
       History.navigate('/presupuestos/platillos');
     }
   };

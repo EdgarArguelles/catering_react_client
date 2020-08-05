@@ -10,11 +10,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import Utils from 'app/common/Utils';
 import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
-import QuotationsActions from 'app/data/quotations/QuotationsActions';
+import {cleanQuotations, fetchQuotations} from 'app/data/quotations/QuotationsReducer';
 
 const QuotationToolbar = () => {
   const dispatch = useDispatch();
-  const metaData = useSelector(state => state.data.metaData.quotations);
+  const metaData = useSelector(state => state.data.quotations.metaData);
   const [isCompact, setIsCompact] = useState(false);
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -31,8 +31,8 @@ const QuotationToolbar = () => {
 
   const handleChangeSort = newSort => {
     if (metaData.pagination.sort[0] !== newSort) {
-      dispatch(QuotationsActions.cleanQuotations());
-      dispatch(QuotationsActions.fetchQuotations({
+      dispatch(cleanQuotations());
+      dispatch(fetchQuotations({
         ...metaData.pagination,
         sort: [newSort, 'createdAt'],
         direction: newSort === 'createdAt' ? 'DESC' : 'ASC',
