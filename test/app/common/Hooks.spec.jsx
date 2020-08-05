@@ -159,7 +159,9 @@ describe('Hooks', () => {
     });
 
     it('should not call fetchQuotation when dispatch createQuotation.fulfilled', () => {
-      act(() => store.dispatch({type: QuotationsActions.createQuotation.fulfilled.type}));
+      act(() => {
+        store.dispatch({type: QuotationsActions.createQuotation.fulfilled.type});
+      });
 
       sinon.assert.callCount(fetchQuotationStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
