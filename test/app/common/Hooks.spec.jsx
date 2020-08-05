@@ -13,10 +13,11 @@ import {
   usePingServer,
   useQuotationsLoader,
 } from 'app/common/Hooks';
-import DishesActions from 'app/data/dishes/DishesActions';
-import QuotationsActions, {ACTION_TYPES} from 'app/data/quotations/QuotationsActions';
-import AuthActions, {ACTION_TYPES as AUTH_TYPES} from 'app/features/auth/AuthActions';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import {changeTheme as changeThemeAction} from 'app/AppReducer';
+import * as DishesActions from 'app/data/dishes/DishesReducer';
+import * as QuotationsActions from 'app/data/quotations/QuotationsReducer';
+import * as AuthActions from 'app/features/auth/AuthReducer';
+import * as NavigationActions from 'app/features/quotations/header/navigation/NavigationReducer';
 
 describe('Hooks', () => {
   const dispatchStub = sinon.stub();
@@ -48,7 +49,7 @@ describe('Hooks', () => {
       sinon.assert.callCount(dispatchStub, 0);
     });
 
-    it('should call CHANGE_APP_THEME with dark', () => {
+    it('should call changeTheme with dark', () => {
       mountComponent(() => useAppTheme(), {app: {theme: 'light'}}, false);
       const {theme, themeIcon, changeTheme} = hookResponse;
       changeTheme();
@@ -56,10 +57,10 @@ describe('Hooks', () => {
       expect(theme).toStrictEqual('light');
       expect(themeIcon).not.toBeNull();
       sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, {payload: {theme: 'dark'}, type: 'CHANGE_APP_THEME'});
+      sinon.assert.calledWithExactly(dispatchStub, {payload: 'dark', type: changeThemeAction.type});
     });
 
-    it('should call CHANGE_APP_THEME with light', () => {
+    it('should call changeTheme with light', () => {
       mountComponent(() => useAppTheme(), {app: {theme: 'dark'}}, false);
       const {theme, themeIcon, changeTheme} = hookResponse;
       changeTheme();
@@ -67,7 +68,7 @@ describe('Hooks', () => {
       expect(theme).toStrictEqual('dark');
       expect(themeIcon).not.toBeNull();
       sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, {payload: {theme: 'light'}, type: 'CHANGE_APP_THEME'});
+      sinon.assert.calledWithExactly(dispatchStub, {payload: 'light', type: changeThemeAction.type});
     });
   });
 
@@ -86,6 +87,7 @@ describe('Hooks', () => {
       sinon.assert.callCount(fetchPingStub, 2);
       sinon.assert.calledWithExactly(fetchPingStub);
       sinon.assert.callCount(dispatchStub, 2);
+      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST'});
     });
   });
 
@@ -93,9 +95,11 @@ describe('Hooks', () => {
     const closeNavigationDialogStub = sinon.stub(NavigationActions, 'closeNavigationDialog');
 
     beforeEach(() => {
+      const onClose = 'onClose';
       closeNavigationDialogStub.reset();
-      closeNavigationDialogStub.withArgs().returns({type: 'TEST'});
-      mountComponent(open => useBrowserNavigation(open, 'onClose'), {}, false);
+      closeNavigationDialogStub.withArgs(onClose).returns({type: 'TEST 1'});
+      closeNavigationDialogStub.withArgs(null).returns({type: 'TEST 2'});
+      mountComponent(open => useBrowserNavigation(open, onClose), {}, false);
     });
 
     it('should not call closeNavigationDialog', () => {
@@ -114,6 +118,7 @@ describe('Hooks', () => {
       sinon.assert.callCount(closeNavigationDialogStub, 1);
       sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
       sinon.assert.callCount(dispatchStub, 1);
+      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
     });
 
     it('should call closeNavigationDialog twice', () => {
@@ -126,6 +131,8 @@ describe('Hooks', () => {
       sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
       sinon.assert.calledWithExactly(closeNavigationDialogStub, null);
       sinon.assert.callCount(dispatchStub, 2);
+      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
+      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 2'});
     });
   });
 
@@ -134,13 +141,11 @@ describe('Hooks', () => {
 
     beforeEach(() => {
       fetchQuotationStub.reset();
-      fetchQuotationStub.withArgs('Q1', false).returns({type: 'TEST'});
+      fetchQuotationStub.withArgs({quotationId: 'Q1', overwriteLocalChanges: false}).returns({type: 'TEST'});
       mountComponent(() => useQuotationsLoader(), {
         auth: {},
         quotations: {quotation: {id: 'Q1'}},
-        data: {
-          fetching: {quotationsUpdate: false},
-        },
+        data: {quotations: {fetching: false}},
       }, true);
     });
 
@@ -152,10 +157,8 @@ describe('Hooks', () => {
       sinon.assert.callCount(dispatchStub, 0);
     });
 
-    it('should not call fetchQuotation when dispatch CREATE_QUOTATIONS_SUCCESS', () => {
-      act(() => {
-        store.dispatch({type: ACTION_TYPES.CREATE_QUOTATIONS_SUCCESS});
-      });
+    it('should not call fetchQuotation when dispatch createQuotation.fulfilled', () => {
+      act(() => store.dispatch({type: QuotationsActions.createQuotation.fulfilled.type}));
 
       sinon.assert.callCount(fetchQuotationStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
@@ -164,7 +167,7 @@ describe('Hooks', () => {
     it('should call fetchQuotation only once', () => {
       act(() => {
         store.dispatch({
-          type: AUTH_TYPES.LOGIN_SUCCESS,
+          type: AuthActions.login.type,
           payload: {
             loggedUser: {id: 'User 1'},
           },
@@ -172,7 +175,7 @@ describe('Hooks', () => {
       });
       act(() => {
         store.dispatch({
-          type: AUTH_TYPES.LOGIN_SUCCESS,
+          type: AuthActions.login.type,
           payload: {
             loggedUser: {id: 'User 2'},
           },
@@ -180,7 +183,7 @@ describe('Hooks', () => {
       });
 
       sinon.assert.callCount(fetchQuotationStub, 1);
-      sinon.assert.calledWithExactly(fetchQuotationStub, 'Q1', false);
+      sinon.assert.calledWithExactly(fetchQuotationStub, {quotationId: 'Q1', overwriteLocalChanges: false});
       sinon.assert.callCount(dispatchStub, 0);
     });
   });
@@ -193,8 +196,10 @@ describe('Hooks', () => {
     it('should return true as hook response', () => {
       mountComponent(() => useAreDishesLoaded([]), {
         data: {
-          dishes: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
-          fetching: {dish: {D1: true}},
+          dishes: {
+            data: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
+            fetching: {D1: true},
+          },
         },
       }, false);
 
@@ -207,8 +212,10 @@ describe('Hooks', () => {
       beforeEach(() => {
         mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
           data: {
-            dishes: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
-            fetching: {dish: {D1: true}},
+            dishes: {
+              data: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
+              fetching: {D1: true},
+            },
           },
         }, false);
       });
@@ -222,10 +229,8 @@ describe('Hooks', () => {
         sinon.assert.callCount(dispatchStub, 0);
       });
 
-      it('should not call fetchDish when dispatch CREATE_QUOTATIONS_SUCCESS', () => {
-        act(() => {
-          store.dispatch({type: ACTION_TYPES.CREATE_QUOTATIONS_SUCCESS});
-        });
+      it('should not call fetchDish when dispatch createQuotation', () => {
+        act(() => store.dispatch({type: QuotationsActions.createQuotation.fulfilled.type}));
 
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 0);
@@ -235,15 +240,12 @@ describe('Hooks', () => {
 
     describe('calling fetchDish', () => {
       beforeEach(() => {
-        fetchDishStub.withArgs('D1').returns({type: 'TEST'});
-        fetchDishStub.withArgs('D2').returns({type: 'TEST'});
-        fetchDishStub.withArgs('D3').returns({type: 'TEST'});
-        fetchDishStub.withArgs('D4').returns({type: 'TEST'});
+        fetchDishStub.withArgs('D1').returns({type: 'TEST 1'});
+        fetchDishStub.withArgs('D2').returns({type: 'TEST 2'});
+        fetchDishStub.withArgs('D3').returns({type: 'TEST 3'});
+        fetchDishStub.withArgs('D4').returns({type: 'TEST 4'});
         mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
-          data: {
-            dishes: {},
-            fetching: {dish: {}},
-          },
+          data: {dishes: {}},
         }, false);
       });
 
@@ -258,6 +260,10 @@ describe('Hooks', () => {
         sinon.assert.calledWithExactly(fetchDishStub, 'D3');
         sinon.assert.calledWithExactly(fetchDishStub, 'D4');
         sinon.assert.callCount(dispatchStub, 4);
+        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
+        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 2'});
+        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 3'});
+        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 4'});
       });
     });
   });
