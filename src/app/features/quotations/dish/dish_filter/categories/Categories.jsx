@@ -15,8 +15,8 @@ import {setCategories} from 'app/features/quotations/dish/dish_filter/DishFilter
 const Categories = ({location}) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.quotations.dish.filter);
-  const courseTypeDishes = useSelector(state => getCurrentCourseTypeDishes(getActiveDishes(state.data.dishes),
-    state.data.courseTypes, state.quotations.selectedTab));
+  const courseTypeDishes = useSelector(state => getCurrentCourseTypeDishes(getActiveDishes(state.data.dishes.data),
+    state.data.courseTypes.data, state.quotations.selectedTab));
   const setCat = categories => dispatch(setCategories(categories));
 
   const getCategories = () => {
