@@ -9,7 +9,7 @@ import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer
 
 const MenuCourses = ({courseType}) => {
   const dispatch = useDispatch();
-  const allDishes = useSelector(state => state.data.dishes);
+  const allDishes = useSelector(state => state.data.dishes.data);
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
