@@ -6,7 +6,7 @@ import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.se
 import CreateQuotation from './action/create_quotation/CreateQuotation';
 import EditQuotation from './action/edit_quotation/EditQuotation';
 import MyQuotations from './action/my_quotations/MyQuotations';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
+import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Home = () => {
   const smSize = isStarted ? 4 : 6;
   const className = isStarted ? 'three-actions' : 'two-actions';
   useEffect(() => {
-    dispatch(NavigationActions.changeNavigation('/presupuestos'));
+    dispatch(changeNavigation({backLink: '/presupuestos'}));
   }, [dispatch]);
 
   return (

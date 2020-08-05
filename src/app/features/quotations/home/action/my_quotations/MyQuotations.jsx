@@ -4,7 +4,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import History from 'app/router/History';
 import Action from 'app/features/quotations/home/action/Action';
-import AuthDialogActions from 'app/features/quotations/auth_dialog/AuthDialogActions';
+import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 
 const MyQuotations = () => {
@@ -15,7 +15,7 @@ const MyQuotations = () => {
 
   const handleListRedirect = () => {
     if (!loggedUser) {
-      dispatch(AuthDialogActions.openAuthDialog());
+      dispatch(openAuthDialog());
       return;
     }
 

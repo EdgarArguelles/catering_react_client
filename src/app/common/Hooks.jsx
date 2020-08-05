@@ -4,17 +4,17 @@ import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
 import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
-import AppActions from 'app/AppActions';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationsActions from 'app/data/quotations/QuotationsActions';
-import DishesActions from 'app/data/dishes/DishesActions';
-import AuthActions from 'app/features/auth/AuthActions';
+import {changeTheme} from 'app/AppReducer';
+import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
+import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
+import {fetchDish} from 'app/data/dishes/DishesReducer';
+import {fetchPing} from 'app/features/auth/AuthReducer';
 
 export const useAppTheme = () => {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.app.theme);
   const themeIcon = theme === 'dark' ? faLightbulb : faLightbulbRegular;
-  const action = () => dispatch(AppActions.changeTheme(theme === 'dark' ? 'light' : 'dark'));
+  const action = () => dispatch(changeTheme(theme === 'dark' ? 'light' : 'dark'));
 
   return {theme, themeIcon, changeTheme: action};
 };
@@ -22,7 +22,7 @@ export const useAppTheme = () => {
 export const usePingServer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(AuthActions.fetchPing());
+    dispatch(fetchPing());
   });
 };
 
@@ -32,10 +32,10 @@ export const useBrowserNavigation = (open, onClose) => {
   const latestOpen = useRef(open);
   useEffect(() => {
     if (open) {
-      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(latestOnClose.current)), 500);
+      setTimeout(() => dispatch(closeNavigationDialog(latestOnClose.current)), 500);
     } else if (latestOpen.current) {
       // only close when last open value was true
-      dispatch(NavigationActions.closeNavigationDialog(null));
+      dispatch(closeNavigationDialog(null));
     }
   }, [open, dispatch]);
 
@@ -49,8 +49,8 @@ export const useQuotationsLoader = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const quotations = useSelector(state => state.data.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const quotations = useSelector(state => state.data.quotations.data);
 
   const latestQuotation = useRef(quotation); // avoid to re-run useEffect when quotation changes
   const latestIsFetching = useRef(isFetching); // avoid to re-run useEffect when isFetching changes
@@ -58,7 +58,7 @@ export const useQuotationsLoader = () => {
 
   useEffect(() => {
     if (loggedUser) {
-      const fetch = quotationId => dispatch(QuotationsActions.fetchQuotation(quotationId, false));
+      const fetch = quotationId => dispatch(fetchQuotation({quotationId, overwriteLocalChanges: false}));
       fetchCompleteQuotation(latestQuotation.current, latestIsFetching.current, latestQuotations.current, fetch);
       latestIsFetching.current = true;
     }
@@ -67,17 +67,17 @@ export const useQuotationsLoader = () => {
 
 export const useAreDishesLoaded = dishes => {
   const dispatch = useDispatch();
-  const dishFetching = useSelector(state => state.data.fetching.dish);
-  const allDishes = useSelector(state => state.data.dishes);
+  const dishFetching = useSelector(state => state.data.dishes.fetching);
+  const allDishes = useSelector(state => state.data.dishes.data);
 
   const latestDishes = useRef(dishes); // avoid to re-run useEffect when dishes changes
   const latestDishFetching = useRef(dishFetching); // avoid to re-run useEffect when dishFetching changes
   const latestAllDishes = useRef(allDishes); // avoid to re-run useEffect when allDishes changes
 
   useEffect(() => {
-    const fetchDish = dishId => dispatch(DishesActions.fetchDish(dishId));
+    const handleFetchDish = dishId => dispatch(fetchDish(dishId));
 
-    fetchDishesList(latestDishes.current, latestAllDishes.current, latestDishFetching.current, fetchDish);
+    fetchDishesList(latestDishes.current, latestAllDishes.current, latestDishFetching.current, handleFetchDish);
   }, [dispatch]);
 
   return areAllDishesPresent(dishes, allDishes) || dishes.length === 0;

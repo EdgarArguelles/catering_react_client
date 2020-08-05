@@ -13,7 +13,7 @@ import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
 import ActionButtons from './action_buttons/ActionButtons';
 
 const QuotationEditToolbar = () => {
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
   const quotation = useSelector(state => state.quotations.quotation);
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const {id, price, name} = quotation;

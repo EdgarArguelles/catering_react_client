@@ -5,28 +5,28 @@ import {useDispatch, useSelector} from 'react-redux';
 import History from 'app/router/History';
 import {getMenuFromLink, getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuEditTabs from './menu_edit_tabs/MenuEditTabs';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
+import {changeMenuDialogOpen, changeMenuTab, deleteLocal} from 'app/features/quotations/QuotationsReducer';
+import {addMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
 
 const MenuEdit = ({location}) => {
   const dispatch = useDispatch();
-  const courseTypes = useSelector(state => state.data.courseTypes);
+  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const search = useRef(location.search); // avoid to re-run useEffect when location changes
   const lastTab = useRef(Object.keys(courseTypes).length); // avoid to re-run useEffect when courseTypes changes
   useEffect(() => {
-    dispatch(NavigationActions.changeNavigation('/presupuestos/editar', 'Menu'));
+    dispatch(changeNavigation({backLink: '/presupuestos/editar', title: 'Menu'}));
     const menuFromLink = getMenuFromLink(new URLSearchParams(search.current).get('menu'));
     if (menuFromLink) {
       const menuId = getRandomMenuId();
-      dispatch(QuotationsActions.deleteLocal());
-      dispatch(QuotationActions.addMenu({...menuFromLink, id: menuId}));
-      dispatch(QuotationActions.selectMenu(menuId));
-      dispatch(QuotationsActions.changeMenuTab(lastTab.current));
-      dispatch(QuotationsActions.changeMenuDialogOpen(true));
+      dispatch(deleteLocal());
+      dispatch(addMenu({...menuFromLink, id: menuId}));
+      dispatch(selectMenu(menuId));
+      dispatch(changeMenuTab(lastTab.current));
+      dispatch(changeMenuDialogOpen(true));
       History.navigate('/presupuestos/menu/editar');
-      dispatch(NavigationActions.changeNavigation('/presupuestos/editar', 'Menu'));
+      dispatch(changeNavigation({backLink: '/presupuestos/editar', title: 'Menu'}));
     }
   }, [dispatch]);
 

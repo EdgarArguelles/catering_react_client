@@ -7,7 +7,7 @@ import {faCopy} from '@fortawesome/free-regular-svg-icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {addMenu} from 'app/features/quotations/quotation/QuotationReducer';
 
 const DuplicateMenu = ({menu, onClose}) => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const DuplicateMenu = ({menu, onClose}) => {
     Utils.animateIcon('duplicate-menu-icon', {strokeWidth: 10});
     const menuId = getRandomMenuId();
     const newMenu = {...menu, id: menuId, name: `${menu.name} 2`, courses: menu.courses.map(c => ({...c, id: null}))};
-    dispatch(QuotationActions.addMenu(newMenu));
+    dispatch(addMenu(newMenu));
     onClose();
   };
 

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Facebook from './auth_button/facebook/Facebook';
 import Google from './auth_button/google/Google';
-import AuthActions from './AuthActions';
+import {connectSocket, login} from './AuthReducer';
 
 let stompClient;
 
@@ -24,7 +24,7 @@ const useCreateStompClient = (socketConnected, dispatch) => {
       stompClient = Stomp.Stomp.over(socket);
       stompClient.debug = null; // disable console messages in browser
       clearTimeout(timeout);
-      stompClient.connect({}, () => dispatch(AuthActions.connectSocket()),
+      stompClient.connect({}, () => dispatch(connectSocket()),
         () => (timeout = setTimeout(() => createSocket(), 5000)));
     };
 
@@ -42,7 +42,7 @@ const Auth = ({onSuccess}) => {
 
   const subscribe = state => {
     return stompClient.subscribe(`/oauth/response/${state}`, response => {
-      dispatch(AuthActions.login(JSON.parse(response.body)));
+      dispatch(login(JSON.parse(response.body)));
       onSuccess();
     });
   };

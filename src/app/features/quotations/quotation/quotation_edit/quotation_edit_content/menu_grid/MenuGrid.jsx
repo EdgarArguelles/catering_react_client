@@ -10,20 +10,20 @@ import History from 'app/router/History';
 import Utils from 'app/common/Utils';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuItem from './menu_item/MenuItem';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
+import {changeMenuTab} from 'app/features/quotations/QuotationsReducer';
 
 const MenuGrid = () => {
   const dispatch = useDispatch();
   const quotation = useSelector(state => state.quotations.quotation);
   const isMenuDialogOpen = useSelector(state => state.quotations.isMenuDialogOpen);
   const selectedMenu = quotation.menus.find(menu => menu.isSelected);
-  const deselectMenu = () => dispatch(QuotationActions.selectMenu(''));
+  const deselectMenu = () => dispatch(selectMenu(''));
   const addAndSelectNewMenu = () => {
     const menuId = getRandomMenuId();
-    dispatch(QuotationActions.addNewMenu(menuId));
-    dispatch(QuotationActions.selectMenu(menuId));
-    dispatch(QuotationsActions.changeMenuTab(0));
+    dispatch(addNewMenu(menuId));
+    dispatch(selectMenu(menuId));
+    dispatch(changeMenuTab(0));
   };
 
   const handleNew = () => {

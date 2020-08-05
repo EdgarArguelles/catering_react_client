@@ -8,8 +8,8 @@ import {useBrowserNavigation} from 'app/common/Hooks';
 import DialogBack from 'app/common/components/dialog_back/DialogBack';
 import Animate from 'app/common/components/animate/Animate';
 import Menu from 'app/features/quotations/menu/Menu';
-import NavigationActions from 'app/features/quotations/header/navigation/NavigationActions';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
+import {changeMenuDialogOpen} from 'app/features/quotations/QuotationsReducer';
 
 const MenuDialog = ({onClose}) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const MenuDialog = ({onClose}) => {
   const shouldOverwriteCloseNavigationDialog = isMenuDialogOpen && selectedDish === '';
   const latestOnClose = useRef(onClose); // avoid to re-run useEffect when onClose changes
   const closeDialog = useCallback(() => {
-    dispatch(QuotationsActions.changeMenuDialogOpen(false));
+    dispatch(changeMenuDialogOpen(false));
     latestOnClose.current && latestOnClose.current();
   }, [dispatch]);
   useBrowserNavigation(isMenuDialogOpen, closeDialog);
@@ -26,7 +26,7 @@ const MenuDialog = ({onClose}) => {
   useEffect(() => {
     if (shouldOverwriteCloseNavigationDialog) {
       // handle back browser functionality when close SelectedDishDialog
-      setTimeout(() => dispatch(NavigationActions.closeNavigationDialog(closeDialog)), 0);
+      setTimeout(() => dispatch(closeNavigationDialog(closeDialog)), 0);
     }
   }, [shouldOverwriteCloseNavigationDialog, closeDialog, dispatch]);
 

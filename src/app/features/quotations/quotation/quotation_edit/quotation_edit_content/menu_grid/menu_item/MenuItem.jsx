@@ -7,7 +7,7 @@ import Animate from 'app/common/components/animate/Animate';
 import MenuItemHeader from './menu_item_header/MenuItemHeader';
 import MenuItemContent from './menu_item_content/MenuItemContent';
 import MenuMenu from './menu_menu/MenuMenu';
-import QuotationActions from 'app/features/quotations/quotation/QuotationActions';
+import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
 
 const MenuItem = ({index, menu}) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const MenuItem = ({index, menu}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [removeAction, setRemoveAction] = useState(null);
   const [focus, setFocus] = useState({title: false, quantity: false});
-  const selectMenu = menuId => dispatch(QuotationActions.selectMenu(menuId));
+  const handleSelectMenu = menuId => dispatch(selectMenu(menuId));
   const deselect = () => selectedMenu && !isMenuDialogOpen && selectMenu('');
   const openMenu = event => {
     setOpen(true);
@@ -33,7 +33,7 @@ const MenuItem = ({index, menu}) => {
 
   const setFocusAndSelect = source => {
     setFocus({title: source === 'title', quantity: source === 'quantity'});
-    selectMenu(menu.id);
+    handleSelectMenu(menu.id);
   };
 
   const select = source => (!selectedMenu || selectedMenu.id !== menu.id) && setFocusAndSelect(source);

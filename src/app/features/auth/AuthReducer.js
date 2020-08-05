@@ -1,36 +1,77 @@
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import Api, {ACTION_TYPES} from 'app/common/Api';
+
+const SLICE_NAME = 'AUTH';
+
 /**
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
+ * Remove "accessToken" and "userImage" from sessionStorage
+ *
+ * @return {void}
  */
-import {ACTION_TYPES as API_ACTION_TYPES} from 'app/common/Api';
-import {ACTION_TYPES} from './AuthActions';
-
-const socketConnected = (state = false, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.SOCKET_CONNECTED:
-      return true;
-    default:
-      return state;
-  }
+const removeToken = () => {
+  window.sessionStorage.removeItem('accessToken');
+  window.sessionStorage.removeItem('userImage');
 };
 
-const loggedUser = (state = null, action) => {
-  switch (action.type) {
-    case API_ACTION_TYPES.SESSION_EXPIRED:
-    case ACTION_TYPES.PING_USER_ERROR:
-    case ACTION_TYPES.LOGOUT:
-      return null;
-    case ACTION_TYPES.LOGIN_SUCCESS:
-    case ACTION_TYPES.PING_USER_SUCCESS:
-      return action.payload.loggedUser;
-    default:
-      return state;
-  }
+/**
+ * Store "accessToken" and "userImage" in sessionStorage
+ *
+ * @param {Object} loggedUser user information
+ * @return {void}
+ */
+const saveToken = loggedUser => {
+  window.sessionStorage.setItem('accessToken', loggedUser.token);
+  loggedUser.image && window.sessionStorage.setItem('userImage', loggedUser.image);
 };
 
-export default (state = {}, action = {}) => {
-  return {
-    socketConnected: socketConnected(state.socketConnected, action),
-    loggedUser: loggedUser(state.loggedUser, action),
-  };
-};
+export const fetchPing = createAsyncThunk(
+  `${SLICE_NAME}/fetchPing`,
+  async (arg, thunkAPI) => {
+    const body = {query: '{ping {id fullName image role token permissions}}'};
+
+    const json = await Api.graphql(thunkAPI.dispatch, body);
+    const loggedUser = json && json.data && json.data.ping && json.data.ping.id ? json.data.ping : null;
+    if (!loggedUser) {
+      throw new Error('loggedUser not present');
+    }
+    return loggedUser;
+  },
+);
+
+const authSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: {
+    socketConnected: false,
+    loggedUser: null,
+  },
+  reducers: {
+    connectSocket(state) {
+      state.socketConnected = true;
+    },
+    logout(state) {
+      removeToken();
+      state.loggedUser = null;
+    },
+    login(state, {payload: {loggedUser}}) {
+      saveToken(loggedUser);
+      state.loggedUser = loggedUser;
+    },
+  },
+  extraReducers: builder => {
+    return builder
+      .addCase(fetchPing.fulfilled, (state, action) => {
+        saveToken(action.payload);
+        state.loggedUser = action.payload;
+      })
+      .addCase(fetchPing.rejected, state => {
+        removeToken();
+        state.loggedUser = null;
+      })
+      .addCase(ACTION_TYPES.SESSION_EXPIRED, state => {
+        state.loggedUser = null;
+      });
+  },
+});
+
+export default authSlice.reducer;
+export const {connectSocket, logout, login} = authSlice.actions;

@@ -11,22 +11,23 @@ import Utils from 'app/common/Utils';
 import Image from 'app/common/components/image/Image';
 import Animate from 'app/common/components/animate/Animate';
 import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
-import DishActions from 'app/features/quotations/dish/DishActions';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
 const DishItem = ({dish}) => {
   const dispatch = useDispatch();
   const multipleDishesDialog = useSelector(state => state.quotations.multipleDishesDialog);
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
-  const selected = useSelector(state => state.data.dishes ? state.data.dishes[state.quotations.dish.selected] : null);
+  const selected = useSelector(state =>
+    state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
   const show = !selected || selected.id !== dish.id;
-  const selectDish = () => dispatch(DishActions.selectDish(dish.id));
+  const handleSelectDish = () => dispatch(selectDish(dish.id));
 
   return (
     <Animate show={show} className="dish-item" animationIn="zoomIn" animationOut="zoomOut">
       <Paper elevation={8}>
         {isDishAdded(multipleDishesDialog, menuCourses, dish.id) &&
         <FontAwesomeIcon className="added" icon={faCheckCircle}/>}
-        <ButtonBase focusRipple className="dish-btn" onClick={selectDish}>
+        <ButtonBase focusRipple className="dish-btn" onClick={handleSelectDish}>
           <Image className="image" alt={dish.name} smallLoading={true} src={Utils.getDriveImage(dish.picture)}/>
           <div className="image-content image-backdrop"/>
           <div className="image-content">

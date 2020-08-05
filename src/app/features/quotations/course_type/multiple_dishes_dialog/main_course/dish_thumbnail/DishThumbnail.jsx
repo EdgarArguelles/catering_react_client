@@ -5,14 +5,14 @@ import {useDispatch} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Utils from 'app/common/Utils';
 import Image from 'app/common/components/image/Image';
-import DishActions from 'app/features/quotations/dish/DishActions';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
 const DishThumbnail = ({dish}) => {
   const dispatch = useDispatch();
-  const selectDish = () => dispatch(DishActions.selectDish(dish.id));
+  const handleSelectDish = () => dispatch(selectDish(dish.id));
 
   return (
-    <Button className="dish-thumbnail" onClick={selectDish}>
+    <Button className="dish-thumbnail" onClick={handleSelectDish}>
       <Image className="dish-image" src={Utils.getDriveImage(dish.picture)} alt={dish.name}/>
     </Button>
   );

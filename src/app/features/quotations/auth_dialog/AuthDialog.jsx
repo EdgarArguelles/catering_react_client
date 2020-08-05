@@ -10,12 +10,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import {useBrowserNavigation} from 'app/common/Hooks';
 import Auth from 'app/features/auth/Auth';
-import AuthDialogActions from './AuthDialogActions';
+import {closeAuthDialog} from './AuthDialogReducer';
 
 const AuthDialog = ({onSuccess}) => {
   const dispatch = useDispatch();
   const open = useSelector(state => state.quotations.isAuthDialogOpen);
-  const onClose = useCallback(() => dispatch(AuthDialogActions.closeAuthDialog()), [dispatch]);
+  const onClose = useCallback(() => dispatch(closeAuthDialog()), [dispatch]);
   useBrowserNavigation(open, onClose);
 
   const handleSuccess = () => {

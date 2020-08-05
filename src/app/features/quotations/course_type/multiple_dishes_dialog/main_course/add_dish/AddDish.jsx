@@ -7,15 +7,15 @@ import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import DishActions from 'app/features/quotations/dish/DishActions';
-import DishFilterActions from 'app/features/quotations/dish/dish_filter/DishFilterActions';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
+import {cleanFilters} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
 const AddDish = ({dishCategory}) => {
   const dispatch = useDispatch();
 
   const handleAdd = () => {
-    dispatch(DishFilterActions.cleanFilters());
-    dispatch(DishActions.selectDish(''));
+    dispatch(cleanFilters());
+    dispatch(selectDish(''));
     History.navigate(`/presupuestos/platillos?categoria=${dishCategory}`);
   };
 

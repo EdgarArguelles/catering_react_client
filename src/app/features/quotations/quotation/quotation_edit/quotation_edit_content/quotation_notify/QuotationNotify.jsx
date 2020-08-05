@@ -11,9 +11,9 @@ import Animate from 'app/common/components/animate/Animate';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 
 const QuotationNotify = () => {
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
   const quotation = useSelector(state => state.quotations.quotation);
-  const quotations = useSelector(state => state.data.quotations);
+  const quotations = useSelector(state => state.data.quotations.data);
   const [isSendDialogOpen, setIsSendDialogOpen] = useState(false);
   const [comment, setComment] = useState('');
   const link = `${window.location.origin}/presupuestos/ver/${quotation.id}`;

@@ -6,7 +6,7 @@ import {faDollarSign, faSortAlphaUp} from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
-import DishFilterActions from './DishFilterActions';
+import {changeSort, setCategories} from './DishFilterReducer';
 import Categories from './categories/Categories';
 import Sort from './sort/Sort';
 
@@ -16,8 +16,8 @@ const DishFilter = ({onClose}) => {
   const filter = useSelector(state => state.quotations.dish.filter);
   const cleanVisible = filter.sort !== 'name' || filter.categories !== null;
   const resetFilters = () => {
-    dispatch(DishFilterActions.changeSort('name'));
-    dispatch(DishFilterActions.setCategories(null));
+    dispatch(changeSort('name'));
+    dispatch(setCategories(null));
   };
 
   return (

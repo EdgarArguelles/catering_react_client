@@ -10,9 +10,9 @@ import ContinueQuotation from './continue_quotation/ContinueQuotation';
 import CreateNewQuotation from './create_new_quotation/CreateNewQuotation';
 
 const QuotationGrid = () => {
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const metaData = useSelector(state => state.data.metaData.quotations);
-  const quotations = useSelector(state => state.data.quotations || {});
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const metaData = useSelector(state => state.data.quotations.metaData);
+  const quotations = useSelector(state => state.data.quotations.data || {});
   const isEditStarted = useSelector(state => isQuotationStarted(state.quotations.quotation));
 
   const getSortDate = (b, a) => a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;

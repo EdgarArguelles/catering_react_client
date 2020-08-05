@@ -12,12 +12,13 @@ import {useBrowserNavigation} from 'app/common/Hooks';
 import Animate from 'app/common/components/animate/Animate';
 import Dish from 'app/features/quotations/dish/Dish';
 import DishHeader from './dish_header/DishHeader';
-import DishActions from 'app/features/quotations/dish/DishActions';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
 const SelectedDishDialog = ({fullScreen}) => {
   const dispatch = useDispatch();
-  const dish = useSelector(state => state.data.dishes ? state.data.dishes[state.quotations.dish.selected] : null);
-  const deselectDish = useCallback(() => dispatch(DishActions.selectDish('')), [dispatch]);
+  const dish = useSelector(state =>
+    state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
+  const deselectDish = useCallback(() => dispatch(selectDish('')), [dispatch]);
   const dishName = dish ? `${dish.id} - ${dish.name}` : '';
   const visible = !!dish;
   useBrowserNavigation(visible, deselectDish);

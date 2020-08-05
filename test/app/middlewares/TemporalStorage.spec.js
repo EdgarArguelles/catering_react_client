@@ -13,7 +13,7 @@ describe('Middlewares -> TemporalStorage', () => {
       id: 'state 1',
       app: {theme: 'dark'},
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
-      data: {id: 'D1', version: 'V1', courseTypes: {id: 'CT1'}, dishes: [{id: 'd1'}, {id: 'd2'}]},
+      data: {id: 'D1', version: 'V1', courseTypes: {data: {id: 'CT1'}}, dishes: {data: [{id: 'd1'}, {id: 'd2'}]}},
     });
     const store = {id: 'store 1', getState};
     const action = {type: 'action1'};
@@ -31,7 +31,7 @@ describe('Middlewares -> TemporalStorage', () => {
     }));
     expect(window.localStorage.getItem('dataState')).toStrictEqual(JSON.stringify({
       version: 'V1',
-      dishes: [{id: 'd1'}, {id: 'd2'}],
+      dishes: {data: [{id: 'd1'}, {id: 'd2'}]},
     }));
     expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual(JSON.stringify({id: 'CT1'}));
     sinon.assert.callCount(nextStub, 1);
@@ -50,7 +50,7 @@ describe('Middlewares -> TemporalStorage', () => {
       id: 'state 1',
       app: {theme: 'extra'},
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
-      data: {id: 'D1', dishes: [{id: 'd1'}, {id: 'd2'}]},
+      data: {id: 'D1', courseTypes: {}, dishes: {data: [{id: 'd1'}, {id: 'd2'}]}},
     });
     window.localStorage.setItem('courseTypesCached', 'OLD Value');
     const store = {id: 'store 1', getState};
@@ -69,7 +69,7 @@ describe('Middlewares -> TemporalStorage', () => {
     }));
     expect(window.localStorage.getItem('dataState')).toStrictEqual(JSON.stringify({
       version: undefined,
-      dishes: [{id: 'd1'}, {id: 'd2'}],
+      dishes: {data: [{id: 'd1'}, {id: 'd2'}]},
     }));
     expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual('OLD Value');
     sinon.assert.callCount(nextStub, 1);

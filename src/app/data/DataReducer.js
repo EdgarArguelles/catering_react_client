@@ -1,62 +1,31 @@
-/**
- * This special reducer collect all reduces that store data from Backend
- *
- * Given the same arguments, it should calculate the next state and return it.
- * No surprises. No side effects. No API calls. No mutations. Just a calculation.
- */
-import {courseTypes, courseTypesFetching} from './course_types/CourseTypesReducer';
-import {dishes, dishesFetching, dishFetching} from './dishes/DishesReducer';
-import {
-  quotations,
-  quotationsError,
-  quotationsFetching,
-  quotationsMetaData,
-  quotationsUpdateFetching,
-} from './quotations/QuotationsReducer';
-import {ACTION_TYPES} from './DataActions';
+import {createSlice} from '@reduxjs/toolkit';
+import courseTypesReducer from './course_types/CourseTypesReducer';
+import dishesReducer from './dishes/DishesReducer';
+import quotationsReducer from './quotations/QuotationsReducer';
+
+const SLICE_NAME = 'DATA';
 
 const dataState = window.localStorage ? window.localStorage.getItem('dataState') : null;
-const defaultValues = dataState ? JSON.parse(dataState) : {};
+const defaultValues = dataState ? JSON.parse(dataState) : {version: null};
 
-const version = (state = null, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.DATA_CHANGE_VERSION:
-      return action.payload.version;
-    default:
-      return state;
-  }
-};
+const dataSlice = createSlice({
+  name: SLICE_NAME,
+  initialState: defaultValues,
+  reducers: {
+    changeVersion(state, {payload: version}) {
+      state.version = version;
+      state.dishes.data = null;
+    },
+  },
+  extraReducers: builder => {
+    return builder
+      .addDefaultCase((state, action) => {
+        state.courseTypes = courseTypesReducer(state.courseTypes, action);
+        state.dishes = dishesReducer(state.dishes, action);
+        state.quotations = quotationsReducer(state.quotations, action);
+      });
+  },
+});
 
-const fetching = (state = {}, action) => {
-  return {
-    courseTypes: courseTypesFetching(state.courseTypes, action),
-    dishes: dishesFetching(state.dishes, action),
-    dish: dishFetching(state.dish, action),
-    quotations: quotationsFetching(state.quotations, action),
-    quotationsUpdate: quotationsUpdateFetching(state.quotationsUpdate, action),
-  };
-};
-
-const errors = (state = {}, action) => {
-  return {
-    quotations: quotationsError(state.quotations, action),
-  };
-};
-
-const metaData = (state = {}, action) => {
-  return {
-    quotations: quotationsMetaData(state.quotations, action),
-  };
-};
-
-export default (state = defaultValues, action = {}) => {
-  return {
-    version: version(state.version, action),
-    fetching: fetching(state.fetching, action),
-    errors: errors(state.errors, action),
-    metaData: metaData(state.metaData, action),
-    courseTypes: courseTypes(state.courseTypes, action),
-    dishes: dishes(state.dishes, action),
-    quotations: quotations(state.quotations, action),
-  };
-};
+export default dataSlice.reducer;
+export const {changeVersion} = dataSlice.actions;

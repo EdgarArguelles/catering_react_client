@@ -7,20 +7,20 @@ import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import QuotationsActions from 'app/features/quotations/QuotationsActions';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const QuotationCompleteButton = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const isFetching = useSelector(state => state.data.fetching.quotations || state.data.fetching.quotationsUpdate);
-  const quotations = useSelector(state => state.data.quotations);
-  const errors = useSelector(state => state.data.errors.quotations);
+  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const quotations = useSelector(state => state.data.quotations.data);
+  const errors = useSelector(state => state.data.quotations.error);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogLabel = 'Al cerrar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
 
   const completeQuotation = () => {
-    dispatch(QuotationsActions.deleteLocal());
+    dispatch(deleteLocal());
     History.navigate(loggedUser ? '/presupuestos/todos' : '/presupuestos');
   };
 
