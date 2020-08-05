@@ -10,7 +10,7 @@ import Utils from 'app/common/Utils';
 import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 
 const DishCarButton = () => {
-  const courseTypes = useSelector(state => state.data.courseTypes);
+  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const selectedTab = useSelector(state => state.quotations.selectedTab);
   const courses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
   const courseType = getCurrentCourseType(courseTypes, selectedTab);
