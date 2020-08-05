@@ -16,7 +16,8 @@ import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
 const SelectedDishDialog = ({fullScreen}) => {
   const dispatch = useDispatch();
-  const dish = useSelector(state => state.data.dishes ? state.data.dishes[state.quotations.dish.selected] : null);
+  const dish = useSelector(state =>
+    state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
   const deselectDish = useCallback(() => dispatch(selectDish('')), [dispatch]);
   const dishName = dish ? `${dish.id} - ${dish.name}` : '';
   const visible = !!dish;
