@@ -238,7 +238,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
     it('should remove a true when action is fetchDish.rejected', () => {
       const state = {data: null, fetching: {bb: true}};
       const stateExpected = {data: null, fetching: {}};
-      const action = {type: fetchDish.rejected.type, payload: {dishId: 'bb', data: null}};
+      const action = {type: fetchDish.rejected.type, meta: {arg: 'bb'}};
 
       const result = dishesReducer(state, action);
 
@@ -250,7 +250,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
     it('should get the same original status when action is fetchDish.rejected and dishId does not exist', () => {
       const state = {data: null, fetching: {cc: true}};
       const stateExpected = {data: null, fetching: {cc: true}};
-      const action = {type: fetchDish.rejected.type, payload: {dishId: 'bb', data: null}};
+      const action = {type: fetchDish.rejected.type, meta: {arg: 'bb'}};
 
       const result = dishesReducer(state, action);
 
@@ -262,7 +262,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
     it('should add a true when action is fetchDish.pending', () => {
       const state = {data: null, fetching: {a: true, b: false}};
       const stateExpected = {data: null, fetching: {a: true, b: false, abc: true}};
-      const action = {type: fetchDish.pending.type, payload: {dishId: 'abc', data: null}};
+      const action = {type: fetchDish.pending.type, meta: {arg: 'abc'}};
 
       const result = dishesReducer(state, action);
 
@@ -274,7 +274,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
     it('should overwrite a true when action is fetchDish.pending', () => {
       const state = {data: null, fetching: {a: true, b: false, abc: false}};
       const stateExpected = {data: null, fetching: {a: true, b: false, abc: true}};
-      const action = {type: fetchDish.pending.type, payload: {dishId: 'abc', data: null}};
+      const action = {type: fetchDish.pending.type, meta: {arg: 'abc'}};
 
       const result = dishesReducer(state, action);
 
