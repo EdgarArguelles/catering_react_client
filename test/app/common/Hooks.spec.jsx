@@ -82,6 +82,7 @@ describe('Hooks', () => {
     });
 
     it('should call fetchPing twice', () => {
+      // call onChange to trigger useEffect
       act(() => component.props.onChange());
 
       sinon.assert.callCount(fetchPingStub, 2);
@@ -194,14 +195,7 @@ describe('Hooks', () => {
     beforeEach(() => fetchDishStub.reset());
 
     it('should return true as hook response', () => {
-      mountComponent(() => useAreDishesLoaded([]), {
-        data: {
-          dishes: {
-            data: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
-            fetching: {D1: true},
-          },
-        },
-      }, false);
+      mountComponent(() => useAreDishesLoaded([]), {data: {dishes: {}}}, false);
 
       expect(hookResponse).toBeTruthy();
       sinon.assert.callCount(fetchDishStub, 0);
