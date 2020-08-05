@@ -14,12 +14,14 @@ import DishToolbar from './dish_toolbar/DishToolbar';
 import DishGrid from './dish_grid/DishGrid';
 import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
 import {openDishFilterDialog} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
-import DishesActions from 'app/data/dishes/DishesActions';
+import {fetchDishes} from 'app/data/dishes/DishesReducer';
 
 const DishList = ({location}) => {
   const dispatch = useDispatch();
-  const courseType = useSelector(state => getCurrentCourseType(state.data.courseTypes, state.quotations.selectedTab));
-  const courseTypeDishes = useSelector(state => getCourseTypeDishes(getActiveDishes(state.data.dishes), courseType));
+  const courseType = useSelector(state =>
+    getCurrentCourseType(state.data.courseTypes.data, state.quotations.selectedTab));
+  const courseTypeDishes = useSelector(state =>
+    getCourseTypeDishes(getActiveDishes(state.data.dishes.data), courseType));
   const category = new URLSearchParams(location.search).get('categoria');
   const categoryDishes = category ?
     courseTypeDishes.filter(dish => dish.categories.map(c => c.name).includes(category)) :
@@ -30,7 +32,7 @@ const DishList = ({location}) => {
 
     // load courseType's dishes if they aren't present
     if (courseTypeDishes.length <= 0) {
-      dispatch(DishesActions.fetchDishes(courseType.id));
+      dispatch(fetchDishes(courseType.id));
     }
   }, [courseType.id, courseType.name, courseTypeDishes.length, dispatch]);
 
