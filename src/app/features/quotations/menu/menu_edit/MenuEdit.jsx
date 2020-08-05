@@ -11,7 +11,7 @@ import {addMenu, selectMenu} from 'app/features/quotations/quotation/QuotationRe
 
 const MenuEdit = ({location}) => {
   const dispatch = useDispatch();
-  const courseTypes = useSelector(state => state.data.courseTypes);
+  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const search = useRef(location.search); // avoid to re-run useEffect when location changes
   const lastTab = useRef(Object.keys(courseTypes).length); // avoid to re-run useEffect when courseTypes changes
