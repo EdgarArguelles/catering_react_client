@@ -19,8 +19,8 @@ import {
 
 const CourseContent = ({course, onActionClick}) => {
   const dispatch = useDispatch();
-  const courseTypes = useSelector(state => state.data.courseTypes);
-  const dishes = useSelector(state => state.data.dishes);
+  const courseTypes = useSelector(state => state.data.courseTypes.data);
+  const dishes = useSelector(state => state.data.dishes.data);
   const handleSelectDish = dishId => dispatch(selectDish(dishId));
   const isMultipleDishes = useMultipleDishes(courseTypes[course.type.id]);
   const handleRemoveClick = () => {
