@@ -1,4 +1,29 @@
 @use 'app/Variables';
 
 #filter-categories {
+  .loader-check {
+    float: left;
+    width: 33.3%;
+
+    @media (max-width: Variables.$screen-xs) {
+      width: 50%;
+    }
+
+    .check-text {
+      float: left;
+      width: 35px;
+      margin-left: 13px;
+    }
+
+    .check-circle {
+      float: left;
+      width: 20px;
+      height: 20px;
+      margin: 0 7px 0 -17px;
+    }
+
+    .text {
+      width: 50%;
+    }
+  }
 }

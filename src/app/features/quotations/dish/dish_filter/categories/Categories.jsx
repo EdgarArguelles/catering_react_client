@@ -3,11 +3,11 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Checkbox from '@material-ui/core/Checkbox';
 import Utils from 'app/common/Utils';
 import {getCurrentCourseTypeDishes} from 'app/features/quotations/course_type/CourseType.service';
 import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
-import {CategoryContentLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Category from './category/Category';
 import {setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
@@ -32,6 +32,18 @@ const Categories = () => {
     return categoriesArray.sort(Utils.getSortString());
   };
 
+  const getLoading = () => {
+    const getCheck = () => (
+      <div className="loader-check">
+        <Skeleton variant="text" animation="wave" className="check-text"/>
+        <Skeleton variant="circle" animation="wave" className="check-circle"/>
+        <Skeleton variant="text" animation="wave" className="text"/>
+      </div>
+    );
+
+    return (<>{getCheck()}{getCheck()}{getCheck()}{getCheck()}{getCheck()}</>);
+  };
+
   const categories = getCategories();
   const isAllSelected = filter.categories === null || filter.categories.length === categories.length;
 
@@ -42,7 +54,7 @@ const Categories = () => {
         <b>Todos</b>
       </Grid>
       <Grid item xs={12}>
-        {categories.length === 0 && <CategoryContentLoader/>}
+        {categories.length === 0 && getLoading()}
         <Grid container>
           {categories.map(category => (
             <Grid key={category} item xs={6} sm={4} className="section-header">
