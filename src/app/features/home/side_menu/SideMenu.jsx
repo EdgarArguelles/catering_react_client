@@ -1,18 +1,18 @@
 import './SideMenu.scss';
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import withWidth from '@material-ui/core/withWidth';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import HamburgerIcon from 'app/common/components/hamburger_icon/HamburgerIcon';
 import Logo from 'app/features/home/header/logo/Logo';
 import MenuItems from 'app/features/home/header/menu/menu_items/MenuItems';
 
-const SideMenu = ({width}) => {
+const SideMenu = () => {
+  const showMenu = useMediaQuery(theme => theme.breakpoints.down('xs'));
   const [open, setOpen] = useState(false);
   const openMenu = () => setOpen(true);
   const closeMenu = () => setOpen(false);
 
-  if (width !== 'xs') {
+  if (!showMenu) {
     return null;
   }
 
@@ -27,8 +27,4 @@ const SideMenu = ({width}) => {
   );
 };
 
-SideMenu.propTypes = {
-  width: PropTypes.string.isRequired,
-};
-
-export default React.memo(withWidth()(SideMenu));
+export default React.memo(SideMenu);
