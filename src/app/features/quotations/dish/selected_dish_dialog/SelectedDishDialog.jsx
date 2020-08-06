@@ -1,5 +1,5 @@
 import './SelectedDishDialog.scss';
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -15,12 +15,28 @@ import {selectDish} from 'app/features/quotations/dish/DishReducer';
 const SelectedDishDialog = () => {
   const dispatch = useDispatch();
   const fullScreen = useIsMobileSize();
+  const isMultipleOpen = useSelector(state => state.quotations.multipleDishesDialog.isMultipleDishesDialogOpen);
+  const isMenuDialogOpen = useSelector(state => state.quotations.isMenuDialogOpen);
   const dish = useSelector(state =>
     state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
   const deselectDish = useCallback(() => dispatch(selectDish('')), [dispatch]);
+  const [shouldWait, setShouldWait] = useState(isMultipleOpen || isMenuDialogOpen);
   const dishName = dish ? `${dish.id} - ${dish.name}` : '';
-  const visible = !!dish;
+  const visible = !!dish && !shouldWait;
   useBrowserNavigation(visible, deselectDish);
+
+  useEffect(() => {
+    const wait = async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setShouldWait(false);
+    };
+
+    shouldWait && wait();
+  }, [shouldWait]);
+
+  useEffect(() => {
+    (isMultipleOpen || isMenuDialogOpen) && setShouldWait(true);
+  }, [isMultipleOpen, isMenuDialogOpen]);
 
   return (
     <Animate show={visible} animationIn="zoomInUp" animationOut="zoomOutUp">
