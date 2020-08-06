@@ -1,21 +1,20 @@
 import './SelectedDishDialog.scss';
 import React, {useCallback} from 'react';
-import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import {useBrowserNavigation} from 'app/common/Hooks';
+import {useBrowserNavigation, useIsMobileSize} from 'app/common/Hooks';
 import Animate from 'app/common/components/animate/Animate';
 import Dish from 'app/features/quotations/dish/Dish';
 import DishHeader from './dish_header/DishHeader';
 import {selectDish} from 'app/features/quotations/dish/DishReducer';
 
-const SelectedDishDialog = ({fullScreen}) => {
+const SelectedDishDialog = () => {
   const dispatch = useDispatch();
+  const fullScreen = useIsMobileSize();
   const dish = useSelector(state =>
     state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
   const deselectDish = useCallback(() => dispatch(selectDish('')), [dispatch]);
@@ -39,8 +38,4 @@ const SelectedDishDialog = ({fullScreen}) => {
   );
 };
 
-SelectedDishDialog.propTypes = {
-  fullScreen: PropTypes.bool.isRequired,
-};
-
-export default React.memo(withMobileDialog()(SelectedDishDialog));
+export default React.memo(SelectedDishDialog);
