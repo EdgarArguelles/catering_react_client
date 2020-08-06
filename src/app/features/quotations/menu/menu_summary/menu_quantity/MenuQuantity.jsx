@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import {changeQuantity} from 'app/features/quotations/menu/MenuReducer';
 
-const MenuQuantity = ({autoFocus, hideLabels, onEnter}) => {
+const MenuQuantity = ({autoFocus, hideLabels, onEnter, onEsc, onBlur}) => {
   const dispatch = useDispatch();
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const [empty, setEmpty] = useState(false);
@@ -20,7 +20,16 @@ const MenuQuantity = ({autoFocus, hideLabels, onEnter}) => {
   };
 
   const handleKeyUp = event => {
+    // on Enter
     event.keyCode === 13 && onEnter && onEnter();
+
+    // on Esc
+    event.keyCode === 27 && onEsc && onEsc();
+  };
+
+  const handleBlur = () => {
+    setEmpty(false);
+    onBlur && onBlur();
   };
 
   const getTextField = () => {
@@ -28,8 +37,7 @@ const MenuQuantity = ({autoFocus, hideLabels, onEnter}) => {
 
     return (
       <TextField type="number" className="menu-quantity-field" margin="dense" autoFocus={autoFocus}
-                 onKeyUp={handleKeyUp} value={empty ? '' : menuQuantity} onChange={handleSave}
-                 onBlur={() => setEmpty(false)}/>
+                 value={empty ? '' : menuQuantity} onChange={handleSave} onKeyUp={handleKeyUp} onBlur={handleBlur}/>
     );
   };
 
@@ -44,6 +52,8 @@ MenuQuantity.propTypes = {
   autoFocus: PropTypes.bool,
   hideLabels: PropTypes.bool,
   onEnter: PropTypes.func,
+  onEsc: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export default React.memo(MenuQuantity);
