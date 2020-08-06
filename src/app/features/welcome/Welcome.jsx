@@ -2,9 +2,10 @@ import './Welcome.scss';
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {AutoRotatingCarousel, Slide} from 'material-auto-rotating-carousel';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
+import {useIsMobileSize} from 'app/common/Hooks';
 
-const Welcome = ({open, fullScreen, onClose}) => {
+const Welcome = ({open, onClose}) => {
+  const isMobileSize = useIsMobileSize();
   const [landscape, setLandscape] = useState(false);
   useEffect(() => {
     const setScreenOrientation = () => setLandscape(window.matchMedia('(orientation: portrait)').matches);
@@ -14,7 +15,7 @@ const Welcome = ({open, fullScreen, onClose}) => {
   }, []);
 
   return (
-    <AutoRotatingCarousel label="Completar" open={open} autoplay={true} mobile={fullScreen} landscape={landscape}
+    <AutoRotatingCarousel label="Completar" open={open} autoplay={true} mobile={isMobileSize} landscape={landscape}
                           onStart={onClose}>
       <Slide media={<img src="http://www.icons101.com/icon_png/size_256/id_79394/youtube.png"/>}
              mediaBackgroundStyle={{backgroundColor: 'red'}}
@@ -37,8 +38,7 @@ const Welcome = ({open, fullScreen, onClose}) => {
 
 Welcome.propTypes = {
   open: PropTypes.bool.isRequired,
-  fullScreen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default React.memo(withMobileDialog()(Welcome));
+export default React.memo(Welcome);
