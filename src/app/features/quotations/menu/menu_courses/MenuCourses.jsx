@@ -32,14 +32,10 @@ const MenuCourses = ({courseType}) => {
   };
 
   const getLoading = () => {
-    const getLoader = () => {
-      return (
-        <>
-          <Skeleton variant="circle" animation="wave" className="loader-circle"/>
-          <Skeleton variant="text" animation="wave" className="loader-text"/>
-        </>
-      );
-    };
+    const getLoader = () => (<>
+      <Skeleton variant="circle" animation="wave" className="loader-circle"/>
+      <Skeleton variant="text" animation="wave" className="loader-text"/>
+    </>);
 
     return <>{getLoader()}{getLoader()}{getLoader()}{getLoader()}</>;
   };
