@@ -3,7 +3,6 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
@@ -16,9 +15,6 @@ import {changeMenuTab} from 'app/features/quotations/QuotationsReducer';
 const MenuGrid = () => {
   const dispatch = useDispatch();
   const quotation = useSelector(state => state.quotations.quotation);
-  const isMenuDialogOpen = useSelector(state => state.quotations.isMenuDialogOpen);
-  const selectedMenu = quotation.menus.find(menu => menu.isSelected);
-  const deselectMenu = () => dispatch(selectMenu(''));
   const addAndSelectNewMenu = () => {
     const menuId = getRandomMenuId();
     dispatch(addNewMenu(menuId));
@@ -40,22 +36,18 @@ const MenuGrid = () => {
   };
 
   return (
-    <ClickAwayListener onClickAway={() => selectedMenu && !isMenuDialogOpen && deselectMenu()}>
-      <>
-        <Grid id="menu-grid" container spacing={2} justify="flex-start">
-          {Object.values(quotation.menus).sort(Utils.getSortString('id')).map((menu, index) => (
-            getAnimatedGrid(menu.id, <MenuItem index={index} menu={menu}/>)
-          ))}
-          {getAnimatedGrid('new-menu', (
-            <Button className="new-menu-button" onClick={handleNew}
-                    onMouseEnter={() => Utils.animateIcon('new-menu-icon')}>
-              <FontAwesomeIcon id="new-menu-icon" icon={faPlusCircle}/>
-              Crear un nuevo menú
-            </Button>
-          ))}
-        </Grid>
-      </>
-    </ClickAwayListener>
+    <Grid id="menu-grid" container spacing={2} justify="flex-start">
+      {Object.values(quotation.menus).sort(Utils.getSortString('id')).map((menu, index) => (
+        getAnimatedGrid(menu.id, <MenuItem index={index} menu={menu}/>)
+      ))}
+      {getAnimatedGrid('new-menu', (
+        <Button className="new-menu-button" onClick={handleNew}
+                onMouseEnter={() => Utils.animateIcon('new-menu-icon')}>
+          <FontAwesomeIcon id="new-menu-icon" icon={faPlusCircle}/>
+          Crear un nuevo menú
+        </Button>
+      ))}
+    </Grid>
   );
 };
 
