@@ -13,9 +13,15 @@
     @include Variables.font-size(24);
   }
 
-  .loader {
-    width: 400px;
-    margin-left: 200px;;
+  .loader-circle {
+    width: 20px;
+    height: 20px;
+    float: left;
+  }
+
+  .loader-text {
+    width: 250px;
+    left: 10px;
   }
 
   ol {

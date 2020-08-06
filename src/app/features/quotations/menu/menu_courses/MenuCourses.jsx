@@ -2,7 +2,7 @@ import './MenuCourses.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {BulletList} from 'react-content-loader';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {useAreDishesLoaded} from 'app/common/Hooks';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
@@ -31,10 +31,23 @@ const MenuCourses = ({courseType}) => {
     return <ol type="I">{getSortedCourseTypes(courses, true).map(course => getCourse(course))}</ol>;
   };
 
+  const getLoading = () => {
+    const getLoader = () => {
+      return (
+        <>
+          <Skeleton variant="circle" animation="wave" className="loader-circle"/>
+          <Skeleton variant="text" animation="wave" className="loader-text"/>
+        </>
+      );
+    };
+
+    return <>{getLoader()}{getLoader()}{getLoader()}{getLoader()}</>;
+  };
+
   return (
     <div className="course-type">
       <p className="name">{courseType.name}</p>
-      {areDishesLoaded ? getRenderer() : <BulletList speed={1} className="loader"/>}
+      {areDishesLoaded ? getRenderer() : getLoading()}
     </div>
   );
 };
