@@ -1,8 +1,7 @@
 import './Categories.scss';
 import React from 'react';
-import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {withRouter} from 'react-router';
+import {useLocation} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import Utils from 'app/common/Utils';
@@ -12,8 +11,9 @@ import {CategoryContentLoader} from 'app/common/components/content_loaders/Conte
 import Category from './category/Category';
 import {setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
-const Categories = ({location}) => {
+const Categories = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const filter = useSelector(state => state.quotations.dish.filter);
   const courseTypeDishes = useSelector(state => getCurrentCourseTypeDishes(getActiveDishes(state.data.dishes.data),
     state.data.courseTypes.data, state.quotations.selectedTab));
@@ -55,8 +55,4 @@ const Categories = ({location}) => {
   );
 };
 
-Categories.propTypes = {
-  location: PropTypes.object.isRequired,
-};
-
-export default React.memo(withRouter(Categories));
+export default React.memo(Categories);

@@ -1,7 +1,6 @@
 import './HomeLink.scss';
 import React from 'react';
-import PropTypes from 'prop-types';
-import {withRouter} from 'react-router';
+import {useLocation} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
@@ -10,7 +9,9 @@ import Utils from 'app/common/Utils';
 
 const HOME_PATH = '/presupuestos';
 
-const HomeLink = ({location}) => {
+const HomeLink = () => {
+  const location = useLocation();
+
   if (location.pathname === HOME_PATH) {
     return null;
   }
@@ -24,8 +25,4 @@ const HomeLink = ({location}) => {
   );
 };
 
-HomeLink.propTypes = {
-  location: PropTypes.object.isRequired,
-};
-
-export default React.memo(withRouter(HomeLink));
+export default React.memo(HomeLink);
