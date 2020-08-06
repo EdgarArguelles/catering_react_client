@@ -1,9 +1,10 @@
 import './Course.scss';
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import Skeleton from '@material-ui/lab/Skeleton';
+import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import {useAreDishesLoaded} from 'app/common/Hooks';
-import {CourseContentLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Animate from 'app/common/components/animate/Animate';
 import CourseContent from './course_content/CourseContent';
 import RemoveDialog from './remove_dialog/RemoveDialog';
@@ -24,8 +25,26 @@ const Course = ({course}) => {
     setIsRemoveDialogOpen(false);
   };
 
+  const getLoading = () => {
+    const getRow = () => (<>
+      <Skeleton variant="circle" animation="wave" className="row-circle"/>
+      <Skeleton variant="text" animation="wave" className="row-text"/>
+    </>);
+
+    return (
+      <Paper className="course loader">
+        <Skeleton variant="circle" animation="wave" className="loader-left"/>
+        <div className="loader-center">{getRow()}{getRow()}{getRow()}</div>
+        <div className="loader-right">
+          <Skeleton variant="text" animation="wave" className="right-text"/>
+          <Skeleton variant="circle" animation="wave" className="right-circle"/>
+        </div>
+      </Paper>
+    );
+  };
+
   if (!areDishesLoaded) {
-    return <CourseContentLoader/>;
+    return getLoading();
   }
 
   return (
