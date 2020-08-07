@@ -15,6 +15,20 @@
     }
 
     .loader {
+      &.loader-name {
+        width: 150px;
+        margin: 30px auto;
+        transform: translate(20px);
+
+        .loader-text {
+          width: 120px;
+          height: 25px;
+          margin: 20px 5px 0 0;
+          border-radius: 25px;
+          float: left;
+        }
+      }
+
       .loader-header {
         height: 50px;
 

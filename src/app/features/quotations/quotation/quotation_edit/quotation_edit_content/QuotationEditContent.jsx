@@ -43,6 +43,12 @@ const QuotationEditContent = () => {
 
       return (
         <Grid container spacing={2} justify="flex-start">
+          <Grid item xs={12}>
+            <div className="loader loader-name">
+              <Skeleton variant="rect" animation="wave" className="loader-text"/>
+              <Skeleton variant="circle" animation="wave" height={25} width={25}/>
+            </div>
+          </Grid>
           {Array(5).fill('loader').map((val, i) =>
             <Grid key={`${val}-${i}`} className="loader" item xs={12} sm={6} md={4} lg={3} xl={2}>{getLoader()}</Grid>)}
         </Grid>
