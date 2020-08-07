@@ -1,7 +1,8 @@
 import './QuotationEditContent.scss';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {QuotationEditLoader} from 'app/common/components/content_loaders/ContentLoaders';
+import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 import EditableField from 'app/common/components/editable_field/EditableField';
 import QuotationEditToolbar from './quotation_edit_toolbar/QuotationEditToolbar';
 import MenuGrid from './menu_grid/MenuGrid';
@@ -18,7 +19,34 @@ const QuotationEditContent = () => {
 
   const getContent = () => {
     if (!name || isFetching) {
-      return <QuotationEditLoader/>;
+      const getMenuCircle = () => <Skeleton variant="circle" animation="wave" height={9} width={9}/>;
+      const getFooter = (width1, width2) => (
+        <div className="loader-footer">
+          <Skeleton variant="rect" animation="wave" width={width1}/>
+          <Skeleton variant="rect" animation="wave" width={width2} className="loader-right"/>
+        </div>
+      );
+
+      const getLoader = () => (<>
+        <div className="loader-header">
+          <Skeleton variant="circle" animation="wave" className="loader-header-circle"/>
+          <div className="loader-header-title"><Skeleton variant="rect" animation="wave" className="text"/></div>
+          <div className="loader-header-menu">{getMenuCircle()}{getMenuCircle()}{getMenuCircle()}</div>
+        </div>
+        <Skeleton variant="rect" animation="wave" className="loader-data1"/>
+        <Skeleton variant="rect" animation="wave" className="loader-data2"/>
+        <Skeleton variant="rect" animation="wave" className="loader-divider"/>
+        {getFooter('35%', '25%')}
+        {getFooter('45%', '15%')}
+        {getFooter('25%', '30%')}
+      </>);
+
+      return (
+        <Grid container spacing={2} justify="flex-start">
+          {Array(5).fill('loader').map((val, i) =>
+            <Grid key={`${val}-${i}`} className="loader" item xs={12} sm={6} md={4} lg={3} xl={2}>{getLoader()}</Grid>)}
+        </Grid>
+      );
     }
 
     return (
