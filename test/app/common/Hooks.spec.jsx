@@ -10,6 +10,7 @@ import {
   useAppTheme,
   useAreDishesLoaded,
   useBrowserNavigation,
+  useIsMobileSize,
   usePingServer,
   useQuotationsLoader,
 } from 'app/common/Hooks';
@@ -38,6 +39,15 @@ describe('Hooks', () => {
     wrapper = renderer.create(<Provider store={store}><Component/></Provider>);
     component = wrapper.root.find(el => el.type === 'div');
   };
+
+  describe('useIsMobileSize', () => {
+    it('should get false', () => {
+      mountComponent(() => useIsMobileSize(), {}, false);
+
+      expect(hookResponse).toBeFalsy();
+      sinon.assert.callCount(dispatchStub, 0);
+    });
+  });
 
   describe('useAppTheme', () => {
     it('should init default theme value', () => {

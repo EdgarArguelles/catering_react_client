@@ -7,9 +7,10 @@ $radius: 10px;
     button {
       padding: 0;
 
-      svg {
-        height: 104px;
+      .loader-box {
         width: 88px;
+        height: 104px;
+        border-radius: $radius;
       }
     }
   }

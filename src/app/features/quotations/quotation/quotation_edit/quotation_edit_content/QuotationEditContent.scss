@@ -13,6 +13,84 @@
         min-width: 80%;
       }
     }
+
+    .loader {
+      margin: 0;
+
+      .loader-name {
+        width: 150px;
+        margin: 5px auto 40px auto;
+        transform: translate(20px);
+
+        .loader-text {
+          width: 120px;
+          height: 25px;
+          margin: 20px 5px 0 0;
+          border-radius: 25px;
+          float: left;
+        }
+      }
+
+      .loader-header {
+        height: 50px;
+
+        .loader-header-circle {
+          width: 50px;
+          height: 50px;
+          margin: 0 15px;
+          float: left;
+        }
+
+        .loader-header-title {
+          width: calc(100% - 135px);
+          float: left;
+
+          .text {
+            width: 70%;
+            margin: 15px auto;
+          }
+        }
+
+        .loader-header-menu {
+          margin: 10px 25px 0 0;
+          float: right;
+        }
+      }
+
+      .loader-data1 {
+        width: 75%;
+        margin: 45px auto 2px auto;
+      }
+
+      .loader-data2 {
+        width: 30%;
+        margin: auto;
+      }
+
+      .loader-divider {
+        height: 2px;
+        margin: 50px 0 10px 0;
+      }
+
+      .loader-footer {
+        height: 10px;
+        margin-top: 23px;
+
+        span {
+          height: 10px;
+          float: left;
+        }
+
+        .loader-right {
+          margin-right: 20px;
+          float: right;
+        }
+      }
+
+      .last-space {
+        height: 55px;
+      }
+    }
   }
 
   .quotation-folio {

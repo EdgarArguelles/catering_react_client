@@ -5,13 +5,13 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Button from '@material-ui/core/Button';
-import {useBrowserNavigation} from 'app/common/Hooks';
+import {useBrowserNavigation, useIsMobileSize} from 'app/common/Hooks';
 import DialogBack from 'app/common/components/dialog_back/DialogBack';
 import Contact from 'app/features/home/contact/Contact';
 
-const ContactDialog = ({open, onClose, fullScreen}) => {
+const ContactDialog = ({open, onClose}) => {
+  const fullScreen = useIsMobileSize();
   useBrowserNavigation(open, onClose);
 
   return (
@@ -29,7 +29,6 @@ const ContactDialog = ({open, onClose, fullScreen}) => {
 ContactDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  fullScreen: PropTypes.bool.isRequired,
 };
 
-export default React.memo(withMobileDialog()(ContactDialog));
+export default React.memo(ContactDialog);

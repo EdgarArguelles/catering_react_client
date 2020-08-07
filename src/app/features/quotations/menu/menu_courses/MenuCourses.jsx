@@ -2,7 +2,7 @@ import './MenuCourses.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {BulletList} from 'react-content-loader';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {useAreDishesLoaded} from 'app/common/Hooks';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
@@ -14,6 +14,7 @@ const MenuCourses = ({courseType}) => {
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
   const areDishesLoaded = useAreDishesLoaded(courses.map(course => course.dishes).flatten());
+  const sortedCourseTypes = getSortedCourseTypes(courses, true);
 
   const getCourse = course => {
     const dishes = [];
@@ -28,13 +29,20 @@ const MenuCourses = ({courseType}) => {
   };
 
   const getRenderer = () => {
-    return <ol type="I">{getSortedCourseTypes(courses, true).map(course => getCourse(course))}</ol>;
+    return <ol type="I">{sortedCourseTypes.map(course => getCourse(course))}</ol>;
   };
+
+  const getLoading = () => Array(sortedCourseTypes.length).fill(courseType.id).map((value, index) => (
+    <div key={`${value}-${index}`}>
+      <Skeleton variant="circle" animation="wave" className="loader-circle"/>
+      <Skeleton variant="text" animation="wave" className="loader-text"/>
+    </div>
+  ));
 
   return (
     <div className="course-type">
       <p className="name">{courseType.name}</p>
-      {areDishesLoaded ? getRenderer() : <BulletList speed={1} className="loader"/>}
+      {areDishesLoaded ? getRenderer() : getLoading()}
     </div>
   );
 };

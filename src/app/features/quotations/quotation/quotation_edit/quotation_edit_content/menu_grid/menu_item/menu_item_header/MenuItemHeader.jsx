@@ -12,14 +12,13 @@ import EnterTextField from 'app/common/components/enter_text_field/EnterTextFiel
 import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
 import {changeName} from 'app/features/quotations/menu/MenuReducer';
 
-const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
+const MenuItemHeader = ({index, focus, menu, select, openMenu}) => {
   const dispatch = useDispatch();
   const {id, name, isSelected} = menu;
 
   const getMenuButton = () => {
     const onOpen = event => {
       Utils.animateIcon(`menu-${id}-options-icon`);
-      deselect();
       openMenu(event);
     };
 
@@ -46,7 +45,7 @@ const MenuItemHeader = ({index, focus, menu, select, deselect, openMenu}) => {
 
     return (
       <div className="menu-title">
-        <Avatar className="avatar" onClick={deselect}>{index + 1}</Avatar>
+        <Avatar className="avatar">{index + 1}</Avatar>
         <span onClick={select} onMouseEnter={animateIcon}>{title}</span>
       </div>
     );
@@ -60,7 +59,6 @@ MenuItemHeader.propTypes = {
   focus: PropTypes.bool.isRequired,
   menu: PropTypes.object.isRequired,
   select: PropTypes.func.isRequired,
-  deselect: PropTypes.func.isRequired,
   openMenu: PropTypes.func.isRequired,
 };
 

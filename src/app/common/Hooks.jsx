@@ -2,6 +2,8 @@ import {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
+import {useTheme} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import {changeTheme} from 'app/AppReducer';
@@ -9,6 +11,11 @@ import {closeNavigationDialog} from 'app/features/quotations/header/navigation/N
 import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 import {fetchDish} from 'app/data/dishes/DishesReducer';
 import {fetchPing} from 'app/features/auth/AuthReducer';
+
+export const useIsMobileSize = () => {
+  const theme = useTheme();
+  return useMediaQuery(theme.breakpoints.down('sm'));
+};
 
 export const useAppTheme = () => {
   const dispatch = useDispatch();

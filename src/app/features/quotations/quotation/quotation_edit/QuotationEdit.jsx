@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import QuotationEditContent from './quotation_edit_content/QuotationEditContent';
 import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
 import {changeName, selectMenu, setPrice} from 'app/features/quotations/quotation/QuotationReducer';
+import {selectDish} from 'app/features/quotations/dish/DishReducer';
 import {changeMenuDialogOpen} from 'app/features/quotations/QuotationsReducer';
 
 const QuotationEdit = () => {
@@ -20,6 +21,7 @@ const QuotationEdit = () => {
   useEffect(() => {
     // deselect Menu
     dispatch(selectMenu(''));
+    dispatch(selectDish(''));
     dispatch(changeMenuDialogOpen(false));
 
     if (latestName.current === '') {

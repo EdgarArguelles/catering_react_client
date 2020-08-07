@@ -3,4 +3,17 @@
 #dish-grid {
   padding-top: Variables.$toolbar-height;
   margin: 0;
+
+  .loader-body {
+    height: 300px;
+
+    @media (max-width: Variables.$screen-sm) {
+      height: 200px;
+    }
+  }
+
+  .loader-footer {
+    height: 80px;
+    margin-top: -80px;
+  }
 }

@@ -6,4 +6,52 @@
   @media (max-width: Variables.$screen-sm) {
     margin-top: 0;
   }
+
+  &.loader {
+    padding-top: 15px;
+  }
+
+  &.loader,
+  .loader {
+    height: 80px;
+
+    .loader-left {
+      float: left;
+      width: 40px;
+      height: 40px;
+      margin: 0 7% 0 26px;
+    }
+
+    .loader-center {
+      float: left;
+      width: 45%;
+
+      .row-circle {
+        float: left;
+        width: 5px;
+        height: 5px;
+      }
+
+      .row-text {
+        left: 8px;
+        top: -9px;
+      }
+    }
+
+    .loader-right {
+      float: right;
+
+      .right-text {
+        width: 45px;
+        height: 10px;
+        margin-right: 20px;
+      }
+
+      .right-circle {
+        width: 25px;
+        height: 30px;
+        margin: 5px 0 0 10px;
+      }
+    }
+  }
 }
