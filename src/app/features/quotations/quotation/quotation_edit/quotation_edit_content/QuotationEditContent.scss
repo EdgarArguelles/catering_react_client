@@ -15,7 +15,9 @@
     }
 
     .loader {
-      &.loader-name {
+      margin: 0;
+
+      .loader-name {
         width: 150px;
         margin: 30px auto;
         transform: translate(20px);
