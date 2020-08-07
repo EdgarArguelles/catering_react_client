@@ -2,9 +2,9 @@ import './QuotationGrid.scss';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Utils from 'app/common/Utils';
 import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
-import {QuotationItemLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import Quotation from 'app/features/quotations/quotation/Quotation';
 import ContinueQuotation from './continue_quotation/ContinueQuotation';
 import CreateNewQuotation from './create_new_quotation/CreateNewQuotation';
@@ -42,8 +42,18 @@ const QuotationGrid = () => {
 
   const getExtraContent = () => {
     if (isFetching) {
-      return Array(5).fill('loader').map((value, index) =>
-        <Grid key={`${value}-${index}`} item xs={12} sm={6} md={4} lg={3} xl={2}><QuotationItemLoader/></Grid>);
+      const getLoader = () => (<>
+        <Skeleton variant="circle" animation="wave" className="loader loader-circle"/>
+        <Skeleton variant="rect" animation="wave" className="loader loader-title"/>
+        <Skeleton variant="rect" animation="wave" className="loader loader-data1"/>
+        <Skeleton variant="rect" animation="wave" className="loader loader-data2"/>
+        <Skeleton variant="rect" animation="wave" className="loader loader-footer1"/>
+        <Skeleton variant="rect" animation="wave" className="loader loader-footer2"/>
+      </>);
+
+      const length = Object.values({quotations}).length || 5;
+      return Array(length).fill('loader').map((value, index) =>
+        <Grid key={`${value}-${index}`} item xs={12} sm={6} md={4} lg={3} xl={2}>{getLoader()}</Grid>);
     }
 
     return (
