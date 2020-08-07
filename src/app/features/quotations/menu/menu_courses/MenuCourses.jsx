@@ -14,6 +14,7 @@ const MenuCourses = ({courseType}) => {
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
   const areDishesLoaded = useAreDishesLoaded(courses.map(course => course.dishes).flatten());
+  const sortedCourseTypes = getSortedCourseTypes(courses, true);
 
   const getCourse = course => {
     const dishes = [];
@@ -28,17 +29,15 @@ const MenuCourses = ({courseType}) => {
   };
 
   const getRenderer = () => {
-    return <ol type="I">{getSortedCourseTypes(courses, true).map(course => getCourse(course))}</ol>;
+    return <ol type="I">{sortedCourseTypes.map(course => getCourse(course))}</ol>;
   };
 
-  const getLoading = () => {
-    const getLoader = () => (<>
+  const getLoading = () => Array(sortedCourseTypes.length).fill(courseType.id).map((value, index) => (
+    <div key={`${value}-${index}`}>
       <Skeleton variant="circle" animation="wave" className="loader-circle"/>
       <Skeleton variant="text" animation="wave" className="loader-text"/>
-    </>);
-
-    return <>{getLoader()}{getLoader()}{getLoader()}{getLoader()}</>;
-  };
+    </div>
+  ));
 
   return (
     <div className="course-type">
