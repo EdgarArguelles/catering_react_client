@@ -51,8 +51,7 @@ const QuotationGrid = () => {
         <Skeleton variant="rect" animation="wave" className="loader loader-footer2"/>
       </>);
 
-      const length = Object.values({quotations}).length || 5;
-      return Array(length).fill('loader').map((value, index) =>
+      return Array(5).fill('loader').map((value, index) =>
         <Grid key={`${value}-${index}`} item xs={12} sm={6} md={4} lg={3} xl={2}>{getLoader()}</Grid>);
     }
 
