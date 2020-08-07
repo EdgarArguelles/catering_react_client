@@ -19,7 +19,7 @@
 
       .loader-name {
         width: 150px;
-        margin: 30px auto;
+        margin: 0 auto 40px auto;
         transform: translate(20px);
 
         .loader-text {
@@ -59,7 +59,7 @@
 
       .loader-data1 {
         width: 75%;
-        margin: 20px auto 2px auto;
+        margin: 35px auto 2px auto;
       }
 
       .loader-data2 {
@@ -74,7 +74,7 @@
 
       .loader-footer {
         height: 10px;
-        margin-top: 10px;
+        margin-top: 23px;
 
         span {
           height: 10px;
@@ -85,6 +85,10 @@
           margin-right: 20px;
           float: right;
         }
+      }
+
+      .last-space {
+        height: 80px;
       }
     }
   }

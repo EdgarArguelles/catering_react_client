@@ -39,6 +39,7 @@ const QuotationEditContent = () => {
         {getFooter('35%', '25%')}
         {getFooter('45%', '15%')}
         {getFooter('25%', '30%')}
+        <div className="last-space"/>
       </>);
 
       return (
