@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Utils from 'app/common/Utils';
 import Animate from 'app/common/components/animate/Animate';
-import {DishLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import DishItem from 'app/features/quotations/dish/dish_list/dish_item/DishItem';
 
 const DishGrid = ({dishes, isLoading}) => {
@@ -40,8 +40,13 @@ const DishGrid = ({dishes, isLoading}) => {
       return null;
     }
 
+    const getLoading = () => (<>
+      <Skeleton variant="rect" animation="pulse" className="loader-body"/>
+      <Skeleton variant="rect" animation="wave" className="loader-footer"/>
+    </>);
+
     return Array(12).fill('loader').map((value, index) =>
-      <Grid key={`${value}-${index}`} item xs={6} sm={4} md={4} lg={3} xl={2}><DishLoader/></Grid>);
+      <Grid key={`${value}-${index}`} item xs={6} sm={4} md={4} lg={3} xl={2}>{getLoading()}</Grid>);
   };
 
   return (
