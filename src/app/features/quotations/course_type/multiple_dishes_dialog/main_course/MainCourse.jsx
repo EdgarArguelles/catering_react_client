@@ -2,9 +2,9 @@ import './MainCourse.scss';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Divider from '@material-ui/core/Divider';
 import {useAreDishesLoaded} from 'app/common/Hooks';
-import {MultipleDishLoader} from 'app/common/components/content_loaders/ContentLoaders';
 import DishThumbnail from './dish_thumbnail/DishThumbnail';
 import AddDish from './add_dish/AddDish';
 
@@ -17,8 +17,8 @@ const MainCourse = () => {
   const getLoader = () => {
     return (
       <span className="loader">
-        <Button><MultipleDishLoader/></Button>
-        <Button><MultipleDishLoader/></Button>
+        <Button><Skeleton variant="rect" animation="wave" className="loader-box"/></Button>
+        <Button><Skeleton variant="rect" animation="wave" className="loader-box"/></Button>
       </span>
     );
   };
