@@ -5,14 +5,15 @@
   margin: 0;
 
   .loader-body {
-    height: 220px;
+    height: 300px;
 
     @media (max-width: Variables.$screen-sm) {
-      height: 120px;
+      height: 200px;
     }
   }
 
   .loader-footer {
     height: 80px;
+    margin-top: -80px;
   }
 }
