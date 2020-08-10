@@ -1,7 +1,5 @@
 import './Auth.scss';
 import loading from 'assets/img/loading.gif';
-import SockJS from 'sockjs-client';
-import Stomp from 'stompjs';
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
@@ -18,7 +16,9 @@ const useCreateStompClient = (socketConnected, dispatch) => {
     }
 
     let timeout = null;
-    const createSocket = () => {
+    const createSocket = async () => {
+      const {default: SockJS} = await import('sockjs-client');
+      const {default: Stomp} = await import('stompjs');
       const socket = new SockJS(`${process.env.API_URL}/oauth/websocket`);
 
       stompClient = Stomp.Stomp.over(socket);

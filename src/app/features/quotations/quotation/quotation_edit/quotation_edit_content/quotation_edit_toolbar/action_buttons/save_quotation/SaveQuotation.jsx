@@ -45,7 +45,7 @@ const SaveQuotation = ({isErrorVisible}) => {
     await dispatch(fetchQuotation({quotationId, overwriteLocalChanges: true}));
   };
 
-  const errorMessage = errors && errors.message === 'Unauthorized' ? 'Usuario sin sesión'
+  const errorMessage = errors?.message === 'Unauthorized' ? 'Usuario sin sesión'
     : quotation.menus && quotation.menus.filter(menu => menu.courses.length === 0).length > 0
       ? 'No puede haber menús vacíos' : 'Ocurrió un error al intentar guardar el presupuesto';
   const preconditionCall = loggedUser ? null : handleOpenAuthDialog;

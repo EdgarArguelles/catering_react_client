@@ -33,7 +33,7 @@ const MenuQuantity = ({autoFocus, hideLabels, onEnter, onEsc, onBlur}) => {
   };
 
   const getTextField = () => {
-    const menuQuantity = menu ? menu.quantity : 0;
+    const menuQuantity = menu?.quantity || 0;
 
     return (
       <TextField type="number" className="menu-quantity-field" margin="dense" autoFocus={autoFocus}

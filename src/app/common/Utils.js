@@ -1,5 +1,3 @@
-import Vivus from 'vivus';
-
 /**
  * Common actions and tools used by all application
  */
@@ -129,7 +127,7 @@ export default class Utils {
    * @param {function} configuration.callback function to call when animation completes
    * @return {Object} Vivus object
    */
-  static animateIcon(id, configuration = {}) {
+  static async animateIcon(id, configuration = {}) {
     const {strokeWidth = 40, restoreOnComplete = true, duration = 50, animation = 'sync', callback} = configuration;
     const paths = document.getElementById(id).querySelectorAll('path');
     const restore = () => {
@@ -147,6 +145,7 @@ export default class Utils {
       element.setAttribute('stroke', 'currentColor');
       element.setAttribute('stroke-width', strokeWidth);
     });
+    const {default: Vivus} = await import('vivus');
     return new Vivus(id, {duration, type: animation}, restoreOnComplete ? restore : callback);
   }
 }
