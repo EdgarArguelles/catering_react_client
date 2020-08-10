@@ -18,7 +18,7 @@ const QuotationToolbar = () => {
   const [isCompact, setIsCompact] = useState(false);
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const sort = metaData ? metaData.pagination.sort[0] : '';
+  const sort = metaData?.pagination?.sort[0] || '';
   const SORT_LABEL = {createdAt: 'Fecha', name: 'Nombre', price: 'Precio'};
   const handleClose = () => setOpen(false);
 

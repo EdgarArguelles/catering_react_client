@@ -25,7 +25,7 @@ const MenuEditTabs = () => {
   const courseTypes = useSelector(state => state.data.courseTypes.data);
   const selectedMenu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const sortedCourseTypes = getSortedCourseTypes(courseTypes);
-  const menuCourses = selectedMenu ? selectedMenu.courses : null;
+  const menuCourses = selectedMenu?.courses;
 
   const changeTapValue = newValue => {
     if (newValue === sortedCourseTypes.length) {

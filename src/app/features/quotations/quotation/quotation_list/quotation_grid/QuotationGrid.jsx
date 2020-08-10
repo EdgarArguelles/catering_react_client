@@ -18,7 +18,7 @@ const QuotationGrid = () => {
   const getSortDate = (b, a) => a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
 
   const getSort = () => {
-    const sort = metaData ? metaData.pagination.sort[0] : '';
+    const sort = metaData?.pagination?.sort[0] || '';
 
     switch (sort) {
       case 'createdAt':

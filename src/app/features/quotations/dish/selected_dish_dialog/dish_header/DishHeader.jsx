@@ -14,7 +14,7 @@ const DishHeader = ({dish, onClose}) => {
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const multipleDishesDialog = useSelector(state => state.quotations.multipleDishesDialog);
   const showActions = useSelector(state => state.quotations.dish.showActions);
-  const menuCourses = menu ? menu.courses : [];
+  const menuCourses = menu?.courses || [];
 
   const getNavigation = () => {
     if (!onClose) {

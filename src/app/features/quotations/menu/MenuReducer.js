@@ -54,7 +54,7 @@ const menuSlice = createSlice({
       state.price -= amount;
     },
     changeCoursesPosition(state, {payload: newCourses}) {
-      const courseTypeId = newCourses[0] ? newCourses[0].type.id : undefined;
+      const courseTypeId = newCourses[0]?.type.id;
       const noSortedCourses = state.courses.filter(c => c.type.id !== courseTypeId);
       state.courses = [...noSortedCourses, ...newCourses];
     },

@@ -13,8 +13,7 @@ const User = () => {
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const userImage = loggedUser && loggedUser.image ? loggedUser.image :
-    window.sessionStorage ? window.sessionStorage.getItem('userImage') : '';
+  const userImage = loggedUser?.image || window.sessionStorage ? window.sessionStorage.getItem('userImage') : '';
 
   const handleClick = event => {
     setOpen(true);

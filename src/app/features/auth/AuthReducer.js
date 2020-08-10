@@ -30,7 +30,7 @@ export const fetchPing = createAsyncThunk(
     const body = {query: '{ping {id fullName image role token permissions}}'};
 
     const json = await Api.graphql(thunkAPI.dispatch, body);
-    const loggedUser = json && json.data && json.data.ping && json.data.ping.id ? json.data.ping : null;
+    const loggedUser = json?.data?.ping?.id ? json.data.ping : null;
     if (!loggedUser) {
       throw new Error('loggedUser not present');
     }
