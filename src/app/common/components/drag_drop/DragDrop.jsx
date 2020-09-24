@@ -47,6 +47,7 @@ const DragDrop = ({id, draggableClassName, data, drawContent, onChangePosition})
   const getDroppable = () => provided => {
     return (
       <div ref={provided.innerRef}>
+        {/* eslint-disable-next-line react/prop-types */}
         {data.map((item, index) => (
           <Draggable key={index} draggableId={`id${index}`} index={index}>
             {getDraggable(item)}

@@ -88,7 +88,7 @@ export default {
         test: /\.(scss|css)$/, use: [
           MiniCSSExtractPlugin.loader,
           'css-loader',
-          {loader: 'postcss-loader', options: {plugins: [require('autoprefixer')()]}}, // add vendor prefix (-webkit)
+          {loader: 'postcss-loader', options: {postcssOptions: {plugins: [require('autoprefixer')()]}}}, // add -webkit
           'sass-loader',
         ],
       },
