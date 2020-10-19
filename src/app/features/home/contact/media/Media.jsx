@@ -1,6 +1,6 @@
 import './Media.scss';
 import image from 'assets/img/areli.jpg';
-import {version} from '../../../../../../package.json';
+import packageInfo from '../../../../../../package.json';
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFacebook, faInstagram, faTwitter} from '@fortawesome/free-brands-svg-icons';
@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import Utils from 'app/common/Utils';
 
 const Media = () => {
-  const printVersion = () => alert(`V ${version}`); // eslint-disable-line no-alert
+  const printVersion = () => alert(`V ${packageInfo.version}`); // eslint-disable-line no-alert
   const animateTwitter = () => Utils.animateIcon('media-twitter-icon');
   const animateFacebook = () => Utils.animateIcon('media-facebook-icon');
   const animateInstagram = () => Utils.animateIcon('media-instagram-icon');
