@@ -28,7 +28,7 @@ const QuotationEditToolbar = () => {
     };
 
     return (
-      <Tooltip title="El precio puede variar del original guardado, este es el precio con las tarifas actuales"
+      <Tooltip title="El precio puede variar del original guardado, este es el precio con las tarifas actuales" arrow
                TransitionComponent={Zoom} open={isTooltipOpen} onOpen={openTooltip} onClose={closeTooltip} interactive>
         <IconButton className="price-question" onClick={handleClick} onMouseEnter={animateIcon}>
           <FontAwesomeIcon id="price-question-icon" icon={faQuestion}/>
