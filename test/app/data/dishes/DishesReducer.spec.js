@@ -296,7 +296,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
 
     describe('fetchDishes', () => {
       const arg = 8;
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: `{courseType(id: ${arg}) {activeDishes{${FIELDS}}}}`};
 
       it('should dispatch fetchDishes.fulfilled', async () => {
@@ -331,7 +331,14 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
           type: fetchDishes.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual(8);
@@ -340,7 +347,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
 
     describe('fetchDish', () => {
       const arg = 8;
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: `{dish(id: ${arg}) {${FIELDS}}}`};
 
       it('should dispatch fetchDish.fulfilled', async () => {
@@ -375,7 +382,14 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
           type: fetchDish.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual(8);

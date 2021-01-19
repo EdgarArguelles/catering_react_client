@@ -4,13 +4,13 @@ import Api, {ACTION_TYPES} from 'app/common/Api';
 import Utils from 'app/common/Utils';
 import {fetchPing, logout} from 'app/features/auth/AuthReducer';
 import quotationsReducer, {
-  cleanQuotations,
   cleanError,
-  fetchQuotations,
-  fetchQuotation,
+  cleanQuotations,
   createQuotation,
-  editQuotation,
   deleteQuotation,
+  editQuotation,
+  fetchQuotation,
+  fetchQuotations,
 } from 'app/data/quotations/QuotationsReducer';
 
 describe('Data -> Quotations -> Reducer/Actions', () => {
@@ -453,7 +453,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
 
     describe('fetchQuotations', () => {
       const arg = {page: 5};
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const FIELDS = 'totalElements totalPages content{id name createdAt price}';
       const body = {query: `{quotationPage(pageDataRequest: {page:5}) {${FIELDS}}}`};
 
@@ -489,7 +489,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
           type: fetchQuotations.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual({page: 5});
@@ -498,7 +505,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
 
     describe('fetchQuotation', () => {
       const arg = {quotationId: 8, overwriteLocalChanges: true};
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const FIELDS = 'id name createdAt price menus{id name quantity courses{id position type{id} dishes{id price}}}';
       const body = {query: `{quotation(id: ${arg.quotationId}) {${FIELDS}}}`};
 
@@ -534,7 +541,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
           type: fetchQuotation.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual({quotationId: 8, overwriteLocalChanges: true});
@@ -543,7 +557,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
 
     describe('createQuotation', () => {
       const arg = {id: 8, menus: [{id: 1}, {id: 2}]};
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: 'mutation {createQuotation(quotation: {id:8,menus:[{id:1},{id:2}]}) {id}}'};
 
       it('should dispatch createQuotation.fulfilled', async () => {
@@ -581,7 +595,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
           type: createQuotation.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
@@ -590,7 +611,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
 
     describe('editQuotation', () => {
       const arg = {id: 8, menus: [{id: 1}, {id: 2}]};
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: 'mutation {updateQuotation(quotation: {id:8,menus:[{id:1},{id:2}]}) {id}}'};
 
       it('should dispatch editQuotation.fulfilled', async () => {
@@ -628,7 +649,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
           type: editQuotation.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual({id: 8, menus: [{id: 1}, {id: 2}]});
@@ -637,7 +665,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
 
     describe('deleteQuotation', () => {
       const arg = 5;
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: 'mutation {deleteQuotation(id: 5) {id}}'};
 
       it('should dispatch deleteQuotation.fulfilled', async () => {
@@ -675,7 +703,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
           type: deleteQuotation.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual(5);

@@ -119,7 +119,7 @@ describe('App -> Reducer/Actions', () => {
 
     describe('getFacebookAccessCode', () => {
       const arg = null;
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: '{getAccessCode(social: FACEBOOK)}'};
 
       it('should dispatch getFacebookAccessCode.fulfilled', async () => {
@@ -165,7 +165,14 @@ describe('App -> Reducer/Actions', () => {
           type: getFacebookAccessCode.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual(null);
