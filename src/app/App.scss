@@ -1,10 +1,12 @@
-// slick-carousel styles
-@use '~slick-carousel/slick/slick';
-@use '~slick-carousel/slick/slick-theme' with ($slick-loader-path: '~slick-carousel/slick/', $slick-font-path: '~slick-carousel/slick/fonts/');
+// variables
 @use 'app/Variables';
 
 // animate styles
 @import '~animate.css/animate.css';
+
+// slick-carousel styles
+@import '~slick-carousel/slick/slick';
+@import 'slick-theme';
 
 body {
   margin: 0;
