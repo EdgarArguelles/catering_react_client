@@ -1,18 +1,13 @@
 import './Welcome.scss';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {AutoRotatingCarousel, Slide} from 'material-auto-rotating-carousel';
 import {useIsMobileSize} from 'app/common/Hooks';
 
 const Welcome = ({open, onClose}) => {
+  const landscape = useSelector(state => state.app.isLandscape);
   const isMobileSize = useIsMobileSize();
-  const [landscape, setLandscape] = useState(false);
-  useEffect(() => {
-    const setScreenOrientation = () => setLandscape(window.matchMedia('(orientation: portrait)').matches);
-    window.addEventListener('orientationchange', setScreenOrientation);
-
-    return () => window.removeEventListener('orientationchange', setScreenOrientation);
-  }, []);
 
   return (
     <AutoRotatingCarousel label="Completar" open={open} autoplay={true} mobile={isMobileSize} landscape={landscape}

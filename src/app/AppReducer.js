@@ -19,12 +19,16 @@ const appSlice = createSlice({
   name: SLICE_NAME,
   initialState: {
     isOnline: navigator.onLine,
+    isLandscape: false,
     theme: defaultTheme,
     facebookAccessCode: '',
   },
   reducers: {
     changeIsOnline(state, {payload: isOnline}) {
       state.isOnline = isOnline;
+    },
+    changeIsLandscape(state, {payload: isLandscape}) {
+      state.isLandscape = isLandscape;
     },
     changeTheme(state, {payload: theme}) {
       state.theme = theme;
@@ -39,4 +43,4 @@ const appSlice = createSlice({
 });
 
 export default appSlice.reducer;
-export const {changeIsOnline, changeTheme} = appSlice.actions;
+export const {changeIsOnline, changeIsLandscape, changeTheme} = appSlice.actions;
