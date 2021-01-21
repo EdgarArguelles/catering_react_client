@@ -40,7 +40,7 @@ describe('Quotations -> Course Type -> Service', () => {
       expect(courseTypes).toStrictEqual([]);
     });
 
-    it('should exclude inactive when courseTypes is array', () => {
+    it('should exclude inactive', () => {
       const courseTypes = [
         {position: 5},
         {position: 1, status: 0},
@@ -62,30 +62,6 @@ describe('Quotations -> Course Type -> Service', () => {
         {position: 15, status: 1},
         {position: 3, status: 1},
       ]);
-    });
-
-    it('should exclude inactive when courseTypes is object', () => {
-      const courseTypes = {
-        a5: {position: 5},
-        a1: {position: 1, status: 0},
-        a15: {position: 15, status: 1},
-        a3: {position: 3, status: 1},
-      };
-      const resultExpected = [
-        {position: 15, status: 1},
-        {position: 3, status: 1},
-      ];
-
-      const result = getActiveCourseTypes(courseTypes);
-
-      expect(result).toStrictEqual(resultExpected);
-      // don't mutate
-      expect(courseTypes).toStrictEqual({
-        a5: {position: 5},
-        a1: {position: 1, status: 0},
-        a15: {position: 15, status: 1},
-        a3: {position: 3, status: 1},
-      });
     });
   });
 
@@ -136,33 +112,6 @@ describe('Quotations -> Course Type -> Service', () => {
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(courseTypes).toStrictEqual([]);
-        expect(shouldIncludeInactive).toStrictEqual(true);
-      });
-
-      it('should get sorted array when courseTypes is object', () => {
-        courseTypes = {
-          a5: {position: 5},
-          a1: {position: 1, status: 0},
-          a15: {position: 15, status: 1},
-          a3: {position: 3, status: 1},
-        };
-        const resultExpected = [
-          {position: 1, status: 0},
-          {position: 3, status: 1},
-          {position: 5},
-          {position: 15, status: 1},
-        ];
-
-        const result = getSortedCourseTypes(courseTypes, shouldIncludeInactive);
-
-        expect(result).toStrictEqual(resultExpected);
-        // don't mutate
-        expect(courseTypes).toStrictEqual({
-          a5: {position: 5},
-          a1: {position: 1, status: 0},
-          a15: {position: 15, status: 1},
-          a3: {position: 3, status: 1},
-        });
         expect(shouldIncludeInactive).toStrictEqual(true);
       });
     });
@@ -314,28 +263,6 @@ describe('Quotations -> Course Type -> Service', () => {
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(allCourseTypes).toStrictEqual([]);
-        expect(selectedTab).toStrictEqual(1);
-      });
-
-      it('should get second sorted object when allCourseTypes is object', () => {
-        allCourseTypes = {
-          a5: {position: 5, status: 1},
-          a1: {position: 1, status: 1},
-          a15: {position: 15, status: 1},
-          a3: {position: 3, status: 1},
-        };
-        const resultExpected = {position: 3, status: 1};
-
-        const result = getCurrentCourseType(allCourseTypes, selectedTab);
-
-        expect(result).toStrictEqual(resultExpected);
-        // don't mutate
-        expect(allCourseTypes).toStrictEqual({
-          a5: {position: 5, status: 1},
-          a1: {position: 1, status: 1},
-          a15: {position: 15, status: 1},
-          a3: {position: 3, status: 1},
-        });
         expect(selectedTab).toStrictEqual(1);
       });
     });
@@ -767,37 +694,6 @@ describe('Quotations -> Course Type -> Service', () => {
           {courseTypeId: 'a3'},
         ]);
         expect(allCourseTypes).toStrictEqual([]);
-      });
-
-      it('should get filter array when allCourseTypes is object', () => {
-        allCourseTypes = {
-          a5: {position: 5, id: 'a8', status: 1},
-          a1: {position: 1, id: 'a5', status: 1},
-          a15: {position: 15, id: 'a6', status: 1},
-          a3: {position: 3, id: 'a87', status: 1},
-        };
-        const resultExpected = [
-          {courseTypeId: 'a8'},
-          {courseTypeId: 'a8'},
-        ];
-
-        const result = getCurrentCourseTypeDishes(allDishes, allCourseTypes, selectedTab);
-
-        expect(result).toStrictEqual(resultExpected);
-        // don't mutate
-        expect(selectedTab).toStrictEqual(2);
-        expect(allDishes).toStrictEqual([
-          {courseTypeId: 'a5'},
-          {courseTypeId: 'a8'},
-          {courseTypeId: 'a8'},
-          {courseTypeId: 'a3'},
-        ]);
-        expect(allCourseTypes).toStrictEqual({
-          a5: {position: 5, id: 'a8', status: 1},
-          a1: {position: 1, id: 'a5', status: 1},
-          a15: {position: 15, id: 'a6', status: 1},
-          a3: {position: 3, id: 'a87', status: 1},
-        });
       });
     });
 
