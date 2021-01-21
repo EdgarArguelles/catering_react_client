@@ -14,6 +14,8 @@ import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {ReactQueryDevtools} from 'react-query/devtools';
 import {blue, red} from '@material-ui/core/colors';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -27,6 +29,17 @@ import {changeIsLandscape} from 'app/AppReducer';
 const store = configureStore({
   reducer,
   middleware: [...getDefaultMiddleware({serializableCheck: false}), logger, temporalStorage],
+});
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 
 const App = () => {
@@ -52,11 +65,14 @@ const App = () => {
   });
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline/>
-      {Router}
-      <Offline/>
-    </MuiThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline/>
+        {Router}
+        <Offline/>
+      </MuiThemeProvider>
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false}/>}
+    </QueryClientProvider>
   );
 };
 
