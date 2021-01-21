@@ -17,6 +17,7 @@ This project is a React Client used by CATERING
 # Stack:
 - React
 - Redux / Redux Toolkit
+- React-Query 
 - WebSocket / Stomp
 - Webpack
 - Babel
