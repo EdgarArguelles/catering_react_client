@@ -3,6 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import History from 'app/router/History';
+import {useCourseTypes} from 'app/data_hooks/CourseTypes';
 import {getMenuFromLink, getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuEditTabs from './menu_edit_tabs/MenuEditTabs';
 import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
@@ -11,10 +12,10 @@ import {addMenu, selectMenu} from 'app/features/quotations/quotation/QuotationRe
 
 const MenuEdit = ({location}) => {
   const dispatch = useDispatch();
-  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
+  const {data: courseTypes} = useCourseTypes();
   const search = useRef(location.search); // avoid to re-run useEffect when location changes
-  const lastTab = useRef(Object.keys(courseTypes).length); // avoid to re-run useEffect when courseTypes changes
+  const lastTab = useRef(courseTypes.length); // avoid to re-run useEffect when courseTypes changes
   useEffect(() => {
     dispatch(changeNavigation({backLink: '/presupuestos/editar', title: 'Menu'}));
     const menuFromLink = getMenuFromLink(new URLSearchParams(search.current).get('menu'));

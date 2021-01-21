@@ -7,12 +7,13 @@ import Fab from '@material-ui/core/Fab';
 import Badge from '@material-ui/core/Badge';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
+import {useCourseTypes} from 'app/data_hooks/CourseTypes';
 import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 
 const DishCarButton = () => {
-  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const selectedTab = useSelector(state => state.quotations.selectedTab);
   const courses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
+  const {data: courseTypes} = useCourseTypes();
   const courseType = getCurrentCourseType(courseTypes, selectedTab);
   const menuCourses = courses.filter(course => course.type.id === courseType.id);
 
