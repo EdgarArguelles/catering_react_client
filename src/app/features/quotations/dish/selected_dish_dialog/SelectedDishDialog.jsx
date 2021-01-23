@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import {useBrowserNavigation, useIsMobileSize} from 'app/common/Hooks';
+import {useBrowserNavigation, useIsMobileSize} from 'app/hooks/Common';
 import Animate from 'app/common/components/animate/Animate';
 import Dish from 'app/features/quotations/dish/Dish';
 import DishHeader from './dish_header/DishHeader';

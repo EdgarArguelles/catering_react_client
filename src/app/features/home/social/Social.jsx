@@ -9,7 +9,7 @@ import {faCommentDots as soCommentDots, faComments as soComments} from '@fortawe
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Utils from 'app/common/Utils';
-import {useIsMobileSize} from 'app/common/Hooks';
+import {useIsMobileSize} from 'app/hooks/Common';
 import SectionHeader from 'app/features/home/SectionHeader';
 import SocialPosts from './social_posts/SocialPosts';
 
