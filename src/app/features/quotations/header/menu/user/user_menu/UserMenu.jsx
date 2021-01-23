@@ -8,7 +8,7 @@ import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import {useAppTheme} from 'app/common/Hooks';
+import {useAppTheme} from 'app/hooks/Common';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {logout} from 'app/features/auth/AuthReducer';
 

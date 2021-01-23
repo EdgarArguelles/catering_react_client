@@ -3,7 +3,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {AutoRotatingCarousel, Slide} from 'material-auto-rotating-carousel';
-import {useIsMobileSize} from 'app/common/Hooks';
+import {useIsMobileSize} from 'app/hooks/Common';
 
 const Welcome = ({open, onClose}) => {
   const landscape = useSelector(state => state.app.isLandscape);
