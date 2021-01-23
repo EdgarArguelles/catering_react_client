@@ -9,7 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
-import {useCourseTypes} from 'app/data_hooks/CourseTypes';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
 import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
 import {selectDish} from 'app/features/quotations/dish/DishReducer';

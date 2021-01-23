@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Checkbox from '@material-ui/core/Checkbox';
 import Utils from 'app/common/Utils';
-import {useCourseTypes} from 'app/data_hooks/CourseTypes';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getCurrentCourseTypeDishes} from 'app/features/quotations/course_type/CourseType.service';
 import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
 import Category from './category/Category';
