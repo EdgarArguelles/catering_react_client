@@ -15,7 +15,7 @@ export const useCourseTypes = () => {
     return courseTypes;
   }, {
     retry: 5,
-    retryDelay: 3000,
+    retryDelay: 0,
     onError: () => {
       const courseTypesCached = window.localStorage.getItem(CACHE);
       if (courseTypesCached) {
