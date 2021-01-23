@@ -26,7 +26,7 @@ export const useCourseTypes = () => {
 };
 
 export const useDBVersion = courseTypes => {
-  const KEY = 'useDBVersion';
+  const KEY = 'DBVersion';
   const CACHE = 'versionCached';
   const dispatch = useDispatch();
   const dataVersion = parseInt(window.localStorage.getItem(CACHE), 10);
