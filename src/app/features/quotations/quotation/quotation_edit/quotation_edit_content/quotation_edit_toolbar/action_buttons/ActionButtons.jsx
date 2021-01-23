@@ -1,7 +1,7 @@
 import './ActionButtons.scss';
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {useQuotationsLoader} from 'app/common/Hooks';
+import {useQuotationsLoader} from 'app/hooks/Common';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import DeleteQuotation from './delete_quotation/DeleteQuotation';
 import RevertQuotation from './revert_quotation/RevertQuotation';
