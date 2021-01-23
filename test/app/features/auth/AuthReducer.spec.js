@@ -190,7 +190,7 @@ describe('Auth -> Reducer/Actions', () => {
 
     describe('fetchPing', () => {
       const arg = null;
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: '{ping {id fullName image role token permissions}}'};
       const checkPending = () => {
         sinon.assert.callCount(graphqlStub, 1);
@@ -226,7 +226,14 @@ describe('Auth -> Reducer/Actions', () => {
             type: fetchPing.rejected.type,
             error: sinon.match.object,
             payload: undefined,
-            meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+            meta: {
+              arg,
+              aborted: false,
+              condition: false,
+              rejectedWithValue: false,
+              requestId: sinon.match.string,
+              requestStatus: sinon.match.string,
+            },
           });
         };
 

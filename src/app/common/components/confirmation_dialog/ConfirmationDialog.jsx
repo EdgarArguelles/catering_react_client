@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import {useBrowserNavigation} from 'app/common/Hooks';
+import {useBrowserNavigation} from 'app/hooks/Common';
 
 const ConfirmationDialog = ({className, title, label, content, okID, okLabel, open, onClose, onOK}) => {
   useBrowserNavigation(open, onClose);

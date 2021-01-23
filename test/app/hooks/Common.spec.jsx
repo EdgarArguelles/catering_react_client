@@ -13,14 +13,14 @@ import {
   useIsMobileSize,
   usePingServer,
   useQuotationsLoader,
-} from 'app/common/Hooks';
+} from 'app/hooks/Common';
 import {changeTheme as changeThemeAction} from 'app/AppReducer';
 import * as DishesActions from 'app/data/dishes/DishesReducer';
 import * as QuotationsActions from 'app/data/quotations/QuotationsReducer';
 import * as AuthActions from 'app/features/auth/AuthReducer';
 import * as NavigationActions from 'app/features/quotations/header/navigation/NavigationReducer';
 
-describe('Hooks', () => {
+describe('Hooks -> Common', () => {
   const dispatchStub = sinon.stub();
   let component, hookResponse, store, wrapper;
 

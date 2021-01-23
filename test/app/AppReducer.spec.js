@@ -1,13 +1,14 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
 import Api from 'app/common/Api';
-import appReducer, {changeIsOnline, changeTheme, getFacebookAccessCode} from 'app/AppReducer';
+import appReducer, {changeIsLandscape, changeIsOnline, changeTheme, getFacebookAccessCode} from 'app/AppReducer';
 
 describe('App -> Reducer/Actions', () => {
   describe('Reducer', () => {
     it('should get default state when undefined', () => {
       const state = {
         isOnline: true,
+        isLandscape: false,
         theme: 'light',
         facebookAccessCode: '',
       };
@@ -20,6 +21,7 @@ describe('App -> Reducer/Actions', () => {
     it('should get the same original status when action is not allow', () => {
       const state = {
         isOnline: false,
+        isLandscape: true,
         theme: 'test',
         facebookAccessCode: '123',
       };
@@ -30,6 +32,7 @@ describe('App -> Reducer/Actions', () => {
       // don't mutate
       expect(state).toStrictEqual({
         isOnline: false,
+        isLandscape: true,
         theme: 'test',
         facebookAccessCode: '123',
       });
@@ -38,11 +41,13 @@ describe('App -> Reducer/Actions', () => {
     it('should change isOnline value to true when action is changeIsOnline', () => {
       const state = {
         isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       };
       const stateExpected = {
         isOnline: true,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       };
@@ -54,6 +59,34 @@ describe('App -> Reducer/Actions', () => {
       // don't mutate
       expect(state).toStrictEqual({
         isOnline: false,
+        isLandscape: false,
+        theme: 'test',
+        facebookAccessCode: '123',
+      });
+    });
+
+    it('should change isLandscape value to true when action is changeIsLandscape', () => {
+      const state = {
+        isOnline: false,
+        isLandscape: false,
+        theme: 'test',
+        facebookAccessCode: '123',
+      };
+      const stateExpected = {
+        isOnline: false,
+        isLandscape: true,
+        theme: 'test',
+        facebookAccessCode: '123',
+      };
+      const action = {type: changeIsLandscape.type, payload: true};
+
+      const result = appReducer(state, action);
+
+      expect(result).toStrictEqual(stateExpected);
+      // don't mutate
+      expect(state).toStrictEqual({
+        isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       });
@@ -62,11 +95,13 @@ describe('App -> Reducer/Actions', () => {
     it('should change theme value to "dark" when action is changeTheme', () => {
       const state = {
         isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       };
       const stateExpected = {
         isOnline: false,
+        isLandscape: false,
         theme: 'dark',
         facebookAccessCode: '123',
       };
@@ -78,6 +113,7 @@ describe('App -> Reducer/Actions', () => {
       // don't mutate
       expect(state).toStrictEqual({
         isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       });
@@ -86,11 +122,13 @@ describe('App -> Reducer/Actions', () => {
     it('should change facebookAccessCode value to "456" when action is getFacebookAccessCode.fulfilled', () => {
       const state = {
         isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       };
       const stateExpected = {
         isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '456',
       };
@@ -102,6 +140,7 @@ describe('App -> Reducer/Actions', () => {
       // don't mutate
       expect(state).toStrictEqual({
         isOnline: false,
+        isLandscape: false,
         theme: 'test',
         facebookAccessCode: '123',
       });
@@ -119,7 +158,7 @@ describe('App -> Reducer/Actions', () => {
 
     describe('getFacebookAccessCode', () => {
       const arg = null;
-      const meta = {arg, requestId: sinon.match.string};
+      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
       const body = {query: '{getAccessCode(social: FACEBOOK)}'};
 
       it('should dispatch getFacebookAccessCode.fulfilled', async () => {
@@ -165,7 +204,14 @@ describe('App -> Reducer/Actions', () => {
           type: getFacebookAccessCode.rejected.type,
           error: sinon.match.object,
           payload: undefined,
-          meta: {arg, aborted: false, condition: false, requestId: sinon.match.string},
+          meta: {
+            arg,
+            aborted: false,
+            condition: false,
+            rejectedWithValue: false,
+            requestId: sinon.match.string,
+            requestStatus: sinon.match.string,
+          },
         });
         // don't mutate
         expect(arg).toStrictEqual(null);

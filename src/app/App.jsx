@@ -10,10 +10,12 @@ import 'url-search-params-polyfill';
 import '../index.html';
 import 'assets/img/icon-128x128.png';
 import './App.scss';
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import {Provider, useSelector} from 'react-redux';
+import {Provider, useDispatch, useSelector} from 'react-redux';
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {ReactQueryDevtools} from 'react-query/devtools';
 import {blue, red} from '@material-ui/core/colors';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,14 +24,32 @@ import temporalStorage from './middlewares/TemporalStorage';
 import reducer from './Reducers';
 import Router from './router/Router';
 import Offline from './common/components/offline/Offline';
+import {changeIsLandscape} from 'app/AppReducer';
 
 const store = configureStore({
   reducer,
   middleware: [...getDefaultMiddleware({serializableCheck: false}), logger, temporalStorage],
 });
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 const App = () => {
+  const dispatch = useDispatch();
   const type = useSelector(state => state.app.theme);
+
+  useEffect(() => {
+    window.addEventListener('orientationchange',
+      () => dispatch(changeIsLandscape(window.matchMedia('(orientation: portrait)').matches)));
+  }, [dispatch]);
 
   // overwrite primary and secondary
   const theme = createMuiTheme({
@@ -45,11 +65,14 @@ const App = () => {
   });
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline/>
-      {Router}
-      <Offline/>
-    </MuiThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline/>
+        {Router}
+        <Offline/>
+      </MuiThemeProvider>
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false}/>}
+    </QueryClientProvider>
   );
 };
 

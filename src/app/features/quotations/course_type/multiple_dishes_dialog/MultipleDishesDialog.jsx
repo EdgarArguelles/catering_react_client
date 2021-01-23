@@ -6,7 +6,7 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import {useBrowserNavigation} from 'app/common/Hooks';
+import {useBrowserNavigation} from 'app/hooks/Common';
 import MultipleDishesActions from './multiple_dishes_actions/MultipleDishesActions';
 import UndoCancelSnackbars from './undo_cancel_snackbars/UndoCancelSnackbars';
 import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
-import {useAreDishesLoaded} from 'app/common/Hooks';
+import {useAreDishesLoaded} from 'app/hooks/Common';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 

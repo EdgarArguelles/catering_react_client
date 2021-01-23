@@ -9,6 +9,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
 import Utils from 'app/common/Utils';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {resetBarsTop} from 'app/common/components/expand_bar/ExpandBar';
 import ExpandTabs from 'app/common/components/expand_bar/expand_tabs/ExpandTabs';
@@ -22,8 +23,8 @@ const slideClassName = 'swipeable';
 const MenuEditTabs = () => {
   const dispatch = useDispatch();
   const tab = useSelector(state => state.quotations.selectedTab);
-  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const selectedMenu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
+  const {data: courseTypes} = useCourseTypes();
   const sortedCourseTypes = getSortedCourseTypes(courseTypes);
   const menuCourses = selectedMenu?.courses;
 

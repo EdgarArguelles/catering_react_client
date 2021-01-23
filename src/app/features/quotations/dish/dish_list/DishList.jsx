@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFilter} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import Utils from 'app/common/Utils';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getCourseTypeDishes, getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
 import DishCarButton from './dish_car_button/DishCarButton';
@@ -18,8 +19,8 @@ import {fetchDishes} from 'app/data/dishes/DishesReducer';
 
 const DishList = ({location}) => {
   const dispatch = useDispatch();
-  const courseType = useSelector(state =>
-    getCurrentCourseType(state.data.courseTypes.data, state.quotations.selectedTab));
+  const {data: courseTypes} = useCourseTypes();
+  const courseType = useSelector(state => getCurrentCourseType(courseTypes, state.quotations.selectedTab));
   const courseTypeDishes = useSelector(state =>
     getCourseTypeDishes(getActiveDishes(state.data.dishes.data), courseType));
   const category = new URLSearchParams(location.search).get('categoria');

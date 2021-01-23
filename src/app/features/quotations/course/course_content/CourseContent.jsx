@@ -9,6 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
 import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
 import {selectDish} from 'app/features/quotations/dish/DishReducer';
@@ -19,10 +20,10 @@ import {
 
 const CourseContent = ({course, onActionClick}) => {
   const dispatch = useDispatch();
-  const courseTypes = useSelector(state => state.data.courseTypes.data);
   const dishes = useSelector(state => state.data.dishes.data);
+  const {data: courseTypes} = useCourseTypes();
   const handleSelectDish = dishId => dispatch(selectDish(dishId));
-  const isMultipleDishes = useMultipleDishes(courseTypes[course.type.id]);
+  const isMultipleDishes = useMultipleDishes(courseTypes.find(c => c.id === course.type.id));
   const handleRemoveClick = () => {
     Utils.animateIcon(`${course.type.id}-${course.position}-trash-icon`);
     onActionClick();

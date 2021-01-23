@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import {useBrowserNavigation} from 'app/common/Hooks';
+import {useBrowserNavigation} from 'app/hooks/Common';
 import DialogBack from 'app/common/components/dialog_back/DialogBack';
 import Animate from 'app/common/components/animate/Animate';
 import Menu from 'app/features/quotations/menu/Menu';

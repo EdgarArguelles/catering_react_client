@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Divider from '@material-ui/core/Divider';
-import {useAreDishesLoaded} from 'app/common/Hooks';
+import {useAreDishesLoaded} from 'app/hooks/Common';
 import DishThumbnail from './dish_thumbnail/DishThumbnail';
 import AddDish from './add_dish/AddDish';
 

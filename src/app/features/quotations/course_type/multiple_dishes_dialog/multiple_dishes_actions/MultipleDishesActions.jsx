@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import {useAreDishesLoaded} from 'app/common/Hooks';
+import {useAreDishesLoaded} from 'app/hooks/Common';
 import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
 import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
 import {cleanDishes} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
