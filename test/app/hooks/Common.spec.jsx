@@ -13,7 +13,7 @@ import {
   useIsMobileSize,
   usePingServer,
   useQuotationsLoader,
-} from 'app/common/Hooks';
+} from 'app/hooks/Common';
 import {changeTheme as changeThemeAction} from 'app/AppReducer';
 import * as DishesActions from 'app/data/dishes/DishesReducer';
 import * as QuotationsActions from 'app/data/quotations/QuotationsReducer';
