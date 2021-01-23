@@ -3,7 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import History from 'app/router/History';
-import {useCourseTypes} from 'app/data_hooks/CourseTypes';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getMenuFromLink, getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import MenuEditTabs from './menu_edit_tabs/MenuEditTabs';
 import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';

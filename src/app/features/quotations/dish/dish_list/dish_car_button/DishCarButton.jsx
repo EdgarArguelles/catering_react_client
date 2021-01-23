@@ -7,7 +7,7 @@ import Fab from '@material-ui/core/Fab';
 import Badge from '@material-ui/core/Badge';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import {useCourseTypes} from 'app/data_hooks/CourseTypes';
+import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 
 const DishCarButton = () => {
