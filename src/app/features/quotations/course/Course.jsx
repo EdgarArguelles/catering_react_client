@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
-import {useAreDishesLoaded} from 'app/common/Hooks';
+import {useAreDishesLoaded} from 'app/hooks/Common';
 import Animate from 'app/common/components/animate/Animate';
 import CourseContent from './course_content/CourseContent';
 import RemoveDialog from './remove_dialog/RemoveDialog';
