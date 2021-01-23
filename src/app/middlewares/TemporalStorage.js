@@ -10,14 +10,8 @@ export default store => next => action => {
     isRemoteProcessing: false, // don't save isRemoteProcessing value
   }));
   window.localStorage.setItem('dataState', JSON.stringify({
-    version: store.getState().data.version,
     dishes: store.getState().data.dishes,
   }));
-
-  const courseTypesData = store.getState().data.courseTypes.data;
-  if (courseTypesData) {
-    window.localStorage.setItem('courseTypesCached', JSON.stringify(courseTypesData));
-  }
 
   return result;
 };
