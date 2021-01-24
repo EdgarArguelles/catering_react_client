@@ -1,4 +1,4 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
 
@@ -7,6 +7,9 @@ export const useCourseTypes = () => {
   const CACHE = 'courseTypesCached';
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+  const isOnline = useSelector(state => state.app.isOnline);
+  const cache = window.localStorage.getItem(CACHE);
+  const courseTypesCached = cache ? JSON.parse(cache) : undefined;
   return useQuery(KEY, async () => {
     const body = {query: '{activeCourseTypes {id name picture position status}}'};
     const json = await Api.graphql(dispatch, body);
@@ -16,10 +19,10 @@ export const useCourseTypes = () => {
   }, {
     retry: 5,
     retryDelay: 0,
+    initialData: isOnline ? undefined : courseTypesCached,
     onError: () => {
-      const courseTypesCached = window.localStorage.getItem(CACHE);
       if (courseTypesCached) {
-        queryClient.setQueryData(KEY, JSON.parse(courseTypesCached));
+        queryClient.setQueryData(KEY, courseTypesCached);
       }
     },
   });
