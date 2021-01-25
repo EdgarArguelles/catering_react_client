@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
 import renderer, {act} from 'react-test-renderer';
+import {waitFor} from '@testing-library/react';
 import React, {useState} from 'react';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
@@ -24,7 +25,10 @@ describe('Hooks -> Common', () => {
   const dispatchStub = sinon.stub();
   let component, hookResponse, store, wrapper;
 
-  afterEach(() => dispatchStub.reset());
+  afterEach(() => {
+    dispatchStub.reset();
+    hookResponse = undefined;
+  });
 
   const mountComponent = (hook, state, useRealStore) => {
     const Component = () => {
@@ -91,13 +95,13 @@ describe('Hooks -> Common', () => {
       mountComponent(() => usePingServer(), {}, false);
     });
 
-    it('should call fetchPing twice', () => {
-      // call onChange to trigger useEffect
-      act(() => component.props.onChange());
+    it('should call fetchPing', async () => {
+      // wait until fire fetchPing
+      await act(() => waitFor(() => sinon.assert.callCount(fetchPingStub, 1)));
 
-      sinon.assert.callCount(fetchPingStub, 2);
+      sinon.assert.callCount(fetchPingStub, 1);
       sinon.assert.calledWithExactly(fetchPingStub);
-      sinon.assert.callCount(dispatchStub, 2);
+      sinon.assert.callCount(dispatchStub, 1);
       sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST'});
     });
   });
