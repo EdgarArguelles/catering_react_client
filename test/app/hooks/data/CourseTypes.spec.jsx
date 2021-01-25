@@ -144,15 +144,15 @@ describe('Hooks -> Data -> CourseTypes', () => {
     });
 
     it('should not update version when caches is the same', async () => {
-      const jsonExpected = {data: {version: {version: 'version1'}}};
+      const jsonExpected = {data: {version: {version: 4}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
-      window.localStorage.setItem('versionCached', 'version1');
+      window.localStorage.setItem('versionCached', '4');
 
       mountComponent(() => useDBVersion(60), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
 
-      expect(hookResponse.data).toStrictEqual('version1');
-      expect(window.localStorage.getItem('versionCached')).toStrictEqual('version1');
+      expect(hookResponse.data).toStrictEqual(4);
+      expect(window.localStorage.getItem('versionCached')).toStrictEqual('4');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
