@@ -15,11 +15,7 @@ const MenuItemContent = ({focus, menu, select}) => {
   const deselect = () => dispatch(selectMenu(''));
   const {id, price, quantity, isSelected, courses} = menu;
 
-  const animateIcon = () => {
-    if (!isSelected) {
-      Utils.animateIcon(`menu-${id}-quantity-icon`);
-    }
-  };
+  const animateIcon = () => !isSelected && Utils.animateIcon(`menu-${id}-quantity-icon`);
 
   const getQuantity = () => {
     const input = isSelected

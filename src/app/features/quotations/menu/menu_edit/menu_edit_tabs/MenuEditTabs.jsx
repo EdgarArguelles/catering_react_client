@@ -29,9 +29,7 @@ const MenuEditTabs = () => {
   const menuCourses = selectedMenu?.courses;
 
   const changeTapValue = newValue => {
-    if (newValue === sortedCourseTypes.length) {
-      Utils.animateIcon('menu-edit-price-icon');
-    }
+    newValue === sortedCourseTypes.length && Utils.animateIcon('menu-edit-price-icon');
     dispatch(changeMenuTab(newValue));
     resetBarsTop(tabsElementId);
   };

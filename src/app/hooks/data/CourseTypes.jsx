@@ -20,11 +20,7 @@ export const useCourseTypes = () => {
     retry: 5,
     retryDelay: 0,
     initialData: isOnline ? undefined : courseTypesCached,
-    onError: () => {
-      if (courseTypesCached) {
-        queryClient.setQueryData(KEY, courseTypesCached);
-      }
-    },
+    onError: () => courseTypesCached && queryClient.setQueryData(KEY, courseTypesCached),
   });
 };
 

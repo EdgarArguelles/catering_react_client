@@ -135,9 +135,8 @@ export default class Utils {
         element.setAttribute('fill', 'currentColor');
         element.setAttribute('stroke-width', 0);
       });
-      if (callback) {
-        callback();
-      }
+
+      callback && callback();
     };
 
     [].forEach.call(paths, element => {

@@ -1,11 +1,9 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
-import renderer, {act} from 'react-test-renderer';
+import {act} from 'react-test-renderer';
+import {waitFor} from '@testing-library/react';
 import React, {useState} from 'react';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import {createStore} from 'redux';
-import reducers from 'app/Reducers';
+import {renderReduxComponent} from 'app/../../test/TestHelper';
 import {
   useAppTheme,
   useAreDishesLoaded,
@@ -22,23 +20,25 @@ import * as NavigationActions from 'app/features/quotations/header/navigation/Na
 
 describe('Hooks -> Common', () => {
   const dispatchStub = sinon.stub();
-  let component, hookResponse, store, wrapper;
+  let hookResponse, store, wrapper;
 
-  afterEach(() => dispatchStub.reset());
+  afterEach(() => {
+    dispatchStub.reset();
+    hookResponse = undefined;
+    store = undefined;
+    wrapper = undefined;
+  });
 
-  const mountComponent = (hook, state, useRealStore) => {
-    const Component = () => {
-      const [value, setValue] = useState(null);
-      hookResponse = hook(value);
-      return <div value={value} onChange={newValue => setValue(newValue)}/>;
-    };
-
-    store = configureStore()(state);
-    store.dispatch = dispatchStub;
-    store = useRealStore ? createStore(reducers, state) : store;
-    wrapper = renderer.create(<Provider store={store}><Component/></Provider>);
-    component = wrapper.root.find(el => el.type === 'div');
+  const fireOnChange = params => {
+    const component = wrapper.root.find(el => el.type === 'div');
+    act(() => component.props.onChange(params));
   };
+
+  const mountComponent = renderReduxComponent(({hook}) => {
+    const [value, setValue] = useState(null);
+    hookResponse = hook(value);
+    return <div value={value} onChange={newValue => setValue(newValue)}/>;
+  }, dispatchStub);
 
   describe('useIsMobileSize', () => {
     it('should get false', () => {
@@ -91,13 +91,13 @@ describe('Hooks -> Common', () => {
       mountComponent(() => usePingServer(), {}, false);
     });
 
-    it('should call fetchPing twice', () => {
-      // call onChange to trigger useEffect
-      act(() => component.props.onChange());
+    it('should call fetchPing', async () => {
+      // wait until fire fetchPing
+      await act(() => waitFor(() => sinon.assert.callCount(fetchPingStub, 1)));
 
-      sinon.assert.callCount(fetchPingStub, 2);
+      sinon.assert.callCount(fetchPingStub, 1);
       sinon.assert.calledWithExactly(fetchPingStub);
-      sinon.assert.callCount(dispatchStub, 2);
+      sinon.assert.callCount(dispatchStub, 1);
       sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST'});
     });
   });
@@ -110,12 +110,13 @@ describe('Hooks -> Common', () => {
       closeNavigationDialogStub.reset();
       closeNavigationDialogStub.withArgs(onClose).returns({type: 'TEST 1'});
       closeNavigationDialogStub.withArgs(null).returns({type: 'TEST 2'});
-      mountComponent(open => useBrowserNavigation(open, onClose), {}, false);
+      const data = mountComponent(open => useBrowserNavigation(open, onClose), {}, false);
+      wrapper = data.wrapper;
     });
 
     it('should not call closeNavigationDialog', () => {
       // call onChange to trigger useEffect
-      act(() => component.props.onChange());
+      fireOnChange();
 
       sinon.assert.callCount(closeNavigationDialogStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
@@ -123,7 +124,7 @@ describe('Hooks -> Common', () => {
 
     it('should call closeNavigationDialog', () => {
       jest.useFakeTimers();
-      act(() => component.props.onChange(true));
+      fireOnChange(true);
       jest.runAllTimers();
 
       sinon.assert.callCount(closeNavigationDialogStub, 1);
@@ -134,8 +135,8 @@ describe('Hooks -> Common', () => {
 
     it('should call closeNavigationDialog twice', () => {
       jest.useFakeTimers();
-      act(() => component.props.onChange(true));
-      act(() => component.props.onChange(false));
+      fireOnChange(true);
+      fireOnChange(false);
       jest.runAllTimers();
 
       sinon.assert.callCount(closeNavigationDialogStub, 2);
@@ -153,16 +154,18 @@ describe('Hooks -> Common', () => {
     beforeEach(() => {
       fetchQuotationStub.reset();
       fetchQuotationStub.withArgs({quotationId: 'Q1', overwriteLocalChanges: false}).returns({type: 'TEST'});
-      mountComponent(() => useQuotationsLoader(), {
+      const data = mountComponent(() => useQuotationsLoader(), {
         auth: {},
         quotations: {quotation: {id: 'Q1'}},
         data: {quotations: {fetching: false}},
       }, true);
+      wrapper = data.wrapper;
+      store = data.store;
     });
 
     it('should not call fetchQuotation', () => {
       // call onChange to trigger useEffect
-      act(() => component.props.onChange());
+      fireOnChange();
 
       sinon.assert.callCount(fetchQuotationStub, 0);
       sinon.assert.callCount(dispatchStub, 0);
@@ -216,7 +219,7 @@ describe('Hooks -> Common', () => {
 
     describe('not calling fetchDish', () => {
       beforeEach(() => {
-        mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
+        const data = mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
           data: {
             dishes: {
               data: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
@@ -224,11 +227,13 @@ describe('Hooks -> Common', () => {
             },
           },
         }, false);
+        wrapper = data.wrapper;
+        store = data.store;
       });
 
       it('should not call fetchDish', () => {
         // call onChange to trigger useEffect
-        act(() => component.props.onChange());
+        fireOnChange();
 
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 0);
@@ -241,6 +246,7 @@ describe('Hooks -> Common', () => {
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 0);
         sinon.assert.callCount(dispatchStub, 1);
+        sinon.assert.calledWithExactly(dispatchStub, {type: 'DATA_QUOTATIONS/createQuotation/fulfilled'});
       });
     });
 
@@ -250,14 +256,15 @@ describe('Hooks -> Common', () => {
         fetchDishStub.withArgs('D2').returns({type: 'TEST 2'});
         fetchDishStub.withArgs('D3').returns({type: 'TEST 3'});
         fetchDishStub.withArgs('D4').returns({type: 'TEST 4'});
-        mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
+        const data = mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
           data: {dishes: {}},
         }, false);
+        wrapper = data.wrapper;
       });
 
       it('should call fetchDish', () => {
         // call onChange to trigger useEffect
-        act(() => component.props.onChange());
+        fireOnChange();
 
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 4);
