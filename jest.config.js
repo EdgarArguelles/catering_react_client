@@ -25,4 +25,7 @@ module.exports = {
 
   // Indicates whether each individual test should be reported during the run
   verbose: false,
+
+  // Avoid to print errors in console during test
+  silent: true,
 };

@@ -13,9 +13,7 @@ const NoSessionQuotationList = () => {
 
   // animate icon when AuthDialog closes
   useEffect(() => {
-    if (!open) {
-      Utils.animateIcon('no-session-quotation-icon', {strokeWidth: 20});
-    }
+    !open && Utils.animateIcon('no-session-quotation-icon', {strokeWidth: 20});
   }, [open]);
 
   return (

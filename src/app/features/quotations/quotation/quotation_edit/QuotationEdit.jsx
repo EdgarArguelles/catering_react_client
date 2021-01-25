@@ -24,9 +24,7 @@ const QuotationEdit = () => {
     dispatch(selectDish(''));
     dispatch(changeMenuDialogOpen(false));
 
-    if (latestName.current === '') {
-      dispatch(changeName('Mi Presupuesto'));
-    }
+    latestName.current === '' && dispatch(changeName('Mi Presupuesto'));
   }, [dispatch]);
 
   useEffect(() => {

@@ -40,9 +40,7 @@ const QuotationView = ({match}) => {
 
   // animate icon when AuthDialog closes
   useEffect(() => {
-    if (!open) {
-      Utils.animateIcon('quotation-view-info-icon', {strokeWidth: 20});
-    }
+    !open && Utils.animateIcon('quotation-view-info-icon', {strokeWidth: 20});
   }, [open]);
 
   return (
