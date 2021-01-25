@@ -1,26 +1,17 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
-import renderer, {act} from 'react-test-renderer';
+import {act} from 'react-test-renderer';
 import {waitFor} from '@testing-library/react';
 import React from 'react';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import {createStore} from 'redux';
-import {QueryClient, QueryClientProvider} from 'react-query';
+import {renderQueryComponent} from 'app/../../test/TestHelper';
 import Api from 'app/common/Api';
-import reducers from 'app/Reducers';
 import {useCourseTypes, useDBVersion} from 'app/hooks/data/CourseTypes';
 
 describe('Hooks -> Data -> CourseTypes', () => {
   const dispatchStub = sinon.stub();
   const graphqlStub = sinon.stub(Api, 'graphql');
   const setQueryDataStub = sinon.stub();
-  let hookResponse, queryClient, store;
-
-  beforeEach(() => {
-    queryClient = new QueryClient();
-    queryClient.setQueryData = setQueryDataStub;
-  });
+  let hookResponse;
 
   afterEach(() => {
     dispatchStub.reset();
@@ -31,18 +22,10 @@ describe('Hooks -> Data -> CourseTypes', () => {
     window.localStorage.removeItem('versionCached');
   });
 
-  const mountComponent = (hook, state, useRealStore) => {
-    const Component = () => {
-      hookResponse = hook();
-      return <div/>;
-    };
-
-    store = configureStore()(state);
-    store.dispatch = dispatchStub;
-    store = useRealStore ? createStore(reducers, state) : store;
-    renderer.create(<Provider store={store}><QueryClientProvider client={queryClient}>
-      <Component/></QueryClientProvider></Provider>);
-  };
+  const mountComponent = renderQueryComponent(({hook}) => {
+    hookResponse = hook();
+    return <div/>;
+  }, {dispatchStub, setQueryDataStub});
 
   describe('useCourseTypes', () => {
     const body = {query: '{activeCourseTypes {id name picture position status}}'};
