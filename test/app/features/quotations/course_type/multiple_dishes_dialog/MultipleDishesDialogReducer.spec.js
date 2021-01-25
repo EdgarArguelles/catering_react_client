@@ -99,7 +99,7 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
       });
     });
 
-    it('should add a dish when action is addDish', () => {
+    it('should add a dish when action is addDish and dish is not present', () => {
       const state = {
         isMultipleDishesDialogOpen: false,
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
@@ -109,6 +109,27 @@ describe('Quotations -> Course Type -> Multiple Dishes Dialog -> Reducer/Actions
         dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}, {id: 'id 4'}],
       };
       const action = {type: addDish.type, payload: 'id 4'};
+
+      const result = multipleDishesDialogReducer(state, action);
+
+      expect(result).toStrictEqual(stateExpected);
+      // don't mutate
+      expect(state).toStrictEqual({
+        isMultipleDishesDialogOpen: false,
+        dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
+      });
+    });
+
+    it('should not add the dish when action is addDish and dish is present', () => {
+      const state = {
+        isMultipleDishesDialogOpen: false,
+        dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
+      };
+      const stateExpected = {
+        isMultipleDishesDialogOpen: false,
+        dishes: [{id: 'id 1'}, {id: 'id 2'}, {id: 'id 3'}],
+      };
+      const action = {type: addDish.type, payload: 'id 2'};
 
       const result = multipleDishesDialogReducer(state, action);
 

@@ -19,7 +19,7 @@ const multipleDishesDialogSlice = createSlice({
       state.dishes = [];
     },
     addDish(state, {payload: dishId}) {
-      state.dishes.push({id: dishId});
+      !state.dishes.find(dish => dish.id === dishId) && state.dishes.push({id: dishId});
     },
     removeDish(state, {payload: dishId}) {
       state.dishes = state.dishes.filter(dish => dish.id !== dishId);
