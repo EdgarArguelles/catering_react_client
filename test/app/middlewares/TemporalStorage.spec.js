@@ -6,6 +6,9 @@ describe('Middlewares -> TemporalStorage', () => {
 
   afterEach(() => {
     nextStub.reset();
+    window.localStorage.removeItem('appTheme');
+    window.sessionStorage.removeItem('quotationsState');
+    window.localStorage.removeItem('dataState');
   });
 
   it('should process action and store data in sessionStorage and localStorage', () => {
@@ -37,8 +40,5 @@ describe('Middlewares -> TemporalStorage', () => {
     // don't mutate
     expect(store).toStrictEqual({id: 'store 1', getState});
     expect(action).toStrictEqual({type: 'action1'});
-    window.localStorage.removeItem('appTheme');
-    window.sessionStorage.removeItem('quotationsState');
-    window.localStorage.removeItem('dataState');
   });
 });

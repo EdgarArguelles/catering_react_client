@@ -8,9 +8,7 @@ describe('Data -> Dishes -> Reducer/Actions', () => {
   describe('Reducer', () => {
     const arrayToObjectStub = sinon.stub(Utils, 'arrayToObject');
 
-    afterEach(() => {
-      arrayToObjectStub.reset();
-    });
+    afterEach(() => arrayToObjectStub.reset());
 
     it('should get default state when undefined', () => {
       const state = {data: null, fetching: {}};

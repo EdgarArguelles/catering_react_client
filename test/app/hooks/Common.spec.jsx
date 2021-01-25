@@ -204,7 +204,7 @@ describe('Hooks -> Common', () => {
   describe('useAreDishesLoaded', () => {
     const fetchDishStub = sinon.stub(DishesActions, 'fetchDish');
 
-    beforeEach(() => fetchDishStub.reset());
+    afterEach(() => fetchDishStub.reset());
 
     it('should return true as hook response', () => {
       mountComponent(() => useAreDishesLoaded([]), {data: {dishes: {}}}, false);
