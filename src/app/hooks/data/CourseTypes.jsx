@@ -8,8 +8,16 @@ export const useCourseTypes = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const isOnline = useSelector(state => state.app.isOnline);
-  const cache = window.localStorage.getItem(CACHE);
-  const courseTypesCached = cache ? JSON.parse(cache) : undefined;
+  const getCache = () => {
+    const cache = window.localStorage.getItem(CACHE);
+    return cache ? JSON.parse(cache) : undefined;
+  };
+
+  const setQueryData = () => {
+    const cache = getCache();
+    cache && queryClient.setQueryData(KEY, cache);
+  };
+
   return useQuery(KEY, async () => {
     const body = {query: '{activeCourseTypes {id name picture position status}}'};
     const json = await Api.graphql(dispatch, body);
@@ -19,8 +27,8 @@ export const useCourseTypes = () => {
   }, {
     retry: 5,
     retryDelay: 0,
-    initialData: isOnline ? undefined : courseTypesCached,
-    onError: () => courseTypesCached && queryClient.setQueryData(KEY, courseTypesCached),
+    initialData: isOnline ? undefined : getCache(),
+    onError: setQueryData,
   });
 };
 
@@ -28,12 +36,11 @@ export const useDBVersion = courseTypes => {
   const KEY = 'DBVersion';
   const CACHE = 'versionCached';
   const dispatch = useDispatch();
-  const dataVersion = parseInt(window.localStorage.getItem(CACHE), 10);
   return useQuery(KEY, async () => {
     const body = {query: '{version {version}}'};
     const json = await Api.graphql(dispatch, body);
     const version = json.data.version.version;
-    if (version !== dataVersion) {
+    if (version !== parseInt(window.localStorage.getItem(CACHE), 10)) {
       window.localStorage.setItem(CACHE, version);
       // TODO: clean dishes from window.localStorage
     }
