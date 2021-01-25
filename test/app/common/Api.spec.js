@@ -7,14 +7,14 @@ describe('Api', () => {
   describe('Api calls', () => {
     afterEach(() => {
       fetchMock.restore();
+      window.sessionStorage.removeItem('accessToken');
+      window.sessionStorage.removeItem('userImage');
     });
 
     describe('Api prefix', () => {
       let urlExpected;
 
-      beforeEach(() => {
-        fetchMock.get('*', {hello: 'world'});
-      });
+      beforeEach(() => fetchMock.get('*', {hello: 'world'}));
 
       it('should use the default prefix when prefix is not defined', () => {
         urlExpected = 'https://testhost/catering/test';
@@ -61,9 +61,7 @@ describe('Api', () => {
         });
 
         describe('GET', () => {
-          beforeEach(() => {
-            fetchMock.get('*', {hello: 'world'});
-          });
+          beforeEach(() => fetchMock.get('*', {hello: 'world'}));
 
           it('should use the default options when options is not defined', () => {
             optionsExpected = {
@@ -90,13 +88,7 @@ describe('Api', () => {
           });
 
           describe('headers', () => {
-            beforeEach(() => {
-              window.sessionStorage.setItem('accessToken', 'token');
-            });
-
-            afterEach(() => {
-              window.sessionStorage.removeItem('accessToken');
-            });
+            beforeEach(() => window.sessionStorage.setItem('accessToken', 'token'));
 
             it('should concat authorization to headers when options is not defined', () => {
               optionsExpected = {
@@ -128,9 +120,7 @@ describe('Api', () => {
         describe('POST', () => {
           const body = {content: 'test'};
 
-          beforeEach(() => {
-            fetchMock.post('*', {hello: 'world'});
-          });
+          beforeEach(() => fetchMock.post('*', {hello: 'world'}));
 
           it('should use the default options when options is not defined', () => {
             optionsExpected = {
@@ -172,9 +162,7 @@ describe('Api', () => {
         describe('PUT', () => {
           const body = {content: 'test'};
 
-          beforeEach(() => {
-            fetchMock.put('*', {hello: 'world'});
-          });
+          beforeEach(() => fetchMock.put('*', {hello: 'world'}));
 
           it('should use the default options when options is not defined', () => {
             optionsExpected = {
@@ -214,9 +202,7 @@ describe('Api', () => {
         });
 
         describe('DELETE', () => {
-          beforeEach(() => {
-            fetchMock.delete('*', {hello: 'world'});
-          });
+          beforeEach(() => fetchMock.delete('*', {hello: 'world'}));
 
           it('should use the default options when options is not defined', () => {
             optionsExpected = {
@@ -276,9 +262,7 @@ describe('Api', () => {
         });
 
         describe('GET', () => {
-          beforeEach(() => {
-            fetchMock.get('*', {hello: 'world'});
-          });
+          beforeEach(() => fetchMock.get('*', {hello: 'world'}));
 
           it('should use the default options when options is not defined', () => {
             optionsExpected = {
@@ -310,9 +294,7 @@ describe('Api', () => {
     describe('Error calls', () => {
       const dispatchStub = sinon.stub();
 
-      afterEach(() => {
-        dispatchStub.reset();
-      });
+      afterEach(() => dispatchStub.reset());
 
       describe('Internal Error', () => {
         it('should handle a 500 error when error 500', async () => {

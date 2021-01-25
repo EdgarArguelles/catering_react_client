@@ -8,9 +8,7 @@ describe('Components -> EnterTextField', () => {
   const onSaveStub = sinon.stub();
   let component, wrapper;
 
-  afterEach(() => {
-    onSaveStub.reset();
-  });
+  afterEach(() => onSaveStub.reset());
 
   const mountComponent = props => {
     wrapper = renderer.create(<EnterTextField {...props}/>);

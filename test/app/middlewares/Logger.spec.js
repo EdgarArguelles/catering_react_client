@@ -4,9 +4,7 @@ import logger from 'app/middlewares/Logger';
 describe('Middlewares -> Logger', () => {
   const nextStub = sinon.stub();
 
-  afterEach(() => {
-    nextStub.reset();
-  });
+  afterEach(() => nextStub.reset());
 
   it('should process action and store data in window', () => {
     const getState = () => ({id: 'state 1'});

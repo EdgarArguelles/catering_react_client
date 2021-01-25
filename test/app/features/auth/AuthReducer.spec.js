@@ -4,6 +4,11 @@ import Api, {ACTION_TYPES} from 'app/common/Api';
 import authReducer, {connectSocket, fetchPing, login, logout} from 'app/features/auth/AuthReducer';
 
 describe('Auth -> Reducer/Actions', () => {
+  afterEach(() => {
+    window.sessionStorage.removeItem('accessToken');
+    window.sessionStorage.removeItem('userImage');
+  });
+
   describe('Reducer', () => {
     it('should get default state when undefined', () => {
       const state = {
@@ -125,8 +130,6 @@ describe('Auth -> Reducer/Actions', () => {
     });
 
     it('should assign loggedUser value when action is login', () => {
-      window.sessionStorage.removeItem('accessToken');
-      window.sessionStorage.removeItem('userImage');
       const state = {
         socketConnected: true,
         loggedUser: {id: 'ID1'},
@@ -147,12 +150,9 @@ describe('Auth -> Reducer/Actions', () => {
       });
       expect(window.sessionStorage.getItem('accessToken')).toStrictEqual('token 1');
       expect(window.sessionStorage.getItem('userImage')).toStrictEqual('image 1');
-      window.sessionStorage.removeItem('accessToken');
-      window.sessionStorage.removeItem('userImage');
     });
 
     it('should assign loggedUser value when action is fetchPing.fulfilled', () => {
-      window.sessionStorage.removeItem('accessToken');
       window.sessionStorage.setItem('userImage', 'OLD value');
       const state = {
         socketConnected: true,
@@ -174,8 +174,6 @@ describe('Auth -> Reducer/Actions', () => {
       });
       expect(window.sessionStorage.getItem('accessToken')).toStrictEqual('token 11');
       expect(window.sessionStorage.getItem('userImage')).toStrictEqual('OLD value');
-      window.sessionStorage.removeItem('accessToken');
-      window.sessionStorage.removeItem('userImage');
     });
   });
 
