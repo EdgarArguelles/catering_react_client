@@ -32,9 +32,7 @@ const DishList = ({location}) => {
     dispatch(changeNavigation({backLink: '/presupuestos/menu/editar', title: courseType.name}));
 
     // load courseType's dishes if they aren't present
-    if (courseTypeDishes.length <= 0) {
-      dispatch(fetchDishes(courseType.id));
-    }
+    courseTypeDishes.length <= 0 && dispatch(fetchDishes(courseType.id));
   }, [courseType.id, courseType.name, courseTypeDishes.length, dispatch]);
 
   const animateIcon = () => Utils.animateIcon('dish-filter-button-icon');

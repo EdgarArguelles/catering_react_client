@@ -14,9 +14,7 @@ const MenuQuantity = ({autoFocus, hideLabels, onEnter, onEsc, onBlur}) => {
     const value = parseInt(event.target.value, 10);
 
     setEmpty(isNaN(value));
-    if (value > 0) {
-      dispatch(changeQuantity(value));
-    }
+    value > 0 && dispatch(changeQuantity(value));
   };
 
   const handleKeyUp = event => {

@@ -10,10 +10,7 @@ const DragDrop = ({id, draggableClassName, data, drawContent, onChangePosition})
 
     const newResult = [];
     result.forEach((item, index) => {
-      if (!item.position) {
-        newResult.push({...item});
-      }
-
+      !item.position && newResult.push({...item});
       newResult.push({...item, position: index + 1});
     });
 
