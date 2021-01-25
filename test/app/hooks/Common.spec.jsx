@@ -246,6 +246,7 @@ describe('Hooks -> Common', () => {
         expect(hookResponse).toBeFalsy();
         sinon.assert.callCount(fetchDishStub, 0);
         sinon.assert.callCount(dispatchStub, 1);
+        sinon.assert.calledWithExactly(dispatchStub, {type: 'DATA_QUOTATIONS/createQuotation/fulfilled'});
       });
     });
 
