@@ -53,7 +53,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
 
       mountComponent(() => useCourseTypes(), {app: {isOnline: true}}, false);
       // should use undefined as initial data when online before useQuery is fired
-      expect(hookResponse.data).toStrictEqual(undefined);
+      expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
@@ -74,7 +74,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
 
       mountComponent(() => useCourseTypes(), {app: {isOnline: false}}, false);
       // should use undefined as initial data when offline and cache is not present before useQuery is fired
-      expect(hookResponse.data).toStrictEqual(undefined);
+      expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
@@ -120,7 +120,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       mountComponent(() => useDBVersion(null), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
 
-      expect(hookResponse.data).toStrictEqual(undefined);
+      expect(hookResponse.data).toBeUndefined();
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('5');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);

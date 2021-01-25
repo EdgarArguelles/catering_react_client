@@ -16,7 +16,7 @@ describe('Quotations -> Quotation -> Service', () => {
 
       expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).toStrictEqual(undefined);
+      expect(quotation).toBeUndefined();
     });
 
     it('should return false when quotation is null', () => {
@@ -86,7 +86,7 @@ describe('Quotations -> Quotation -> Service', () => {
 
       expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).toStrictEqual(undefined);
+      expect(quotation).toBeUndefined();
     });
 
     it('should get editQuotationPath when quotation is null', () => {
@@ -192,7 +192,7 @@ describe('Quotations -> Quotation -> Service', () => {
 
         expect(result).toBeFalsy();
         // don't mutate
-        expect(quotation1).toStrictEqual(undefined);
+        expect(quotation1).toBeUndefined();
         expect(quotation2).toStrictEqual({
           id: 'Q1',
           price: 50.52,
@@ -282,7 +282,7 @@ describe('Quotations -> Quotation -> Service', () => {
           ],
           extra: 'extra',
         });
-        expect(quotation2).toStrictEqual(undefined);
+        expect(quotation2).toBeUndefined();
       });
 
       it('should return false when quotation2 is null', () => {
@@ -326,8 +326,8 @@ describe('Quotations -> Quotation -> Service', () => {
 
       expect(result).toBeTruthy();
       // don't mutate
-      expect(quotation1).toStrictEqual(undefined);
-      expect(quotation2).toStrictEqual(undefined);
+      expect(quotation1).toBeUndefined();
+      expect(quotation2).toBeUndefined();
     });
 
     it('should return true when both are null', () => {
@@ -498,7 +498,7 @@ describe('Quotations -> Quotation -> Service', () => {
 
         sinon.assert.callCount(fetchQuotation, 0);
         // don't mutate
-        expect(quotation).toStrictEqual(undefined);
+        expect(quotation).toBeUndefined();
         expect(isFetching).toStrictEqual(false);
         expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
@@ -547,7 +547,7 @@ describe('Quotations -> Quotation -> Service', () => {
         sinon.assert.calledWithExactly(fetchQuotation, 'test3');
         // don't mutate
         expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
-        expect(isFetching).toStrictEqual(undefined);
+        expect(isFetching).toBeUndefined();
         expect(quotations).toStrictEqual({
           test1: {id: 'test1', name: 'A', menus: []},
           test2: {id: 'test2', name: 'B', menus: []},
@@ -597,7 +597,7 @@ describe('Quotations -> Quotation -> Service', () => {
         // don't mutate
         expect(quotation).toStrictEqual({id: 'test3', name: 'ABC'});
         expect(isFetching).toStrictEqual(false);
-        expect(quotations).toStrictEqual(undefined);
+        expect(quotations).toBeUndefined();
       });
 
       it('should call fetchQuotation when quotations is null', () => {

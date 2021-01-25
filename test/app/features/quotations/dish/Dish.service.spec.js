@@ -25,7 +25,7 @@ describe('Quotations -> Dish -> Service', () => {
 
         expect(result).toBeTruthy();
         // don't mutate
-        expect(dishes).toStrictEqual(undefined);
+        expect(dishes).toBeUndefined();
         expect(allDishes).toStrictEqual({id1: {name: 'a'}, id2: {name: 'a2'}, id5: {name: 'a5'}});
       });
 
@@ -94,7 +94,7 @@ describe('Quotations -> Dish -> Service', () => {
         expect(result).toBeFalsy();
         // don't mutate
         expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id5'}]);
-        expect(allDishes).toStrictEqual(undefined);
+        expect(allDishes).toBeUndefined();
       });
 
       it('should get false when allDishes is null', () => {
@@ -271,7 +271,7 @@ describe('Quotations -> Dish -> Service', () => {
           expect(result).toBeTruthy();
           // don't mutate
           expect(dishId).toStrictEqual('d2');
-          expect(menuCourses).toStrictEqual(undefined);
+          expect(menuCourses).toBeUndefined();
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
             dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
@@ -320,7 +320,7 @@ describe('Quotations -> Dish -> Service', () => {
 
           expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).toStrictEqual(undefined);
+          expect(dishId).toBeUndefined();
           expect(menuCourses).toStrictEqual(null);
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
@@ -393,7 +393,7 @@ describe('Quotations -> Dish -> Service', () => {
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
           ]);
-          expect(multipleDishesDialog).toStrictEqual(undefined);
+          expect(multipleDishesDialog).toBeUndefined();
         });
 
         it('should get true when isMultipleDishesDialogOpen is multipleDishesDialog is undefined', () => {
@@ -451,7 +451,7 @@ describe('Quotations -> Dish -> Service', () => {
           expect(result).toBeFalsy();
           // don't mutate
           expect(dishId).toStrictEqual('d2');
-          expect(menuCourses).toStrictEqual(undefined);
+          expect(menuCourses).toBeUndefined();
           expect(multipleDishesDialog).toStrictEqual(null);
         });
 
@@ -500,7 +500,7 @@ describe('Quotations -> Dish -> Service', () => {
 
           expect(result).toBeFalsy();
           // don't mutate
-          expect(dishId).toStrictEqual(undefined);
+          expect(dishId).toBeUndefined();
           expect(menuCourses).toStrictEqual([
             {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
             {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
@@ -581,7 +581,7 @@ describe('Quotations -> Dish -> Service', () => {
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(dishes).toStrictEqual(undefined);
+        expect(dishes).toBeUndefined();
         expect(allDishes).toStrictEqual({
           id1: {price: 20},
           id2: {extra: 45},
@@ -632,7 +632,7 @@ describe('Quotations -> Dish -> Service', () => {
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(dishes).toStrictEqual([{id: 'id1'}, {id: 'id2'}, {id: 'id3'}, {id: 'id4'}]);
-        expect(allDishes).toStrictEqual(undefined);
+        expect(allDishes).toBeUndefined();
       });
 
       it('should get 0 when allDishes is null', () => {
@@ -692,7 +692,7 @@ describe('Quotations -> Dish -> Service', () => {
         // don't mutate
         expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
         expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
-        expect(dishes).toStrictEqual(undefined);
+        expect(dishes).toBeUndefined();
       });
 
       it('should not call fetchDish when dishes is null', () => {
@@ -747,7 +747,7 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, 'a5');
         sinon.assert.calledWithExactly(fetchDish, 'a6');
         // don't mutate
-        expect(allDishes).toStrictEqual(undefined);
+        expect(allDishes).toBeUndefined();
         expect(dishFetching).toStrictEqual({a3: false, a4: true, a20: true});
         expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
@@ -784,7 +784,7 @@ describe('Quotations -> Dish -> Service', () => {
         sinon.assert.calledWithExactly(fetchDish, 'a6');
         // don't mutate
         expect(allDishes).toStrictEqual({a5: {}, a9: {}, a10: {}});
-        expect(dishFetching).toStrictEqual(undefined);
+        expect(dishFetching).toBeUndefined();
         expect(dishes).toStrictEqual([{id: 'a1'}, {id: 'a2'}, {id: 'a3'}, {id: 'a4'}, {id: 'a5'}, {id: 'a6'}]);
       });
 

@@ -87,7 +87,7 @@ describe('Quotations -> Course Type -> Service', () => {
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseTypes).toStrictEqual(undefined);
+        expect(courseTypes).toBeUndefined();
         expect(shouldIncludeInactive).toStrictEqual(true);
       });
 
@@ -134,7 +134,7 @@ describe('Quotations -> Course Type -> Service', () => {
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(shouldIncludeInactive).toStrictEqual(undefined);
+        expect(shouldIncludeInactive).toBeUndefined();
       });
 
       it('should get sorted array when shouldIncludeInactive is null', () => {
@@ -238,7 +238,7 @@ describe('Quotations -> Course Type -> Service', () => {
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(allCourseTypes).toStrictEqual(undefined);
+        expect(allCourseTypes).toBeUndefined();
         expect(selectedTab).toStrictEqual(1);
       });
 
@@ -282,7 +282,7 @@ describe('Quotations -> Course Type -> Service', () => {
           {position: 15, status: 1},
           {position: 3, status: 1},
         ]);
-        expect(selectedTab).toStrictEqual(undefined);
+        expect(selectedTab).toBeUndefined();
       });
 
       it('should get undefined when selectedTab is null', () => {
@@ -393,7 +393,7 @@ describe('Quotations -> Course Type -> Service', () => {
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(courseType).toStrictEqual({id: 'a1'});
-        expect(allDishes).toStrictEqual(undefined);
+        expect(allDishes).toBeUndefined();
       });
 
       it('should get empty array when allDishes is null', () => {
@@ -455,7 +455,7 @@ describe('Quotations -> Course Type -> Service', () => {
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(courseType).toStrictEqual(undefined);
+        expect(courseType).toBeUndefined();
         expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a1'},
@@ -564,7 +564,7 @@ describe('Quotations -> Course Type -> Service', () => {
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(selectedTab).toStrictEqual(2);
-        expect(allDishes).toStrictEqual(undefined);
+        expect(allDishes).toBeUndefined();
         expect(allCourseTypes).toStrictEqual([
           {position: 5, id: 'a8', status: 1},
           {position: 1, id: 'a5', status: 1},
@@ -657,7 +657,7 @@ describe('Quotations -> Course Type -> Service', () => {
           {courseTypeId: 'a8'},
           {courseTypeId: 'a3'},
         ]);
-        expect(allCourseTypes).toStrictEqual(undefined);
+        expect(allCourseTypes).toBeUndefined();
       });
 
       it('should get empty array when allCourseTypes is null', () => {
@@ -708,7 +708,7 @@ describe('Quotations -> Course Type -> Service', () => {
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
-        expect(selectedTab).toStrictEqual(undefined);
+        expect(selectedTab).toBeUndefined();
         expect(allDishes).toStrictEqual([
           {courseTypeId: 'a5'},
           {courseTypeId: 'a8'},
