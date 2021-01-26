@@ -22,6 +22,7 @@ const addDishesCache = (courseTypeId, newDishes) => {
 };
 
 /* const addDishCache = (dishId, newDish) => {
+  // TODO: uncomment
   const cache = getCache();
   const oldData = cache ? cache.filter(dish => dish.id !== dishId) : [];
   window.localStorage.setItem(CACHE, JSON.stringify([...oldData, newDish]));
@@ -34,7 +35,7 @@ export const useActiveDishesByCourseType = courseTypeId => {
   const isOnline = useSelector(state => state.app.isOnline);
   const setQueryData = () => {
     const cache = getActiveDishesCacheByCourseType(courseTypeId);
-    cache && queryClient.setQueryData(KEY, cache);
+    cache && cache.length > 0 && queryClient.setQueryData(KEY, cache);
   };
 
   return useQuery(KEY, async () => {
