@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useQuery, useQueryClient} from 'react-query';
+import {useQueries, useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
 
 const DISH_KEY = 'Dish';
@@ -40,11 +40,6 @@ export const useActiveDishesByCourseType = courseTypeId => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const isOnline = useSelector(state => state.app.isOnline);
-  const setQueryData = () => {
-    const cache = getActiveDishesCacheByCourseType(courseTypeId);
-    cache && queryClient.setQueryData(KEY, cache);
-  };
-
   return useQuery(KEY, async () => {
     const body = {query: `{courseType(id: ${courseTypeId}) {activeDishes{${FIELDS}}}}`};
     const json = await Api.graphql(dispatch, body);
@@ -57,38 +52,49 @@ export const useActiveDishesByCourseType = courseTypeId => {
     retryDelay: 0,
     initialData: isOnline ? undefined : getActiveDishesCacheByCourseType(courseTypeId),
     enabled: !!courseTypeId,
-    onError: setQueryData,
+    onError: () => {
+      const cache = getActiveDishesCacheByCourseType(courseTypeId);
+      cache && queryClient.setQueryData(KEY, cache);
+    },
   });
 };
+
+const fetchDishById = (dishId, dispatch) => async () => {
+  const body = {query: `{dish(id: ${dishId}) {${FIELDS}}}`};
+  const json = await Api.graphql(dispatch, body);
+  const dish = json.data.dish;
+  addDishCache(dish);
+  return dish;
+};
+
+const queryOptionsDishById = (KEY, dishId, isOnline, queryClient) => ({
+  retry: 5,
+  retryDelay: 0,
+  initialData: isOnline ? undefined : getDishCache(dishId),
+  enabled: !!dishId,
+  onError: () => {
+    const cache = getDishCache(dishId);
+    cache && queryClient.setQueryData(KEY, cache);
+  },
+});
 
 export const useDish = dishId => {
   const KEY = [DISH_KEY, dishId];
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const isOnline = useSelector(state => state.app.isOnline);
-  const setQueryData = () => {
-    const cache = getDishCache(dishId);
-    cache && queryClient.setQueryData(KEY, cache);
-  };
-
-  return useQuery(KEY, async () => {
-    const body = {query: `{dish(id: ${dishId}) {${FIELDS}}}`};
-    const json = await Api.graphql(dispatch, body);
-    const dish = json.data.dish;
-    addDishCache(dish);
-    return dish;
-  }, {
-    retry: 5,
-    retryDelay: 0,
-    initialData: isOnline ? undefined : getDishCache(dishId),
-    enabled: !!dishId,
-    onError: setQueryData,
-  });
+  return useQuery(KEY, fetchDishById(dishId, dispatch), queryOptionsDishById(KEY, dishId, isOnline, queryClient));
 };
 
-/* export const useDishesByIds = dishesId => {
-  // TODO: find how to call hook in loop
-  dishesId.forEach(dishId => {
-    useDish(dishId);
-  });
-}; */
+export const useDishesByIds = dishesId => {
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const isOnline = useSelector(state => state.app.isOnline);
+  return useQueries(dishesId.map(dishId => {
+    return {
+      queryKey: [DISH_KEY, dishId],
+      queryFn: fetchDishById(dishId, dispatch),
+      QueryOptions: queryOptionsDishById([DISH_KEY, dishId], dishId, isOnline, queryClient),
+    };
+  }));
+};
