@@ -13,11 +13,6 @@ export const useCourseTypes = () => {
     return cache ? JSON.parse(cache) : undefined;
   };
 
-  const setQueryData = () => {
-    const cache = getCache();
-    cache && queryClient.setQueryData(KEY, cache);
-  };
-
   return useQuery(KEY, async () => {
     const body = {query: '{activeCourseTypes {id name picture position status}}'};
     const json = await Api.graphql(dispatch, body);
@@ -28,7 +23,10 @@ export const useCourseTypes = () => {
     retry: 5,
     retryDelay: 0,
     initialData: isOnline ? undefined : getCache(),
-    onError: setQueryData,
+    onError: () => {
+      const cache = getCache();
+      cache && queryClient.setQueryData(KEY, cache);
+    },
   });
 };
 
