@@ -11,8 +11,9 @@ const getCache = () => {
 };
 
 const getActiveDishesCacheByCourseType = courseTypeId => {
-  const cache = getCache();
-  return cache ? cache.filter(dish => dish.courseTypeId === courseTypeId && dish.status > 0) : undefined;
+  const cache = getCache() || [];
+  const filter = cache.filter(dish => dish.courseTypeId === courseTypeId && dish.status > 0);
+  return filter.length ? filter : undefined;
 };
 
 const addDishesCache = (courseTypeId, newDishes) => {
@@ -35,7 +36,7 @@ export const useActiveDishesByCourseType = courseTypeId => {
   const isOnline = useSelector(state => state.app.isOnline);
   const setQueryData = () => {
     const cache = getActiveDishesCacheByCourseType(courseTypeId);
-    cache && cache.length > 0 && queryClient.setQueryData(KEY, cache);
+    cache && queryClient.setQueryData(KEY, cache);
   };
 
   return useQuery(KEY, async () => {
