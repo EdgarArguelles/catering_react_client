@@ -48,8 +48,6 @@ export const useActiveDishesByCourseType = courseTypeId => {
     dishes.forEach(dish => queryClient.setQueryData([DISH_KEY, dish.id], dish));
     return dishes;
   }, {
-    retry: 5,
-    retryDelay: 0,
     initialData: isOnline ? undefined : getActiveDishesCacheByCourseType(courseTypeId),
     enabled: !!courseTypeId,
     onError: () => {
@@ -68,8 +66,6 @@ const fetchDishById = (dishId, dispatch) => async () => {
 };
 
 const queryOptionsDishById = (KEY, dishId, isOnline, queryClient) => ({
-  retry: 5,
-  retryDelay: 0,
   initialData: isOnline ? undefined : getDishCache(dishId),
   enabled: !!dishId,
   onError: () => {
