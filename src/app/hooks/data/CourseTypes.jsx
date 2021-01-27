@@ -40,7 +40,7 @@ export const useDBVersion = courseTypes => {
     const version = json.data.version.version;
     if (version !== parseInt(window.localStorage.getItem(CACHE), 10)) {
       window.localStorage.setItem(CACHE, version);
-      // TODO: clean dishes from window.localStorage
+      // TODO: clean dishes from window.localStorage and queryClient.invalidateQueries(KEY)
     }
     return version;
   }, {enabled: !!courseTypes});

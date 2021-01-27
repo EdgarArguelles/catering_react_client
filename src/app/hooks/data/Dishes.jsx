@@ -65,30 +65,27 @@ const fetchDishById = (dishId, dispatch) => async () => {
   return dish;
 };
 
-const queryOptionsDishById = (KEY, dishId, queryClient) => ({
-  initialData: getDishCache(dishId),
-  enabled: !!dishId,
-  onError: () => {
-    const cache = getDishCache(dishId);
-    cache && queryClient.setQueryData(KEY, cache);
-  },
-});
-
 export const useDish = dishId => {
   const KEY = [DISH_KEY, dishId];
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  return useQuery(KEY, fetchDishById(dishId, dispatch), queryOptionsDishById(KEY, dishId, queryClient));
+  return useQuery(KEY, fetchDishById(dishId, dispatch), {
+    initialData: getDishCache(dishId),
+    enabled: !!dishId,
+    onError: () => {
+      const cache = getDishCache(dishId);
+      cache && queryClient.setQueryData(KEY, cache);
+    },
+  });
 };
 
 export const useDishesByIds = dishesId => {
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
-  return useQueries(dishesId.map(dishId => {
+  return useQueries(dishesId.filter(dishId => dishId).map(dishId => {
+    const cache = getDishCache(dishId);
     return {
       queryKey: [DISH_KEY, dishId],
-      queryFn: fetchDishById(dishId, dispatch),
-      QueryOptions: queryOptionsDishById([DISH_KEY, dishId], dishId, queryClient),
+      queryFn: cache ? () => cache : fetchDishById(dishId, dispatch),
     };
   }));
 };
