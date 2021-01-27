@@ -23,9 +23,10 @@ const getDishCache = dishId => {
   return found ? found : undefined;
 };
 
-const addDishesCache = (courseTypeId, newDishes) => {
+const addDishesCache = newDishes => {
   const cache = getCache();
-  const oldData = cache.filter(dish => dish.courseTypeId !== courseTypeId);
+  const newIds = newDishes.map(dish => dish.id);
+  const oldData = cache.filter(dish => !newIds.includes(dish.id));
   window.localStorage.setItem(CACHE, JSON.stringify([...oldData, ...newDishes]));
 };
 
@@ -44,7 +45,7 @@ export const useActiveDishesByCourseType = courseTypeId => {
     const body = {query: `{courseType(id: ${courseTypeId}) {activeDishes{${FIELDS}}}}`};
     const json = await Api.graphql(dispatch, body);
     const dishes = json.data.courseType.activeDishes.map(dish => ({...dish, courseTypeId}));
-    addDishesCache(courseTypeId, dishes);
+    addDishesCache(dishes);
     dishes.forEach(dish => queryClient.setQueryData([DISH_KEY, dish.id], dish));
     return dishes;
   }, {
