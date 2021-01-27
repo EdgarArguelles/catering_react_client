@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useQueries, useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
 
@@ -40,7 +40,6 @@ export const useActiveDishesByCourseType = courseTypeId => {
   const KEY = ['ActiveDishes', courseTypeId];
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const isOnline = useSelector(state => state.app.isOnline);
   return useQuery(KEY, async () => {
     const body = {query: `{courseType(id: ${courseTypeId}) {activeDishes{${FIELDS}}}}`};
     const json = await Api.graphql(dispatch, body);
@@ -49,7 +48,7 @@ export const useActiveDishesByCourseType = courseTypeId => {
     dishes.forEach(dish => queryClient.setQueryData([DISH_KEY, dish.id], dish));
     return dishes;
   }, {
-    initialData: isOnline ? undefined : getActiveDishesCacheByCourseType(courseTypeId),
+    initialData: getActiveDishesCacheByCourseType(courseTypeId),
     enabled: !!courseTypeId,
     onError: () => {
       const cache = getActiveDishesCacheByCourseType(courseTypeId);
@@ -66,8 +65,8 @@ const fetchDishById = (dishId, dispatch) => async () => {
   return dish;
 };
 
-const queryOptionsDishById = (KEY, dishId, isOnline, queryClient) => ({
-  initialData: isOnline ? undefined : getDishCache(dishId),
+const queryOptionsDishById = (KEY, dishId, queryClient) => ({
+  initialData: getDishCache(dishId),
   enabled: !!dishId,
   onError: () => {
     const cache = getDishCache(dishId);
@@ -79,19 +78,17 @@ export const useDish = dishId => {
   const KEY = [DISH_KEY, dishId];
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const isOnline = useSelector(state => state.app.isOnline);
-  return useQuery(KEY, fetchDishById(dishId, dispatch), queryOptionsDishById(KEY, dishId, isOnline, queryClient));
+  return useQuery(KEY, fetchDishById(dishId, dispatch), queryOptionsDishById(KEY, dishId, queryClient));
 };
 
 export const useDishesByIds = dishesId => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const isOnline = useSelector(state => state.app.isOnline);
   return useQueries(dishesId.map(dishId => {
     return {
       queryKey: [DISH_KEY, dishId],
       queryFn: fetchDishById(dishId, dispatch),
-      QueryOptions: queryOptionsDishById([DISH_KEY, dishId], dishId, isOnline, queryClient),
+      QueryOptions: queryOptionsDishById([DISH_KEY, dishId], dishId, queryClient),
     };
   }));
 };
