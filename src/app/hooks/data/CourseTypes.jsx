@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
+import {ACTIVE_DISHES_KEY, CACHE as DISH_CACHE, DISH_KEY} from 'app/hooks/data/Dishes';
 
 export const useCourseTypes = () => {
   const KEY = 'CourseTypes';
@@ -34,13 +35,16 @@ export const useDBVersion = courseTypes => {
   const KEY = 'DBVersion';
   const CACHE = 'versionCached';
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   return useQuery(KEY, async () => {
     const body = {query: '{version {version}}'};
     const json = await Api.graphql(dispatch, body);
     const version = json.data.version.version;
     if (version !== parseInt(window.localStorage.getItem(CACHE), 10)) {
       window.localStorage.setItem(CACHE, version);
-      // TODO: clean dishes from window.localStorage and queryClient.invalidateQueries(KEY)
+      window.localStorage.removeItem(DISH_CACHE);
+      queryClient.removeQueries(ACTIVE_DISHES_KEY);
+      queryClient.removeQueries(DISH_KEY);
     }
     return version;
   }, {enabled: !!courseTypes});

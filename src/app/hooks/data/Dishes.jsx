@@ -2,8 +2,9 @@ import {useDispatch} from 'react-redux';
 import {useQueries, useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
 
-const DISH_KEY = 'Dish';
-const CACHE = 'dishesCached';
+export const DISH_KEY = 'Dish';
+export const ACTIVE_DISHES_KEY = 'ActiveDishes';
+export const CACHE = 'dishesCached';
 const FIELDS = 'id name description picture price status categories{name}';
 
 const getCache = () => {
@@ -37,7 +38,7 @@ const addDishCache = newDish => {
 };
 
 export const useActiveDishesByCourseType = courseTypeId => {
-  const KEY = ['ActiveDishes', courseTypeId];
+  const KEY = [ACTIVE_DISHES_KEY, courseTypeId];
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   return useQuery(KEY, async () => {
