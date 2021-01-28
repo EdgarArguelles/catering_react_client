@@ -8,7 +8,6 @@ describe('Middlewares -> TemporalStorage', () => {
     nextStub.reset();
     window.localStorage.removeItem('appTheme');
     window.sessionStorage.removeItem('quotationsState');
-    window.localStorage.removeItem('dataState');
   });
 
   it('should process action and store data in sessionStorage and localStorage', () => {
@@ -16,7 +15,6 @@ describe('Middlewares -> TemporalStorage', () => {
       id: 'state 1',
       app: {theme: 'dark'},
       quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
-      data: {id: 'D1', courseTypes: {data: {id: 'CT1'}}, dishes: {data: [{id: 'd1'}, {id: 'd2'}]}},
     });
     const store = {id: 'store 1', getState};
     const action = {type: 'action1'};
@@ -31,9 +29,6 @@ describe('Middlewares -> TemporalStorage', () => {
       id: 'Q1',
       extra: 'abc',
       isRemoteProcessing: false,
-    }));
-    expect(window.localStorage.getItem('dataState')).toStrictEqual(JSON.stringify({
-      dishes: {data: [{id: 'd1'}, {id: 'd2'}]},
     }));
     sinon.assert.callCount(nextStub, 1);
     sinon.assert.calledWithExactly(nextStub, action);
