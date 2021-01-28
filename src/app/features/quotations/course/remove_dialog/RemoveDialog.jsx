@@ -1,17 +1,19 @@
 import './RemoveDialog.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {getDishesPrice} from 'app/features/quotations/dish/Dish.service';
+import {useDispatch} from 'react-redux';
+import {useDishesByIds} from 'app/hooks/data/Dishes';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {decreasePrice, removeCourse} from 'app/features/quotations/menu/MenuReducer';
 
 const RemoveDialog = ({course, open, onClose}) => {
   const dispatch = useDispatch();
-  const dishes = useSelector(state => state.data.dishes.data);
+  const results = useDishesByIds(course.dishes.map(dish => dish.id));
+  const dishes = results.filter(result => result.data).map(result => result.data);
   const removeAction = () => {
+    const coursePrice = dishes.reduce((accumulator, dish) => dish.price ? accumulator + dish.price : accumulator, 0);
     dispatch(removeCourse({courseTypeId: course.type.id, position: course.position}));
-    dispatch(decreasePrice(getDishesPrice(course.dishes, dishes)));
+    dispatch(decreasePrice(coursePrice));
   };
 
   return (
