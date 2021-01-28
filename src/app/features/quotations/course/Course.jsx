@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
-import {useAreDishesLoaded} from 'app/hooks/Common';
+import {useDishesByIds} from 'app/hooks/data/Dishes';
 import Animate from 'app/common/components/animate/Animate';
 import CourseContent from './course_content/CourseContent';
 import RemoveDialog from './remove_dialog/RemoveDialog';
@@ -13,7 +13,8 @@ const Course = ({course}) => {
   const [animationIn, setAnimationIn] = useState('fadeInLeft');
   const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   const [removeAction, setRemoveAction] = useState(null);
-  const areDishesLoaded = useAreDishesLoaded(course.dishes);
+  const results = useDishesByIds(course.dishes.map(dish => dish.id));
+  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
   const onClose = action => {
     const resetRemoveAction = () => {
       action();
@@ -43,7 +44,7 @@ const Course = ({course}) => {
     );
   };
 
-  if (!areDishesLoaded) {
+  if (isAnyLoading) {
     return getLoading();
   }
 
