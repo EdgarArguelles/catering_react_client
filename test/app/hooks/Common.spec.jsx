@@ -6,14 +6,12 @@ import React, {useState} from 'react';
 import {renderReduxComponent} from 'app/../../test/TestHelper';
 import {
   useAppTheme,
-  useAreDishesLoaded,
   useBrowserNavigation,
   useIsMobileSize,
   usePingServer,
   useQuotationsLoader,
 } from 'app/hooks/Common';
 import {changeTheme as changeThemeAction} from 'app/AppReducer';
-import * as DishesActions from 'app/data/dishes/DishesReducer';
 import * as QuotationsActions from 'app/data/quotations/QuotationsReducer';
 import * as AuthActions from 'app/features/auth/AuthReducer';
 import * as NavigationActions from 'app/features/quotations/header/navigation/NavigationReducer';
@@ -201,83 +199,6 @@ describe('Hooks -> Common', () => {
       sinon.assert.callCount(fetchQuotationStub, 1);
       sinon.assert.calledWithExactly(fetchQuotationStub, {quotationId: 'Q1', overwriteLocalChanges: false});
       sinon.assert.callCount(dispatchStub, 0);
-    });
-  });
-
-  describe('useAreDishesLoaded', () => {
-    const fetchDishStub = sinon.stub(DishesActions, 'fetchDish');
-
-    afterEach(() => fetchDishStub.reset());
-
-    it('should return true as hook response', () => {
-      mountComponent(() => useAreDishesLoaded([]), {data: {dishes: {}}}, false);
-
-      expect(hookResponse).toBeTruthy();
-      sinon.assert.callCount(fetchDishStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    describe('not calling fetchDish', () => {
-      beforeEach(() => {
-        const data = mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
-          data: {
-            dishes: {
-              data: {D2: {id: 'D2'}, D3: {id: 'D3'}, D4: {id: 'D4'}},
-              fetching: {D1: true},
-            },
-          },
-        }, false);
-        wrapper = data.wrapper;
-        store = data.store;
-      });
-
-      it('should not call fetchDish', () => {
-        // call onChange to trigger useEffect
-        fireOnChange();
-
-        expect(hookResponse).toBeFalsy();
-        sinon.assert.callCount(fetchDishStub, 0);
-        sinon.assert.callCount(dispatchStub, 0);
-      });
-
-      it('should not call fetchDish when dispatch createQuotation', () => {
-        act(() => store.dispatch({type: QuotationsActions.createQuotation.fulfilled.type}));
-
-        expect(hookResponse).toBeFalsy();
-        sinon.assert.callCount(fetchDishStub, 0);
-        sinon.assert.callCount(dispatchStub, 1);
-        sinon.assert.calledWithExactly(dispatchStub, {type: 'DATA_QUOTATIONS/createQuotation/fulfilled'});
-      });
-    });
-
-    describe('calling fetchDish', () => {
-      beforeEach(() => {
-        fetchDishStub.withArgs('D1').returns({type: 'TEST 1'});
-        fetchDishStub.withArgs('D2').returns({type: 'TEST 2'});
-        fetchDishStub.withArgs('D3').returns({type: 'TEST 3'});
-        fetchDishStub.withArgs('D4').returns({type: 'TEST 4'});
-        const data = mountComponent(() => useAreDishesLoaded([{id: 'D1'}, {id: 'D2'}, {id: 'D3'}, {id: 'D4'}]), {
-          data: {dishes: {}},
-        }, false);
-        wrapper = data.wrapper;
-      });
-
-      it('should call fetchDish', () => {
-        // call onChange to trigger useEffect
-        fireOnChange();
-
-        expect(hookResponse).toBeFalsy();
-        sinon.assert.callCount(fetchDishStub, 4);
-        sinon.assert.calledWithExactly(fetchDishStub, 'D1');
-        sinon.assert.calledWithExactly(fetchDishStub, 'D2');
-        sinon.assert.calledWithExactly(fetchDishStub, 'D3');
-        sinon.assert.calledWithExactly(fetchDishStub, 'D4');
-        sinon.assert.callCount(dispatchStub, 4);
-        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
-        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 2'});
-        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 3'});
-        sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 4'});
-      });
     });
   });
 });

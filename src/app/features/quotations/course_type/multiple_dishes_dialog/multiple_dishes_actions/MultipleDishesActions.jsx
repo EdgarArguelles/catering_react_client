@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {useDishesByIds} from 'app/hooks/data/Dishes';
-import {useAreDishesLoaded} from 'app/hooks/Common';
 import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
 import {cleanDishes} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
 
@@ -14,6 +13,7 @@ const MultipleDishesActions = ({courseType, onClose}) => {
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
   const results = useDishesByIds(multipleDishes.map(dish => dish.id));
   const dishes = results.filter(result => result.data).map(result => result.data);
+  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
   const handleCleanDishes = () => dispatch(cleanDishes());
   const handleAddCourse = (dishesIds, position) => dispatch(addCourse({
     courseTypeId: courseType.id,
@@ -21,7 +21,6 @@ const MultipleDishesActions = ({courseType, onClose}) => {
     position,
   }));
   const handleIncreasePrice = amount => dispatch(increasePrice(amount));
-  const areDishesLoaded = useAreDishesLoaded(multipleDishes);
 
   const save = () => {
     const courseTypeCourses = menuCourses.filter(course => course.type.id === courseType.id);
@@ -35,8 +34,7 @@ const MultipleDishesActions = ({courseType, onClose}) => {
   return (
     <div className="multiple-dishes-actions">
       <Button onClick={onClose}>Cancelar</Button>
-      {areDishesLoaded &&
-      <Button color="primary" onClick={save} disabled={multipleDishes.length <= 0}>Crear</Button>}
+      {!isAnyLoading && <Button color="primary" onClick={save} disabled={multipleDishes.length <= 0}>Crear</Button>}
     </div>
   );
 };

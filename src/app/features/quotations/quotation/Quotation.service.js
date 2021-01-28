@@ -54,9 +54,7 @@ const cleanMenus = quotation => {
  * @param {object} quotation2 quotation object to be evaluated
  * @return {boolean} true if both quotation objects are equals
  */
-export const areEqual = (quotation1, quotation2) => {
-  return isEqual(cleanMenus(quotation1), cleanMenus(quotation2));
-};
+export const areEqual = (quotation1, quotation2) => isEqual(cleanMenus(quotation1), cleanMenus(quotation2));
 
 /**
  * Call fetchQuotation function when quotation has id and its not already present or its incomplete

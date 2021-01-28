@@ -3,9 +3,7 @@
  *
  * @return {string} random menu id generated
  */
-export const getRandomMenuId = () => {
-  return `local-${Math.random().toString(36).substring(2)}`;
-};
+export const getRandomMenuId = () => `local-${Math.random().toString(36).substring(2)}`;
 
 /**
  * Generate a link with a menu information
