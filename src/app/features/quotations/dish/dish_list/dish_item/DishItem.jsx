@@ -8,6 +8,7 @@ import {faCheckCircle, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Utils from 'app/common/Utils';
+import {useDish} from 'app/hooks/data/Dishes';
 import Image from 'app/common/components/image/Image';
 import Animate from 'app/common/components/animate/Animate';
 import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
@@ -17,8 +18,8 @@ const DishItem = ({dish}) => {
   const dispatch = useDispatch();
   const multipleDishesDialog = useSelector(state => state.quotations.multipleDishesDialog);
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
-  const selected = useSelector(state =>
-    state.data.dishes.data ? state.data.dishes.data[state.quotations.dish.selected] : null);
+  const selectedDish = useSelector(state => state.quotations.dish.selected);
+  const {data: selected} = useDish(selectedDish);
   const show = !selected || selected.id !== dish.id;
   const handleSelectDish = () => dispatch(selectDish(dish.id));
 

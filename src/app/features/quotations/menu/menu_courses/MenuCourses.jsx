@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
 import {useAreDishesLoaded} from 'app/hooks/Common';
-import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 
 const MenuCourses = ({courseType}) => {
@@ -14,7 +13,7 @@ const MenuCourses = ({courseType}) => {
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
   const areDishesLoaded = useAreDishesLoaded(courses.map(course => course.dishes).flatten());
-  const sortedCourseTypes = getSortedCourseTypes(courses, true);
+  const sortedCourses = courses.sort((a, b) => a.position - b.position);
 
   const getCourse = course => {
     const dishes = [];
@@ -29,10 +28,10 @@ const MenuCourses = ({courseType}) => {
   };
 
   const getRenderer = () => {
-    return <ol type="I">{sortedCourseTypes.map(course => getCourse(course))}</ol>;
+    return <ol type="I">{sortedCourses.map(course => getCourse(course))}</ol>;
   };
 
-  const getLoading = () => Array(sortedCourseTypes.length).fill(courseType.id).map((value, index) => (
+  const getLoading = () => Array(sortedCourses.length).fill(courseType.id).map((value, index) => (
     <div key={`${value}-${index}`}>
       <Skeleton variant="circle" animation="wave" className="loader-circle"/>
       <Skeleton variant="text" animation="wave" className="loader-text"/>
