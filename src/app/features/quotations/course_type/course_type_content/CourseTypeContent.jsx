@@ -2,7 +2,6 @@ import './CourseTypeContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
 import DragDrop from 'app/common/components/drag_drop/DragDrop';
 import Course from 'app/features/quotations/course/Course';
 import EmptyCourseType from './empty_course_type/EmptyCourseType';
@@ -22,7 +21,7 @@ const CourseTypeContent = ({className, courseType}) => {
     <div className="course-type-content">
       <p className="title">ORDENA LOS TIEMPOS DE TU MENU</p>
       <DragDrop id="courses-draggable" draggableClassName="draggable"
-                data={getSortedCourseTypes(courses, true)}
+                data={courses.sort((a, b) => a.position - b.position)}
                 onChangePosition={handleChangeCoursesPosition}
                 drawContent={course => <Course course={course}/>}/>
     </div>
