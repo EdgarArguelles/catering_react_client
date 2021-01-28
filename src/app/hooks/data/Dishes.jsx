@@ -45,7 +45,6 @@ export const useActiveDishesByCourseType = courseTypeId => {
     const json = await Api.graphql(dispatch, body);
     const dishes = json.data.courseType.activeDishes.map(dish => ({...dish, courseTypeId}));
     addDishesCache(dishes);
-    dishes.forEach(dish => queryClient.setQueryData([DISH_KEY, dish.id], dish));
     return dishes;
   }, {
     initialData: getActiveDishesCacheByCourseType(courseTypeId),
