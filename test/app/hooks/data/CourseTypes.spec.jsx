@@ -11,21 +11,24 @@ describe('Hooks -> Data -> CourseTypes', () => {
   const dispatchStub = sinon.stub();
   const graphqlStub = sinon.stub(Api, 'graphql');
   const setQueryDataStub = sinon.stub();
+  const removeQueriesStub = sinon.stub();
   let hookResponse;
 
   afterEach(() => {
     dispatchStub.reset();
     graphqlStub.reset();
     setQueryDataStub.reset();
+    removeQueriesStub.reset();
     hookResponse = undefined;
     window.localStorage.removeItem('courseTypesCached');
     window.localStorage.removeItem('versionCached');
+    window.localStorage.removeItem('dishesCached');
   });
 
   const mountComponent = renderQueryComponent(({hook}) => {
     hookResponse = hook();
     return <div/>;
-  }, {dispatchStub, setQueryDataStub});
+  }, {dispatchStub, setQueryDataStub, removeQueriesStub});
 
   describe('useCourseTypes', () => {
     const body = {query: '{activeCourseTypes {id name picture position status}}'};
@@ -40,6 +43,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
@@ -49,6 +53,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
     });
 
     it('should not load course types when error and cache is not present', async () => {
@@ -61,6 +66,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 6)));
@@ -69,6 +75,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 6);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
     });
 
     it('should restore course types when error and cache is present', async () => {
@@ -82,6 +89,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 6)));
@@ -91,6 +99,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 1);
       sinon.assert.calledWithExactly(setQueryDataStub, 'CourseTypes', {id: 5});
+      sinon.assert.callCount(removeQueriesStub, 0);
     });
   });
 
@@ -99,47 +108,58 @@ describe('Hooks -> Data -> CourseTypes', () => {
 
     it('should not load version when courseTypes is not present', async () => {
       window.localStorage.setItem('versionCached', '5');
+      window.localStorage.setItem('dishesCached', 'old value');
 
       mountComponent(() => useDBVersion(null), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
 
       expect(hookResponse.data).toBeUndefined();
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('5');
+      expect(window.localStorage.getItem('dishesCached')).toStrictEqual('old value');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
     });
 
     it('should load version when courseTypes is present', async () => {
       const jsonExpected = {data: {version: {version: 'version1'}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '5');
+      window.localStorage.setItem('dishesCached', 'old value');
 
       mountComponent(() => useDBVersion(60), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
 
       expect(hookResponse.data).toStrictEqual('version1');
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('version1');
+      expect(window.localStorage.getItem('dishesCached')).toStrictEqual(null);
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 2);
+      sinon.assert.calledWithExactly(removeQueriesStub, 'ActiveDishes');
+      sinon.assert.calledWithExactly(removeQueriesStub, 'Dish');
     });
 
     it('should not update version when caches is the same', async () => {
       const jsonExpected = {data: {version: {version: 4}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '4');
+      window.localStorage.setItem('dishesCached', 'old value');
 
       mountComponent(() => useDBVersion(60), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
 
       expect(hookResponse.data).toStrictEqual(4);
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('4');
+      expect(window.localStorage.getItem('dishesCached')).toStrictEqual('old value');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
     });
   });
 });

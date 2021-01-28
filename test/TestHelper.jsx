@@ -12,19 +12,21 @@ const getStore = (dispatchStub, state, useRealStore) => {
   return useRealStore ? createStore(reducers, state) : store;
 };
 
-export const renderQueryComponent = (Component, {dispatchStub, setQueryDataStub}) => (hook, state, useRealStore) => {
-  const queryClient = new QueryClient();
-  setQueryDataStub && (queryClient.setQueryData = setQueryDataStub);
+export const renderQueryComponent = (Component, {dispatchStub, setQueryDataStub, removeQueriesStub}) =>
+  (hook, state, useRealStore) => {
+    const queryClient = new QueryClient();
+    setQueryDataStub && (queryClient.setQueryData = setQueryDataStub);
+    removeQueriesStub && (queryClient.removeQueries = removeQueriesStub);
 
-  const store = getStore(dispatchStub, state, useRealStore);
-  const wrapper = renderer.create(
-    <Provider store={store}><QueryClientProvider client={queryClient}>
-      <Component hook={hook}/>
-    </QueryClientProvider></Provider>,
-  );
+    const store = getStore(dispatchStub, state, useRealStore);
+    const wrapper = renderer.create(
+      <Provider store={store}><QueryClientProvider client={queryClient}>
+        <Component hook={hook}/>
+      </QueryClientProvider></Provider>,
+    );
 
-  return {wrapper, store};
-};
+    return {wrapper, store};
+  };
 
 export const renderReduxComponent = (Component, dispatchStub) => (hook, state, useRealStore) => {
   const store = getStore(dispatchStub, state, useRealStore);
