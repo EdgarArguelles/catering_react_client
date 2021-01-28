@@ -80,7 +80,8 @@ export const useDish = dishId => {
 
 export const useDishesByIds = dishesId => {
   const dispatch = useDispatch();
-  return useQueries(dishesId.filter(dishId => dishId).map(dishId => {
+  const toFetch = [...new Set(dishesId.filter(dishId => dishId))]; // remove invalid and duplicated entries
+  return useQueries(toFetch.map(dishId => {
     const cache = getDishCache(dishId);
     return {
       queryKey: [DISH_KEY, dishId],
