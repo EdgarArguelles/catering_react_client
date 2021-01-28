@@ -11,7 +11,7 @@ const MenuCourses = ({courseType}) => {
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
-  const dishesIds = courses.map(course => [...course.dishes.map(dish => dish.id)]).flat();
+  const dishesIds = courses.map(course => course.dishes.map(dish => dish.id)).flat();
   const results = useDishesByIds(dishesIds);
   const allDishes = results.filter(result => result.data).map(result => result.data);
   const isAnyLoading = !!results.map(result => result.isLoading).filter(value => value).length;

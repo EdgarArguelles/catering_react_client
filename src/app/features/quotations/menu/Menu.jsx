@@ -11,8 +11,8 @@ import ShareButton from 'app/common/components/share_button/ShareButton';
 import MenuCourses from './menu_courses/MenuCourses';
 
 const Menu = () => {
-  const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const {data: courseTypes} = useCourseTypes();
+  const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const sortedCourseTypes = getSortedCourseTypes(courseTypes);
 
   if (!menu) {
