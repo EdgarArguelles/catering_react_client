@@ -3,16 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
-import {useAreDishesLoaded} from 'app/hooks/Common';
+import {useDishesByIds} from 'app/hooks/data/Dishes';
 import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
 
 const MenuCourses = ({courseType}) => {
   const dispatch = useDispatch();
-  const allDishes = useSelector(state => state.data.dishes.data);
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
-  const areDishesLoaded = useAreDishesLoaded(courses.map(course => course.dishes).flatten());
+  const dishesIds = courses.map(course => [...course.dishes.map(dish => dish.id)]).flat();
+  const results = useDishesByIds(dishesIds);
+  const allDishes = results.filter(result => result.data).map(result => result.data);
+  const isAnyLoading = !!results.map(result => result.isLoading).filter(value => value).length;
   const sortedCourses = courses.sort((a, b) => a.position - b.position);
 
   const getCourse = course => {
@@ -21,7 +23,8 @@ const MenuCourses = ({courseType}) => {
     course.dishes.forEach((dish, index) => {
       let ext = index === course.dishes.length - 2 ? ' y ' : ', ';
       ext = index === course.dishes.length - 1 ? '' : ext;
-      dishes.push(<span key={dish.id}><a onClick={() => selectDish(dish.id)}>{allDishes[dish.id].name}</a>{ext}</span>);
+      const dishName = allDishes.find(d => d.id === dish.id).name;
+      dishes.push(<span key={dish.id}><a onClick={() => selectDish(dish.id)}>{dishName}</a>{ext}</span>);
     });
 
     return <li key={`${course.type.id}-${course.position}`}>{dishes}</li>;
@@ -41,7 +44,7 @@ const MenuCourses = ({courseType}) => {
   return (
     <div className="course-type">
       <p className="name">{courseType.name}</p>
-      {areDishesLoaded ? getRenderer() : getLoading()}
+      {isAnyLoading ? getLoading() : getRenderer()}
     </div>
   );
 };
