@@ -5,7 +5,7 @@ import {waitFor} from '@testing-library/react';
 import React from 'react';
 import {renderQueryComponent} from 'app/../../test/TestHelper';
 import Api from 'app/common/Api';
-import {CACHE, useActiveDishesByCourseType, useDish} from 'app/hooks/data/Dishes';
+import {CACHE, useActiveDishesByCourseType, useDish, useDishesByIds} from 'app/hooks/data/Dishes';
 
 describe('Hooks -> Data -> Dishes', () => {
   const FIELDS = 'id name description picture price status categories{name}';
@@ -180,6 +180,51 @@ describe('Hooks -> Data -> Dishes', () => {
       expect(window.localStorage.getItem(CACHE)).toStrictEqual(JSON.stringify([{id: 3}, {id: dishId}, {id: 4}]));
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
+    });
+  });
+
+  describe('useDishesByIds', () => {
+    it('should not get dishes when dishesId is not present', async () => {
+      mountComponent(() => useDishesByIds(), {}, false);
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
+      expect(hookResponse.data).toBeUndefined();
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 0);
+    });
+
+    it('should not get dishes when dishesId has invalid values', async () => {
+      mountComponent(() => useDishesByIds([undefined, null, 0, null, '']), {}, false);
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
+      expect(hookResponse.data).toBeUndefined();
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 0);
+    });
+
+    it('should fetch 2 dishes', async () => {
+      const dishesId = [2, undefined, 3, null, 1, 0, 3, 4, null, 3, 1, '', 2];
+      const dish1 = {id: 1, name: 'test 1'};
+      const dish2 = {id: 2, name: 'test 2'};
+      const dish3 = {id: 3, name: 'test 3'};
+      const dish4 = {id: 4, name: 'test 4'};
+      const body2 = {query: `{dish(id: 2) {${FIELDS}}}`};
+      const body3 = {query: `{dish(id: 3) {${FIELDS}}}`};
+      graphqlStub.withArgs(dispatchStub, body2).returns({data: {dish: dish2}});
+      graphqlStub.withArgs(dispatchStub, body3).returns({data: {dish: dish3}});
+      window.localStorage.setItem(CACHE, JSON.stringify([dish1, dish4]));
+
+      mountComponent(() => useDishesByIds(dishesId), {}, false);
+
+      // wait until fire all useQueries
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 2)));
+      expect(hookResponse[0].data).toStrictEqual(dish2);
+      expect(hookResponse[1].data).toStrictEqual(dish3);
+      expect(hookResponse[2].data).toStrictEqual(dish1);
+      expect(hookResponse[3].data).toStrictEqual(dish4);
+      expect(window.localStorage.getItem(CACHE)).toStrictEqual(JSON.stringify([dish1, dish4, dish2, dish3]));
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 2);
+      sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body2);
+      sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body3);
     });
   });
 });
