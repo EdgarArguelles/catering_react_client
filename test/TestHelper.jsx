@@ -14,7 +14,7 @@ const getStore = (dispatchStub, state, useRealStore) => {
 
 export const renderQueryComponent = (Component, {dispatchStub, setQueryDataStub, removeQueriesStub}) =>
   (hook, state, useRealStore) => {
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({defaultOptions: {queries: {retry: false, staleTime: Infinity}}});
     setQueryDataStub && (queryClient.setQueryData = setQueryDataStub);
     removeQueriesStub && (queryClient.removeQueries = removeQueriesStub);
 
