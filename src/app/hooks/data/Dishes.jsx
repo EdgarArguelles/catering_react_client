@@ -69,7 +69,7 @@ export const useDish = dishId => {
   });
 };
 
-export const useDishesByIds = dishesId => {
+export const useDishesByIds = (dishesId = []) => {
   const dispatch = useDispatch();
   const toFetch = [...new Set(dishesId.filter(dishId => dishId))]; // remove invalid and duplicated entries
   return useQueries(toFetch.map(dishId => {
