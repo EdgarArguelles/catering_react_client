@@ -78,14 +78,14 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
-    it('should restore course types when error and cache is present', async () => {
+    it('should restore course types when online and error and cache is present', async () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
       window.localStorage.setItem('courseTypesCached', JSON.stringify({id: 5}));
 
-      mountComponent(() => useCourseTypes(), {app: {isOnline: false}}, false);
-      // should use cache as initial data when offline and cache is present before useQuery is fired
-      expect(hookResponse.data).toStrictEqual({id: 5});
+      mountComponent(() => useCourseTypes(), {app: {isOnline: true}}, false);
+      // should use undefined as initial data when online before useQuery is fired
+      expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
@@ -99,6 +99,24 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 1);
       sinon.assert.calledWithExactly(setQueryDataStub, 'CourseTypes', {id: 5});
+      sinon.assert.callCount(removeQueriesStub, 0);
+    });
+
+    it('should use cache as initial data when offline and cache is present', async () => {
+      window.localStorage.setItem('courseTypesCached', JSON.stringify({id: 5}));
+
+      mountComponent(() => useCourseTypes(), {app: {isOnline: false}}, false);
+      expect(hookResponse.data).toStrictEqual({id: 5});
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 0);
+      sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
+
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
+      expect(hookResponse.data).toStrictEqual({id: 5});
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 0);
+      sinon.assert.callCount(setQueryDataStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
   });
