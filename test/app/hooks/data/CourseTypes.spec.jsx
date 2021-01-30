@@ -183,7 +183,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.calledWithExactly(removeQueriesStub, 'Dish');
     });
 
-    it('should not update version when caches is the same', async () => {
+    it('should not update version when cache is the same', async () => {
       const jsonExpected = {data: {version: {version: 4}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '4');
