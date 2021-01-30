@@ -78,6 +78,28 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
+    it('should not restore course types when online and error and cache is not present', async () => {
+      const errorExpected = new Error('error 1');
+      graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
+
+      mountComponent(() => useCourseTypes(), {app: {isOnline: true}}, false);
+      // should use undefined as initial data when online before useQuery is fired
+      expect(hookResponse.data).toBeUndefined();
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 0);
+      sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
+
+      // wait until fire useQuery
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 6)));
+      expect(hookResponse.status).toStrictEqual('error');
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 6);
+      sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+      sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
+    });
+
     it('should restore course types when online and error and cache is present', async () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
