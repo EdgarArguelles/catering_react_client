@@ -22,9 +22,9 @@ const slideClassName = 'swipeable';
 
 const MenuEditTabs = () => {
   const dispatch = useDispatch();
+  const {data: courseTypes} = useCourseTypes();
   const tab = useSelector(state => state.quotations.selectedTab);
   const selectedMenu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
-  const {data: courseTypes} = useCourseTypes();
   const sortedCourseTypes = getSortedCourseTypes(courseTypes);
   const menuCourses = selectedMenu?.courses;
 

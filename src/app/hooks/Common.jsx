@@ -4,12 +4,10 @@ import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
 import {useTheme} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {areAllDishesPresent, fetchDishesList} from 'app/features/quotations/dish/Dish.service';
 import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import {changeTheme} from 'app/AppReducer';
 import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
 import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
-import {fetchDish} from 'app/data/dishes/DishesReducer';
 import {fetchPing} from 'app/features/auth/AuthReducer';
 
 export const useIsMobileSize = () => {
@@ -70,22 +68,4 @@ export const useQuotationsLoader = () => {
       latestIsFetching.current = true;
     }
   }, [loggedUser, dispatch]);
-};
-
-export const useAreDishesLoaded = dishes => {
-  const dispatch = useDispatch();
-  const dishFetching = useSelector(state => state.data.dishes.fetching);
-  const allDishes = useSelector(state => state.data.dishes.data);
-
-  const latestDishes = useRef(dishes); // avoid to re-run useEffect when dishes changes
-  const latestDishFetching = useRef(dishFetching); // avoid to re-run useEffect when dishFetching changes
-  const latestAllDishes = useRef(allDishes); // avoid to re-run useEffect when allDishes changes
-
-  useEffect(() => {
-    const handleFetchDish = dishId => dispatch(fetchDish(dishId));
-
-    fetchDishesList(latestDishes.current, latestAllDishes.current, latestDishFetching.current, handleFetchDish);
-  }, [dispatch]);
-
-  return areAllDishesPresent(dishes, allDishes) || dishes.length === 0;
 };

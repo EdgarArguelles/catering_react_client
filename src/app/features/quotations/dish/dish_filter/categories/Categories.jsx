@@ -7,8 +7,8 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import Checkbox from '@material-ui/core/Checkbox';
 import Utils from 'app/common/Utils';
 import {useCourseTypes} from 'app/hooks/data/CourseTypes';
-import {getCurrentCourseTypeDishes} from 'app/features/quotations/course_type/CourseType.service';
-import {getActiveDishes} from 'app/features/quotations/dish/Dish.service';
+import {useActiveDishesByCourseType} from 'app/hooks/data/Dishes';
+import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 import Category from './category/Category';
 import {setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
@@ -16,9 +16,10 @@ const Categories = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const {data: courseTypes} = useCourseTypes();
+  const courseType = useSelector(state => getCurrentCourseType(courseTypes, state.quotations.selectedTab));
+  const {data: activeDishesByCourseType} = useActiveDishesByCourseType(courseType.id);
+  const courseTypeDishes = activeDishesByCourseType || [];
   const filter = useSelector(state => state.quotations.dish.filter);
-  const courseTypeDishes = useSelector(state => getCurrentCourseTypeDishes(getActiveDishes(state.data.dishes.data),
-    courseTypes, state.quotations.selectedTab));
   const setCat = categories => dispatch(setCategories(categories));
 
   const getCategories = () => {

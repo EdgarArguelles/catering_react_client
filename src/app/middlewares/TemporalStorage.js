@@ -9,9 +9,6 @@ export default store => next => action => {
     ...store.getState().quotations,
     isRemoteProcessing: false, // don't save isRemoteProcessing value
   }));
-  window.localStorage.setItem('dataState', JSON.stringify({
-    dishes: store.getState().data.dishes,
-  }));
 
   return result;
 };

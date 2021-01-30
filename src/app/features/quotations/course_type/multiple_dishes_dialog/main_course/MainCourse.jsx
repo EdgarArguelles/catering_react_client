@@ -4,14 +4,15 @@ import {useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Divider from '@material-ui/core/Divider';
-import {useAreDishesLoaded} from 'app/hooks/Common';
+import {useDishesByIds} from 'app/hooks/data/Dishes';
 import DishThumbnail from './dish_thumbnail/DishThumbnail';
 import AddDish from './add_dish/AddDish';
 
 const MainCourse = () => {
-  const allDishes = useSelector(state => state.data.dishes.data);
-  const dishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
-  const areDishesLoaded = useAreDishesLoaded(dishes);
+  const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
+  const results = useDishesByIds(multipleDishes.map(dish => dish.id));
+  const dishes = results.filter(result => result.data).map(result => result.data);
+  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
   const sections = ['Proteina', 'Guarnición'];
 
   const getLoader = () => {
@@ -24,8 +25,8 @@ const MainCourse = () => {
   };
 
   const getDishesList = category => {
-    return dishes.filter(dish => allDishes[dish.id].categories.map(c => c.name).includes(category))
-      .map(dish => <DishThumbnail key={dish.id} dish={allDishes[dish.id]}/>);
+    return dishes.filter(dish => dish.categories.map(c => c.name).includes(category))
+      .map(dish => <DishThumbnail key={dish.id} dish={dish}/>);
   };
 
   return (
@@ -33,7 +34,7 @@ const MainCourse = () => {
       {sections.map((section, index) => (
         <div key={index}>
           <h3>{section}</h3>
-          {areDishesLoaded ? getDishesList(section) : getLoader()}
+          {isAnyLoading ? getLoader() : getDishesList(section)}
           <AddDish dishCategory={section}/>
           {index < sections.length - 1 && <Divider className="main-course-divider"/>}
         </div>

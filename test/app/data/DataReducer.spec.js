@@ -4,7 +4,6 @@ describe('Data -> Reducer/Actions', () => {
   describe('Reducer', () => {
     it('should get default state when undefined', () => {
       const state = {
-        dishes: {data: null, fetching: {}},
         quotations: {
           data: null,
           metaData: null,
@@ -20,7 +19,6 @@ describe('Data -> Reducer/Actions', () => {
 
     it('should get the same original status when action is not allow', () => {
       const state = {
-        dishes: {data: {id: 'ID2'}, fetching: {a: true, b: false}},
         quotations: {
           data: {id: 'ID3'},
           metaData: {id: 'meta'},
@@ -34,7 +32,6 @@ describe('Data -> Reducer/Actions', () => {
       expect(result).toStrictEqual(state);
       // don't mutate
       expect(state).toStrictEqual({
-        dishes: {data: {id: 'ID2'}, fetching: {a: true, b: false}},
         quotations: {
           data: {id: 'ID3'},
           metaData: {id: 'meta'},

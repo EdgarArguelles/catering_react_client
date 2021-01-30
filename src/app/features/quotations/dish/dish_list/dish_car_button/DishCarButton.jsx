@@ -11,9 +11,9 @@ import {useCourseTypes} from 'app/hooks/data/CourseTypes';
 import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
 
 const DishCarButton = () => {
+  const {data: courseTypes} = useCourseTypes();
   const selectedTab = useSelector(state => state.quotations.selectedTab);
   const courses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
-  const {data: courseTypes} = useCourseTypes();
   const courseType = getCurrentCourseType(courseTypes, selectedTab);
   const menuCourses = courses.filter(course => course.type.id === courseType.id);
 
