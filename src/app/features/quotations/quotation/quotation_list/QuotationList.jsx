@@ -1,7 +1,8 @@
 import './QuotationList.scss';
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
+import {useQuotations} from 'app/hooks/data/Quotations';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import EmptyQuotationList from './empty_quotation_list/EmptyQuotationList';
 import NoSessionQuotationList from './no_session_quotation_list/NoSessionQuotationList';
@@ -9,41 +10,25 @@ import QuotationToolbar from './quotation_toolbar/QuotationToolbar';
 import QuotationGrid from './quotation_grid/QuotationGrid';
 import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 import {changeNavigation, closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
-import {fetchQuotations} from 'app/data/quotations/QuotationsReducer';
-
-const PAGINATION = {page: -1, size: 5, sort: ['createdAt'], direction: 'DESC'};
 
 const QuotationList = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const isFetching = useSelector(state => state.data.quotations.fetching);
-  const metaData = useSelector(state => state.data.quotations.metaData);
-  const handleCloseNavigationDialog = () => dispatch(closeNavigationDialog(null));
+  const [pagination, setPagination] = useState({page: 0, size: 5, sort: ['createdAt'], direction: 'DESC'});
+  const {data, isLoading} = useQuotations(pagination, loggedUser);
+  const metaData = data?.metaData;
   const isComplete = metaData && metaData.totalPages <= metaData.pagination.page + 1;
-
-  // because this useCallback has inputs = [dispatch], fetchNextPage never changes its value, not changes each render
-  const fetchNextPage = useCallback(pagination => {
-    dispatch(fetchQuotations({...pagination, page: pagination.page + 1}));
-  }, [dispatch]);
   const latestLoggedUser = useRef(loggedUser); // avoid to re-run useEffect when loggedUser changes
-  const latestMetaData = useRef(metaData); // avoid to re-run useEffect when metaData changes
   useEffect(() => {
     dispatch(changeNavigation({backLink: '/presupuestos', title: 'Mis Presupuestos'}));
-    if (!latestLoggedUser.current) {
-      dispatch(openAuthDialog());
-    } else if (!latestMetaData.current) {
-      fetchNextPage(PAGINATION);
-    }
-  }, [dispatch, fetchNextPage]); // because fetchNextPage is [dispatch], this useEffect is only [dispatch] as well
+    !latestLoggedUser.current && dispatch(openAuthDialog());
+  }, [dispatch]);
 
   if (!loggedUser) {
     return (
       <>
         <NoSessionQuotationList/>
-        <AuthDialog onSuccess={() => {
-          fetchNextPage(PAGINATION);
-          handleCloseNavigationDialog();
-        }}/>
+        <AuthDialog onSuccess={() => dispatch(closeNavigationDialog(null))}/>
       </>
     );
   }
@@ -56,8 +41,8 @@ const QuotationList = () => {
     <div id="quotation-list">
       <QuotationToolbar/>
       <QuotationGrid/>
-      {!isComplete && <Button variant="outlined" className="load-more" disabled={isFetching}
-                              onClick={() => fetchNextPage(metaData.pagination)}>
+      {!isComplete && <Button variant="outlined" className="load-more" disabled={isLoading}
+                              onClick={() => setPagination({...pagination, page: pagination.page + 1})}>
         Más resultados
       </Button>}
     </div>
