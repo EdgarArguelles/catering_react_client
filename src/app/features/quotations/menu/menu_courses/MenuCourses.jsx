@@ -14,7 +14,7 @@ const MenuCourses = ({courseType}) => {
   const dishesIds = courses.map(course => course.dishes.map(dish => dish.id)).flat();
   const results = useDishesByIds(dishesIds);
   const allDishes = results.filter(result => result.data).map(result => result.data);
-  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
+  const isAnyFetching = !!results.filter(result => result.isFetching).map(result => result.isFetching).length;
   const sortedCourses = courses.sort((a, b) => a.position - b.position);
 
   const getCourse = course => {
@@ -44,7 +44,7 @@ const MenuCourses = ({courseType}) => {
   return (
     <div className="course-type">
       <p className="name">{courseType.name}</p>
-      {isAnyLoading ? getLoading() : getRenderer()}
+      {isAnyFetching ? getLoading() : getRenderer()}
     </div>
   );
 };
