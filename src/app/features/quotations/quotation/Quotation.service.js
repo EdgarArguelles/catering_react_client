@@ -19,8 +19,7 @@ export const isQuotationStarted = quotation => {
  * @return {string} get Edit Menu path if a Menu is started, otherwise returns Edit Quotation path
  */
 export const getEditPath = quotation => {
-  return quotation && quotation.menus && quotation.menus.find(menu => menu.isSelected) !== undefined ?
-    '/presupuestos/menu/editar' : '/presupuestos/editar';
+  return quotation?.menus?.find(menu => menu.isSelected) ? '/presupuestos/menu/editar' : '/presupuestos/editar';
 };
 
 /**
@@ -34,7 +33,7 @@ const cleanMenus = quotation => {
     return {
       ...quotation,
       price: null,
-      menus: !quotation.menus ? null : quotation.menus.map(menu => ({
+      menus: quotation?.menus?.map(menu => ({
         ...menu,
         price: null,
         isSelected: null,
