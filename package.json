@@ -45,7 +45,7 @@
     "copy-webpack-plugin": "7.0.0",
     "cross-env": "7.0.3",
     "css-loader": "5.0.1",
-    "eslint": "7.18.0",
+    "eslint": "7.19.0",
     "eslint-plugin-more": "1.0.0",
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",

@@ -3,8 +3,7 @@ import Api from 'app/common/Api';
 
 const SLICE_NAME = 'APP';
 
-const defaultTheme = window.localStorage && window.localStorage.getItem('appTheme') ?
-  window.localStorage.getItem('appTheme') : 'light';
+const defaultTheme = window?.localStorage?.getItem('appTheme') || 'light';
 
 export const getFacebookAccessCode = createAsyncThunk(
   `${SLICE_NAME}/getFacebookAccessCode`,
