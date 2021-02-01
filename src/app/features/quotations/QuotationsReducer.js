@@ -10,7 +10,7 @@ import quotationReducer from './quotation/QuotationReducer';
 
 const SLICE_NAME = 'QUOTATIONS';
 
-const quotationsState = window.sessionStorage ? window.sessionStorage.getItem('quotationsState') : null;
+const quotationsState = window?.sessionStorage?.getItem('quotationsState');
 const defaultValues = quotationsState ? JSON.parse(quotationsState) : {
   isRemoteProcessing: false,
   selectedTab: 0,

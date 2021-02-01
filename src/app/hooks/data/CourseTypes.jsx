@@ -10,7 +10,7 @@ export const useCourseTypes = () => {
   const queryClient = useQueryClient();
   const isOnline = useSelector(state => state.app.isOnline);
   const getCache = () => {
-    const cache = window.localStorage.getItem(CACHE);
+    const cache = window?.localStorage?.getItem(CACHE);
     return cache ? JSON.parse(cache) : undefined;
   };
 
@@ -40,7 +40,7 @@ export const useDBVersion = courseTypes => {
     const body = {query: '{version {version}}'};
     const json = await Api.graphql(dispatch, body);
     const version = json.data.version.version;
-    if (version !== parseInt(window.localStorage.getItem(CACHE), 10)) {
+    if (version !== parseInt(window?.localStorage?.getItem(CACHE), 10)) {
       window.localStorage.setItem(CACHE, version);
       window.localStorage.removeItem(DISH_CACHE);
       queryClient.removeQueries(ACTIVE_DISHES_KEY);

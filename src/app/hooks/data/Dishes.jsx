@@ -8,7 +8,7 @@ export const CACHE = 'dishesCached';
 const FIELDS = 'id name description picture price status categories{name}';
 
 const getCache = () => {
-  const cache = window.localStorage.getItem(CACHE);
+  const cache = window?.localStorage?.getItem(CACHE);
   return cache ? JSON.parse(cache) : [];
 };
 
