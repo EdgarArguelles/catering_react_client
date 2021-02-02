@@ -12,9 +12,7 @@ const MenuCourses = ({courseType}) => {
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
   const dishesIds = courses.map(course => course.dishes.map(dish => dish.id)).flat();
-  const results = useDishesByIds(dishesIds);
-  const allDishes = results.filter(result => result.data).map(result => result.data);
-  const isAnyFetching = !!results.filter(result => result.isFetching).map(result => result.isFetching).length;
+  const {dishes: allDishes, isAnyFetching} = useDishesByIds(dishesIds);
   const sortedCourses = courses.sort((a, b) => a.position - b.position);
 
   const getCourse = course => {
