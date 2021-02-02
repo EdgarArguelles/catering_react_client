@@ -1,6 +1,6 @@
 import './QuotationToolbar.scss';
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,16 +9,17 @@ import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import Utils from 'app/common/Utils';
+import {useQuotations} from 'app/hooks/data/Quotations';
 import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
 import {cleanQuotations, fetchQuotations} from 'app/data/quotations/QuotationsReducer';
 
 const QuotationToolbar = () => {
   const dispatch = useDispatch();
-  const metaData = useSelector(state => state.data.quotations.metaData);
+  const {metaData} = useQuotations();
   const [isCompact, setIsCompact] = useState(false);
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const sort = metaData?.pagination?.sort[0] || '';
+  const sort = metaData?.pagination.sort[0];
   const SORT_LABEL = {createdAt: 'Fecha', name: 'Nombre', price: 'Precio'};
   const handleClose = () => setOpen(false);
 
