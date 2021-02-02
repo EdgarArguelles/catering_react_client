@@ -1,5 +1,5 @@
 import './QuotationList.scss';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {useQuotations} from 'app/hooks/data/Quotations';
@@ -14,10 +14,7 @@ import {changeNavigation, closeNavigationDialog} from 'app/features/quotations/h
 const QuotationList = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const [pagination, setPagination] = useState({page: 0, size: 5, sort: ['createdAt'], direction: 'DESC'});
-  const {data, isLoading} = useQuotations(pagination, loggedUser);
-  const metaData = data?.metaData;
-  const isComplete = metaData && metaData.totalPages <= metaData.pagination.page + 1;
+  const {metaData, isFetching, hasNextPage, fetchNextPage} = useQuotations(loggedUser);
   const latestLoggedUser = useRef(loggedUser); // avoid to re-run useEffect when loggedUser changes
   useEffect(() => {
     dispatch(changeNavigation({backLink: '/presupuestos', title: 'Mis Presupuestos'}));
@@ -33,7 +30,7 @@ const QuotationList = () => {
     );
   }
 
-  if (metaData && metaData.totalElements === 0) {
+  if (metaData?.totalElements === 0) {
     return <EmptyQuotationList/>;
   }
 
@@ -41,8 +38,8 @@ const QuotationList = () => {
     <div id="quotation-list">
       <QuotationToolbar/>
       <QuotationGrid/>
-      {!isComplete && <Button variant="outlined" className="load-more" disabled={isLoading}
-                              onClick={() => setPagination({...pagination, page: pagination.page + 1})}>
+      {hasNextPage && <Button variant="outlined" className="load-more" disabled={isFetching}
+                              onClick={() => fetchNextPage()}>
         Más resultados
       </Button>}
     </div>
