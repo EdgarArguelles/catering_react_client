@@ -4,21 +4,20 @@ import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Utils from 'app/common/Utils';
+import {useQuotations} from 'app/hooks/data/Quotations';
 import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
 import Quotation from 'app/features/quotations/quotation/Quotation';
 import ContinueQuotation from './continue_quotation/ContinueQuotation';
 import CreateNewQuotation from './create_new_quotation/CreateNewQuotation';
 
 const QuotationGrid = () => {
-  const isFetching = useSelector(state => state.data.quotations.fetching);
-  const metaData = useSelector(state => state.data.quotations.metaData);
-  const quotations = useSelector(state => state.data.quotations.data || {});
+  const {quotations, metaData, isFetching} = useQuotations();
   const isEditStarted = useSelector(state => isQuotationStarted(state.quotations.quotation));
 
   const getSortDate = (b, a) => a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
 
   const getSort = () => {
-    const sort = metaData?.pagination?.sort[0] || '';
+    const sort = metaData.pagination.sort[0];
 
     switch (sort) {
       case 'createdAt':
@@ -65,7 +64,7 @@ const QuotationGrid = () => {
 
   return (
     <Grid id="quotation-grid" container spacing={2} justify="flex-start">
-      {Object.values(quotations).sort(getSort()).map((quotation, index) =>
+      {quotations?.sort(getSort()).map((quotation, index) =>
         getAnimatedGrid(quotation.id, <Quotation index={index} quotation={quotation}/>),
       )}
       {getExtraContent()}
