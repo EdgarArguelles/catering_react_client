@@ -213,13 +213,13 @@ describe('Hooks -> Data -> Dishes', () => {
       window.localStorage.setItem(CACHE, JSON.stringify([dish1, dish4]));
 
       mountComponent(() => useDishesByIds(dishesId), {}, false);
+      expect(hookResponse.dishes).toStrictEqual([]);
+      expect(hookResponse.isAnyFetching).toBeTruthy();
 
       // wait until fire all useQueries
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 2)));
-      expect(hookResponse[0].data).toStrictEqual(dish2);
-      expect(hookResponse[1].data).toStrictEqual(dish3);
-      expect(hookResponse[2].data).toStrictEqual(dish1);
-      expect(hookResponse[3].data).toStrictEqual(dish4);
+      expect(hookResponse.dishes).toStrictEqual([dish2, dish3, dish1, dish4]);
+      expect(hookResponse.isAnyFetching).toBeFalsy();
       expect(window.localStorage.getItem(CACHE)).toStrictEqual(JSON.stringify([dish1, dish4, dish2, dish3]));
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 2);
