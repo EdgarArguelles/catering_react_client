@@ -10,9 +10,7 @@ import AddDish from './add_dish/AddDish';
 
 const MainCourse = () => {
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
-  const results = useDishesByIds(multipleDishes.map(dish => dish.id));
-  const dishes = results.filter(result => result.data).map(result => result.data);
-  const isAnyFetching = !!results.filter(result => result.isFetching).map(result => result.isFetching).length;
+  const {dishes, isAnyFetching} = useDishesByIds(multipleDishes.map(dish => dish.id));
   const sections = ['Proteina', 'Guarnición'];
 
   const getLoader = () => {
