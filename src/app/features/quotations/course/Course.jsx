@@ -13,8 +13,7 @@ const Course = ({course}) => {
   const [animationIn, setAnimationIn] = useState('fadeInLeft');
   const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   const [removeAction, setRemoveAction] = useState(null);
-  const results = useDishesByIds(course.dishes.map(dish => dish.id));
-  const isAnyFetching = !!results.filter(result => result.isFetching).map(result => result.isFetching).length;
+  const {isAnyFetching} = useDishesByIds(course.dishes.map(dish => dish.id));
   const onClose = action => {
     const resetRemoveAction = () => {
       action();
