@@ -106,9 +106,9 @@ export default class Utils {
   }
 
   /**
-   * Reset values of useInfiniteQuery hook, using new parameters to reload
+   * Reset values of an useInfiniteQuery hook, using new parameters to reload
    *
-   * @param {Object} queryClient object create by hook useQueryClient()
+   * @param {Object} queryClient object created by useQueryClient() hook
    * @param {String} queryKey unique query's identifier
    * @param {Object} newPageParams new parameter to be used in useInfiniteQuery
    * @return {void}
