@@ -3,12 +3,13 @@ import {useInfiniteQuery} from 'react-query';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
 
+export const QUOTATIONS_KEY = 'Quotations';
+
 export const useQuotations = () => {
-  const KEY = 'Quotations';
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const DEFAULT_PAGE_PARAM = {page: 0, size: 5, sort: ['createdAt'], direction: 'DESC'};
-  const results = useInfiniteQuery(KEY, async ({pageParam = DEFAULT_PAGE_PARAM}) => {
+  const results = useInfiniteQuery(QUOTATIONS_KEY, async ({pageParam = DEFAULT_PAGE_PARAM}) => {
     const FIELDS = 'totalElements totalPages content{id name createdAt price}';
     const body = {query: `{quotationPage(pageDataRequest: ${Utils.stringifyPageDataRequest(pageParam)}) {${FIELDS}}}`};
     const json = await Api.graphql(dispatch, body);
