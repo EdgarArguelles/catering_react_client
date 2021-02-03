@@ -14,7 +14,7 @@ import {changeNavigation, closeNavigationDialog} from 'app/features/quotations/h
 const QuotationList = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const {metaData, isFetching, hasNextPage, fetchNextPage} = useQuotations(loggedUser);
+  const {metaData, isFetching, hasNextPage, fetchNextPage} = useQuotations();
   const latestLoggedUser = useRef(loggedUser); // avoid to re-run useEffect when loggedUser changes
   useEffect(() => {
     dispatch(changeNavigation({backLink: '/presupuestos', title: 'Mis Presupuestos'}));

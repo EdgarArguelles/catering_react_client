@@ -1,11 +1,12 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useInfiniteQuery} from 'react-query';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
 
-export const useQuotations = loggedUser => {
+export const useQuotations = () => {
   const KEY = 'Quotations';
   const dispatch = useDispatch();
+  const loggedUser = useSelector(state => state.auth.loggedUser);
   const DEFAULT_PAGE_PARAM = {page: 0, size: 5, sort: ['createdAt'], direction: 'DESC'};
   const results = useInfiniteQuery(KEY, async ({pageParam = DEFAULT_PAGE_PARAM}) => {
     const FIELDS = 'totalElements totalPages content{id name createdAt price}';
