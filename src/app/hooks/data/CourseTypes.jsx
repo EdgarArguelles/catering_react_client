@@ -43,7 +43,7 @@ export const useDBVersion = courseTypes => {
     if (version !== parseInt(window?.localStorage?.getItem(CACHE), 10)) {
       window.localStorage.setItem(CACHE, version);
       window.localStorage.removeItem(DISH_CACHE);
-      queryClient.removeQueries(ACTIVE_DISHES_KEY);
+      queryClient.invalidateQueries(ACTIVE_DISHES_KEY);
       queryClient.removeQueries(DISH_KEY);
     }
     return version;

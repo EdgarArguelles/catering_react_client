@@ -11,6 +11,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
   const dispatchStub = sinon.stub();
   const graphqlStub = sinon.stub(Api, 'graphql');
   const setQueryDataStub = sinon.stub();
+  const invalidateQueriesStub = sinon.stub();
   const removeQueriesStub = sinon.stub();
   let hookResponse;
 
@@ -18,6 +19,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
     dispatchStub.reset();
     graphqlStub.reset();
     setQueryDataStub.reset();
+    invalidateQueriesStub.reset();
     removeQueriesStub.reset();
     hookResponse = undefined;
     window.localStorage.removeItem('courseTypesCached');
@@ -28,7 +30,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
   const mountComponent = renderQueryComponent(({hook}) => {
     hookResponse = hook();
     return <div/>;
-  }, {dispatchStub, setQueryDataStub, removeQueriesStub});
+  }, {dispatchStub, setQueryDataStub, invalidateQueriesStub, removeQueriesStub});
 
   describe('useCourseTypes', () => {
     const body = {query: '{activeCourseTypes {id name picture position status}}'};
@@ -43,6 +45,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
@@ -53,6 +56,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
@@ -66,6 +70,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
@@ -75,6 +80,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 6);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
@@ -88,6 +94,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
@@ -97,6 +104,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 6);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
@@ -111,6 +119,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
 
       // wait until fire useQuery
@@ -121,6 +130,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 1);
       sinon.assert.calledWithExactly(setQueryDataStub, 'CourseTypes', {id: 5});
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
@@ -132,6 +142,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
 
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
@@ -139,6 +150,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
   });
@@ -159,6 +171,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
@@ -178,8 +191,9 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
-      sinon.assert.callCount(removeQueriesStub, 2);
-      sinon.assert.calledWithExactly(removeQueriesStub, 'ActiveDishes');
+      sinon.assert.callCount(invalidateQueriesStub, 1);
+      sinon.assert.calledWithExactly(invalidateQueriesStub, 'ActiveDishes');
+      sinon.assert.callCount(removeQueriesStub, 1);
       sinon.assert.calledWithExactly(removeQueriesStub, 'Dish');
     });
 
@@ -199,6 +213,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
   });
