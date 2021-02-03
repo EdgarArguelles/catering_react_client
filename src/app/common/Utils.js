@@ -106,6 +106,19 @@ export default class Utils {
   }
 
   /**
+   * Reset values of useInfiniteQuery hook, using new parameters to reload
+   *
+   * @param {Object} queryClient object create by hook useQueryClient()
+   * @param {String} queryKey unique query's identifier
+   * @param {Object} newPageParams new parameter to be used in useInfiniteQuery
+   * @return {void}
+   */
+  static resetInfiniteQuery(queryClient, queryKey, newPageParams) {
+    queryClient.setQueryData(queryKey, data => ({pages: [data.pages[0]], pageParams: [newPageParams]}));
+    queryClient.invalidateQueries(queryKey);
+  }
+
+  /**
    * Hide loading animation and display application content
    *
    * @return {void}
