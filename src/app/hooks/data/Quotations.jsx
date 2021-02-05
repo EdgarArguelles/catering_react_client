@@ -1,9 +1,21 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useInfiniteQuery} from 'react-query';
+import {useInfiniteQuery, useQuery} from 'react-query';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
 
 export const QUOTATIONS_KEY = 'Quotations';
+
+export const useQuotation = quotationId => {
+  const KEY = ['Quotation', quotationId];
+  const dispatch = useDispatch();
+  const loggedUser = useSelector(state => state.auth.loggedUser);
+  return useQuery(KEY, async () => {
+    const FIELDS = 'id name createdAt price menus{id name quantity courses{id position type{id} dishes{id price}}}';
+    const body = {query: `{quotation(id: ${quotationId}) {${FIELDS}}}`};
+    const json = await Api.graphql(dispatch, body);
+    return json.data.quotation;
+  }, {enabled: !!quotationId && !!loggedUser});
+};
 
 export const useQuotations = () => {
   const dispatch = useDispatch();
