@@ -1,6 +1,6 @@
 import './QuotationToolbar.scss';
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useQueryClient} from 'react-query';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,12 +9,11 @@ import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import Utils from 'app/common/Utils';
-import {useQuotations} from 'app/hooks/data/Quotations';
+import {QUOTATIONS_KEY, useQuotations} from 'app/hooks/data/Quotations';
 import ExpandBar from 'app/common/components/expand_bar/ExpandBar';
-import {cleanQuotations, fetchQuotations} from 'app/data/quotations/QuotationsReducer';
 
 const QuotationToolbar = () => {
-  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const {metaData} = useQuotations();
   const [isCompact, setIsCompact] = useState(false);
   const [open, setOpen] = useState(false);
@@ -32,13 +31,12 @@ const QuotationToolbar = () => {
 
   const handleChangeSort = newSort => {
     if (metaData.pagination.sort[0] !== newSort) {
-      dispatch(cleanQuotations());
-      dispatch(fetchQuotations({
+      Utils.resetInfiniteQuery(queryClient, QUOTATIONS_KEY, {
         ...metaData.pagination,
         sort: [newSort, 'createdAt'],
         direction: newSort === 'createdAt' ? 'DESC' : 'ASC',
         page: 0,
-      }));
+      });
     }
 
     handleClose();
