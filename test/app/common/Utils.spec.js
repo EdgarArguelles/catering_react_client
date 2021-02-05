@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+import sinon from 'sinon';
 import Utils from 'app/common/Utils';
 
 describe('Utils', () => {
@@ -395,6 +396,84 @@ describe('Utils', () => {
 
     it('should throw an error when null parameter', () => {
       expect(() => Utils.stringifyPageDataRequest(null)).toThrow('Cannot read property \'replace\' of null');
+    });
+  });
+
+  describe('resetInfiniteQuery', () => {
+    it('should call setQueryData and invalidateQueries once', () => {
+      const queryKey = 'testKey';
+      const newPageParams = {sort: ['newField']};
+      const setQueryDataStub = sinon.stub();
+      const invalidateQueriesStub = sinon.stub();
+      const queryClient = {setQueryData: setQueryDataStub, invalidateQueries: invalidateQueriesStub};
+
+      Utils.resetInfiniteQuery(queryClient, queryKey, newPageParams);
+
+      sinon.assert.callCount(setQueryDataStub, 1);
+      sinon.assert.calledWithExactly(setQueryDataStub, queryKey, sinon.match.func);
+      sinon.assert.callCount(invalidateQueriesStub, 1);
+      sinon.assert.calledWithExactly(invalidateQueriesStub, queryKey);
+    });
+  });
+
+  describe('completeLoading', () => {
+    it('should change display values', () => {
+      const loadingElement = {style: {display: 'old'}};
+      const contentElement = {style: {display: 'old'}};
+      const getElementByIdStub = sinon.stub(document, 'getElementById');
+      getElementByIdStub.withArgs('loading').returns(loadingElement);
+      getElementByIdStub.withArgs('content').returns(contentElement);
+
+      Utils.completeLoading();
+
+      expect(loadingElement.style.display).toStrictEqual('none');
+      expect(contentElement.style.display).toStrictEqual('block');
+      sinon.assert.callCount(getElementByIdStub, 2);
+      sinon.assert.calledWithExactly(getElementByIdStub, 'loading');
+      sinon.assert.calledWithExactly(getElementByIdStub, 'content');
+      getElementByIdStub.restore();
+    });
+  });
+
+  describe('animateIcon', () => {
+    const id = '5';
+    const querySelectorAllStub = sinon.stub();
+    const setAttributeStub = sinon.stub();
+    let getElementByIdStub;
+
+    beforeEach(() => {
+      querySelectorAllStub.withArgs('path').returns([
+        {setAttribute: setAttributeStub}, {setAttribute: setAttributeStub}]);
+      getElementByIdStub = sinon.stub(document, 'getElementById');
+      getElementByIdStub.withArgs(id).returns({querySelectorAll: querySelectorAllStub});
+    });
+
+    afterEach(() => {
+      querySelectorAllStub.reset();
+      setAttributeStub.reset();
+      getElementByIdStub.restore();
+    });
+
+    it('should use strokeWidth default value', () => {
+      Utils.animateIcon(id);
+
+      sinon.assert.callCount(getElementByIdStub, 1);
+      sinon.assert.calledWithExactly(getElementByIdStub, id);
+      sinon.assert.callCount(setAttributeStub, 6);
+      sinon.assert.calledWithExactly(setAttributeStub, 'fill', 'transparent');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke', 'currentColor');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke-width', 40);
+    });
+
+    it('should not use strokeWidth default value', () => {
+      Utils.animateIcon(id, {strokeWidth: 60});
+
+      sinon.assert.callCount(getElementByIdStub, 1);
+      sinon.assert.calledWithExactly(getElementByIdStub, id);
+      sinon.assert.callCount(setAttributeStub, 6);
+      sinon.assert.calledWithExactly(setAttributeStub, 'fill', 'transparent');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke', 'currentColor');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke-width', 60);
     });
   });
 });
