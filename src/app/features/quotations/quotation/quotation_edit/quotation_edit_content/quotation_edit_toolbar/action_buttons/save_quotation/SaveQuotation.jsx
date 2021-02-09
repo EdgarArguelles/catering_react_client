@@ -2,17 +2,20 @@ import './SaveQuotation.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {useQueryClient} from 'react-query';
 import {faSave} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
+import {QUOTATION_KEY} from 'app/hooks/data/Quotations';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 import {endRemoteProcess} from 'app/features/quotations/QuotationsReducer';
-import {cleanError, createQuotation, editQuotation, fetchQuotation} from 'app/data/quotations/QuotationsReducer';
+import {cleanError, createQuotation, editQuotation} from 'app/data/quotations/QuotationsReducer';
 
 const SaveQuotation = ({isErrorVisible}) => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
@@ -22,15 +25,13 @@ const SaveQuotation = ({isErrorVisible}) => {
   const handleCleanError = () => dispatch(cleanError());
   const handleEndRemoteProcess = () => dispatch(endRemoteProcess());
   const saveQuotation = async () => {
-    let quotationId;
     if (!quotation.id) {
-      const response = await dispatch(createQuotation({
+      await dispatch(createQuotation({
         ...quotation,
         menus: quotation.menus.map(menu => ({...menu, id: null})),
       }));
-      quotationId = response.payload.data.createQuotation.id;
     } else {
-      const response = await dispatch(editQuotation({
+      await dispatch(editQuotation({
         ...quotation,
         menus: quotation.menus.map(menu => {
           if (menu.id.startsWith('local-')) {
@@ -40,9 +41,8 @@ const SaveQuotation = ({isErrorVisible}) => {
           return menu;
         }),
       }));
-      quotationId = response.payload.data.updateQuotation.id;
     }
-    await dispatch(fetchQuotation({quotationId, overwriteLocalChanges: true}));
+    queryClient.invalidateQueries(QUOTATION_KEY);
   };
 
   const errorMessage = errors?.message === 'Unauthorized' ? 'Usuario sin sesión'
