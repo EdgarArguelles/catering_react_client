@@ -3,10 +3,11 @@ import {useInfiniteQuery, useQuery} from 'react-query';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
 
+export const QUOTATION_KEY = 'Quotation';
 export const QUOTATIONS_KEY = 'Quotations';
 
 export const useQuotation = quotationId => {
-  const KEY = ['Quotation', quotationId];
+  const KEY = [QUOTATION_KEY, quotationId];
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   return useQuery(KEY, async () => {
