@@ -60,22 +60,20 @@ export const useQuotations = () => {
 
 export const useCreateQuotation = () => {
   const dispatch = useDispatch();
-  const loggedUser = useSelector(state => state.auth.loggedUser);
   return useMutation(async quotation => {
     const body = {query: `mutation {createQuotation(quotation: ${getQuotationFixed(quotation)}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
     return await Api.graphql(dispatch, body);
-  }, {enabled: !!loggedUser});
+  });
 };
 
 export const useEditQuotation = () => {
   const dispatch = useDispatch();
-  const loggedUser = useSelector(state => state.auth.loggedUser);
   return useMutation(async quotation => {
     const body = {query: `mutation {updateQuotation(quotation: ${getQuotationFixed(quotation)}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
     return await Api.graphql(dispatch, body);
-  }, {enabled: !!loggedUser});
+  });
 };
