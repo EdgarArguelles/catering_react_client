@@ -79,3 +79,14 @@ export const useEditQuotation = () => {
     return json.data.updateQuotation;
   });
 };
+
+export const useDeleteQuotation = () => {
+  const dispatch = useDispatch();
+  return useMutation(async quotationId => {
+    const body = {query: `mutation {deleteQuotation(id: ${quotationId}) {id}}`};
+    // create a fake delay (ignore it in test cases)
+    process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
+    const json = await Api.graphql(dispatch, body);
+    return json.data.deleteQuotation;
+  });
+};
