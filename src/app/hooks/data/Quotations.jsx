@@ -64,7 +64,8 @@ export const useCreateQuotation = () => {
     const body = {query: `mutation {createQuotation(quotation: ${getQuotationFixed(quotation)}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
-    return await Api.graphql(dispatch, body);
+    const json = await Api.graphql(dispatch, body);
+    return json.data.createQuotation;
   });
 };
 
@@ -74,6 +75,7 @@ export const useEditQuotation = () => {
     const body = {query: `mutation {updateQuotation(quotation: ${getQuotationFixed(quotation)}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
-    return await Api.graphql(dispatch, body);
+    const json = await Api.graphql(dispatch, body);
+    return json.data.updateQuotation;
   });
 };
