@@ -55,7 +55,7 @@ const SaveQuotation = ({isErrorVisible}) => {
           return menu;
         }),
       });
-      queryClient.invalidateQueries(QUOTATION_KEY);
+      await queryClient.invalidateQueries(QUOTATION_KEY);
       setRemoteId(id);
     }
   };
