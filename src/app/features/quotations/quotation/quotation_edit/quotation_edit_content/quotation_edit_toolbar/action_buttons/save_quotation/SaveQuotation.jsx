@@ -2,10 +2,11 @@ import './SaveQuotation.scss';
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {useQueryClient} from 'react-query';
 import {faSave} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
-import {useCreateQuotation, useEditQuotation, useQuotation} from 'app/hooks/data/Quotations';
+import {QUOTATION_KEY, useCreateQuotation, useEditQuotation, useQuotation} from 'app/hooks/data/Quotations';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
@@ -14,6 +15,7 @@ import {endRemoteProcess, startRemoteProcess} from 'app/features/quotations/Quot
 
 const SaveQuotation = ({isErrorVisible}) => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const [remoteId, setRemoteId] = useState(null);
   const {data: remote} = useQuotation(remoteId);
   const createMutation = useCreateQuotation();
@@ -53,6 +55,7 @@ const SaveQuotation = ({isErrorVisible}) => {
           return menu;
         }),
       });
+      queryClient.invalidateQueries(QUOTATION_KEY);
       setRemoteId(id);
     }
   };
