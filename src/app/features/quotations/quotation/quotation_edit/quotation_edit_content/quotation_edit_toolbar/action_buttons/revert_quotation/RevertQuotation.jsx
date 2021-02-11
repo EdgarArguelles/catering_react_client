@@ -10,6 +10,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
+import {useQuotation} from 'app/hooks/data/Quotations';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
@@ -21,8 +22,7 @@ const RevertQuotation = ({hidden}) => {
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const quotation = useSelector(state => state.quotations.quotation);
   const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
-  const isFetching = useSelector(state => state.data.quotations.fetching);
-  const quotations = useSelector(state => state.data.quotations.data);
+  const {data: remote, isFetching} = useQuotation(quotation.id);
 
   const {id, name} = quotation;
   const showError = !loggedUser && !!id;
@@ -32,7 +32,7 @@ const RevertQuotation = ({hidden}) => {
   const label = id ? 'cambios' : 'presupuesto';
   const labelDialog = id ? 'los cambios de' : 'el presupuesto';
   const handleDeleteLocal = () => dispatch(deleteLocal());
-  const handleRevertQuotation = () => dispatch(revertQuotation(quotations[id]));
+  const handleRevertQuotation = () => dispatch(revertQuotation(remote));
 
   const revertDeleteQuotation = () => {
     if (id) {
