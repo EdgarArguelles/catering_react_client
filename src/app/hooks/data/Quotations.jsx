@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useInfiniteQuery, useMutation, useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
+import {changeError, changeFetching} from 'app/data/quotations/QuotationsReducer';
 
 export const QUOTATION_KEY = 'Quotation';
 export const QUOTATIONS_KEY = 'Quotations';
@@ -22,6 +23,15 @@ const getQuotationFixed = quotation => {
 
   return Utils.stringifyObjectWithNoQuotesOnKeys(quotationFixed);
 };
+
+const mutationOptions = dispatch => ({
+  onMutate: () => {
+    dispatch(changeFetching(true));
+    dispatch(changeError(null));
+  },
+  onError: error => dispatch(changeError(error)),
+  onSettled: () => dispatch(changeFetching(false)),
+});
 
 export const useQuotation = quotationId => {
   const KEY = [QUOTATION_KEY, quotationId];
@@ -68,7 +78,7 @@ export const useCreateQuotation = () => {
     const json = await Api.graphql(dispatch, body);
     await queryClient.invalidateQueries(QUOTATIONS_KEY);
     return json.data.createQuotation;
-  });
+  }, mutationOptions(dispatch));
 };
 
 export const useEditQuotation = () => {
@@ -81,7 +91,7 @@ export const useEditQuotation = () => {
     const json = await Api.graphql(dispatch, body);
     await queryClient.invalidateQueries(QUOTATIONS_KEY);
     return json.data.updateQuotation;
-  });
+  }, mutationOptions(dispatch));
 };
 
 export const useDeleteQuotation = () => {
@@ -94,5 +104,5 @@ export const useDeleteQuotation = () => {
     const json = await Api.graphql(dispatch, body);
     await queryClient.invalidateQueries(QUOTATIONS_KEY);
     return json.data.deleteQuotation;
-  });
+  }, mutationOptions(dispatch));
 };
