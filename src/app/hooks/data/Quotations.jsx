@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useInfiniteQuery, useMutation, useQuery} from 'react-query';
+import {useInfiniteQuery, useMutation, useQuery, useQueryClient} from 'react-query';
 import Api from 'app/common/Api';
 import Utils from 'app/common/Utils';
 
@@ -60,33 +60,39 @@ export const useQuotations = () => {
 
 export const useCreateQuotation = () => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   return useMutation(async quotation => {
     const body = {query: `mutation {createQuotation(quotation: ${getQuotationFixed(quotation)}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
     const json = await Api.graphql(dispatch, body);
+    await queryClient.invalidateQueries(QUOTATIONS_KEY);
     return json.data.createQuotation;
   });
 };
 
 export const useEditQuotation = () => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   return useMutation(async quotation => {
     const body = {query: `mutation {updateQuotation(quotation: ${getQuotationFixed(quotation)}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
     const json = await Api.graphql(dispatch, body);
+    await queryClient.invalidateQueries(QUOTATIONS_KEY);
     return json.data.updateQuotation;
   });
 };
 
 export const useDeleteQuotation = () => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   return useMutation(async quotationId => {
     const body = {query: `mutation {deleteQuotation(id: ${quotationId}) {id}}`};
     // create a fake delay (ignore it in test cases)
     process.env.NODE_ENV !== 'test' && await new Promise(resolve => setTimeout(resolve, 3000));
     const json = await Api.graphql(dispatch, body);
+    await queryClient.invalidateQueries(QUOTATIONS_KEY);
     return json.data.deleteQuotation;
   });
 };
