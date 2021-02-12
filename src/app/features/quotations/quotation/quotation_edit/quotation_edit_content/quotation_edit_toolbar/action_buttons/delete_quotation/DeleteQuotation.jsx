@@ -9,7 +9,8 @@ import History from 'app/router/History';
 import {useDeleteQuotation} from 'app/hooks/data/Quotations';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton';
-import {deleteLocal, endRemoteProcess, startRemoteProcess} from 'app/features/quotations/QuotationsReducer';
+import {changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
+import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const DeleteQuotation = ({isErrorVisible}) => {
   const timeout = useRef(null); // don't initialize timeout to null each render
@@ -21,15 +22,15 @@ const DeleteQuotation = ({isErrorVisible}) => {
   const deleteMutation = useDeleteQuotation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [shouldDelete, setShouldDelete] = useState(false);
-  const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
+  const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
   const error = deleteMutation.error;
   const {id, name} = quotation;
-  const handleEndRemoteProcess = () => dispatch(endRemoteProcess());
+  const handleEndRemoteProcess = () => dispatch(changeIsRemoteProcessing(false));
 
   const handleDeleteQuotation = async () => {
     try {
-      dispatch(startRemoteProcess());
+      dispatch(changeIsRemoteProcessing(true));
       await deleteMutation.mutateAsync(id);
       dispatch(deleteLocal());
     } finally {

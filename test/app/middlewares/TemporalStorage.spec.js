@@ -14,7 +14,7 @@ describe('Middlewares -> TemporalStorage', () => {
     const getState = () => ({
       id: 'state 1',
       app: {theme: 'dark'},
-      quotations: {id: 'Q1', extra: 'abc', isRemoteProcessing: true},
+      quotations: {id: 'Q1', extra: 'abc'},
     });
     const store = {id: 'store 1', getState};
     const action = {type: 'action1'};
@@ -25,11 +25,7 @@ describe('Middlewares -> TemporalStorage', () => {
 
     expect(result).toStrictEqual(resultExpected);
     expect(window.localStorage.getItem('appTheme')).toStrictEqual('dark');
-    expect(window.sessionStorage.getItem('quotationsState')).toStrictEqual(JSON.stringify({
-      id: 'Q1',
-      extra: 'abc',
-      isRemoteProcessing: false,
-    }));
+    expect(window.sessionStorage.getItem('quotationsState')).toStrictEqual(JSON.stringify({id: 'Q1', extra: 'abc'}));
     sinon.assert.callCount(nextStub, 1);
     sinon.assert.calledWithExactly(nextStub, action);
     // don't mutate

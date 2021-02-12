@@ -11,7 +11,7 @@ import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
-import {endRemoteProcess, startRemoteProcess} from 'app/features/quotations/QuotationsReducer';
+import {changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
 
 const SaveQuotation = ({isErrorVisible}) => {
   const dispatch = useDispatch();
@@ -21,12 +21,12 @@ const SaveQuotation = ({isErrorVisible}) => {
   const createMutation = useCreateQuotation();
   const editMutation = useEditQuotation();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
+  const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
   const isFetching = createMutation.isLoading || editMutation.isLoading;
   const error = createMutation.error || editMutation.error;
   const handleOpenAuthDialog = () => dispatch(openAuthDialog());
-  const handleEndRemoteProcess = () => dispatch(endRemoteProcess());
+  const handleEndRemoteProcess = () => dispatch(changeIsRemoteProcessing(false));
   const handleCleanError = () => {
     createMutation.reset();
     editMutation.reset();
@@ -37,7 +37,7 @@ const SaveQuotation = ({isErrorVisible}) => {
   }, [dispatch, remote]);
 
   const saveQuotation = async () => {
-    dispatch(startRemoteProcess());
+    dispatch(changeIsRemoteProcessing(true));
     if (!quotation.id) {
       const {id} = await createMutation.mutateAsync({
         ...quotation,

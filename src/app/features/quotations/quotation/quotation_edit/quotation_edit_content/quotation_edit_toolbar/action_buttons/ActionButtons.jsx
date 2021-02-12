@@ -9,7 +9,7 @@ import SaveQuotation from './save_quotation/SaveQuotation';
 
 const ActionButtons = () => {
   const quotation = useSelector(state => state.quotations.quotation);
-  const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
+  const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const {data: remote} = useQuotation(quotation.id);
   const isEdited = !areEqual(quotation, remote);
   const showDelete = !isEdited;

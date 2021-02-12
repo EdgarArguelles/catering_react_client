@@ -21,7 +21,7 @@ const RevertQuotation = ({hidden}) => {
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const quotation = useSelector(state => state.quotations.quotation);
-  const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
+  const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const {data: remote, isFetching} = useQuotation(quotation.id);
 
   const {id, name} = quotation;
