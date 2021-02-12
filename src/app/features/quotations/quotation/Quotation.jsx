@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import History from 'app/router/History';
 import {useQuotation} from 'app/hooks/data/Quotations';
+import {areEqual} from './Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
 
@@ -21,6 +22,7 @@ const Quotation = ({index, quotation}) => {
   const [shouldOverwrite, setShouldOverwrite] = useState(false);
   const [remoteId, setRemoteId] = useState(null);
   const {data: remote} = useQuotation(remoteId);
+  const {data: selectedRemote} = useQuotation(remoteId ? selectedQuotation.id : null);
   const {id} = quotation;
   const createdAt = quotation.createdAt ? moment(`${quotation.createdAt}Z`) : moment();
   const dialogLabel = 'Al seleccionar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
@@ -41,7 +43,8 @@ const Quotation = ({index, quotation}) => {
   const overwriteLocalChanges = () => {
     setShouldOverwrite(false);
     const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
-    if (isQuotationStarted) {
+    const isEdited = !areEqual(selectedQuotation, selectedRemote);
+    if (isQuotationStarted && isEdited) {
       setIsDialogOpen(true);
     } else {
       setTimeout(() => selectQuotation(id), 0);
