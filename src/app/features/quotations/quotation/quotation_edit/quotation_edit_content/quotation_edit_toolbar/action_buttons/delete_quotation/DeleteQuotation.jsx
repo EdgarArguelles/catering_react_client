@@ -9,7 +9,7 @@ import History from 'app/router/History';
 import {useDeleteQuotation} from 'app/hooks/data/Quotations';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton';
-import {changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
+import {changeError, changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
 import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const DeleteQuotation = ({isErrorVisible}) => {
@@ -27,6 +27,10 @@ const DeleteQuotation = ({isErrorVisible}) => {
   const error = deleteMutation.error;
   const {id, name} = quotation;
   const handleEndRemoteProcess = () => dispatch(changeIsRemoteProcessing(false));
+  const handleCleanError = () => {
+    deleteMutation.reset();
+    dispatch(changeError(null));
+  };
 
   const handleDeleteQuotation = async () => {
     try {
@@ -58,7 +62,7 @@ const DeleteQuotation = ({isErrorVisible}) => {
                             onClose={() => handleStates(false, false)}
                             onOK={() => handleStates(false, true)}/>
         <Snackbar open={!!error && error?.status !== 401 && shouldDelete && isErrorVisible}
-                  TransitionComponent={Slide} autoHideDuration={10000} onClose={() => deleteMutation.reset()}
+                  TransitionComponent={Slide} autoHideDuration={10000} onClose={handleCleanError}
                   message="Ocurrió un error al intentar eliminar el presupuesto"/>
       </span>
   );

@@ -11,7 +11,7 @@ import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
-import {changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
+import {changeError, changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
 
 const SaveQuotation = ({isErrorVisible}) => {
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ const SaveQuotation = ({isErrorVisible}) => {
   const handleCleanError = () => {
     createMutation.reset();
     editMutation.reset();
+    dispatch(changeError(null));
   };
 
   useEffect(() => {
