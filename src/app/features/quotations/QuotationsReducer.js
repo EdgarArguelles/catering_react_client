@@ -1,7 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import Utils from 'app/common/Utils';
 import {logout} from 'app/features/auth/AuthReducer';
-import {createQuotation, deleteQuotation, editQuotation} from 'app/data/quotations/QuotationsReducer';
 import authDialogReducer from './auth_dialog/AuthDialogReducer';
 import navigationReducer from './header/navigation/NavigationReducer';
 import dishReducer from './dish/DishReducer';
@@ -12,7 +10,6 @@ const SLICE_NAME = 'QUOTATIONS';
 
 const quotationsState = window?.sessionStorage?.getItem('quotationsState');
 const defaultValues = quotationsState ? JSON.parse(quotationsState) : {
-  isRemoteProcessing: false,
   selectedTab: 0,
   isMenuDialogOpen: false,
 };
@@ -40,20 +37,10 @@ const quotationsSlice = createSlice({
     deleteLocal(state, action) {
       resetData(state, action);
     },
-    endRemoteProcess(state) {
-      state.isRemoteProcessing = false;
-    },
   },
   extraReducers: builder => {
     return builder
       .addCase(logout, resetData)
-      .addMatcher(Utils.anyMatcher(
-        createQuotation.pending.type,
-        editQuotation.pending.type,
-        deleteQuotation.pending.type,
-      ), state => {
-        state.isRemoteProcessing = true;
-      })
       .addDefaultCase((state, action) => {
         state.isAuthDialogOpen = authDialogReducer(state.isAuthDialogOpen, action);
         state.navigation = navigationReducer(state.navigation, action);
@@ -65,4 +52,4 @@ const quotationsSlice = createSlice({
 });
 
 export default quotationsSlice.reducer;
-export const {changeMenuTab, changeMenuDialogOpen, deleteLocal, endRemoteProcess} = quotationsSlice.actions;
+export const {changeMenuTab, changeMenuDialogOpen, deleteLocal} = quotationsSlice.actions;

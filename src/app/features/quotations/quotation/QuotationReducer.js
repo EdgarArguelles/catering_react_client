@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 import menuReducer, {cleanData} from 'app/features/quotations/menu/MenuReducer';
 
 const SLICE_NAME = 'QUOTATION';
@@ -49,13 +48,6 @@ const quotationSlice = createSlice({
   },
   extraReducers: builder => {
     return builder
-      .addCase(fetchQuotation.fulfilled, (state, action) => {
-        if (action.payload.overwriteLocalChanges) {
-          return overwriteLocal(action.payload.data);
-        }
-
-        return state;
-      })
       .addDefaultCase((state, action) => {
         const selected = state.menus && state.menus.find(menu => menu.isSelected);
         if (selected) {
