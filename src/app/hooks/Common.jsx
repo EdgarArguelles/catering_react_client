@@ -4,10 +4,8 @@ import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
 import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
 import {useTheme} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {fetchCompleteQuotation} from 'app/features/quotations/quotation/Quotation.service';
 import {changeTheme} from 'app/AppReducer';
 import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
-import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 import {fetchPing} from 'app/features/auth/AuthReducer';
 
 export const useIsMobileSize = () => {
@@ -48,24 +46,4 @@ export const useBrowserNavigation = (open, onClose) => {
   useEffect(() => {
     latestOpen.current = open;
   }, [open]);
-};
-
-export const useQuotationsLoader = () => {
-  const dispatch = useDispatch();
-  const loggedUser = useSelector(state => state.auth.loggedUser);
-  const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.quotations.fetching);
-  const quotations = useSelector(state => state.data.quotations.data);
-
-  const latestQuotation = useRef(quotation); // avoid to re-run useEffect when quotation changes
-  const latestIsFetching = useRef(isFetching); // avoid to re-run useEffect when isFetching changes
-  const latestQuotations = useRef(quotations); // avoid to re-run useEffect when quotations changes
-
-  useEffect(() => {
-    if (loggedUser) {
-      const fetch = quotationId => dispatch(fetchQuotation({quotationId, overwriteLocalChanges: false}));
-      fetchCompleteQuotation(latestQuotation.current, latestIsFetching.current, latestQuotations.current, fetch);
-      latestIsFetching.current = true;
-    }
-  }, [loggedUser, dispatch]);
 };
