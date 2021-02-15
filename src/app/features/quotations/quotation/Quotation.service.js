@@ -54,22 +54,3 @@ const cleanMenus = quotation => {
  * @return {boolean} true if both quotation objects are equals
  */
 export const areEqual = (quotation1, quotation2) => isEqual(cleanMenus(quotation1), cleanMenus(quotation2));
-
-/**
- * Call fetchQuotation function when quotation has id and its not already present or its incomplete
- * and avoiding to call same endpoint twice
- *
- * @param {object} quotation quotation to load
- * @param {boolean} isFetching flag to know if function is already called
- * @param {object} quotations collection of all quotations already present in data
- * @param {func} fetchQuotation function to call
- * @return {void}
- */
-export const fetchCompleteQuotation = (quotation, isFetching, quotations, fetchQuotation) => {
-  // only call when quotation has id and isn't present or is incomplete
-  // and avoid to call same endpoint if a previous call is fetching
-  if (!isFetching && quotation && quotation.id &&
-    (!quotations || !quotations[quotation.id] || !quotations[quotation.id].menus)) {
-    fetchQuotation && fetchQuotation(quotation.id);
-  }
-};

@@ -44,22 +44,6 @@ export default class Utils {
   }
 
   /**
-   * Transform an array into an Object using id as index (do not mutate the original array)
-   * example [{id: id_1, value: example, age: 5}, {id: id_2, value: example2, age: 6}] becomes
-   * {id_1: {id: id_1, value: example, age: 5}, id_2: {id: id_2, value: example2, age: 6}}
-   *
-   * @param {Array} array to be transformed
-   * @return {Object} resulted object
-   */
-  static arrayToObject(array) {
-    const object = {};
-    array.forEach(item => {
-      object[item.id] = {...item};
-    });
-    return object;
-  }
-
-  /**
    * Stringify a json but without quotes on keys
    *
    * @param {Object} json to be transformed
