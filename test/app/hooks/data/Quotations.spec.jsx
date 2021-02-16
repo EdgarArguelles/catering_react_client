@@ -221,7 +221,7 @@ describe('Hooks -> Data -> Quotations', () => {
     };
     const body = {query: 'mutation {updateQuotation(quotation: {id:9,menus:[{id:1},{id:2}]}) {id}}'};
 
-    it('should create quotation successfully', async () => {
+    it('should edit quotation successfully', async () => {
       const jsonExpected = {data: {updateQuotation: {id: 1}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
 
@@ -239,7 +239,7 @@ describe('Hooks -> Data -> Quotations', () => {
       sinon.assert.calledWithExactly(invalidateQueriesStub, QUOTATIONS_KEY);
     });
 
-    it('should handle create quotation error', async () => {
+    it('should handle edit quotation error', async () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
 
@@ -265,7 +265,7 @@ describe('Hooks -> Data -> Quotations', () => {
     const quotationId = 7;
     const body = {query: 'mutation {deleteQuotation(id: 7) {id}}'};
 
-    it('should create quotation successfully', async () => {
+    it('should delete quotation successfully', async () => {
       const jsonExpected = {data: {deleteQuotation: {id: 1}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
 
@@ -283,7 +283,7 @@ describe('Hooks -> Data -> Quotations', () => {
       sinon.assert.calledWithExactly(invalidateQueriesStub, QUOTATIONS_KEY);
     });
 
-    it('should handle create quotation error', async () => {
+    it('should handle delete quotation error', async () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
 
