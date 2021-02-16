@@ -206,7 +206,7 @@ describe('Hooks -> Data -> Dishes', () => {
     it('should not get dishes when dishesId is not present', async () => {
       mountComponent(() => useDishesByIds(), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
-      expect(hookResponse.data).toBeUndefined();
+      expect(hookResponse).toStrictEqual({dishes: [], isAnyFetching: false});
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
@@ -215,7 +215,7 @@ describe('Hooks -> Data -> Dishes', () => {
     it('should not get dishes when dishesId has invalid values', async () => {
       mountComponent(() => useDishesByIds([undefined, null, 0, null, '']), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
-      expect(hookResponse.data).toBeUndefined();
+      expect(hookResponse).toStrictEqual({dishes: [], isAnyFetching: false});
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
@@ -234,13 +234,11 @@ describe('Hooks -> Data -> Dishes', () => {
       window.localStorage.setItem(CACHE, JSON.stringify([dish1, dish4]));
 
       mountComponent(() => useDishesByIds(dishesId), {}, false);
-      expect(hookResponse.dishes).toStrictEqual([]);
-      expect(hookResponse.isAnyFetching).toBeTruthy();
+      expect(hookResponse).toStrictEqual({dishes: [], isAnyFetching: true});
 
       // wait until fire all useQueries
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 2)));
-      expect(hookResponse.dishes).toStrictEqual([dish2, dish3, dish1, dish4]);
-      expect(hookResponse.isAnyFetching).toBeFalsy();
+      expect(hookResponse).toStrictEqual({dishes: [dish2, dish3, dish1, dish4], isAnyFetching: false});
       expect(window.localStorage.getItem(CACHE)).toStrictEqual(JSON.stringify([dish1, dish4, dish2, dish3]));
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 2);

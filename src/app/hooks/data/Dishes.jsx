@@ -83,5 +83,5 @@ export const useDishesByIds = (dishesId = []) => {
   }));
   const dishes = results.filter(result => result.data).map(result => result.data);
   const isAnyFetching = !!results.filter(result => result.isFetching).length;
-  return {...results, dishes, isAnyFetching};
+  return {dishes, isAnyFetching};
 };
