@@ -5,7 +5,7 @@ import {waitFor} from '@testing-library/react';
 import React from 'react';
 import {renderQueryComponent} from 'app/../../test/TestHelper';
 import Api from 'app/common/Api';
-import {CACHE, useActiveDishesByCourseType, useDish, useDishesByIds} from 'app/hooks/data/Dishes';
+import {CACHE, DISH_KEY, useActiveDishesByCourseType, useDish, useDishesByIds} from 'app/hooks/data/Dishes';
 
 describe('Hooks -> Data -> Dishes', () => {
   const FIELDS = 'id name description picture price status categories{name}';
@@ -68,7 +68,7 @@ describe('Hooks -> Data -> Dishes', () => {
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(removeQueriesStub, 1);
-      sinon.assert.calledWithExactly(removeQueriesStub, 'Dish');
+      sinon.assert.calledWithExactly(removeQueriesStub, DISH_KEY);
     });
 
     it('should not get dishes when error and cache do not have dishes with courseType', async () => {
