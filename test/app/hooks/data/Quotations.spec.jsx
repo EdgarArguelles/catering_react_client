@@ -56,10 +56,13 @@ describe('Hooks -> Data -> Quotations', () => {
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
 
       mountComponent(() => useQuotation(quotationId), {auth: {loggedUser: {}}}, false);
+      expect(hookResponse.data).toBeUndefined();
+      expect(hookResponse.isFetching).toBeTruthy();
 
       // wait until fire useQuery
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
       expect(hookResponse.data).toStrictEqual({id: 1});
+      expect(hookResponse.isFetching).toBeFalsy();
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
@@ -85,11 +88,49 @@ describe('Hooks -> Data -> Quotations', () => {
     });
 
     it('should get quotations when loggedUser is present', async () => {
-      const jsonExpected = {data: {quotationPage: {content: [1, 2, 3], totalElements: 15, totalPages: 6}}};
+      const jsonExpected = {data: {quotationPage: {content: [1, 2, 3], totalElements: 5, totalPages: 2}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       const dataExpected = {
         pageParams: [undefined],
-        pages: [{quotations: [1, 2, 3], metaData: {pagination: pageParam, totalElements: 15, totalPages: 6}}],
+        pages: [{quotations: [1, 2, 3], metaData: {pagination: pageParam, totalElements: 5, totalPages: 2}}],
+      };
+
+      mountComponent(() => useQuotations(), {auth: {loggedUser: {}}}, false);
+      expect(hookResponse.data).toBeUndefined();
+      expect(hookResponse.quotations).toBeUndefined();
+      expect(hookResponse.metaData).toBeUndefined();
+      expect(hookResponse.isFetching).toBeTruthy();
+
+      // wait until fire useInfiniteQuery
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
+      expect(hookResponse.data).toStrictEqual(dataExpected);
+      expect(hookResponse.quotations).toStrictEqual([1, 2, 3]);
+      expect(hookResponse.metaData).toStrictEqual({pagination: pageParam, totalElements: 5, totalPages: 2});
+      expect(hookResponse.isFetching).toBeFalsy();
+      expect(hookResponse.hasNextPage).toBeTruthy();
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 1);
+      sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
+    });
+
+    it('should call fetchNextPage', async () => {
+      const jsonExpected = {data: {quotationPage: {content: [1, 2, 3], totalElements: 5, totalPages: 2}}};
+      graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+      const jsonExpected2 = {data: {quotationPage: {content: [4, 5], totalElements: 5, totalPages: 2}}};
+      const pag = {page: 1, size: 5, sort: ['createdAt'], direction: 'DESC'};
+      const body2 = {query: `{quotationPage(pageDataRequest: ${Utils.stringifyPageDataRequest(pag)}) {${FIELDS}}}`};
+      graphqlStub.withArgs(dispatchStub, body2).returns(jsonExpected2);
+      const dataExpected = {
+        pageParams: [undefined],
+        pages: [{quotations: [1, 2, 3], metaData: {pagination: pageParam, totalElements: 5, totalPages: 2}}],
+      };
+      const dataExpected2 = {
+        pageParams: [undefined, pag],
+        pages: [
+          {quotations: [1, 2, 3], metaData: {pagination: pageParam, totalElements: 5, totalPages: 2}},
+          {quotations: [4, 5], metaData: {pagination: pag, totalElements: 5, totalPages: 2}},
+        ],
       };
 
       mountComponent(() => useQuotations(), {auth: {loggedUser: {}}}, false);
@@ -98,10 +139,22 @@ describe('Hooks -> Data -> Quotations', () => {
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
       expect(hookResponse.data).toStrictEqual(dataExpected);
       expect(hookResponse.quotations).toStrictEqual([1, 2, 3]);
-      expect(hookResponse.metaData).toStrictEqual({pagination: pageParam, totalElements: 15, totalPages: 6});
+      expect(hookResponse.metaData).toStrictEqual({pagination: pageParam, totalElements: 5, totalPages: 2});
+      expect(hookResponse.isFetching).toBeFalsy();
+      expect(hookResponse.hasNextPage).toBeTruthy();
+
+      // call fetchNextPage
+      hookResponse.fetchNextPage();
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 2)));
+      expect(hookResponse.data).toStrictEqual(dataExpected2);
+      expect(hookResponse.quotations).toStrictEqual([1, 2, 3, 4, 5]);
+      expect(hookResponse.metaData).toStrictEqual({pagination: pag, totalElements: 5, totalPages: 2});
+      expect(hookResponse.isFetching).toBeFalsy();
+      expect(hookResponse.hasNextPage).toBeFalsy();
       sinon.assert.callCount(dispatchStub, 0);
-      sinon.assert.callCount(graphqlStub, 1);
+      sinon.assert.callCount(graphqlStub, 2);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+      sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body2);
       sinon.assert.callCount(invalidateQueriesStub, 0);
     });
   });
