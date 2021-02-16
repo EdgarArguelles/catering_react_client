@@ -5,6 +5,7 @@ import {waitFor} from '@testing-library/react';
 import React from 'react';
 import {renderQueryComponent} from 'app/../../test/TestHelper';
 import Api from 'app/common/Api';
+import {ACTIVE_DISHES_KEY, CACHE, DISH_KEY} from 'app/hooks/data/Dishes';
 import {useCourseTypes, useDBVersion} from 'app/hooks/data/CourseTypes';
 
 describe('Hooks -> Data -> CourseTypes', () => {
@@ -24,7 +25,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
     hookResponse = undefined;
     window.localStorage.removeItem('courseTypesCached');
     window.localStorage.removeItem('versionCached');
-    window.localStorage.removeItem('dishesCached');
+    window.localStorage.removeItem(CACHE);
   });
 
   const mountComponent = renderQueryComponent(({hook}) => {
@@ -160,14 +161,14 @@ describe('Hooks -> Data -> CourseTypes', () => {
 
     it('should not load version when courseTypes is not present', async () => {
       window.localStorage.setItem('versionCached', '5');
-      window.localStorage.setItem('dishesCached', 'old value');
+      window.localStorage.setItem(CACHE, 'old value');
 
       mountComponent(() => useDBVersion(null), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
 
       expect(hookResponse.data).toBeUndefined();
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('5');
-      expect(window.localStorage.getItem('dishesCached')).toStrictEqual('old value');
+      expect(window.localStorage.getItem(CACHE)).toStrictEqual('old value');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
@@ -179,36 +180,36 @@ describe('Hooks -> Data -> CourseTypes', () => {
       const jsonExpected = {data: {version: {version: 'version1'}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '5');
-      window.localStorage.setItem('dishesCached', 'old value');
+      window.localStorage.setItem(CACHE, 'old value');
 
       mountComponent(() => useDBVersion(60), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
 
       expect(hookResponse.data).toStrictEqual('version1');
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('version1');
-      expect(window.localStorage.getItem('dishesCached')).toStrictEqual(null);
+      expect(window.localStorage.getItem(CACHE)).toStrictEqual(null);
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 0);
       sinon.assert.callCount(invalidateQueriesStub, 1);
-      sinon.assert.calledWithExactly(invalidateQueriesStub, 'ActiveDishes');
+      sinon.assert.calledWithExactly(invalidateQueriesStub, ACTIVE_DISHES_KEY);
       sinon.assert.callCount(removeQueriesStub, 1);
-      sinon.assert.calledWithExactly(removeQueriesStub, 'Dish');
+      sinon.assert.calledWithExactly(removeQueriesStub, DISH_KEY);
     });
 
     it('should not update version when cache is the same', async () => {
       const jsonExpected = {data: {version: {version: 4}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '4');
-      window.localStorage.setItem('dishesCached', 'old value');
+      window.localStorage.setItem(CACHE, 'old value');
 
       mountComponent(() => useDBVersion(60), {}, false);
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
 
       expect(hookResponse.data).toStrictEqual(4);
       expect(window.localStorage.getItem('versionCached')).toStrictEqual('4');
-      expect(window.localStorage.getItem('dishesCached')).toStrictEqual('old value');
+      expect(window.localStorage.getItem(CACHE)).toStrictEqual('old value');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
