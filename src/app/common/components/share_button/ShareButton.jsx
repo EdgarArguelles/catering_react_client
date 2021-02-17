@@ -13,6 +13,8 @@ import {
   FacebookShareButton,
   PinterestIcon,
   PinterestShareButton,
+  TelegramIcon,
+  TelegramShareButton,
   TwitterIcon,
   TwitterShareButton,
   WhatsappIcon,
@@ -46,6 +48,10 @@ const ShareButton = ({link, label, description, hashtag}) => {
       {
         name: 'Email', icon: (<EmailShareButton url={link} subject={label} body={description} separator=" link: ">
           <EmailIcon size={iconSize} round/></EmailShareButton>),
+      },
+      {
+        name: 'Telegram', icon: (<TelegramShareButton url={link} title={label}>
+          <TelegramIcon size={iconSize} round/></TelegramShareButton>),
       },
       {
         name: 'Whatsapp', icon: (<WhatsappShareButton url={link} title={label}>
