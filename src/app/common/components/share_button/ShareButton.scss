@@ -2,6 +2,18 @@
 
 .share-button {
   #share-actions {
+    .copy-action {
+      height: 42px;
+      margin-bottom: 6px;
+      background-color: #313131;
+
+      .copy-icon {
+        color: #ffffff;
+        margin-bottom: 5px;
+        @include Variables.font-size(20);
+      }
+    }
+
     .MuiFab-label {
       margin-top: 6px;
     }
