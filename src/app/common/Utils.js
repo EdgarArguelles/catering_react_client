@@ -142,6 +142,9 @@ export default class Utils {
       element.setAttribute('stroke-width', strokeWidth);
     });
     const {default: Vivus} = await import('vivus');
-    return new Vivus(id, {duration, type: animation}, restoreOnComplete ? restore : callback);
+    process.env.NODE_ENV !== 'test' && document.getElementById(id) && new Vivus(id, {
+      duration,
+      type: animation,
+    }, restoreOnComplete ? restore : callback);
   }
 }
