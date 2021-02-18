@@ -1,0 +1,11 @@
+@use 'app/Variables';
+
+.dish-actions {
+  @media (max-width: Variables.$screen-xxs) {
+    margin-right: 5px;
+
+    button {
+      @include Variables.font-size(10);
+    }
+  }
+}
