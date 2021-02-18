@@ -37,7 +37,7 @@ const MenuGrid = () => {
 
   return (
     <Grid id="menu-grid" container spacing={2} justify="flex-start">
-      {Object.values(quotation.menus).sort(Utils.getSortString('id')).map((menu, index) => (
+      {[...quotation.menus].sort(Utils.getSortString('id')).map((menu, index) => (
         getAnimatedGrid(menu.id, <MenuItem index={index} menu={menu}/>)
       ))}
       {getAnimatedGrid('new-menu', (

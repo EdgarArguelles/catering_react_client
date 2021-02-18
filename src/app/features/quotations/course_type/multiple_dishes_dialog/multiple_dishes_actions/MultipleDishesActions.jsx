@@ -11,9 +11,7 @@ const MultipleDishesActions = ({courseType, onClose}) => {
   const dispatch = useDispatch();
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
-  const results = useDishesByIds(multipleDishes.map(dish => dish.id));
-  const dishes = results.filter(result => result.data).map(result => result.data);
-  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
+  const {dishes, isAnyFetching} = useDishesByIds(multipleDishes.map(dish => dish.id));
   const handleCleanDishes = () => dispatch(cleanDishes());
   const handleAddCourse = (dishesIds, position) => dispatch(addCourse({
     courseTypeId: courseType.id,
@@ -34,7 +32,7 @@ const MultipleDishesActions = ({courseType, onClose}) => {
   return (
     <div className="multiple-dishes-actions">
       <Button onClick={onClose}>Cancelar</Button>
-      {!isAnyLoading && <Button color="primary" onClick={save} disabled={multipleDishes.length <= 0}>Crear</Button>}
+      {!isAnyFetching && <Button color="primary" onClick={save} disabled={multipleDishes.length <= 0}>Crear</Button>}
     </div>
   );
 };

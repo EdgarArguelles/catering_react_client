@@ -32,8 +32,8 @@ const Quotations = () => {
           <Information/>
         </Grid>
         <Grid item className="video" xs={12} sm={6}>
-          <iframe id="video" src="https://www.youtube.com/embed/qq_5UQry3T4?enablejsapi=1" frameBorder="0"
-                  allowFullScreen allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
+          <iframe id="video" src="https://www.youtube.com/embed/gZmdU6jC2vQ" frameBorder="0" allowFullScreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>
         </Grid>
         <Grid item xs={12}>
           <hr/>

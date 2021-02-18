@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -30,21 +29,16 @@ const FetchButton = props => {
   useEffect(() => {
     return () => {
       clearTimeout(timeout.current);
-      timeout.current = 'unmonted';
-      callOnComplete(false);
+      timeout.current && callOnComplete(false);
     };
   }, [callOnComplete]); // this is an unmount, because callOnComplete has inputs = [], this useEffect is [] as well
 
   const handleAsyncCall = useCallback(async action => {
     const updateStatus = newStatus => {
-      if (timeout.current === 'unmonted') {
-        callOnComplete(newStatus === 'success');
-        return;
-      }
-
       setButtonState(newStatus);
       clearTimeout(timeout.current);
       timeout.current = setTimeout(() => {
+        timeout.current = null;
         setButtonState('normal');
         callOnComplete(newStatus === 'success');
       }, ANIMATION_DELAY);

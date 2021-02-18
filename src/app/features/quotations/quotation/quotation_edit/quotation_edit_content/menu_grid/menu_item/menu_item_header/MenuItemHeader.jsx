@@ -31,7 +31,7 @@ const MenuItemHeader = ({index, focus, menu, select, openMenu}) => {
     const animateIcon = () => !isSelected && Utils.animateIcon(`menu-${id}-edit-icon`);
 
     const handleSave = newValue => {
-      dispatch(changeName(newValue !== '' ? newValue : name));
+      dispatch(changeName(newValue || name));
       dispatch(selectMenu(''));
     };
 

@@ -10,9 +10,7 @@ import AddDish from './add_dish/AddDish';
 
 const MainCourse = () => {
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
-  const results = useDishesByIds(multipleDishes.map(dish => dish.id));
-  const dishes = results.filter(result => result.data).map(result => result.data);
-  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
+  const {dishes, isAnyFetching} = useDishesByIds(multipleDishes.map(dish => dish.id));
   const sections = ['Proteina', 'Guarnición'];
 
   const getLoader = () => {
@@ -34,7 +32,7 @@ const MainCourse = () => {
       {sections.map((section, index) => (
         <div key={index}>
           <h3>{section}</h3>
-          {isAnyLoading ? getLoader() : getDishesList(section)}
+          {isAnyFetching ? getLoader() : getDishesList(section)}
           <AddDish dishCategory={section}/>
           {index < sections.length - 1 && <Divider className="main-course-divider"/>}
         </div>

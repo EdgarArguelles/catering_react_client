@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+import sinon from 'sinon';
 import Utils from 'app/common/Utils';
 
 describe('Utils', () => {
@@ -163,87 +164,6 @@ describe('Utils', () => {
     });
   });
 
-  describe('arrayToObject', () => {
-    it('should not mutate original array', () => {
-      const array = [
-        {id: 'id1', value: 'example', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        {id: 'id2', value: 'example2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        {id: 'id3', value: 'example3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      ];
-      const array2 = [
-        {id: 'id1', value: 'example', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        {id: 'id2', value: 'example2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        {id: 'id3', value: 'example3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      ];
-
-      Utils.arrayToObject(array);
-
-      // don't mutate
-      expect(array).toStrictEqual(array2);
-    });
-
-    it('should transform a complex array to an object', () => {
-      const array = [
-        {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        {id: 'id3', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      ];
-      const expected = {
-        id1: {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        id2: {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        id3: {id: 'id3', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      };
-
-      const result = Utils.arrayToObject(array);
-
-      expect(result).toStrictEqual(expected);
-      // don't mutate
-      expect(array).toStrictEqual([
-        {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        {id: 'id3', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      ]);
-    });
-
-    it('should overwrite a duplicate id', () => {
-      const array = [
-        {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        {id: 'id1', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      ];
-      const expected = {
-        id1: {id: 'id1', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-        id2: {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-      };
-
-      const result = Utils.arrayToObject(array);
-
-      expect(result).toStrictEqual(expected);
-      // don't mutate
-      expect(array).toStrictEqual([
-        {id: 'id1', value: 'exam', age: 5, inner: {val: 'a'}, list: [{inner: {val: 'aa'}, inner2: {val: 'a1'}}]},
-        {id: 'id2', value: 'exam2', age: 6, inner: {val: 'b'}, list: [{inner: {val: 'bb'}, inner2: {val: 'b1'}}]},
-        {id: 'id1', value: 'exam3', age: 7, inner: {val: 'c'}, list: [{inner: {val: 'cc'}, inner2: {val: 'c1'}}]},
-      ]);
-    });
-
-    it('should throw an error when not parameter', () => {
-      expect(() => Utils.arrayToObject()).toThrow('Cannot read property \'forEach\' of undefined');
-    });
-
-    it('should throw an error when null parameter', () => {
-      expect(() => Utils.arrayToObject(null)).toThrow('Cannot read property \'forEach\' of null');
-    });
-
-    it('should throw an error when object parameter', () => {
-      expect(() => Utils.arrayToObject({test: 'abc'})).toThrow('.forEach is not a function');
-    });
-
-    it('should throw an error when numeric parameter', () => {
-      expect(() => Utils.arrayToObject(5)).toThrow('.forEach is not a function');
-    });
-  });
-
   describe('stringifyObjectWithNoQuotesOnKeys', () => {
     it('should not mutate original json', () => {
       const json = {
@@ -395,6 +315,84 @@ describe('Utils', () => {
 
     it('should throw an error when null parameter', () => {
       expect(() => Utils.stringifyPageDataRequest(null)).toThrow('Cannot read property \'replace\' of null');
+    });
+  });
+
+  describe('resetInfiniteQuery', () => {
+    it('should call setQueryData and invalidateQueries once', () => {
+      const queryKey = 'testKey';
+      const newPageParams = {sort: ['newField']};
+      const setQueryDataStub = sinon.stub();
+      const invalidateQueriesStub = sinon.stub();
+      const queryClient = {setQueryData: setQueryDataStub, invalidateQueries: invalidateQueriesStub};
+
+      Utils.resetInfiniteQuery(queryClient, queryKey, newPageParams);
+
+      sinon.assert.callCount(setQueryDataStub, 1);
+      sinon.assert.calledWithExactly(setQueryDataStub, queryKey, sinon.match.func);
+      sinon.assert.callCount(invalidateQueriesStub, 1);
+      sinon.assert.calledWithExactly(invalidateQueriesStub, queryKey);
+    });
+  });
+
+  describe('completeLoading', () => {
+    it('should change display values', () => {
+      const loadingElement = {style: {display: 'old'}};
+      const contentElement = {style: {display: 'old'}};
+      const getElementByIdStub = sinon.stub(document, 'getElementById');
+      getElementByIdStub.withArgs('loading').returns(loadingElement);
+      getElementByIdStub.withArgs('content').returns(contentElement);
+
+      Utils.completeLoading();
+
+      expect(loadingElement.style.display).toStrictEqual('none');
+      expect(contentElement.style.display).toStrictEqual('block');
+      sinon.assert.callCount(getElementByIdStub, 2);
+      sinon.assert.calledWithExactly(getElementByIdStub, 'loading');
+      sinon.assert.calledWithExactly(getElementByIdStub, 'content');
+      getElementByIdStub.restore();
+    });
+  });
+
+  describe('animateIcon', () => {
+    const id = '5';
+    const querySelectorAllStub = sinon.stub();
+    const setAttributeStub = sinon.stub();
+    let getElementByIdStub;
+
+    beforeEach(() => {
+      querySelectorAllStub.withArgs('path').returns([
+        {setAttribute: setAttributeStub}, {setAttribute: setAttributeStub}]);
+      getElementByIdStub = sinon.stub(document, 'getElementById');
+      getElementByIdStub.withArgs(id).returns({querySelectorAll: querySelectorAllStub});
+    });
+
+    afterEach(() => {
+      querySelectorAllStub.reset();
+      setAttributeStub.reset();
+      getElementByIdStub.restore();
+    });
+
+    it('should use strokeWidth default value', () => {
+      Utils.animateIcon(id);
+
+      sinon.assert.callCount(getElementByIdStub, 1);
+      sinon.assert.calledWithExactly(getElementByIdStub, id);
+      sinon.assert.callCount(setAttributeStub, 6);
+      sinon.assert.calledWithExactly(setAttributeStub, 'fill', 'transparent');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke', 'currentColor');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke-width', 40);
+    });
+
+    it('should not use strokeWidth default value', () => {
+      Utils.animateIcon(id, {strokeWidth: 60});
+
+      sinon.assert.callCount(getElementByIdStub, 1);
+      sinon.assert.calledWithExactly(getElementByIdStub, id);
+      sinon.assert.callCount(setAttributeStub, 6);
+      sinon.assert.calledWithExactly(setAttributeStub, 'fill', 'transparent');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke', 'currentColor');
+      sinon.assert.calledWithExactly(setAttributeStub, 'stroke-width', 60);
     });
   });
 });

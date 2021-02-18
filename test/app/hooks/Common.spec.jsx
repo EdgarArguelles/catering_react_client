@@ -4,26 +4,18 @@ import {act} from 'react-test-renderer';
 import {waitFor} from '@testing-library/react';
 import React, {useState} from 'react';
 import {renderReduxComponent} from 'app/../../test/TestHelper';
-import {
-  useAppTheme,
-  useBrowserNavigation,
-  useIsMobileSize,
-  usePingServer,
-  useQuotationsLoader,
-} from 'app/hooks/Common';
+import {useAppTheme, useBrowserNavigation, useIsMobileSize, usePingServer} from 'app/hooks/Common';
 import {changeTheme as changeThemeAction} from 'app/AppReducer';
-import * as QuotationsActions from 'app/data/quotations/QuotationsReducer';
 import * as AuthActions from 'app/features/auth/AuthReducer';
 import * as NavigationActions from 'app/features/quotations/header/navigation/NavigationReducer';
 
 describe('Hooks -> Common', () => {
   const dispatchStub = sinon.stub();
-  let hookResponse, store, wrapper;
+  let hookResponse, wrapper;
 
   afterEach(() => {
     dispatchStub.reset();
     hookResponse = undefined;
-    store = undefined;
     wrapper = undefined;
   });
 
@@ -143,62 +135,6 @@ describe('Hooks -> Common', () => {
       sinon.assert.callCount(dispatchStub, 2);
       sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
       sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 2'});
-    });
-  });
-
-  describe('useQuotationsLoader', () => {
-    const fetchQuotationStub = sinon.stub(QuotationsActions, 'fetchQuotation');
-
-    beforeEach(() => {
-      fetchQuotationStub.reset();
-      fetchQuotationStub.withArgs({quotationId: 'Q1', overwriteLocalChanges: false}).returns({type: 'TEST'});
-      const data = mountComponent(() => useQuotationsLoader(), {
-        auth: {},
-        quotations: {quotation: {id: 'Q1'}},
-        data: {quotations: {fetching: false}},
-      }, true);
-      wrapper = data.wrapper;
-      store = data.store;
-    });
-
-    it('should not call fetchQuotation', () => {
-      // call onChange to trigger useEffect
-      fireOnChange();
-
-      sinon.assert.callCount(fetchQuotationStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    it('should not call fetchQuotation when dispatch createQuotation.fulfilled', () => {
-      act(() => {
-        store.dispatch({type: QuotationsActions.createQuotation.fulfilled.type});
-      });
-
-      sinon.assert.callCount(fetchQuotationStub, 0);
-      sinon.assert.callCount(dispatchStub, 0);
-    });
-
-    it('should call fetchQuotation only once', () => {
-      act(() => {
-        store.dispatch({
-          type: AuthActions.login.type,
-          payload: {
-            loggedUser: {id: 'User 1'},
-          },
-        });
-      });
-      act(() => {
-        store.dispatch({
-          type: AuthActions.login.type,
-          payload: {
-            loggedUser: {id: 'User 2'},
-          },
-        });
-      });
-
-      sinon.assert.callCount(fetchQuotationStub, 1);
-      sinon.assert.calledWithExactly(fetchQuotationStub, {quotationId: 'Q1', overwriteLocalChanges: false});
-      sinon.assert.callCount(dispatchStub, 0);
     });
   });
 });

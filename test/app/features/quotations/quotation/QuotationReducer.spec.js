@@ -1,13 +1,12 @@
 /* eslint-disable max-lines */
-import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
 import quotationReducer, {
-  changeName,
-  selectMenu,
-  addNewMenu,
   addMenu,
+  addNewMenu,
+  changeName,
   removeMenu,
-  setPrice,
   revertQuotation,
+  selectMenu,
+  setPrice,
 } from 'app/features/quotations/quotation/QuotationReducer';
 
 describe('Quotations -> Quotation -> Reducer/Actions', () => {
@@ -41,120 +40,6 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         name: 'name 1',
         menus: [{id: 'menu 1'}, {id: 'menu 2'}],
         price: 500.5,
-      });
-    });
-
-    it('should not load data when action is fetchQuotation.fulfilled and overwriteLocalChanges is false', () => {
-      const state = {
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
-      };
-      const stateExpected = {
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
-      };
-      const action = {
-        type: fetchQuotation.fulfilled.type, payload: {
-          overwriteLocalChanges: false,
-          data: {
-            id: 'ID2',
-            value: 'value 1',
-            menus: [
-              {id: 'M1', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: [{price: 33}]}], price: 123},
-              {id: 'M2', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: []}]},
-              {id: 'M3', courses: [{dishes: []}, {dishes: []}], price: 8},
-              {id: 'M4', courses: [], extra: 'abc'},
-            ],
-          },
-        },
-      };
-
-      const result = quotationReducer(state, action);
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
-      });
-    });
-
-    it('should load data when action is fetchQuotation.fulfilled and overwriteLocalChanges is true', () => {
-      const state = {
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
-      };
-      const stateExpected = {
-        id: 'ID2',
-        value: 'value 1',
-        menus: [
-          {id: 'M1', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: [{price: 33}]}], price: 68.5},
-          {id: 'M2', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: []}], price: 35.5},
-          {id: 'M3', courses: [{dishes: []}, {dishes: []}], price: 0},
-          {id: 'M4', courses: [], extra: 'abc', price: 0},
-        ],
-      };
-      const action = {
-        type: fetchQuotation.fulfilled.type, payload: {
-          overwriteLocalChanges: true,
-          data: {
-            id: 'ID2',
-            value: 'value 1',
-            menus: [
-              {id: 'M1', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: [{price: 33}]}], price: 123},
-              {id: 'M2', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: []}]},
-              {id: 'M3', courses: [{dishes: []}, {dishes: []}], price: 8},
-              {id: 'M4', courses: [], extra: 'abc'},
-            ],
-          },
-        },
-      };
-
-      const result = quotationReducer(state, action);
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
-      });
-    });
-
-    it('should load data when action is fetchQuotation.fulfilled and menus are empty', () => {
-      const state = {
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
-      };
-      const stateExpected = {
-        id: 'ID2',
-        value: 'value 1',
-        menus: [],
-      };
-      const action = {
-        type: fetchQuotation.fulfilled.type, payload: {
-          overwriteLocalChanges: true,
-          data: {
-            id: 'ID2',
-            value: 'value 1',
-            menus: [],
-          },
-        },
-      };
-
-      const result = quotationReducer(state, action);
-
-      expect(result).toStrictEqual(stateExpected);
-      // don't mutate
-      expect(state).toStrictEqual({
-        id: 'ID1',
-        name: 'name 1',
-        extra: 'abc',
       });
     });
 

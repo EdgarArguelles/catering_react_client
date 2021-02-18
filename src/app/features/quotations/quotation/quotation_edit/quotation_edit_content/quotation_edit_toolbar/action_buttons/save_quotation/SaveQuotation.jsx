@@ -1,36 +1,52 @@
 import './SaveQuotation.scss';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
+import {useQueryClient} from 'react-query';
 import {faSave} from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
+import {QUOTATION_KEY, useCreateQuotation, useEditQuotation, useQuotation} from 'app/hooks/data/Quotations';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import AuthDialog from 'app/features/quotations/auth_dialog/AuthDialog';
 import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
-import {endRemoteProcess} from 'app/features/quotations/QuotationsReducer';
-import {cleanError, createQuotation, editQuotation, fetchQuotation} from 'app/data/quotations/QuotationsReducer';
+import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
+import {changeError, changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
 
 const SaveQuotation = ({isErrorVisible}) => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const [remoteId, setRemoteId] = useState(null);
+  const {data: remote} = useQuotation(remoteId);
+  const createMutation = useCreateQuotation();
+  const editMutation = useEditQuotation();
   const loggedUser = useSelector(state => state.auth.loggedUser);
-  const isRemoteProcessing = useSelector(state => state.quotations.isRemoteProcessing);
+  const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
-  const isFetching = useSelector(state => state.data.quotations.fetching);
-  const errors = useSelector(state => state.data.quotations.error);
+  const isFetching = createMutation.isLoading || editMutation.isLoading;
+  const error = createMutation.error || editMutation.error;
   const handleOpenAuthDialog = () => dispatch(openAuthDialog());
-  const handleCleanError = () => dispatch(cleanError());
-  const handleEndRemoteProcess = () => dispatch(endRemoteProcess());
+  const handleEndRemoteProcess = () => dispatch(changeIsRemoteProcessing(false));
+  const handleCleanError = () => {
+    createMutation.reset();
+    editMutation.reset();
+    dispatch(changeError(null));
+  };
+
+  useEffect(() => {
+    remote && dispatch(revertQuotation(remote));
+  }, [dispatch, remote]);
+
   const saveQuotation = async () => {
-    let quotationId;
+    dispatch(changeIsRemoteProcessing(true));
     if (!quotation.id) {
-      const response = await dispatch(createQuotation({
+      const {id} = await createMutation.mutateAsync({
         ...quotation,
         menus: quotation.menus.map(menu => ({...menu, id: null})),
-      }));
-      quotationId = response.payload.data.createQuotation.id;
+      });
+      setRemoteId(id);
     } else {
-      const response = await dispatch(editQuotation({
+      const {id} = await editMutation.mutateAsync({
         ...quotation,
         menus: quotation.menus.map(menu => {
           if (menu.id.startsWith('local-')) {
@@ -39,29 +55,28 @@ const SaveQuotation = ({isErrorVisible}) => {
 
           return menu;
         }),
-      }));
-      quotationId = response.payload.data.updateQuotation.id;
+      });
+      await queryClient.invalidateQueries([QUOTATION_KEY, id]);
+      setRemoteId(id);
     }
-    await dispatch(fetchQuotation({quotationId, overwriteLocalChanges: true}));
   };
 
-  const errorMessage = errors?.message === 'Unauthorized' ? 'Usuario sin sesión'
+  const errorMessage = error?.status === 401 ? 'Usuario sin sesión'
     : quotation.menus && quotation.menus.filter(menu => menu.courses.length === 0).length > 0
       ? 'No puede haber menús vacíos' : 'Ocurrió un error al intentar guardar el presupuesto';
   const preconditionCall = loggedUser ? null : handleOpenAuthDialog;
   const asyncCall = loggedUser ? async () => await saveQuotation() : null;
-  const labelAction = quotation.id ? 'Guardados' : 'Guardado';
   const label = quotation.id ? 'Cambios' : 'Presupuesto';
 
   return (
     <span id="save-quotation">
-        <FetchButton color="primary" label={`Guardar ${label}`} successLabel={`${label} ${labelAction}`}
+        <FetchButton color="primary" label={`Guardar ${label}`} successLabel="Cambios Guardados"
                      id="save-quotation-button" hidden={isRemoteProcessing || isFetching} icon={faSave}
                      onComplete={handleEndRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
         <AuthDialog/>
-        <Snackbar open={!!errors && isErrorVisible} TransitionComponent={Slide}
-                  autoHideDuration={10000} onClose={handleCleanError} message={errors ? errorMessage : ''}/>
+        <Snackbar open={!!error && isErrorVisible} TransitionComponent={Slide}
+                  autoHideDuration={10000} onClose={handleCleanError} message={error ? errorMessage : ''}/>
       </span>
   );
 };

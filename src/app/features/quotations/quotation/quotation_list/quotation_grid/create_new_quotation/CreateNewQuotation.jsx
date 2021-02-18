@@ -6,6 +6,7 @@ import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
+import {useQuotation} from 'app/hooks/data/Quotations';
 import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
@@ -14,8 +15,8 @@ import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
 
 const CreateNewQuotation = () => {
   const dispatch = useDispatch();
-  const quotations = useSelector(state => state.data.quotations.data);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
+  const {data: remote} = useQuotation(selectedQuotation.id);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogLabel = 'Al crear un nuevo presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
 
@@ -31,7 +32,7 @@ const CreateNewQuotation = () => {
   const handleShowDialog = () => {
     animateIcon();
     const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
-    const isEdited = !areEqual(selectedQuotation, quotations ? quotations[selectedQuotation.id] : null);
+    const isEdited = !areEqual(selectedQuotation, remote);
 
     if (isQuotationStarted && isEdited) {
       setIsDialogOpen(true);

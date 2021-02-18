@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFlagCheckered} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
+import {useQuotation} from 'app/hooks/data/Quotations';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
@@ -13,9 +14,9 @@ const QuotationCompleteButton = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector(state => state.auth.loggedUser);
   const isFetching = useSelector(state => state.data.quotations.fetching);
-  const quotations = useSelector(state => state.data.quotations.data);
   const errors = useSelector(state => state.data.quotations.error);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
+  const {data: remote} = useQuotation(selectedQuotation.id);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogLabel = 'Al cerrar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
 
@@ -26,7 +27,7 @@ const QuotationCompleteButton = () => {
 
   const handleShowDialog = () => {
     const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
-    const isEdited = !areEqual(selectedQuotation, quotations ? quotations[selectedQuotation.id] : null);
+    const isEdited = !areEqual(selectedQuotation, remote);
 
     if (isQuotationStarted && isEdited) {
       setIsDialogOpen(true);

@@ -13,7 +13,7 @@ const Access = () => {
   const redirect = () => History.navigate('/presupuestos');
 
   if (loggedUser) {
-    const userImage = loggedUser?.image || window.sessionStorage ? window.sessionStorage.getItem('userImage') : '';
+    const userImage = loggedUser?.image || window?.sessionStorage?.getItem('userImage') || '';
 
     return (
       <div id="access">

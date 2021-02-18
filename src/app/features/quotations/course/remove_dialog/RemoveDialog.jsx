@@ -8,8 +8,7 @@ import {decreasePrice, removeCourse} from 'app/features/quotations/menu/MenuRedu
 
 const RemoveDialog = ({course, open, onClose}) => {
   const dispatch = useDispatch();
-  const results = useDishesByIds(course.dishes.map(dish => dish.id));
-  const dishes = results.filter(result => result.data).map(result => result.data);
+  const {dishes} = useDishesByIds(course.dishes.map(dish => dish.id));
   const removeAction = () => {
     const coursePrice = dishes.reduce((accumulator, dish) => dish.price ? accumulator + dish.price : accumulator, 0);
     dispatch(removeCourse({courseTypeId: course.type.id, position: course.position}));

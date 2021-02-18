@@ -9,7 +9,7 @@ export const ACTION_TYPES = {FETCH_FAILURE: 'FETCH_FAILURE', SESSION_EXPIRED: 'S
  * @return {Object} headers created with authorization
  */
 const createHeaders = (headers = {}) => {
-  const accessToken = window.sessionStorage && window.sessionStorage.getItem('accessToken');
+  const accessToken = window?.sessionStorage?.getItem('accessToken');
   const authorization = accessToken ? {Authorization: `Bearer ${accessToken}`} : {};
   return {...headers, ...authorization};
 };

@@ -5,10 +5,9 @@ describe('Data -> Reducer/Actions', () => {
     it('should get default state when undefined', () => {
       const state = {
         quotations: {
-          data: null,
-          metaData: null,
-          error: null,
+          isRemoteProcessing: false,
           fetching: false,
+          error: null,
         },
       };
 
@@ -20,10 +19,9 @@ describe('Data -> Reducer/Actions', () => {
     it('should get the same original status when action is not allow', () => {
       const state = {
         quotations: {
-          data: {id: 'ID3'},
-          metaData: {id: 'meta'},
-          error: {id: 'error'},
+          isRemoteProcessing: true,
           fetching: true,
+          error: {id: 'error'},
         },
       };
 
@@ -33,10 +31,9 @@ describe('Data -> Reducer/Actions', () => {
       // don't mutate
       expect(state).toStrictEqual({
         quotations: {
-          data: {id: 'ID3'},
-          metaData: {id: 'meta'},
-          error: {id: 'error'},
+          isRemoteProcessing: true,
           fetching: true,
+          error: {id: 'error'},
         },
       });
     });

@@ -9,40 +9,49 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import History from 'app/router/History';
+import {useQuotation} from 'app/hooks/data/Quotations';
 import {areEqual} from './Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import {fetchQuotation} from 'app/data/quotations/QuotationsReducer';
+import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
 
 const Quotation = ({index, quotation}) => {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.app.theme);
-  const quotations = useSelector(state => state.data.quotations.data);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [shouldOverwrite, setShouldOverwrite] = useState(false);
+  const [remoteId, setRemoteId] = useState(null);
+  const {data: remote} = useQuotation(remoteId);
+  const {data: selectedRemote} = useQuotation(remoteId ? selectedQuotation.id : null);
   const {id} = quotation;
   const createdAt = quotation.createdAt ? moment(`${quotation.createdAt}Z`) : moment();
   const dialogLabel = 'Al seleccionar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
   const selectQuotation = () => {
-    dispatch(fetchQuotation({quotationId: id, overwriteLocalChanges: true}));
+    dispatch(revertQuotation(remote));
     History.navigate('/presupuestos/editar');
   };
 
   const handleSelectQuotation = () => {
-    const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
-    const isEdited = !areEqual(selectedQuotation, quotations ? quotations[selectedQuotation.id] : null);
-
     if (selectedQuotation.id === id) {
       History.navigate('/presupuestos/editar');
-      return;
+    } else {
+      setRemoteId(id);
+      setShouldOverwrite(true);
     }
+  };
 
+  const overwriteLocalChanges = () => {
+    setShouldOverwrite(false);
+    const isQuotationStarted = selectedQuotation.menus && selectedQuotation.menus.length > 0;
+    const isEdited = !areEqual(selectedQuotation, selectedRemote);
     if (isQuotationStarted && isEdited) {
       setIsDialogOpen(true);
-      return;
+    } else {
+      setTimeout(() => selectQuotation(id), 0);
     }
-
-    selectQuotation(id);
   };
+
+  remote && shouldOverwrite && overwriteLocalChanges();
 
   return (
     <>

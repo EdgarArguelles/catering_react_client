@@ -44,22 +44,6 @@ export default class Utils {
   }
 
   /**
-   * Transform an array into an Object using id as index (do not mutate the original array)
-   * example [{id: id_1, value: example, age: 5}, {id: id_2, value: example2, age: 6}] becomes
-   * {id_1: {id: id_1, value: example, age: 5}, id_2: {id: id_2, value: example2, age: 6}}
-   *
-   * @param {Array} array to be transformed
-   * @return {Object} resulted object
-   */
-  static arrayToObject(array) {
-    const object = {};
-    array.forEach(item => {
-      object[item.id] = {...item};
-    });
-    return object;
-  }
-
-  /**
    * Stringify a json but without quotes on keys
    *
    * @param {Object} json to be transformed
@@ -106,6 +90,19 @@ export default class Utils {
   }
 
   /**
+   * Reset values of an useInfiniteQuery hook, using new parameters to reload
+   *
+   * @param {Object} queryClient object created by useQueryClient() hook
+   * @param {String} queryKey unique query's identifier
+   * @param {Object} newPageParams new parameter to be used in useInfiniteQuery
+   * @return {void}
+   */
+  static resetInfiniteQuery(queryClient, queryKey, newPageParams) {
+    queryClient.setQueryData(queryKey, data => ({pages: [data.pages[0]], pageParams: [newPageParams]}));
+    queryClient.invalidateQueries(queryKey);
+  }
+
+  /**
    * Hide loading animation and display application content
    *
    * @return {void}
@@ -145,6 +142,9 @@ export default class Utils {
       element.setAttribute('stroke-width', strokeWidth);
     });
     const {default: Vivus} = await import('vivus');
-    return new Vivus(id, {duration, type: animation}, restoreOnComplete ? restore : callback);
+    process.env.NODE_ENV !== 'test' && document.getElementById(id) && new Vivus(id, {
+      duration,
+      type: animation,
+    }, restoreOnComplete ? restore : callback);
   }
 }

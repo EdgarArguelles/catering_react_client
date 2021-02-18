@@ -6,19 +6,20 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import Utils from 'app/common/Utils';
+import {useQuotation} from 'app/hooks/data/Quotations';
 import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
 import Animate from 'app/common/components/animate/Animate';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
 
 const QuotationNotify = () => {
-  const isFetching = useSelector(state => state.data.quotations.fetching);
+  const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
-  const quotations = useSelector(state => state.data.quotations.data);
+  const {data: remote, isFetching} = useQuotation(quotation.id);
   const [isSendDialogOpen, setIsSendDialogOpen] = useState(false);
   const [comment, setComment] = useState('');
   const link = `${window.location.origin}/presupuestos/ver/${quotation.id}`;
   const body = `comentario:%0D%0A${encodeURI(comment)}%0D%0A%0D%0A%0D%0Alink: ${link}`;
-  const visible = !isFetching && areEqual(quotation, quotations ? quotations[quotation.id] : null);
+  const visible = !isRemoteProcessing && !isFetching && areEqual(quotation, remote);
   const openSendDialog = () => {
     Utils.animateIcon('quotation-notify-button-icon', {strokeWidth: 20});
     setIsSendDialogOpen(true);

@@ -13,8 +13,7 @@ const Course = ({course}) => {
   const [animationIn, setAnimationIn] = useState('fadeInLeft');
   const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   const [removeAction, setRemoveAction] = useState(null);
-  const results = useDishesByIds(course.dishes.map(dish => dish.id));
-  const isAnyLoading = !!results.filter(result => result.isLoading).map(result => result.isLoading).length;
+  const {isAnyFetching} = useDishesByIds(course.dishes.map(dish => dish.id));
   const onClose = action => {
     const resetRemoveAction = () => {
       action();
@@ -44,7 +43,7 @@ const Course = ({course}) => {
     );
   };
 
-  if (isAnyLoading) {
+  if (isAnyFetching) {
     return getLoading();
   }
 

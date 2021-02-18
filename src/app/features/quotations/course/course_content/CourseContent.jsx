@@ -21,8 +21,7 @@ import {
 const CourseContent = ({course, onActionClick}) => {
   const dispatch = useDispatch();
   const {data: courseTypes} = useCourseTypes();
-  const results = useDishesByIds(course.dishes.map(dish => dish.id));
-  const dishes = results.filter(result => result.data).map(result => result.data);
+  const {dishes} = useDishesByIds(course.dishes.map(dish => dish.id));
   const coursePrice = dishes.reduce((accumulator, dish) => dish.price ? accumulator + dish.price : accumulator, 0);
   const handleSelectDish = dishId => dispatch(selectDish(dishId));
   const isMultipleDishes = useMultipleDishes(courseTypes.find(c => c.id === course.type.id));

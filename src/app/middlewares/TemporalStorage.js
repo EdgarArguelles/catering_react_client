@@ -5,10 +5,6 @@
 export default store => next => action => {
   const result = next(action);
   window.localStorage.setItem('appTheme', store.getState().app.theme);
-  window.sessionStorage.setItem('quotationsState', JSON.stringify({
-    ...store.getState().quotations,
-    isRemoteProcessing: false, // don't save isRemoteProcessing value
-  }));
-
+  window.sessionStorage.setItem('quotationsState', JSON.stringify(store.getState().quotations));
   return result;
 };

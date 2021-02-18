@@ -6,9 +6,8 @@
  * @return {boolean} true if dish's id is in menu
  */
 const isDishAddedInMenu = (menuCourses, dishId) => {
-  const array = menuCourses || [];
   let isAdded = false;
-  array.forEach(course => {
+  menuCourses?.forEach(course => {
     if (isAdded) {
       return;
     }
