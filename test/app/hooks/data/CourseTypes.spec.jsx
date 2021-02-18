@@ -198,7 +198,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.calledWithExactly(removeQueriesStub, DISH_KEY);
     });
 
-    it('should not update version when cache is the same', async () => {
+    it('should not clean dishes when cache is the same', async () => {
       const jsonExpected = {data: {version: {version: 4}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '4');
@@ -218,7 +218,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
-    it('should not update version when cache is not present', async () => {
+    it('should not clean dishes when cache is not present', async () => {
       const jsonExpected = {data: {version: {version: 4}}};
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem(CACHE, 'old value');
@@ -227,7 +227,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
 
       expect(hookResponse.data).toStrictEqual(4);
-      expect(window.localStorage.getItem('versionCached')).toStrictEqual(null);
+      expect(window.localStorage.getItem('versionCached')).toStrictEqual('4');
       expect(window.localStorage.getItem(CACHE)).toStrictEqual('old value');
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
