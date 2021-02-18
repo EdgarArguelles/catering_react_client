@@ -40,7 +40,8 @@ export const useDBVersion = courseTypes => {
     const body = {query: '{version {version}}'};
     const json = await Api.graphql(dispatch, body);
     const version = json.data.version.version;
-    if (version !== parseInt(window?.localStorage?.getItem(CACHE), 10)) {
+    const oldVersion = window?.localStorage?.getItem(CACHE);
+    if (oldVersion && parseInt(oldVersion, 10) !== version) {
       window.localStorage.setItem(CACHE, version);
       window.localStorage.removeItem(DISH_CACHE);
       queryClient.invalidateQueries(ACTIVE_DISHES_KEY);

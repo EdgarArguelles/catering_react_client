@@ -217,5 +217,24 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
+
+    it('should not update version when cache is not present', async () => {
+      const jsonExpected = {data: {version: {version: 4}}};
+      graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
+      window.localStorage.setItem(CACHE, 'old value');
+
+      mountComponent(() => useDBVersion(60), {}, false);
+      await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
+
+      expect(hookResponse.data).toStrictEqual(4);
+      expect(window.localStorage.getItem('versionCached')).toStrictEqual(null);
+      expect(window.localStorage.getItem(CACHE)).toStrictEqual('old value');
+      sinon.assert.callCount(dispatchStub, 0);
+      sinon.assert.callCount(graphqlStub, 1);
+      sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
+      sinon.assert.callCount(setQueryDataStub, 0);
+      sinon.assert.callCount(invalidateQueriesStub, 0);
+      sinon.assert.callCount(removeQueriesStub, 0);
+    });
   });
 });
