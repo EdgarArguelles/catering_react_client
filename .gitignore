@@ -3,6 +3,5 @@ statistics
 dist
 node_modules
 
-### IntelliJ IDEA ###
-.idea
-*.iml
+### Mac ###
+.DS_Store
