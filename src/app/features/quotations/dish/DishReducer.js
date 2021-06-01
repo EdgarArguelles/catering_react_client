@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import dishFilterReducer from './dish_filter/DishFilterReducer';
 
 const SLICE_NAME = 'DISH';
@@ -10,11 +10,11 @@ const dishSlice = createSlice({
     showActions: true,
   },
   reducers: {
-    selectDish(state, {payload: dishId}) {
+    selectDish(state, { payload: dishId }) {
       state.selected = dishId;
       state.showActions = true;
     },
-    selectDishWithoutActions(state, {payload: dishId}) {
+    selectDishWithoutActions(state, { payload: dishId }) {
       state.selected = dishId;
       state.showActions = false;
     },
@@ -28,4 +28,4 @@ const dishSlice = createSlice({
 });
 
 export default dishSlice.reducer;
-export const {selectDish, selectDishWithoutActions} = dishSlice.actions;
+export const { selectDish, selectDishWithoutActions } = dishSlice.actions;

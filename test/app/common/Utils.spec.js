@@ -5,13 +5,13 @@ import Utils from 'app/common/Utils';
 describe('Utils', () => {
   describe('anyMatcher', () => {
     it('should get false if type is not present in list', () => {
-      const result = Utils.anyMatcher('A', 'B', 'C')({type: 'a'});
+      const result = Utils.anyMatcher('A', 'B', 'C')({ type: 'a' });
 
       expect(result).toBeFalsy();
     });
 
     it('should get true if type is present in list', () => {
-      const result = Utils.anyMatcher('A', 'B', 'C')({type: 'A'});
+      const result = Utils.anyMatcher('A', 'B', 'C')({ type: 'A' });
 
       expect(result).toBeTruthy();
     });
@@ -42,18 +42,18 @@ describe('Utils', () => {
     describe('objects', () => {
       it('should not sort the objects array when attribute is undefined', () => {
         const array = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'BB', extra: 45},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'BB', extra: 45 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
         ];
         const expected = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'BB', extra: 45},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'BB', extra: 45 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
         ];
 
         const result = array.sort(Utils.getSortString());
@@ -63,19 +63,19 @@ describe('Utils', () => {
 
       it('should not sort the objects array when attribute is incorrect', () => {
         const array = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'BB', extra: 45},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'BB', extra: 45 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
         ];
         const attribute = 'name2';
         const expected = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'BB', extra: 45},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'BB', extra: 45 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
         ];
 
         const result = array.sort(Utils.getSortString(attribute));
@@ -85,20 +85,20 @@ describe('Utils', () => {
 
       it('should sort the objects array when attribute is incorrect and secondSort is present', () => {
         const array = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'BB', extra: 45},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'BB', extra: 45 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
         ];
         const attribute = 'name2';
         const secondSort = (a, b) => a.extra - b.extra;
         const expected = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'Ab', extra: 1},
-          {name: 'BB', extra: 45},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'Ab', extra: 1 },
+          { name: 'BB', extra: 45 },
+          { name: 'Ba', extra: 55 },
         ];
 
         const result = array.sort(Utils.getSortString(attribute, secondSort));
@@ -108,19 +108,19 @@ describe('Utils', () => {
 
       it('should sort the objects array correctly when attribute is correct', () => {
         const array = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'BB', extra: 45},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'BB', extra: 45 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
         ];
         const attribute = 'name';
         const expected = [
-          {name: 'Aa', extra: 5},
-          {name: 'Ab', extra: 1},
-          {name: 'Ba', extra: 55},
-          {name: 'BB', extra: 45},
-          {name: 'C'},
+          { name: 'Aa', extra: 5 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Ba', extra: 55 },
+          { name: 'BB', extra: 45 },
+          { name: 'C' },
         ];
 
         const result = array.sort(Utils.getSortString(attribute));
@@ -130,20 +130,20 @@ describe('Utils', () => {
 
       it('should sort the objects array correctly when attribute is correct and secondSort is present', () => {
         const array = [
-          {name: 'Aa', extra: 5},
-          {name: 'C'},
-          {name: 'Aa', extra: 55},
-          {name: 'Ab', extra: 1},
-          {name: 'Aa', extra: 45},
+          { name: 'Aa', extra: 5 },
+          { name: 'C' },
+          { name: 'Aa', extra: 55 },
+          { name: 'Ab', extra: 1 },
+          { name: 'Aa', extra: 45 },
         ];
         const attribute = 'name';
         const secondSort = (a, b) => a.extra - b.extra;
         const expected = [
-          {name: 'Aa', extra: 5},
-          {name: 'Aa', extra: 45},
-          {name: 'Aa', extra: 55},
-          {name: 'Ab', extra: 1},
-          {name: 'C'},
+          { name: 'Aa', extra: 5 },
+          { name: 'Aa', extra: 45 },
+          { name: 'Aa', extra: 55 },
+          { name: 'Ab', extra: 1 },
+          { name: 'C' },
         ];
 
         const result = array.sort(Utils.getSortString(attribute, secondSort));
@@ -172,14 +172,14 @@ describe('Utils', () => {
         gender: undefined,
         age: null,
         scores: [1, 2, 3, 4],
-        friends: [{id: 1, name: 'F1'}, {id: 2, name: 'F2'}, {id: 3, name: 'F3'}],
+        friends: [{ id: 1, name: 'F1' }, { id: 2, name: 'F2' }, { id: 3, name: 'F3' }],
         status: {
           value1: 1,
           value2: 'a',
           value3: undefined,
           value4: null,
-          value5: [{id: 1, value: '123'}, {id: 2, value: '456', extra: 45.8}],
-          value6: {a: 1, b: 2},
+          value5: [{ id: 1, value: '123' }, { id: 2, value: '456', extra: 45.8 }],
+          value6: { a: 1, b: 2 },
         },
       };
       const json2 = {
@@ -188,14 +188,14 @@ describe('Utils', () => {
         gender: undefined,
         age: null,
         scores: [1, 2, 3, 4],
-        friends: [{id: 1, name: 'F1'}, {id: 2, name: 'F2'}, {id: 3, name: 'F3'}],
+        friends: [{ id: 1, name: 'F1' }, { id: 2, name: 'F2' }, { id: 3, name: 'F3' }],
         status: {
           value1: 1,
           value2: 'a',
           value3: undefined,
           value4: null,
-          value5: [{id: 1, value: '123'}, {id: 2, value: '456', extra: 45.8}],
-          value6: {a: 1, b: 2},
+          value5: [{ id: 1, value: '123' }, { id: 2, value: '456', extra: 45.8 }],
+          value6: { a: 1, b: 2 },
         },
       };
 
@@ -212,14 +212,14 @@ describe('Utils', () => {
         gender: undefined,
         age: null,
         scores: [1, 2, 3, 4],
-        friends: [{id: 1, name: 'F1'}, {id: 2, name: 'F2'}, {id: 3, name: 'F3'}],
+        friends: [{ id: 1, name: 'F1' }, { id: 2, name: 'F2' }, { id: 3, name: 'F3' }],
         status: {
           value1: 1,
           value2: 'a',
           value3: undefined,
           value4: null,
-          value5: [{id: 1, value: '123'}, {id: 2, value: '456', extra: 45.8}],
-          value6: {a: 1, b: 2},
+          value5: [{ id: 1, value: '123' }, { id: 2, value: '456', extra: 45.8 }],
+          value6: { a: 1, b: 2 },
         },
       };
       const expected = '{id:1,name:"test",gender:undefined,age:null,scores:[1,2,3,4],' +
@@ -238,14 +238,14 @@ describe('Utils', () => {
         gender: undefined,
         age: null,
         scores: [1, 2, 3, 4],
-        friends: [{id: 1, name: 'F1'}, {id: 2, name: 'F2'}, {id: 3, name: 'F3'}],
+        friends: [{ id: 1, name: 'F1' }, { id: 2, name: 'F2' }, { id: 3, name: 'F3' }],
         status: {
           value1: 1,
           value2: 'a',
           value3: undefined,
           value4: null,
-          value5: [{id: 1, value: '123'}, {id: 2, value: '456', extra: 45.8}],
-          value6: {a: 1, b: 2},
+          value5: [{ id: 1, value: '123' }, { id: 2, value: '456', extra: 45.8 }],
+          value6: { a: 1, b: 2 },
         },
       });
     });
@@ -321,10 +321,10 @@ describe('Utils', () => {
   describe('resetInfiniteQuery', () => {
     it('should call setQueryData and invalidateQueries once', () => {
       const queryKey = 'testKey';
-      const newPageParams = {sort: ['newField']};
+      const newPageParams = { sort: ['newField'] };
       const setQueryDataStub = sinon.stub();
       const invalidateQueriesStub = sinon.stub();
-      const queryClient = {setQueryData: setQueryDataStub, invalidateQueries: invalidateQueriesStub};
+      const queryClient = { setQueryData: setQueryDataStub, invalidateQueries: invalidateQueriesStub };
 
       Utils.resetInfiniteQuery(queryClient, queryKey, newPageParams);
 
@@ -337,8 +337,8 @@ describe('Utils', () => {
 
   describe('completeLoading', () => {
     it('should change display values', () => {
-      const loadingElement = {style: {display: 'old'}};
-      const contentElement = {style: {display: 'old'}};
+      const loadingElement = { style: { display: 'old' } };
+      const contentElement = { style: { display: 'old' } };
       const getElementByIdStub = sinon.stub(document, 'getElementById');
       getElementByIdStub.withArgs('loading').returns(loadingElement);
       getElementByIdStub.withArgs('content').returns(contentElement);
@@ -362,9 +362,9 @@ describe('Utils', () => {
 
     beforeEach(() => {
       querySelectorAllStub.withArgs('path').returns([
-        {setAttribute: setAttributeStub}, {setAttribute: setAttributeStub}]);
+        { setAttribute: setAttributeStub }, { setAttribute: setAttributeStub }]);
       getElementByIdStub = sinon.stub(document, 'getElementById');
-      getElementByIdStub.withArgs(id).returns({querySelectorAll: querySelectorAllStub});
+      getElementByIdStub.withArgs(id).returns({ querySelectorAll: querySelectorAllStub });
     });
 
     afterEach(() => {
@@ -385,7 +385,7 @@ describe('Utils', () => {
     });
 
     it('should not use strokeWidth default value', () => {
-      Utils.animateIcon(id, {strokeWidth: 60});
+      Utils.animateIcon(id, { strokeWidth: 60 });
 
       sinon.assert.callCount(getElementByIdStub, 1);
       sinon.assert.calledWithExactly(getElementByIdStub, id);

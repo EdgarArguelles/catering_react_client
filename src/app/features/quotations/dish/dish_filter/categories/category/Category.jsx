@@ -1,11 +1,11 @@
 import './Category.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
-import {addCategory, removeCategory, setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
+import { addCategory, removeCategory, setCategories } from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
-const Category = ({category, categories, isAllSelected}) => {
+const Category = ({ category, categories, isAllSelected }) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.quotations.dish.filter);
   const handleSetCategories = newCategories => dispatch(setCategories(newCategories));
@@ -31,7 +31,7 @@ const Category = ({category, categories, isAllSelected}) => {
   return (
     <>
       <Switch className="filter-category" color="primary" onChange={handleChangeCategory}
-              checked={isAllSelected || filter.categories.includes(category)}/>
+        checked={isAllSelected || filter.categories.includes(category)}/>
       {category}
     </>
   );

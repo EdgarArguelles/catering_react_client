@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faExclamationTriangle, faSync, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle, faSync, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -10,7 +10,7 @@ import Utils from 'app/common/Utils';
 export const ANIMATION_DELAY = 3000;
 
 const FetchButton = props => {
-  const {id, hidden, color, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete} = props;
+  const { id, hidden, color, icon, label, successLabel, errorLabel, asyncCall, preconditionCall, onComplete } = props;
   const [buttonState, setButtonState] = useState('normal');
   const [isClicked, setIsClicked] = useState(false);
   const buttonIcon = buttonState === 'success' ? faThumbsUp :
@@ -73,13 +73,13 @@ const FetchButton = props => {
 
   return (
     <span className="fetch-button">
-        {buttonState === 'fetching' && <CircularProgress size={50} thickness={4} className="action-progress"/>}
+      {buttonState === 'fetching' && <CircularProgress size={50} thickness={4} className="action-progress"/>}
       <Zoom in={!hidden || buttonState !== 'normal'} unmountOnExit>
-          <Fab variant="extended" color={color} disabled={buttonState !== 'normal'} onClick={handleClick}
-               className={`action-button ${buttonState}`}>
-            {buttonIcon && <FontAwesomeIcon id={id} className="button-icon" icon={buttonIcon}/>}
-            <div className="button-label">{content}</div>
-          </Fab>
+        <Fab variant="extended" color={color} disabled={buttonState !== 'normal'} onClick={handleClick}
+          className={`action-button ${buttonState}`}>
+          {buttonIcon && <FontAwesomeIcon id={id} className="button-icon" icon={buttonIcon}/>}
+          <div className="button-label">{content}</div>
+        </Fab>
       </Zoom>
     </span>
   );

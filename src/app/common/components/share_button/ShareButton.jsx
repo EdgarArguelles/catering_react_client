@@ -1,10 +1,10 @@
 /* eslint-disable max-lines */
 import './ShareButton.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faClipboard} from '@fortawesome/free-regular-svg-icons';
-import {faShareAlt, faTimes} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboard } from '@fortawesome/free-regular-svg-icons';
+import { faShareAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import Fab from '@material-ui/core/Fab';
@@ -28,7 +28,7 @@ import {
 
 const TWITTER_ACCOUNT = 'edgar_bonifacio';
 
-const ShareButton = ({link, label, description, hashtag}) => {
+const ShareButton = ({ link, label, description, hashtag }) => {
   const [isSpeedDialOpen, setIsSpeedDialOpen] = useState(false);
   const [isCopyOpen, setIsCopyOpen] = useState(false);
   const speedDialIcon = <FontAwesomeIcon id="share-icon" icon={isSpeedDialOpen ? faTimes : faShareAlt}/>;
@@ -85,7 +85,7 @@ const ShareButton = ({link, label, description, hashtag}) => {
       },
       {
         name: 'Pinterest', icon: (<PinterestShareButton url={link} description={description}
-                                                        media={`${window.location.origin}/assets/menu-logo.png`}>
+          media={`${window.location.origin}/assets/menu-logo.png`}>
           <PinterestIcon size={iconSize} round/></PinterestShareButton>),
       },
     ];
@@ -94,13 +94,13 @@ const ShareButton = ({link, label, description, hashtag}) => {
   return (
     <>
       <SpeedDial ariaLabel="share" icon={speedDialIcon} open={isSpeedDialOpen} onClick={toggle} onClose={close}
-                 className="floating-button share-button animate__animated animate__zoomIn animate__delay-1s"
-                 onMouseEnter={open} onMouseLeave={close}>
-        {getShareActions().map(({name, icon}) =>
+        className="floating-button share-button animate__animated animate__zoomIn animate__delay-1s"
+        onMouseEnter={open} onMouseLeave={close}>
+        {getShareActions().map(({ name, icon }) =>
           <SpeedDialAction key={name} icon={icon} title={name} tooltipTitle={name}/>)}
       </SpeedDial>
       <Snackbar open={isCopyOpen} TransitionComponent={Slide} autoHideDuration={3000}
-                onClose={() => setIsCopyOpen(false)} message="Se copió el link al portapapeles."/>
+        onClose={() => setIsCopyOpen(false)} message="Se copió el link al portapapeles."/>
     </>
   );
 };

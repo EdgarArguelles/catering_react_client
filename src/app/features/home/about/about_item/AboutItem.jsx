@@ -1,10 +1,10 @@
 import './AboutItem.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Utils from 'app/common/Utils';
 
-const AboutItem = ({title, icon, children}) => {
+const AboutItem = ({ title, icon, children }) => {
   return (
     <div className="about-item" onMouseEnter={() => Utils.animateIcon(`${title}-icon`)}>
       <div className="icon"><FontAwesomeIcon id={`${title}-icon`} icon={icon}/></div>

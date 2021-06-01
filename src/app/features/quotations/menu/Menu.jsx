@@ -3,15 +3,15 @@ import separator from 'assets/img/menu-separator.png';
 import title from 'assets/img/menu-title-separator.png';
 import logo from 'assets/img/menu-logo.png';
 import React from 'react';
-import {useSelector} from 'react-redux';
-import {useCourseTypes} from 'app/hooks/data/CourseTypes';
-import {getSortedCourseTypes} from 'app/features/quotations/course_type/CourseType.service';
-import {getShareMenuLink} from './Menu.service';
+import { useSelector } from 'react-redux';
+import { useCourseTypes } from 'app/hooks/data/CourseTypes';
+import { getSortedCourseTypes } from 'app/features/quotations/course_type/CourseType.service';
+import { getShareMenuLink } from './Menu.service';
 import ShareButton from 'app/common/components/share_button/ShareButton';
 import MenuCourses from './menu_courses/MenuCourses';
 
 const Menu = () => {
-  const {data: courseTypes} = useCourseTypes();
+  const { data: courseTypes } = useCourseTypes();
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const sortedCourseTypes = getSortedCourseTypes(courseTypes);
 
@@ -30,7 +30,7 @@ const Menu = () => {
       <img id="end-separator" className="edge-separator" src={separator} alt="separator"/>
       <img id="logo" src={logo} alt="logo"/>
       <ShareButton link={getShareMenuLink(menu)} label="Banquetes Areli" hashtag="banquetesareli"
-                   description="Diseña el mejor banquete para tu evento"/>
+        description="Diseña el mejor banquete para tu evento"/>
     </div>
   );
 };

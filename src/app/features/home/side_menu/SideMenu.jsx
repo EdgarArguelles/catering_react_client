@@ -1,5 +1,5 @@
 import './SideMenu.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import HamburgerIcon from 'app/common/components/hamburger_icon/HamburgerIcon';

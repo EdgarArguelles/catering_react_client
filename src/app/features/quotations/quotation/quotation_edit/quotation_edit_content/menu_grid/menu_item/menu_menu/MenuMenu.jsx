@@ -7,11 +7,11 @@ import EditMenu from './edit_menu/EditMenu';
 import RemoveMenu from './remove_menu/RemoveMenu';
 import ViewMenu from './view_menu/ViewMenu';
 
-const MenuMenu = ({menu, open, anchorEl, onClose}) => {
+const MenuMenu = ({ menu, open, anchorEl, onClose }) => {
   return (
     <Popover id="menu-menu" open={open} anchorEl={anchorEl} onClose={onClose}
-             anchorOrigin={{vertical: 'center', horizontal: 'center'}}
-             transformOrigin={{vertical: 'top', horizontal: 'right'}}>
+      anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}>
       <ViewMenu menu={menu} onClose={onClose}/>
       <EditMenu menu={menu} onClose={onClose}/>
       <DuplicateMenu menu={menu} onClose={onClose}/>

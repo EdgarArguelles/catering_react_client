@@ -1,5 +1,5 @@
-import {useDispatch} from 'react-redux';
-import {useQueries, useQuery, useQueryClient} from 'react-query';
+import { useDispatch } from 'react-redux';
+import { useQueries, useQuery, useQueryClient } from 'react-query';
 import Api from 'app/common/Api';
 
 export const DISH_KEY = 'Dish';
@@ -42,9 +42,9 @@ export const useActiveDishesByCourseType = courseTypeId => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   return useQuery(KEY, async () => {
-    const body = {query: `{courseType(id: ${courseTypeId}) {activeDishes{${FIELDS}}}}`};
+    const body = { query: `{courseType(id: ${courseTypeId}) {activeDishes{${FIELDS}}}}` };
     const json = await Api.graphql(dispatch, body);
-    const dishes = json.data.courseType.activeDishes.map(dish => ({...dish, courseTypeId}));
+    const dishes = json.data.courseType.activeDishes.map(dish => ({ ...dish, courseTypeId }));
     addDishesCache(dishes);
     queryClient.removeQueries(DISH_KEY);
     return dishes;
@@ -55,7 +55,7 @@ export const useActiveDishesByCourseType = courseTypeId => {
 };
 
 const fetchDishById = (dishId, dispatch) => async () => {
-  const body = {query: `{dish(id: ${dishId}) {${FIELDS}}}`};
+  const body = { query: `{dish(id: ${dishId}) {${FIELDS}}}` };
   const json = await Api.graphql(dispatch, body);
   const dish = json.data.dish;
   addDishCache(dish);
@@ -83,5 +83,5 @@ export const useDishesByIds = (dishesId = []) => {
   }));
   const dishes = results.filter(result => result.data).map(result => result.data);
   const isAnyFetching = !!results.filter(result => result.isFetching).length;
-  return {dishes, isAnyFetching};
+  return { dishes, isAnyFetching };
 };

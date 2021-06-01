@@ -1,5 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {logout} from 'app/features/auth/AuthReducer';
+import { createSlice } from '@reduxjs/toolkit';
+import { logout } from 'app/features/auth/AuthReducer';
 import authDialogReducer from './auth_dialog/AuthDialogReducer';
 import navigationReducer from './header/navigation/NavigationReducer';
 import dishReducer from './dish/DishReducer';
@@ -28,10 +28,10 @@ const quotationsSlice = createSlice({
   name: SLICE_NAME,
   initialState: defaultValues,
   reducers: {
-    changeMenuTab(state, {payload: tab}) {
+    changeMenuTab(state, { payload: tab }) {
       state.selectedTab = tab;
     },
-    changeMenuDialogOpen(state, {payload: isMenuDialogOpen}) {
+    changeMenuDialogOpen(state, { payload: isMenuDialogOpen }) {
       state.isMenuDialogOpen = isMenuDialogOpen;
     },
     deleteLocal(state, action) {
@@ -52,4 +52,4 @@ const quotationsSlice = createSlice({
 });
 
 export default quotationsSlice.reducer;
-export const {changeMenuTab, changeMenuDialogOpen, deleteLocal} = quotationsSlice.actions;
+export const { changeMenuTab, changeMenuDialogOpen, deleteLocal } = quotationsSlice.actions;

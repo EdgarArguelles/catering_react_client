@@ -1,8 +1,8 @@
 import './User.scss';
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import History from 'app/router/History';
@@ -27,7 +27,7 @@ const User = () => {
   if (!loggedUser) {
     return (
       <Button color="inherit" onClick={() => History.navigate('/')}
-              onMouseEnter={() => Utils.animateIcon('menu-sign-out-icon')}>
+        onMouseEnter={() => Utils.animateIcon('menu-sign-out-icon')}>
         <FontAwesomeIcon id="menu-sign-out-icon" icon={faSignOutAlt}/>
         <p>Salir</p>
       </Button>

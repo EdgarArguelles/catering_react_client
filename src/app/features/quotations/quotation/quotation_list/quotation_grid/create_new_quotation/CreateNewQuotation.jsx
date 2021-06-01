@@ -1,22 +1,22 @@
 import './CreateNewQuotation.scss';
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlusCircle} from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import {useQuotation} from 'app/hooks/data/Quotations';
-import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
-import {areEqual} from 'app/features/quotations/quotation/Quotation.service';
+import { useQuotation } from 'app/hooks/data/Quotations';
+import { getRandomMenuId } from 'app/features/quotations/menu/Menu.service';
+import { areEqual } from 'app/features/quotations/quotation/Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
+import { addNewMenu, selectMenu } from 'app/features/quotations/quotation/QuotationReducer';
+import { deleteLocal } from 'app/features/quotations/QuotationsReducer';
 
 const CreateNewQuotation = () => {
   const dispatch = useDispatch();
   const selectedQuotation = useSelector(state => state.quotations.quotation);
-  const {data: remote} = useQuotation(selectedQuotation.id);
+  const { data: remote } = useQuotation(selectedQuotation.id);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogLabel = 'Al crear un nuevo presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
 
@@ -50,7 +50,7 @@ const CreateNewQuotation = () => {
       </Button>
 
       <ConfirmationDialog title="Crear nuevo presupuesto" label={dialogLabel} okLabel="Continuar"
-                          open={isDialogOpen} onClose={() => setIsDialogOpen(false)} onOK={createNewQuotation}/>
+        open={isDialogOpen} onClose={() => setIsDialogOpen(false)} onOK={createNewQuotation}/>
     </>
   );
 };

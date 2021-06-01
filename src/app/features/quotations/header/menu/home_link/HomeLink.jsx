@@ -1,8 +1,8 @@
 import './HomeLink.scss';
 import React from 'react';
-import {useLocation} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faHome} from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
@@ -18,7 +18,7 @@ const HomeLink = () => {
 
   return (
     <Button id="home-link" color="inherit" onClick={() => History.navigate(HOME_PATH)}
-            onMouseEnter={() => Utils.animateIcon('menu-home-icon')}>
+      onMouseEnter={() => Utils.animateIcon('menu-home-icon')}>
       <FontAwesomeIcon id="menu-home-icon" icon={faHome}/>
       <p>Pagina Principal</p>
     </Button>

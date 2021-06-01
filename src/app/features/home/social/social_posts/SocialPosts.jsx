@@ -1,15 +1,15 @@
 import './SocialPosts.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrophy, faUtensils} from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrophy, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import Zoom from '@material-ui/core/Zoom';
 import FetchButton from 'app/common/components/fetch_button/FetchButton';
 import PostSlider from './post_slider/PostSlider';
-import {getFacebookAccessCode} from 'app/AppReducer';
+import { getFacebookAccessCode } from 'app/AppReducer';
 
-const SocialPosts = ({type}) => {
+const SocialPosts = ({ type }) => {
   const dispatch = useDispatch();
   const token = useSelector(state => state.app.facebookAccessCode);
   const [posts, setPosts] = useState([]);
@@ -47,8 +47,8 @@ const SocialPosts = ({type}) => {
         <Zoom in={showSlider} timeout={3000}><FontAwesomeIcon icon={icon}/></Zoom>{label}
       </p>
       <FetchButton id={`${type}-button`} color="primary" label="Cargar desde Facebook" errorLabel="Intentelo de nuevo"
-                   icon={icon} hidden={posts.length > 0} onComplete={isSuccess => setShowSlider(isSuccess)}
-                   preconditionCall={preconditionCall} asyncCall={asyncCall}/>
+        icon={icon} hidden={posts.length > 0} onComplete={isSuccess => setShowSlider(isSuccess)}
+        preconditionCall={preconditionCall} asyncCall={asyncCall}/>
       {showSlider && <PostSlider posts={posts} showText={isReview}/>}
     </div>
   );

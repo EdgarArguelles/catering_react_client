@@ -1,18 +1,18 @@
 import './DeleteQuotation.scss';
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import History from 'app/router/History';
-import {useDeleteQuotation} from 'app/hooks/data/Quotations';
+import { useDeleteQuotation } from 'app/hooks/data/Quotations';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import FetchButton, {ANIMATION_DELAY} from 'app/common/components/fetch_button/FetchButton';
-import {changeError, changeIsRemoteProcessing} from 'app/data/quotations/QuotationsReducer';
-import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
+import FetchButton, { ANIMATION_DELAY } from 'app/common/components/fetch_button/FetchButton';
+import { changeError, changeIsRemoteProcessing } from 'app/data/quotations/QuotationsReducer';
+import { deleteLocal } from 'app/features/quotations/QuotationsReducer';
 
-const DeleteQuotation = ({isErrorVisible}) => {
+const DeleteQuotation = ({ isErrorVisible }) => {
   const timeout = useRef(null); // don't initialize timeout to null each render
   useEffect(() => {
     return () => clearTimeout(timeout.current);
@@ -25,7 +25,7 @@ const DeleteQuotation = ({isErrorVisible}) => {
   const isRemoteProcessing = useSelector(state => state.data.quotations.isRemoteProcessing);
   const quotation = useSelector(state => state.quotations.quotation);
   const error = deleteMutation.error;
-  const {id, name} = quotation;
+  const { id, name } = quotation;
   const handleEndRemoteProcess = () => dispatch(changeIsRemoteProcessing(false));
   const handleCleanError = () => {
     deleteMutation.reset();
@@ -53,18 +53,18 @@ const DeleteQuotation = ({isErrorVisible}) => {
 
   return (
     <span id="delete-quotation">
-        <FetchButton color="secondary" label="Eliminar Presupuesto" successLabel="Presupuesto Eliminado"
-                     id="delete-quotation-button" hidden={isRemoteProcessing || deleteMutation.isLoading} icon={faTrash}
-                     onComplete={handleEndRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
+      <FetchButton color="secondary" label="Eliminar Presupuesto" successLabel="Presupuesto Eliminado"
+        id="delete-quotation-button" hidden={isRemoteProcessing || deleteMutation.isLoading} icon={faTrash}
+        onComplete={handleEndRemoteProcess} preconditionCall={preconditionCall} asyncCall={asyncCall}/>
 
-        <ConfirmationDialog title="Eliminar presupuesto" okID="remove-remote-quotation-button" okLabel="Eliminar"
-                            open={isDialogOpen} label={`¿Desea eliminar definitivamente el presupuesto ${name}?`}
-                            onClose={() => handleStates(false, false)}
-                            onOK={() => handleStates(false, true)}/>
-        <Snackbar open={!!error && error?.status !== 401 && shouldDelete && isErrorVisible}
-                  TransitionComponent={Slide} autoHideDuration={10000} onClose={handleCleanError}
-                  message="Ocurrió un error al intentar eliminar el presupuesto"/>
-      </span>
+      <ConfirmationDialog title="Eliminar presupuesto" okID="remove-remote-quotation-button" okLabel="Eliminar"
+        open={isDialogOpen} label={`¿Desea eliminar definitivamente el presupuesto ${name}?`}
+        onClose={() => handleStates(false, false)}
+        onOK={() => handleStates(false, true)}/>
+      <Snackbar open={!!error && error?.status !== 401 && shouldDelete && isErrorVisible}
+        TransitionComponent={Slide} autoHideDuration={10000} onClose={handleCleanError}
+        message="Ocurrió un error al intentar eliminar el presupuesto"/>
+    </span>
   );
 };
 

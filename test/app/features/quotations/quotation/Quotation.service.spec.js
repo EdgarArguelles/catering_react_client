@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import {areEqual, getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import { areEqual, getEditPath, isQuotationStarted } from 'app/features/quotations/quotation/Quotation.service';
 
 describe('Quotations -> Quotation -> Service', () => {
   describe('isQuotationStarted', () => {
@@ -24,44 +24,44 @@ describe('Quotations -> Quotation -> Service', () => {
     });
 
     it('should return true when name is not empty', () => {
-      const quotation = {name: 'test'};
+      const quotation = { name: 'test' };
 
       const result = isQuotationStarted(quotation);
 
       expect(result).toBeTruthy();
       // don't mutate
-      expect(quotation).toStrictEqual({name: 'test'});
+      expect(quotation).toStrictEqual({ name: 'test' });
     });
 
     it('should return false when menus is undefined', () => {
-      const quotation = {name: ''};
+      const quotation = { name: '' };
 
       const result = isQuotationStarted(quotation);
 
       expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).toStrictEqual({name: ''});
+      expect(quotation).toStrictEqual({ name: '' });
     });
 
     it('should return false when all menus are not selected', () => {
-      const quotation = {name: '', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]};
+      const quotation = { name: '', menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }] };
 
       const result = isQuotationStarted(quotation);
 
       expect(result).toBeFalsy();
       // don't mutate
-      expect(quotation).toStrictEqual({name: '', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]});
+      expect(quotation).toStrictEqual({ name: '', menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }] });
     });
 
     it('should return true when a menu is selected', () => {
-      const quotation = {menus: [{id: 'M1'}, {id: 'M2', isSelected: false}, {id: 'M3', isSelected: true}]};
+      const quotation = { menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }, { id: 'M3', isSelected: true }] };
 
       const result = isQuotationStarted(quotation);
 
       expect(result).toBeTruthy();
       // don't mutate
       expect(quotation).toStrictEqual({
-        menus: [{id: 'M1'}, {id: 'M2', isSelected: false}, {
+        menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }, {
           id: 'M3',
           isSelected: true,
         }],
@@ -94,27 +94,27 @@ describe('Quotations -> Quotation -> Service', () => {
     });
 
     it('should get editQuotationPath when menus is undefined', () => {
-      const quotation = {id: 'Q1'};
+      const quotation = { id: 'Q1' };
 
       const result = getEditPath(quotation);
 
       expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).toStrictEqual({id: 'Q1'});
+      expect(quotation).toStrictEqual({ id: 'Q1' });
     });
 
     it('should get editQuotationPath when all menus are not selected', () => {
-      const quotation = {id: 'Q1', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]};
+      const quotation = { id: 'Q1', menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }] };
 
       const result = getEditPath(quotation);
 
       expect(result).toStrictEqual(editQuotationPath);
       // don't mutate
-      expect(quotation).toStrictEqual({id: 'Q1', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}]});
+      expect(quotation).toStrictEqual({ id: 'Q1', menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }] });
     });
 
     it('should get editMenuPath when a menu is selected', () => {
-      const quotation = {id: 'Q1', menus: [{id: 'M1'}, {id: 'M2', isSelected: false}, {id: 'M3', isSelected: true}]};
+      const quotation = { id: 'Q1', menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }, { id: 'M3', isSelected: true }] };
 
       const result = getEditPath(quotation);
 
@@ -122,7 +122,7 @@ describe('Quotations -> Quotation -> Service', () => {
       // don't mutate
       expect(quotation).toStrictEqual({
         id: 'Q1',
-        menus: [{id: 'M1'}, {id: 'M2', isSelected: false}, {id: 'M3', isSelected: true}],
+        menus: [{ id: 'M1' }, { id: 'M2', isSelected: false }, { id: 'M3', isSelected: true }],
       });
     });
   });
@@ -139,7 +139,7 @@ describe('Quotations -> Quotation -> Service', () => {
             name: 'ZZ',
             price: 123,
             isSelected: false,
-            courses: [{id: 'A', position: 1}, {id: 'C', position: 2}, {id: 'C', position: 1}, {
+            courses: [{ id: 'A', position: 1 }, { id: 'C', position: 2 }, { id: 'C', position: 1 }, {
               id: 'B',
               position: 1,
               dishes: 'test',
@@ -167,7 +167,7 @@ describe('Quotations -> Quotation -> Service', () => {
             name: 'ZZ',
             price: 44,
             isSelected: true,
-            courses: [{id: 'B', position: 1}, {id: 'C', position: 2}, {id: 'A', position: 1, dishes: []}, {
+            courses: [{ id: 'B', position: 1 }, { id: 'C', position: 2 }, { id: 'A', position: 1, dishes: [] }, {
               id: 'C',
               position: 1,
             }],
@@ -201,7 +201,7 @@ describe('Quotations -> Quotation -> Service', () => {
               name: 'ZZ',
               price: 44,
               isSelected: true,
-              courses: [{id: 'B', position: 1}, {id: 'C', position: 2}, {id: 'A', position: 1, dishes: []}, {
+              courses: [{ id: 'B', position: 1 }, { id: 'C', position: 2 }, { id: 'A', position: 1, dishes: [] }, {
                 id: 'C',
                 position: 1,
               }],
@@ -234,7 +234,7 @@ describe('Quotations -> Quotation -> Service', () => {
               name: 'ZZ',
               price: 44,
               isSelected: true,
-              courses: [{id: 'B', position: 1}, {id: 'C', position: 2}, {id: 'A', position: 1, dishes: []}, {
+              courses: [{ id: 'B', position: 1 }, { id: 'C', position: 2 }, { id: 'A', position: 1, dishes: [] }, {
                 id: 'C',
                 position: 1,
               }],
@@ -262,7 +262,7 @@ describe('Quotations -> Quotation -> Service', () => {
               name: 'ZZ',
               price: 123,
               isSelected: false,
-              courses: [{id: 'A', position: 1}, {id: 'C', position: 2}, {id: 'C', position: 1}, {
+              courses: [{ id: 'A', position: 1 }, { id: 'C', position: 2 }, { id: 'C', position: 1 }, {
                 id: 'B',
                 position: 1,
                 dishes: 'test',
@@ -294,7 +294,7 @@ describe('Quotations -> Quotation -> Service', () => {
               name: 'ZZ',
               price: 123,
               isSelected: false,
-              courses: [{id: 'A', position: 1}, {id: 'C', position: 2}, {id: 'C', position: 1}, {
+              courses: [{ id: 'A', position: 1 }, { id: 'C', position: 2 }, { id: 'C', position: 1 }, {
                 id: 'B',
                 position: 1,
                 dishes: 'test',
@@ -349,7 +349,7 @@ describe('Quotations -> Quotation -> Service', () => {
             name: 'ZZ',
             price: 123,
             isSelected: false,
-            courses: [{id: 'A', position: 1}, {id: 'C', position: 2}, {id: 'C', position: 1}, {
+            courses: [{ id: 'A', position: 1 }, { id: 'C', position: 2 }, { id: 'C', position: 1 }, {
               id: 'B',
               position: 1,
               dishes: 'test',
@@ -379,7 +379,7 @@ describe('Quotations -> Quotation -> Service', () => {
             name: 'ZZ',
             price: 44,
             isSelected: true,
-            courses: [{id: 'B', position: 1}, {id: 'C', position: 2}, {id: 'A', position: 1, dishes: []}, {
+            courses: [{ id: 'B', position: 1 }, { id: 'C', position: 2 }, { id: 'A', position: 1, dishes: [] }, {
               id: 'C',
               position: 1,
             }],
@@ -432,7 +432,7 @@ describe('Quotations -> Quotation -> Service', () => {
             name: 'ZZ',
             price: 123,
             isSelected: false,
-            courses: [{id: 'A', position: 1}, {id: 'C', position: 2}, {id: 'C', position: 1}, {
+            courses: [{ id: 'A', position: 1 }, { id: 'C', position: 2 }, { id: 'C', position: 1 }, {
               id: 'B',
               position: 1,
               dishes: 'test',
@@ -462,7 +462,7 @@ describe('Quotations -> Quotation -> Service', () => {
             name: 'ZZ',
             price: 44,
             isSelected: true,
-            courses: [{id: 'B', position: 1}, {id: 'C', position: 2}, {id: 'A', position: 1, dishes: []}, {
+            courses: [{ id: 'B', position: 1 }, { id: 'C', position: 2 }, { id: 'A', position: 1, dishes: [] }, {
               id: 'C',
               position: 1,
             }],

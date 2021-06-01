@@ -1,12 +1,12 @@
 import './DishActions.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
-import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
+import { useSelector } from 'react-redux';
+import { isDishAdded } from 'app/features/quotations/dish/Dish.service';
 import AddButton from './add_button/AddButton';
 import RemoveButton from './remove_button/RemoveButton';
 
-const DishActions = ({dish}) => {
+const DishActions = ({ dish }) => {
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const multipleDishesDialog = useSelector(state => state.quotations.multipleDishesDialog);
   const showActions = useSelector(state => state.quotations.dish.showActions);

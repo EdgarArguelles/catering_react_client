@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Image from 'app/common/components/image/Image';
 
-const Action = ({id, image, className, onClick, children}) => {
+const Action = ({ id, image, className, onClick, children }) => {
   return (
     <ButtonBase id={id} focusRipple className={`action ${className}`} onClick={onClick}>
       <Image className="image" src={image} alt={id}/>

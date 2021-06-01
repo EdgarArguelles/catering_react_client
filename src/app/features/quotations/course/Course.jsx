@@ -1,19 +1,19 @@
 import './Course.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
-import {useDishesByIds} from 'app/hooks/data/Dishes';
+import { useDishesByIds } from 'app/hooks/data/Dishes';
 import Animate from 'app/common/components/animate/Animate';
 import CourseContent from './course_content/CourseContent';
 import RemoveDialog from './remove_dialog/RemoveDialog';
 
-const Course = ({course}) => {
+const Course = ({ course }) => {
   const [animationIn, setAnimationIn] = useState('fadeInLeft');
   const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   const [removeAction, setRemoveAction] = useState(null);
-  const {isAnyFetching} = useDishesByIds(course.dishes.map(dish => dish.id));
+  const { isAnyFetching } = useDishesByIds(course.dishes.map(dish => dish.id));
   const onClose = action => {
     const resetRemoveAction = () => {
       action();

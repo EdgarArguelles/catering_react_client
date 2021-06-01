@@ -1,19 +1,19 @@
 import './MenuItemContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import formatCurrency from 'format-currency';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPencilAlt} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import CardContent from '@material-ui/core/CardContent';
 import Utils from 'app/common/Utils';
 import MenuQuantity from 'app/features/quotations/menu/menu_summary/menu_quantity/MenuQuantity';
-import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
+import { selectMenu } from 'app/features/quotations/quotation/QuotationReducer';
 
-const MenuItemContent = ({focus, menu, select}) => {
+const MenuItemContent = ({ focus, menu, select }) => {
   const dispatch = useDispatch();
   const deselect = () => dispatch(selectMenu(''));
-  const {id, price, quantity, isSelected, courses} = menu;
+  const { id, price, quantity, isSelected, courses } = menu;
 
   const animateIcon = () => !isSelected && Utils.animateIcon(`menu-${id}-quantity-icon`);
 
@@ -37,9 +37,9 @@ const MenuItemContent = ({focus, menu, select}) => {
       </div>
       <hr/>
       <div className="menu-footer">
-        <p>Costo por menú <b>{formatCurrency(price, {format: '%s%v', symbol: '$'})}</b></p>
+        <p>Costo por menú <b>{formatCurrency(price, { format: '%s%v', symbol: '$' })}</b></p>
         {getQuantity()}
-        <p>Costo total <b>{formatCurrency(price * quantity, {format: '%s%v', symbol: '$'})}</b></p>
+        <p>Costo total <b>{formatCurrency(price * quantity, { format: '%s%v', symbol: '$' })}</b></p>
       </div>
     </CardContent>
   );

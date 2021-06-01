@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
 import Api from 'app/common/Api';
-import appReducer, {changeIsLandscape, changeIsOnline, changeTheme, getFacebookAccessCode} from 'app/AppReducer';
+import appReducer, { changeIsLandscape, changeIsOnline, changeTheme, getFacebookAccessCode } from 'app/AppReducer';
 
 describe('App -> Reducer/Actions', () => {
   describe('Reducer', () => {
@@ -13,7 +13,7 @@ describe('App -> Reducer/Actions', () => {
         facebookAccessCode: '',
       };
 
-      const result = appReducer(undefined, {type: 'invalid'});
+      const result = appReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -26,7 +26,7 @@ describe('App -> Reducer/Actions', () => {
         facebookAccessCode: '123',
       };
 
-      const result = appReducer(state, {type: 'invalid'});
+      const result = appReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -51,7 +51,7 @@ describe('App -> Reducer/Actions', () => {
         theme: 'test',
         facebookAccessCode: '123',
       };
-      const action = {type: changeIsOnline.type, payload: true};
+      const action = { type: changeIsOnline.type, payload: true };
 
       const result = appReducer(state, action);
 
@@ -78,7 +78,7 @@ describe('App -> Reducer/Actions', () => {
         theme: 'test',
         facebookAccessCode: '123',
       };
-      const action = {type: changeIsLandscape.type, payload: true};
+      const action = { type: changeIsLandscape.type, payload: true };
 
       const result = appReducer(state, action);
 
@@ -105,7 +105,7 @@ describe('App -> Reducer/Actions', () => {
         theme: 'dark',
         facebookAccessCode: '123',
       };
-      const action = {type: changeTheme.type, payload: 'dark'};
+      const action = { type: changeTheme.type, payload: 'dark' };
 
       const result = appReducer(state, action);
 
@@ -132,7 +132,7 @@ describe('App -> Reducer/Actions', () => {
         theme: 'test',
         facebookAccessCode: '456',
       };
-      const action = {type: getFacebookAccessCode.fulfilled.type, payload: {data: {getAccessCode: '456'}}};
+      const action = { type: getFacebookAccessCode.fulfilled.type, payload: { data: { getAccessCode: '456' } } };
 
       const result = appReducer(state, action);
 
@@ -158,11 +158,11 @@ describe('App -> Reducer/Actions', () => {
 
     describe('getFacebookAccessCode', () => {
       const arg = null;
-      const meta = {arg, requestId: sinon.match.string, requestStatus: sinon.match.string};
-      const body = {query: '{getAccessCode(social: FACEBOOK)}'};
+      const meta = { arg, requestId: sinon.match.string, requestStatus: sinon.match.string };
+      const body = { query: '{getAccessCode(social: FACEBOOK)}' };
 
       it('should dispatch getFacebookAccessCode.fulfilled', async () => {
-        const jsonExpected = {data: {getAccessCode: 'test token'}};
+        const jsonExpected = { data: { getAccessCode: 'test token' } };
         graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
 
         const result = await getFacebookAccessCode(arg)(dispatchStub);

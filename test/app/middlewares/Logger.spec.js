@@ -7,9 +7,9 @@ describe('Middlewares -> Logger', () => {
   afterEach(() => nextStub.reset());
 
   it('should process action and store data in window', () => {
-    const getState = () => ({id: 'state 1'});
-    const store = {id: 'store 1', getState};
-    const action = {type: 'action1'};
+    const getState = () => ({ id: 'state 1' });
+    const store = { id: 'store 1', getState };
+    const action = { type: 'action1' };
     const resultExpected = 'test';
     nextStub.withArgs(action).returns(resultExpected);
 
@@ -17,11 +17,11 @@ describe('Middlewares -> Logger', () => {
 
     expect(result).toStrictEqual(resultExpected);
     expect(window.store).toStrictEqual(store);
-    expect(window.state).toStrictEqual({id: 'state 1'});
+    expect(window.state).toStrictEqual({ id: 'state 1' });
     sinon.assert.callCount(nextStub, 1);
     sinon.assert.calledWithExactly(nextStub, action);
     // don't mutate
-    expect(store).toStrictEqual({id: 'store 1', getState});
-    expect(action).toStrictEqual({type: 'action1'});
+    expect(store).toStrictEqual({ id: 'store 1', getState });
+    expect(action).toStrictEqual({ type: 'action1' });
   });
 });

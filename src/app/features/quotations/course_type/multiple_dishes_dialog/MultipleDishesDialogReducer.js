@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const SLICE_NAME = 'MULTIPLE_DISHES_DIALOG';
 
@@ -18,14 +18,14 @@ const multipleDishesDialogSlice = createSlice({
     cleanDishes(state) {
       state.dishes = [];
     },
-    addDish(state, {payload: dishId}) {
-      !state.dishes.find(dish => dish.id === dishId) && state.dishes.push({id: dishId});
+    addDish(state, { payload: dishId }) {
+      !state.dishes.find(dish => dish.id === dishId) && state.dishes.push({ id: dishId });
     },
-    removeDish(state, {payload: dishId}) {
+    removeDish(state, { payload: dishId }) {
       state.dishes = state.dishes.filter(dish => dish.id !== dishId);
     },
   },
 });
 
 export default multipleDishesDialogSlice.reducer;
-export const {openDialog, closeDialog, cleanDishes, addDish, removeDish} = multipleDishesDialogSlice.actions;
+export const { openDialog, closeDialog, cleanDishes, addDish, removeDish } = multipleDishesDialogSlice.actions;

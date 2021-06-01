@@ -1,18 +1,18 @@
 import './MenuCourses.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
-import {useDishesByIds} from 'app/hooks/data/Dishes';
-import {selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
+import { useDishesByIds } from 'app/hooks/data/Dishes';
+import { selectDishWithoutActions } from 'app/features/quotations/dish/DishReducer';
 
-const MenuCourses = ({courseType}) => {
+const MenuCourses = ({ courseType }) => {
   const dispatch = useDispatch();
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const selectDish = dishId => dispatch(selectDishWithoutActions(dishId));
   const courses = menu.courses.filter(course => course.type.id === courseType.id);
   const dishesIds = courses.map(course => course.dishes.map(dish => dish.id)).flat();
-  const {dishes: allDishes, isAnyFetching} = useDishesByIds(dishesIds);
+  const { dishes: allDishes, isAnyFetching } = useDishesByIds(dishesIds);
   const sortedCourses = courses.sort((a, b) => a.position - b.position);
 
   const getCourse = course => {

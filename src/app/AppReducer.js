@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Api from 'app/common/Api';
 
 const SLICE_NAME = 'APP';
@@ -8,7 +8,7 @@ const defaultTheme = window?.localStorage?.getItem('appTheme') || 'light';
 export const getFacebookAccessCode = createAsyncThunk(
   `${SLICE_NAME}/getFacebookAccessCode`,
   async (arg, thunkAPI) => {
-    const body = {query: '{getAccessCode(social: FACEBOOK)}'};
+    const body = { query: '{getAccessCode(social: FACEBOOK)}' };
 
     return await Api.graphql(thunkAPI.dispatch, body);
   },
@@ -23,13 +23,13 @@ const appSlice = createSlice({
     facebookAccessCode: '',
   },
   reducers: {
-    changeIsOnline(state, {payload: isOnline}) {
+    changeIsOnline(state, { payload: isOnline }) {
       state.isOnline = isOnline;
     },
-    changeIsLandscape(state, {payload: isLandscape}) {
+    changeIsLandscape(state, { payload: isLandscape }) {
       state.isLandscape = isLandscape;
     },
-    changeTheme(state, {payload: theme}) {
+    changeTheme(state, { payload: theme }) {
       state.theme = theme;
     },
   },
@@ -42,4 +42,4 @@ const appSlice = createSlice({
 });
 
 export default appSlice.reducer;
-export const {changeIsOnline, changeIsLandscape, changeTheme} = appSlice.actions;
+export const { changeIsOnline, changeIsLandscape, changeTheme } = appSlice.actions;

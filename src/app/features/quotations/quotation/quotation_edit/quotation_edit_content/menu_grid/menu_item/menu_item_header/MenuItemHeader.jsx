@@ -1,20 +1,20 @@
 import './MenuItemHeader.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEllipsisV, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisV, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
 import EnterTextField from 'app/common/components/enter_text_field/EnterTextField';
-import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import {changeName} from 'app/features/quotations/menu/MenuReducer';
+import { selectMenu } from 'app/features/quotations/quotation/QuotationReducer';
+import { changeName } from 'app/features/quotations/menu/MenuReducer';
 
-const MenuItemHeader = ({index, focus, menu, select, openMenu}) => {
+const MenuItemHeader = ({ index, focus, menu, select, openMenu }) => {
   const dispatch = useDispatch();
-  const {id, name, isSelected} = menu;
+  const { id, name, isSelected } = menu;
 
   const getMenuButton = () => {
     const onOpen = event => {

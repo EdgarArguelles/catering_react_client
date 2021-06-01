@@ -1,11 +1,11 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
-import {act} from 'react-test-renderer';
-import {waitFor} from '@testing-library/react';
-import React, {useState} from 'react';
-import {renderReduxComponent} from 'app/../../test/TestHelper';
-import {useAppTheme, useBrowserNavigation, useIsMobileSize, usePingServer} from 'app/hooks/Common';
-import {changeTheme as changeThemeAction} from 'app/AppReducer';
+import { act } from 'react-test-renderer';
+import { waitFor } from '@testing-library/react';
+import React, { useState } from 'react';
+import { renderReduxComponent } from 'app/../../test/TestHelper';
+import { useAppTheme, useBrowserNavigation, useIsMobileSize, usePingServer } from 'app/hooks/Common';
+import { changeTheme as changeThemeAction } from 'app/AppReducer';
 import * as AuthActions from 'app/features/auth/AuthReducer';
 import * as NavigationActions from 'app/features/quotations/header/navigation/NavigationReducer';
 
@@ -24,7 +24,7 @@ describe('Hooks -> Common', () => {
     act(() => component.props.onChange(params));
   };
 
-  const mountComponent = renderReduxComponent(({hook}) => {
+  const mountComponent = renderReduxComponent(({ hook }) => {
     const [value, setValue] = useState(null);
     hookResponse = hook(value);
     return <div value={value} onChange={newValue => setValue(newValue)}/>;
@@ -42,7 +42,7 @@ describe('Hooks -> Common', () => {
   describe('useAppTheme', () => {
     it('should init default theme value', () => {
       mountComponent(() => useAppTheme(), {}, true);
-      const {theme, themeIcon} = hookResponse;
+      const { theme, themeIcon } = hookResponse;
 
       expect(theme).toStrictEqual('light');
       expect(themeIcon).not.toBeNull();
@@ -50,25 +50,25 @@ describe('Hooks -> Common', () => {
     });
 
     it('should call changeTheme with dark', () => {
-      mountComponent(() => useAppTheme(), {app: {theme: 'light'}}, false);
-      const {theme, themeIcon, changeTheme} = hookResponse;
+      mountComponent(() => useAppTheme(), { app: { theme: 'light' } }, false);
+      const { theme, themeIcon, changeTheme } = hookResponse;
       changeTheme();
 
       expect(theme).toStrictEqual('light');
       expect(themeIcon).not.toBeNull();
       sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, {payload: 'dark', type: changeThemeAction.type});
+      sinon.assert.calledWithExactly(dispatchStub, { payload: 'dark', type: changeThemeAction.type });
     });
 
     it('should call changeTheme with light', () => {
-      mountComponent(() => useAppTheme(), {app: {theme: 'dark'}}, false);
-      const {theme, themeIcon, changeTheme} = hookResponse;
+      mountComponent(() => useAppTheme(), { app: { theme: 'dark' } }, false);
+      const { theme, themeIcon, changeTheme } = hookResponse;
       changeTheme();
 
       expect(theme).toStrictEqual('dark');
       expect(themeIcon).not.toBeNull();
       sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, {payload: 'light', type: changeThemeAction.type});
+      sinon.assert.calledWithExactly(dispatchStub, { payload: 'light', type: changeThemeAction.type });
     });
   });
 
@@ -77,7 +77,7 @@ describe('Hooks -> Common', () => {
 
     beforeEach(() => {
       fetchPingStub.reset();
-      fetchPingStub.withArgs().returns({type: 'TEST'});
+      fetchPingStub.withArgs().returns({ type: 'TEST' });
       mountComponent(() => usePingServer(), {}, false);
     });
 
@@ -88,7 +88,7 @@ describe('Hooks -> Common', () => {
       sinon.assert.callCount(fetchPingStub, 1);
       sinon.assert.calledWithExactly(fetchPingStub);
       sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST'});
+      sinon.assert.calledWithExactly(dispatchStub, { type: 'TEST' });
     });
   });
 
@@ -98,8 +98,8 @@ describe('Hooks -> Common', () => {
     beforeEach(() => {
       const onClose = 'onClose';
       closeNavigationDialogStub.reset();
-      closeNavigationDialogStub.withArgs(onClose).returns({type: 'TEST 1'});
-      closeNavigationDialogStub.withArgs(null).returns({type: 'TEST 2'});
+      closeNavigationDialogStub.withArgs(onClose).returns({ type: 'TEST 1' });
+      closeNavigationDialogStub.withArgs(null).returns({ type: 'TEST 2' });
       const data = mountComponent(open => useBrowserNavigation(open, onClose), {}, false);
       wrapper = data.wrapper;
     });
@@ -120,7 +120,7 @@ describe('Hooks -> Common', () => {
       sinon.assert.callCount(closeNavigationDialogStub, 1);
       sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
       sinon.assert.callCount(dispatchStub, 1);
-      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
+      sinon.assert.calledWithExactly(dispatchStub, { type: 'TEST 1' });
     });
 
     it('should call closeNavigationDialog twice', () => {
@@ -133,8 +133,8 @@ describe('Hooks -> Common', () => {
       sinon.assert.calledWithExactly(closeNavigationDialogStub, 'onClose');
       sinon.assert.calledWithExactly(closeNavigationDialogStub, null);
       sinon.assert.callCount(dispatchStub, 2);
-      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 1'});
-      sinon.assert.calledWithExactly(dispatchStub, {type: 'TEST 2'});
+      sinon.assert.calledWithExactly(dispatchStub, { type: 'TEST 1' });
+      sinon.assert.calledWithExactly(dispatchStub, { type: 'TEST 2' });
     });
   });
 });

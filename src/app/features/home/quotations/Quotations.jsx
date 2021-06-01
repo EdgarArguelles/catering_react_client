@@ -1,5 +1,5 @@
 import './Quotations.scss';
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import SectionHeader from 'app/features/home/SectionHeader';
 import Information from './information/Information';
@@ -33,7 +33,7 @@ const Quotations = () => {
         </Grid>
         <Grid item className="video" xs={12} sm={6}>
           <iframe id="video" src="https://www.youtube.com/embed/gZmdU6jC2vQ" frameBorder="0" allowFullScreen
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>
         </Grid>
         <Grid item xs={12}>
           <hr/>

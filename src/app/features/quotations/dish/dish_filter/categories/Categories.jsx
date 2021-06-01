@@ -1,23 +1,23 @@
 import './Categories.scss';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useLocation} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Checkbox from '@material-ui/core/Checkbox';
 import Utils from 'app/common/Utils';
-import {useCourseTypes} from 'app/hooks/data/CourseTypes';
-import {useActiveDishesByCourseType} from 'app/hooks/data/Dishes';
-import {getCurrentCourseType} from 'app/features/quotations/course_type/CourseType.service';
+import { useCourseTypes } from 'app/hooks/data/CourseTypes';
+import { useActiveDishesByCourseType } from 'app/hooks/data/Dishes';
+import { getCurrentCourseType } from 'app/features/quotations/course_type/CourseType.service';
 import Category from './category/Category';
-import {setCategories} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
+import { setCategories } from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
 const Categories = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const {data: courseTypes} = useCourseTypes();
+  const { data: courseTypes } = useCourseTypes();
   const courseType = useSelector(state => getCurrentCourseType(courseTypes, state.quotations.selectedTab));
-  const {data: activeDishesByCourseType} = useActiveDishesByCourseType(courseType.id);
+  const { data: activeDishesByCourseType } = useActiveDishesByCourseType(courseType.id);
   const courseTypeDishes = activeDishesByCourseType || [];
   const filter = useSelector(state => state.quotations.dish.filter);
   const setCat = categories => dispatch(setCategories(categories));

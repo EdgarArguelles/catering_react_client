@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const SLICE_NAME = 'AUTH_DIALOG';
 
@@ -16,4 +16,4 @@ const authDialogSlice = createSlice({
 });
 
 export default authDialogSlice.reducer;
-export const {openAuthDialog, closeAuthDialog} = authDialogSlice.actions;
+export const { openAuthDialog, closeAuthDialog } = authDialogSlice.actions;

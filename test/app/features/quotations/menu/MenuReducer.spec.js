@@ -20,7 +20,7 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         courses: [],
       };
 
-      const result = menuReducer(undefined, {type: 'invalid'});
+      const result = menuReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -32,12 +32,12 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'a15', extra: '11' }, { id: 'a16' }] },
+          { position: 2, type: { id: 'a4' }, dishes: [{ id: 'a17' }] },
         ],
       };
 
-      const result = menuReducer(state, {type: 'invalid'});
+      const result = menuReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -47,8 +47,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'a15', extra: '11' }, { id: 'a16' }] },
+          { position: 2, type: { id: 'a4' }, dishes: [{ id: 'a17' }] },
         ],
       });
     });
@@ -59,8 +59,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
       const stateExpected = {
@@ -69,7 +69,7 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         price: 0,
         courses: [],
       };
-      const action = {type: cleanData.type};
+      const action = { type: cleanData.type };
 
       const result = menuReducer(state, action);
 
@@ -80,8 +80,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       });
     });
@@ -92,8 +92,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
       const stateExpected = {
@@ -101,11 +101,11 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
-      const action = {type: changeName.type, payload: 'name 2'};
+      const action = { type: changeName.type, payload: 'name 2' };
 
       const result = menuReducer(state, action);
 
@@ -116,8 +116,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       });
     });
@@ -128,8 +128,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
       const stateExpected = {
@@ -137,11 +137,11 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 5,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
-      const action = {type: changeQuantity.type, payload: 5};
+      const action = { type: changeQuantity.type, payload: 5 };
 
       const result = menuReducer(state, action);
 
@@ -152,8 +152,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       });
     });
@@ -164,8 +164,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
       const stateExpected = {
@@ -173,11 +173,11 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 95.5,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
-      const action = {type: increasePrice.type, payload: 15.5};
+      const action = { type: increasePrice.type, payload: 15.5 };
 
       const result = menuReducer(state, action);
 
@@ -188,8 +188,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       });
     });
@@ -200,8 +200,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
       const stateExpected = {
@@ -209,11 +209,11 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 64.5,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
-      const action = {type: decreasePrice.type, payload: 15.5};
+      const action = { type: decreasePrice.type, payload: 15.5 };
 
       const result = menuReducer(state, action);
 
@@ -224,8 +224,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       });
     });
@@ -236,8 +236,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       };
       const stateExpected = {
@@ -245,12 +245,12 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
-          {position: 3, type: {id: 5}, dishes: []},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
+          { position: 3, type: { id: 5 }, dishes: [] },
         ],
       };
-      const action = {type: addCourse.type, payload: {position: 3, courseTypeId: 5, dishesIds: []}};
+      const action = { type: addCourse.type, payload: { position: 3, courseTypeId: 5, dishesIds: [] } };
 
       const result = menuReducer(state, action);
 
@@ -261,8 +261,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 3}, dishes: [{id: 15, extra: '11'}, {id: 16}]},
-          {position: 2, type: {id: 4}, dishes: [{id: 17}]},
+          { position: 1, type: { id: 3 }, dishes: [{ id: 15, extra: '11' }, { id: 16 }] },
+          { position: 2, type: { id: 4 }, dishes: [{ id: 17 }] },
         ],
       });
     });
@@ -273,8 +273,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'a15', extra: '11' }, { id: 'a16' }] },
+          { position: 2, type: { id: 'a4' }, dishes: [{ id: 'a17' }] },
         ],
       };
       const stateExpected = {
@@ -282,14 +282,14 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
-          {position: 3, type: {id: 'a5'}, dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}]},
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'a15', extra: '11' }, { id: 'a16' }] },
+          { position: 2, type: { id: 'a4' }, dishes: [{ id: 'a17' }] },
+          { position: 3, type: { id: 'a5' }, dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }] },
         ],
       };
       const action = {
         type: addCourse.type,
-        payload: {position: 3, courseTypeId: 'a5', dishesIds: ['d1', 'd2', 'd3']},
+        payload: { position: 3, courseTypeId: 'a5', dishesIds: ['d1', 'd2', 'd3'] },
       };
 
       const result = menuReducer(state, action);
@@ -301,8 +301,8 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'a15', extra: '11'}, {id: 'a16'}]},
-          {position: 2, type: {id: 'a4'}, dishes: [{id: 'a17'}]},
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'a15', extra: '11' }, { id: 'a16' }] },
+          { position: 2, type: { id: 'a4' }, dishes: [{ id: 'a17' }] },
         ],
       });
     });
@@ -314,15 +314,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
       const stateExpected = {
@@ -330,18 +330,18 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
-      const action = {type: removeCourse.type, payload: {position: 4, courseTypeId: 'a22'}};
+      const action = { type: removeCourse.type, payload: { position: 4, courseTypeId: 'a22' } };
 
       const result = menuReducer(state, action);
 
@@ -352,15 +352,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       });
     });
@@ -372,15 +372,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
       const stateExpected = {
@@ -388,18 +388,18 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
-      const action = {type: removeCourse.type, payload: {position: 2, courseTypeId: 'a22'}};
+      const action = { type: removeCourse.type, payload: { position: 2, courseTypeId: 'a22' } };
 
       const result = menuReducer(state, action);
 
@@ -410,15 +410,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       });
     });
@@ -430,15 +430,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
       const stateExpected = {
@@ -446,18 +446,18 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
         ],
       };
-      const action = {type: removeCourse.type, payload: {position: 4, courseTypeId: 'a2'}};
+      const action = { type: removeCourse.type, payload: { position: 4, courseTypeId: 'a2' } };
 
       const result = menuReducer(state, action);
 
@@ -468,15 +468,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       });
     });
@@ -487,15 +487,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
       const stateExpected = {
@@ -503,17 +503,17 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
         ],
       };
-      const action = {type: removeCourse.type, payload: {position: 2, courseTypeId: 'a2'}};
+      const action = { type: removeCourse.type, payload: { position: 2, courseTypeId: 'a2' } };
 
       const result = menuReducer(state, action);
 
@@ -524,15 +524,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       });
     });
@@ -545,15 +545,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
       const stateExpected = {
@@ -562,18 +562,18 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
-      const action = {type: changeCoursesPosition.type, payload: []};
+      const action = { type: changeCoursesPosition.type, payload: [] };
 
       const result = menuReducer(state, action);
 
@@ -585,15 +585,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       });
     });
@@ -605,15 +605,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       };
       const stateExpected = {
@@ -622,23 +622,23 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
         ],
       };
       const action = {
         type: changeCoursesPosition.type,
         payload: [
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
         ],
       };
 
@@ -652,15 +652,15 @@ describe('Quotations -> Menu -> Reducer/Actions', () => {
         quantity: 10,
         price: 80,
         courses: [
-          {position: 2, type: {id: 'a1'}, dishes: [{id: 'a115', extra: '11'}, {id: 'a116'}]},
-          {position: 1, type: {id: 'a1'}, dishes: [{id: 'a117'}]},
-          {position: 3, type: {id: 'a1'}, dishes: [{id: 'd11'}, {id: 'd12'}, {id: 'd13'}]},
-          {position: 2, type: {id: 'a2'}, dishes: [{id: 'a215', extra: '11'}, {id: 'a216'}]},
-          {position: 1, type: {id: 'a2'}, dishes: [{id: 'a217'}]},
-          {position: 3, type: {id: 'a2'}, dishes: [{id: 'a218'}]},
-          {position: 2, type: {id: 'a3'}, dishes: [{id: 'd31'}, {id: 'd32'}, {id: 'd33'}]},
-          {position: 1, type: {id: 'a3'}, dishes: [{id: 'd32'}]},
-          {position: 3, type: {id: 'a3'}, dishes: [{id: 'd33'}]},
+          { position: 2, type: { id: 'a1' }, dishes: [{ id: 'a115', extra: '11' }, { id: 'a116' }] },
+          { position: 1, type: { id: 'a1' }, dishes: [{ id: 'a117' }] },
+          { position: 3, type: { id: 'a1' }, dishes: [{ id: 'd11' }, { id: 'd12' }, { id: 'd13' }] },
+          { position: 2, type: { id: 'a2' }, dishes: [{ id: 'a215', extra: '11' }, { id: 'a216' }] },
+          { position: 1, type: { id: 'a2' }, dishes: [{ id: 'a217' }] },
+          { position: 3, type: { id: 'a2' }, dishes: [{ id: 'a218' }] },
+          { position: 2, type: { id: 'a3' }, dishes: [{ id: 'd31' }, { id: 'd32' }, { id: 'd33' }] },
+          { position: 1, type: { id: 'a3' }, dishes: [{ id: 'd32' }] },
+          { position: 3, type: { id: 'a3' }, dishes: [{ id: 'd33' }] },
         ],
       });
     });

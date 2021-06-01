@@ -1,5 +1,5 @@
 import './Header.scss';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Logo from './logo/Logo';
 import Menu from './menu/Menu';

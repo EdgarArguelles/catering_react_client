@@ -1,5 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import menuReducer, {cleanData} from 'app/features/quotations/menu/MenuReducer';
+import { createSlice } from '@reduxjs/toolkit';
+import menuReducer, { cleanData } from 'app/features/quotations/menu/MenuReducer';
 
 const SLICE_NAME = 'QUOTATION';
 
@@ -24,25 +24,25 @@ const quotationSlice = createSlice({
     price: 0,
   },
   reducers: {
-    changeName(state, {payload: name}) {
+    changeName(state, { payload: name }) {
       state.name = name;
     },
-    selectMenu(state, {payload: menuId}) {
+    selectMenu(state, { payload: menuId }) {
       state.menus.forEach(menu => (menu.isSelected = menu.id === menuId));
     },
-    addNewMenu(state, {payload: menuId}) {
-      state.menus.push(menuReducer({id: menuId}, {type: cleanData.type}));
+    addNewMenu(state, { payload: menuId }) {
+      state.menus.push(menuReducer({ id: menuId }, { type: cleanData.type }));
     },
-    addMenu(state, {payload: menu}) {
+    addMenu(state, { payload: menu }) {
       state.menus.push(menu);
     },
-    removeMenu(state, {payload: menuId}) {
+    removeMenu(state, { payload: menuId }) {
       state.menus = state.menus.filter(menu => menu.id !== menuId);
     },
-    setPrice(state, {payload: price}) {
+    setPrice(state, { payload: price }) {
       state.price = price;
     },
-    revertQuotation(state, {payload: quotation}) {
+    revertQuotation(state, { payload: quotation }) {
       return overwriteLocal(quotation);
     },
   },

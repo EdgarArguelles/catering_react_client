@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 //break points
 $screen-lg: 1279px;
 $screen-sm: 959px;
@@ -9,10 +11,10 @@ $header-color: rgba(52, 59, 64, 0.9);
 $main-color: #2dc997;
 $error-color: #ff1744;
 $secondary-color: #2196f3;
-$google-color: #E8453C;
-$facebook-color: #3B5998;
-$twitter-color: #1DA1F2;
-$instagram-color: #FB3958;
+$google-color: #e8453c;
+$facebook-color: #3b5998;
+$twitter-color: #1da1f2;
+$instagram-color: #fb3958;
 $gray: #888;
 $dark-background: #424242;
 
@@ -37,10 +39,10 @@ $content-padding: 30px 40px;
 $content-padding-lg: 0 20px 60px;
 
 @mixin font-size($sizeInPX) {
-  font-size: ($sizeInPX / 16) + rem;
+  font-size: math.div($sizeInPX, 16) + rem;
 }
 
-@mixin animate-hover($color, $selector: '&') {
+@mixin animate-hover($color, $selector: "&") {
   #{$selector} {
     color: #fff;
     background-color: $color;

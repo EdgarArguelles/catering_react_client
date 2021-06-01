@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const SLICE_NAME = 'NAVIGATION';
 
@@ -10,16 +10,16 @@ const navigationSlice = createSlice({
     closeDialog: null,
   },
   reducers: {
-    changeNavigation(state, {payload: {backLink, title}}) {
+    changeNavigation(state, { payload: { backLink, title } }) {
       state.backLink = backLink;
       state.title = title || '';
       state.closeDialog = null;
     },
-    closeNavigationDialog(state, {payload: closeDialog}) {
+    closeNavigationDialog(state, { payload: closeDialog }) {
       state.closeDialog = closeDialog;
     },
   },
 });
 
 export default navigationSlice.reducer;
-export const {changeNavigation, closeNavigationDialog} = navigationSlice.actions;
+export const { changeNavigation, closeNavigationDialog } = navigationSlice.actions;

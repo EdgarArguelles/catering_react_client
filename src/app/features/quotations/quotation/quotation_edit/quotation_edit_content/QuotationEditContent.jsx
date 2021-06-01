@@ -1,6 +1,6 @@
 import './QuotationEditContent.scss';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import EditableField from 'app/common/components/editable_field/EditableField';
@@ -8,14 +8,14 @@ import QuotationEditToolbar from './quotation_edit_toolbar/QuotationEditToolbar'
 import MenuGrid from './menu_grid/MenuGrid';
 import QuotationNotify from './quotation_notify/QuotationNotify';
 import QuotationCompleteButton from './quotation_complete_button/QuotationCompleteButton';
-import {changeName} from 'app/features/quotations/quotation/QuotationReducer';
+import { changeName } from 'app/features/quotations/quotation/QuotationReducer';
 
 const QuotationEditContent = () => {
   const dispatch = useDispatch();
   const quotation = useSelector(state => state.quotations.quotation);
   const isFetching = useSelector(state => state.data.quotations.fetching);
   const changeQuotationName = name => dispatch(changeName(name));
-  const {id, name} = quotation;
+  const { id, name } = quotation;
 
   const getContent = () => {
     if (!name || isFetching) {

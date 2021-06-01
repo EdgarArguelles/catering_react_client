@@ -1,12 +1,12 @@
-import {useEffect, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {faLightbulb} from '@fortawesome/free-solid-svg-icons';
-import {faLightbulb as faLightbulbRegular} from '@fortawesome/free-regular-svg-icons';
-import {useTheme} from '@material-ui/core/styles';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb as faLightbulbRegular } from '@fortawesome/free-regular-svg-icons';
+import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {changeTheme} from 'app/AppReducer';
-import {closeNavigationDialog} from 'app/features/quotations/header/navigation/NavigationReducer';
-import {fetchPing} from 'app/features/auth/AuthReducer';
+import { changeTheme } from 'app/AppReducer';
+import { closeNavigationDialog } from 'app/features/quotations/header/navigation/NavigationReducer';
+import { fetchPing } from 'app/features/auth/AuthReducer';
 
 export const useIsMobileSize = () => {
   const theme = useTheme();
@@ -19,7 +19,7 @@ export const useAppTheme = () => {
   const themeIcon = theme === 'dark' ? faLightbulb : faLightbulbRegular;
   const action = () => dispatch(changeTheme(theme === 'dark' ? 'light' : 'dark'));
 
-  return {theme, themeIcon, changeTheme: action};
+  return { theme, themeIcon, changeTheme: action };
 };
 
 export const usePingServer = () => {

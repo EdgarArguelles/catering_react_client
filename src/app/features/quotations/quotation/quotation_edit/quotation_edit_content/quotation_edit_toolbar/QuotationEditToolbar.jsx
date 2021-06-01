@@ -1,9 +1,9 @@
 import './QuotationEditToolbar.scss';
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import formatCurrency from 'format-currency';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faQuestion} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -16,7 +16,7 @@ const QuotationEditToolbar = () => {
   const isFetching = useSelector(state => state.data.quotations.fetching);
   const quotation = useSelector(state => state.quotations.quotation);
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-  const {id, price, name} = quotation;
+  const { id, price, name } = quotation;
 
   const getTooltip = () => {
     const openTooltip = () => setIsTooltipOpen(true);
@@ -29,7 +29,7 @@ const QuotationEditToolbar = () => {
 
     return (
       <Tooltip title="El precio puede variar del original guardado, este es el precio con las tarifas actuales" arrow
-               TransitionComponent={Zoom} open={isTooltipOpen} onOpen={openTooltip} onClose={closeTooltip} interactive>
+        TransitionComponent={Zoom} open={isTooltipOpen} onOpen={openTooltip} onClose={closeTooltip} interactive>
         <IconButton className="price-question" onClick={handleClick} onMouseEnter={animateIcon}>
           <FontAwesomeIcon id="price-question-icon" icon={faQuestion}/>
         </IconButton>
@@ -43,7 +43,7 @@ const QuotationEditToolbar = () => {
         {!isFetching && name && (
           <div className="quotation-price">
             <div className="price-label">El precio del Presupuesto es:</div>
-            <b>{formatCurrency(price, {format: '%s%v', symbol: '$'})}</b>
+            <b>{formatCurrency(price, { format: '%s%v', symbol: '$' })}</b>
             {id && getTooltip()}
           </div>
         )}

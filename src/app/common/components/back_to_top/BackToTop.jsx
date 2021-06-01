@@ -1,7 +1,7 @@
 import './BackToTop.scss';
-import React, {useEffect, useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Zoom from '@material-ui/core/Zoom';
 import Utils from 'app/common/Utils';
 
@@ -10,7 +10,7 @@ const BackToTop = () => {
   const animateIcon = () => Utils.animateIcon('back-to-top');
   const scrollUp = () => {
     animateIcon();
-    window.scroll({top: 0, left: 0, behavior: 'smooth'});
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {

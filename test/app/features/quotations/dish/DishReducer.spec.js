@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import dishReducer, {selectDish, selectDishWithoutActions} from 'app/features/quotations/dish/DishReducer';
+import dishReducer, { selectDish, selectDishWithoutActions } from 'app/features/quotations/dish/DishReducer';
 
 describe('Quotations -> Dish -> Reducer/Actions', () => {
   describe('Reducer', () => {
@@ -15,7 +15,7 @@ describe('Quotations -> Dish -> Reducer/Actions', () => {
         },
       };
 
-      const result = dishReducer(undefined, {type: 'invalid'});
+      const result = dishReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -32,7 +32,7 @@ describe('Quotations -> Dish -> Reducer/Actions', () => {
         },
       };
 
-      const result = dishReducer(state, {type: 'invalid'});
+      const result = dishReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -69,7 +69,7 @@ describe('Quotations -> Dish -> Reducer/Actions', () => {
           categories: ['cat1', 'cat2'],
         },
       };
-      const action = {type: selectDish.type, payload: '123'};
+      const action = { type: selectDish.type, payload: '123' };
 
       const result = dishReducer(state, action);
 
@@ -108,7 +108,7 @@ describe('Quotations -> Dish -> Reducer/Actions', () => {
           categories: ['cat1', 'cat2'],
         },
       };
-      const action = {type: selectDishWithoutActions.type, payload: '123'};
+      const action = { type: selectDishWithoutActions.type, payload: '123' };
 
       const result = dishReducer(state, action);
 

@@ -2,11 +2,11 @@
 @use 'app/Variables';
 
 // animate styles
-@import '~animate.css/animate.css';
+@import "~animate.css/animate.css";
 
 // slick-carousel styles
-@import '~slick-carousel/slick/slick';
-@import 'slick-theme';
+@import "~slick-carousel/slick/slick";
+@import "slick-theme";
 
 body {
   margin: 0;

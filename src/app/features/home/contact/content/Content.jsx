@@ -1,15 +1,15 @@
 import './Content.scss';
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faWhatsapp} from '@fortawesome/free-brands-svg-icons';
-import {faAt, faPhone} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faAt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Utils from 'app/common/Utils';
 
 const Content = () => {
-  const animateWhatsapp = () => Utils.animateIcon('whatsapp-icon', {strokeWidth: 10});
+  const animateWhatsapp = () => Utils.animateIcon('whatsapp-icon', { strokeWidth: 10 });
   const animatePhone = () => Utils.animateIcon('phone-icon');
   const animateEmail = () => Utils.animateIcon('email-icon');
 

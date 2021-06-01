@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-const DragDrop = ({id, draggableClassName, data, drawContent, onChangePosition}) => {
+const DragDrop = ({ id, draggableClassName, data, drawContent, onChangePosition }) => {
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -10,8 +10,8 @@ const DragDrop = ({id, draggableClassName, data, drawContent, onChangePosition})
 
     const newResult = [];
     result.forEach((item, index) => {
-      !item.position && newResult.push({...item});
-      newResult.push({...item, position: index + 1});
+      !item.position && newResult.push({ ...item });
+      newResult.push({ ...item, position: index + 1 });
     });
 
     return newResult;
@@ -33,7 +33,7 @@ const DragDrop = ({id, draggableClassName, data, drawContent, onChangePosition})
     return (
       <>
         <div ref={provided.innerRef} className={draggableClassName}
-             {...provided.draggableProps} {...provided.dragHandleProps}>
+          {...provided.draggableProps} {...provided.dragHandleProps}>
           {drawContent(item)}
         </div>
         {provided.placeholder}

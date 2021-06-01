@@ -1,12 +1,12 @@
 /* eslint-disable max-lines */
 import sinon from 'sinon';
-import {act} from 'react-test-renderer';
-import {waitFor} from '@testing-library/react';
+import { act } from 'react-test-renderer';
+import { waitFor } from '@testing-library/react';
 import React from 'react';
-import {renderQueryComponent} from 'app/../../test/TestHelper';
+import { renderQueryComponent } from 'app/../../test/TestHelper';
 import Api from 'app/common/Api';
-import {ACTIVE_DISHES_KEY, CACHE, DISH_KEY} from 'app/hooks/data/Dishes';
-import {useCourseTypes, useDBVersion} from 'app/hooks/data/CourseTypes';
+import { ACTIVE_DISHES_KEY, CACHE, DISH_KEY } from 'app/hooks/data/Dishes';
+import { useCourseTypes, useDBVersion } from 'app/hooks/data/CourseTypes';
 
 describe('Hooks -> Data -> CourseTypes', () => {
   const dispatchStub = sinon.stub();
@@ -28,19 +28,19 @@ describe('Hooks -> Data -> CourseTypes', () => {
     window.localStorage.removeItem(CACHE);
   });
 
-  const mountComponent = renderQueryComponent(({hook}) => {
+  const mountComponent = renderQueryComponent(({ hook }) => {
     hookResponse = hook();
     return <div/>;
-  }, {dispatchStub, setQueryDataStub, invalidateQueriesStub, removeQueriesStub});
+  }, { dispatchStub, setQueryDataStub, invalidateQueriesStub, removeQueriesStub });
 
   describe('useCourseTypes', () => {
-    const body = {query: '{activeCourseTypes {id name picture position status}}'};
+    const body = { query: '{activeCourseTypes {id name picture position status}}' };
 
     it('should load course types when success', async () => {
-      const jsonExpected = {data: {activeCourseTypes: {value: 'test'}}};
+      const jsonExpected = { data: { activeCourseTypes: { value: 'test' } } };
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
 
-      mountComponent(() => useCourseTypes(), {app: {isOnline: true}}, false);
+      mountComponent(() => useCourseTypes(), { app: { isOnline: true } }, false);
       // should use undefined as initial data when online before useQuery is fired
       expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
@@ -51,8 +51,8 @@ describe('Hooks -> Data -> CourseTypes', () => {
 
       // wait until fire useQuery
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 1)));
-      expect(hookResponse.data).toStrictEqual({value: 'test'});
-      expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual(JSON.stringify({value: 'test'}));
+      expect(hookResponse.data).toStrictEqual({ value: 'test' });
+      expect(window.localStorage.getItem('courseTypesCached')).toStrictEqual(JSON.stringify({ value: 'test' }));
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 1);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
@@ -65,7 +65,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
 
-      mountComponent(() => useCourseTypes(), {app: {isOnline: false}}, false);
+      mountComponent(() => useCourseTypes(), { app: { isOnline: false } }, false);
       // should use undefined as initial data when offline and cache is not present before useQuery is fired
       expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
@@ -89,7 +89,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
 
-      mountComponent(() => useCourseTypes(), {app: {isOnline: true}}, false);
+      mountComponent(() => useCourseTypes(), { app: { isOnline: true } }, false);
       // should use undefined as initial data when online before useQuery is fired
       expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
@@ -112,9 +112,9 @@ describe('Hooks -> Data -> CourseTypes', () => {
     it('should restore course types when online and error and cache is present', async () => {
       const errorExpected = new Error('error 1');
       graphqlStub.withArgs(dispatchStub, body).throws(errorExpected);
-      window.localStorage.setItem('courseTypesCached', JSON.stringify({id: 5}));
+      window.localStorage.setItem('courseTypesCached', JSON.stringify({ id: 5 }));
 
-      mountComponent(() => useCourseTypes(), {app: {isOnline: true}}, false);
+      mountComponent(() => useCourseTypes(), { app: { isOnline: true } }, false);
       // should use undefined as initial data when online before useQuery is fired
       expect(hookResponse.data).toBeUndefined();
       sinon.assert.callCount(dispatchStub, 0);
@@ -130,16 +130,16 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(graphqlStub, 6);
       sinon.assert.calledWithExactly(graphqlStub, dispatchStub, body);
       sinon.assert.callCount(setQueryDataStub, 1);
-      sinon.assert.calledWithExactly(setQueryDataStub, 'CourseTypes', {id: 5});
+      sinon.assert.calledWithExactly(setQueryDataStub, 'CourseTypes', { id: 5 });
       sinon.assert.callCount(invalidateQueriesStub, 0);
       sinon.assert.callCount(removeQueriesStub, 0);
     });
 
     it('should use cache as initial data when offline and cache is present', async () => {
-      window.localStorage.setItem('courseTypesCached', JSON.stringify({id: 5}));
+      window.localStorage.setItem('courseTypesCached', JSON.stringify({ id: 5 }));
 
-      mountComponent(() => useCourseTypes(), {app: {isOnline: false}}, false);
-      expect(hookResponse.data).toStrictEqual({id: 5});
+      mountComponent(() => useCourseTypes(), { app: { isOnline: false } }, false);
+      expect(hookResponse.data).toStrictEqual({ id: 5 });
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
@@ -147,7 +147,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
       sinon.assert.callCount(removeQueriesStub, 0);
 
       await act(() => waitFor(() => sinon.assert.callCount(graphqlStub, 0)));
-      expect(hookResponse.data).toStrictEqual({id: 5});
+      expect(hookResponse.data).toStrictEqual({ id: 5 });
       sinon.assert.callCount(dispatchStub, 0);
       sinon.assert.callCount(graphqlStub, 0);
       sinon.assert.callCount(setQueryDataStub, 0);
@@ -157,7 +157,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
   });
 
   describe('useDBVersion', () => {
-    const body = {query: '{version {version}}'};
+    const body = { query: '{version {version}}' };
 
     it('should not load version when courseTypes is not present', async () => {
       window.localStorage.setItem('versionCached', '5');
@@ -177,7 +177,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
     });
 
     it('should load version when courseTypes is present', async () => {
-      const jsonExpected = {data: {version: {version: 'version1'}}};
+      const jsonExpected = { data: { version: { version: 'version1' } } };
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '5');
       window.localStorage.setItem(CACHE, 'old value');
@@ -199,7 +199,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
     });
 
     it('should not clean dishes when cache is the same', async () => {
-      const jsonExpected = {data: {version: {version: 4}}};
+      const jsonExpected = { data: { version: { version: 4 } } };
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem('versionCached', '4');
       window.localStorage.setItem(CACHE, 'old value');
@@ -219,7 +219,7 @@ describe('Hooks -> Data -> CourseTypes', () => {
     });
 
     it('should not clean dishes when cache is not present', async () => {
-      const jsonExpected = {data: {version: {version: 4}}};
+      const jsonExpected = { data: { version: { version: 4 } } };
       graphqlStub.withArgs(dispatchStub, body).returns(jsonExpected);
       window.localStorage.setItem(CACHE, 'old value');
 

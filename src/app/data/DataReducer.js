@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import quotationsReducer from './quotations/QuotationsReducer';
 
 const SLICE_NAME = 'DATA';

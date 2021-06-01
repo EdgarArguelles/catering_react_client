@@ -20,7 +20,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         categories: null,
       };
 
-      const result = dishFilterReducer(undefined, {type: 'invalid'});
+      const result = dishFilterReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -33,7 +33,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         categories: ['cat1', 'cat2'],
       };
 
-      const result = dishFilterReducer(state, {type: 'invalid'});
+      const result = dishFilterReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -58,7 +58,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'name',
         categories: null,
       };
-      const action = {type: cleanFilters.type};
+      const action = { type: cleanFilters.type };
 
       const result = dishFilterReducer(state, action);
 
@@ -85,7 +85,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: openDishFilterDialog.type};
+      const action = { type: openDishFilterDialog.type };
 
       const result = dishFilterReducer(state, action);
 
@@ -112,7 +112,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: closeDishFilterDialog.type};
+      const action = { type: closeDishFilterDialog.type };
 
       const result = dishFilterReducer(state, action);
 
@@ -139,7 +139,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: changeSearch.type, payload: '123'};
+      const action = { type: changeSearch.type, payload: '123' };
 
       const result = dishFilterReducer(state, action);
 
@@ -166,7 +166,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat2'],
       };
-      const action = {type: changeSort.type, payload: 'price'};
+      const action = { type: changeSort.type, payload: 'price' };
 
       const result = dishFilterReducer(state, action);
 
@@ -193,7 +193,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['aa1', 'aa2', 'aa3'],
       };
-      const action = {type: setCategories.type, payload: ['aa1', 'aa2', 'aa3']};
+      const action = { type: setCategories.type, payload: ['aa1', 'aa2', 'aa3'] };
 
       const result = dishFilterReducer(state, action);
 
@@ -220,7 +220,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat2', 'cat3'],
       };
-      const action = {type: addCategory.type, payload: 'cat3'};
+      const action = { type: addCategory.type, payload: 'cat3' };
 
       const result = dishFilterReducer(state, action);
 
@@ -247,7 +247,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat3'],
       };
-      const action = {type: removeCategory.type, payload: 'cat2'};
+      const action = { type: removeCategory.type, payload: 'cat2' };
 
       const result = dishFilterReducer(state, action);
 
@@ -274,7 +274,7 @@ describe('Quotations -> Dish -> Filter -> Reducer/Actions', () => {
         sort: 'price',
         categories: ['cat1', 'cat2', 'cat3'],
       };
-      const action = {type: removeCategory.type, payload: 'cat 2'};
+      const action = { type: removeCategory.type, payload: 'cat 2' };
 
       const result = dishFilterReducer(state, action);
 

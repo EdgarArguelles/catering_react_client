@@ -1,9 +1,9 @@
 import './Layout.scss';
 import loading from 'assets/img/loading-large.gif';
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Utils from 'app/common/Utils';
-import {useCourseTypes, useDBVersion} from 'app/hooks/data/CourseTypes';
+import { useCourseTypes, useDBVersion } from 'app/hooks/data/CourseTypes';
 import SelectedDishDialog from './dish/selected_dish_dialog/SelectedDishDialog';
 import Header from './header/Header';
 import Router from './router/Router';
@@ -11,7 +11,7 @@ import Router from './router/Router';
 const Layout = () => {
   const quotation = useSelector(state => state.quotations.quotation);
   const isMenuSelected = !!quotation.menus && !!quotation.menus.find(menu => menu.isSelected);
-  const {data: courseTypes} = useCourseTypes();
+  const { data: courseTypes } = useCourseTypes();
   useDBVersion(courseTypes);
 
   useEffect(() => {

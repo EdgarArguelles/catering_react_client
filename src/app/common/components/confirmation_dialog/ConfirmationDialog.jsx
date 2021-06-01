@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Zoom from '@material-ui/core/Zoom';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,9 +6,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import {useBrowserNavigation} from 'app/hooks/Common';
+import { useBrowserNavigation } from 'app/hooks/Common';
 
-const ConfirmationDialog = ({className, title, label, content, okID, okLabel, open, onClose, onOK}) => {
+const ConfirmationDialog = ({ className, title, label, content, okID, okLabel, open, onClose, onOK }) => {
   useBrowserNavigation(open, onClose);
   useEffect(() => {
     if (open && navigator && navigator.vibrate) {
@@ -25,7 +25,7 @@ const ConfirmationDialog = ({className, title, label, content, okID, okLabel, op
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancelar</Button>
-        <Button id={okID} color="primary" classes={{label: `${okID}-label`}} onClick={onOK}>{okLabel || 'OK'}</Button>
+        <Button id={okID} color="primary" classes={{ label: `${okID}-label` }} onClick={onOK}>{okLabel || 'OK'}</Button>
       </DialogActions>
     </Dialog>
   );

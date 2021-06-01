@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import Analyzer from 'webpack-bundle-analyzer';
 import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
@@ -32,8 +32,8 @@ export default {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        styles: {test: /\.s?css$/, name: 'styles', chunks: 'all'},
-        react: {test: /[\\/]node_modules[\\/]react-dom[\\/]/, name: 'react', chunks: 'initial'},
+        styles: { test: /\.s?css$/, name: 'styles', chunks: 'all' },
+        react: { test: /[\\/]node_modules[\\/]react-dom[\\/]/, name: 'react', chunks: 'initial' },
       },
     },
   },
@@ -49,7 +49,7 @@ export default {
         API_URL: JSON.stringify(process.env.API_URL),
       },
     }),
-    new CopyPlugin({patterns: [{from: './src/manifest.json', to: distPath}]}),
+    new CopyPlugin({ patterns: [{ from: './src/manifest.json', to: distPath }] }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
@@ -73,22 +73,22 @@ export default {
   module: {
     rules: [
       // babel
-      {test: /\.(js|jsx)?$/, exclude: [/node_modules/], use: 'babel-loader'},
+      { test: /\.(js|jsx)?$/, exclude: [/node_modules/], use: 'babel-loader' },
       // index
-      {test: /index.html$/, type: 'asset/resource', generator: {filename: '[name][ext]'}},
+      { test: /index.html$/, type: 'asset/resource', generator: { filename: '[name][ext]' } },
       // fonts
-      {test: /\.(eot|woff|woff2|ttf)$/, type: 'asset/resource', generator: {filename: 'fonts/[name][ext]'}},
+      { test: /\.(eot|woff|woff2|ttf)$/, type: 'asset/resource', generator: { filename: 'fonts/[name][ext]' } },
       // assets
-      {test: /\.(png|jpg|gif)$/, type: 'asset/resource', generator: {filename: 'assets/[name][ext]'}},
+      { test: /\.(png|jpg|gif)$/, type: 'asset/resource', generator: { filename: 'assets/[name][ext]' } },
       // svg
-      {test: /\.svg$/, use: '@svgr/webpack'},
+      { test: /\.svg$/, use: '@svgr/webpack' },
       // sass
       {
         test: /\.(scss|css)$/, use: [
           MiniCSSExtractPlugin.loader,
           'css-loader',
           // add vendor prefix (user-select: none -> -webkit-user-select: none)
-          {loader: 'postcss-loader', options: {postcssOptions: {plugins: [require('autoprefixer')()]}}},
+          { loader: 'postcss-loader', options: { postcssOptions: { plugins: [require('autoprefixer')()] } } },
           'sass-loader',
         ],
       },
