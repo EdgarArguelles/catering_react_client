@@ -11,10 +11,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
     beforeEach(() => {
       courseTypes = [
-        {position: 5},
-        {position: 1, status: 0},
-        {position: 15, status: 1},
-        {position: 3, status: 1},
+        { position: 5 },
+        { position: 1, status: 0 },
+        { position: 15, status: 1 },
+        { position: 3, status: 1 },
       ];
     });
 
@@ -61,19 +61,19 @@ describe('Quotations -> Course Type -> Service', () => {
       expect(result).toStrictEqual(resultExpected);
       // don't mutate
       expect(courseTypes).toStrictEqual([
-        {position: 5},
-        {position: 1, status: 0},
-        {position: 15, status: 1},
-        {position: 3, status: 1},
+        { position: 5 },
+        { position: 1, status: 0 },
+        { position: 15, status: 1 },
+        { position: 3, status: 1 },
       ]);
     });
 
     it('should get sorted array', () => {
       const resultExpected = [
-        {position: 1, status: 0},
-        {position: 3, status: 1},
-        {position: 5},
-        {position: 15, status: 1},
+        { position: 1, status: 0 },
+        { position: 3, status: 1 },
+        { position: 5 },
+        { position: 15, status: 1 },
       ];
 
       const result = getSortedCourseTypes(courseTypes);
@@ -81,10 +81,10 @@ describe('Quotations -> Course Type -> Service', () => {
       expect(result).toStrictEqual(resultExpected);
       // don't mutate
       expect(courseTypes).toStrictEqual([
-        {position: 5},
-        {position: 1, status: 0},
-        {position: 15, status: 1},
-        {position: 3, status: 1},
+        { position: 5 },
+        { position: 1, status: 0 },
+        { position: 15, status: 1 },
+        { position: 3, status: 1 },
       ]);
     });
   });
@@ -94,10 +94,10 @@ describe('Quotations -> Course Type -> Service', () => {
 
     beforeEach(() => {
       allCourseTypes = [
-        {position: 5, status: 1},
-        {position: 1, status: 1},
-        {position: 15, status: 1},
-        {position: 3, status: 1},
+        { position: 5, status: 1 },
+        { position: 1, status: 1 },
+        { position: 15, status: 1 },
+        { position: 3, status: 1 },
       ];
       selectedTab = 1;
     });
@@ -143,17 +143,17 @@ describe('Quotations -> Course Type -> Service', () => {
     describe('selectedTab', () => {
       it('should get first sorted object when selectedTab is undefined', () => {
         selectedTab = undefined;
-        const resultExpected = {position: 1, status: 1};
+        const resultExpected = { position: 1, status: 1 };
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(allCourseTypes).toStrictEqual([
-          {position: 5, status: 1},
-          {position: 1, status: 1},
-          {position: 15, status: 1},
-          {position: 3, status: 1},
+          { position: 5, status: 1 },
+          { position: 1, status: 1 },
+          { position: 15, status: 1 },
+          { position: 3, status: 1 },
         ]);
         expect(selectedTab).toBeUndefined();
       });
@@ -167,44 +167,44 @@ describe('Quotations -> Course Type -> Service', () => {
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(allCourseTypes).toStrictEqual([
-          {position: 5, status: 1},
-          {position: 1, status: 1},
-          {position: 15, status: 1},
-          {position: 3, status: 1},
+          { position: 5, status: 1 },
+          { position: 1, status: 1 },
+          { position: 15, status: 1 },
+          { position: 3, status: 1 },
         ]);
         expect(selectedTab).toStrictEqual(null);
       });
 
       it('should get third sorted object when selectedTab is 2', () => {
         selectedTab = 2;
-        const resultExpected = {position: 5, status: 1};
+        const resultExpected = { position: 5, status: 1 };
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(allCourseTypes).toStrictEqual([
-          {position: 5, status: 1},
-          {position: 1, status: 1},
-          {position: 15, status: 1},
-          {position: 3, status: 1},
+          { position: 5, status: 1 },
+          { position: 1, status: 1 },
+          { position: 15, status: 1 },
+          { position: 3, status: 1 },
         ]);
         expect(selectedTab).toStrictEqual(2);
       });
 
       it('should get last sorted object when selectedTab is 4', () => {
         selectedTab = 4;
-        const resultExpected = {position: 15, status: 1};
+        const resultExpected = { position: 15, status: 1 };
 
         const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
         expect(result).toStrictEqual(resultExpected);
         // don't mutate
         expect(allCourseTypes).toStrictEqual([
-          {position: 5, status: 1},
-          {position: 1, status: 1},
-          {position: 15, status: 1},
-          {position: 3, status: 1},
+          { position: 5, status: 1 },
+          { position: 1, status: 1 },
+          { position: 15, status: 1 },
+          { position: 3, status: 1 },
         ]);
         expect(selectedTab).toStrictEqual(4);
       });
@@ -218,26 +218,26 @@ describe('Quotations -> Course Type -> Service', () => {
       expect(result).toStrictEqual(resultExpected);
       // don't mutate
       expect(allCourseTypes).toStrictEqual([
-        {position: 5, status: 1},
-        {position: 1, status: 1},
-        {position: 15, status: 1},
-        {position: 3, status: 1},
+        { position: 5, status: 1 },
+        { position: 1, status: 1 },
+        { position: 15, status: 1 },
+        { position: 3, status: 1 },
       ]);
       expect(selectedTab).toStrictEqual(1);
     });
 
     it('should get second sorted object', () => {
-      const resultExpected = {position: 3, status: 1};
+      const resultExpected = { position: 3, status: 1 };
 
       const result = getCurrentCourseType(allCourseTypes, selectedTab);
 
       expect(result).toStrictEqual(resultExpected);
       // don't mutate
       expect(allCourseTypes).toStrictEqual([
-        {position: 5, status: 1},
-        {position: 1, status: 1},
-        {position: 15, status: 1},
-        {position: 3, status: 1},
+        { position: 5, status: 1 },
+        { position: 1, status: 1 },
+        { position: 15, status: 1 },
+        { position: 3, status: 1 },
       ]);
       expect(selectedTab).toStrictEqual(1);
     });
@@ -264,25 +264,25 @@ describe('Quotations -> Course Type -> Service', () => {
     });
 
     it('should get false when name is not Plato Fuerte', () => {
-      const courseType = {id: 'test', name: 'test name'};
+      const courseType = { id: 'test', name: 'test name' };
       const resultExpected = false;
 
       const result = useMultipleDishes(courseType);
 
       expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).toStrictEqual({id: 'test', name: 'test name'});
+      expect(courseType).toStrictEqual({ id: 'test', name: 'test name' });
     });
 
     it('should get true when name is Plato Fuerte', () => {
-      const courseType = {id: 'test', name: 'Plato Fuerte'};
+      const courseType = { id: 'test', name: 'Plato Fuerte' };
       const resultExpected = true;
 
       const result = useMultipleDishes(courseType);
 
       expect(result).toStrictEqual(resultExpected);
       // don't mutate
-      expect(courseType).toStrictEqual({id: 'test', name: 'Plato Fuerte'});
+      expect(courseType).toStrictEqual({ id: 'test', name: 'Plato Fuerte' });
     });
   });
 });

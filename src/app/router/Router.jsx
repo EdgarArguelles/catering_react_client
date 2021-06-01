@@ -1,6 +1,6 @@
-import React, {lazy, Suspense} from 'react';
-import {Redirect, Route, Router, Switch} from 'react-router-dom';
-import {usePingServer} from 'app/hooks/Common';
+import React, { lazy, Suspense } from 'react';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
+import { usePingServer } from 'app/hooks/Common';
 import History from './History';
 
 const Home = lazy(() => import('app/features/home/Layout'));

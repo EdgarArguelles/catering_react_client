@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-const EnterTextField = ({autoFocus, placeholder, className, initValue, onSave}) => {
+const EnterTextField = ({ autoFocus, placeholder, className, initValue, onSave }) => {
   const handleSave = event => onSave(event.target.value);
 
   const handleKeyUp = event => {
@@ -15,7 +15,7 @@ const EnterTextField = ({autoFocus, placeholder, className, initValue, onSave}) 
 
   return (
     <TextField autoFocus={autoFocus} placeholder={placeholder} className={className} margin="dense"
-               defaultValue={initValue} onKeyUp={handleKeyUp} onBlur={handleSave}/>
+      defaultValue={initValue} onKeyUp={handleKeyUp} onBlur={handleSave}/>
   );
 };
 

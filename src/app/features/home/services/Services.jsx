@@ -1,6 +1,6 @@
 import './Services.scss';
 import React from 'react';
-import {faAt, faChartPie, faDesktop, faPaperPlane, faRoad, faShoppingBag} from '@fortawesome/free-solid-svg-icons';
+import { faAt, faChartPie, faDesktop, faPaperPlane, faRoad, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import SectionHeader from 'app/features/home/SectionHeader';
 import Service from './service/Service';

@@ -1,11 +1,11 @@
 import './NoSessionQuotationList.scss';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import Utils from 'app/common/Utils';
-import {openAuthDialog} from 'app/features/quotations/auth_dialog/AuthDialogReducer';
+import { openAuthDialog } from 'app/features/quotations/auth_dialog/AuthDialogReducer';
 
 const NoSessionQuotationList = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const NoSessionQuotationList = () => {
 
   // animate icon when AuthDialog closes
   useEffect(() => {
-    !open && Utils.animateIcon('no-session-quotation-icon', {strokeWidth: 20});
+    !open && Utils.animateIcon('no-session-quotation-icon', { strokeWidth: 20 });
   }, [open]);
 
   return (

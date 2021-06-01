@@ -1,16 +1,16 @@
 import './AddButton.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import Fab from '@material-ui/core/Fab';
 import History from 'app/router/History';
-import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
-import {addDish} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
-import {selectDish} from 'app/features/quotations/dish/DishReducer';
+import { addCourse, increasePrice } from 'app/features/quotations/menu/MenuReducer';
+import { addDish } from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
+import { selectDish } from 'app/features/quotations/dish/DishReducer';
 
-const AddButton = ({className, dish}) => {
+const AddButton = ({ className, dish }) => {
   const dispatch = useDispatch();
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
   const isMultipleDishesDialogOpen = useSelector(state =>
@@ -35,7 +35,7 @@ const AddButton = ({className, dish}) => {
 
   return (
     <Fab id="add-button" variant="extended" color="primary" onClick={handleAddCourse}
-         className={className} classes={{label: 'add-button-label'}}>
+      className={className} classes={{ label: 'add-button-label' }}>
       <FontAwesomeIcon id="add-button-icon" className="button-icon" icon={faCartPlus}/> Agregar
     </Fab>
   );

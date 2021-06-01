@@ -1,11 +1,11 @@
 import './Auth.scss';
 import loading from 'assets/img/loading.gif';
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Facebook from './auth_button/facebook/Facebook';
 import Google from './auth_button/google/Google';
-import {connectSocket, login} from './AuthReducer';
+import { connectSocket, login } from './AuthReducer';
 
 let stompClient;
 
@@ -17,8 +17,8 @@ const useCreateStompClient = (socketConnected, dispatch) => {
 
     let timeout = null;
     const createSocket = async () => {
-      const {default: SockJS} = await import('sockjs-client');
-      const {default: Stomp} = await import('stompjs');
+      const { default: SockJS } = await import('sockjs-client');
+      const { default: Stomp } = await import('stompjs');
       const socket = new SockJS(`${process.env.API_URL}/oauth/websocket`);
 
       stompClient = Stomp.Stomp.over(socket);
@@ -35,7 +35,7 @@ const useCreateStompClient = (socketConnected, dispatch) => {
   }, [socketConnected, dispatch]);
 };
 
-const Auth = ({onSuccess}) => {
+const Auth = ({ onSuccess }) => {
   const dispatch = useDispatch();
   const socketConnected = useSelector(state => state.auth.socketConnected);
   useCreateStompClient(socketConnected, dispatch);

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const SLICE_NAME = 'MENU';
 
@@ -17,22 +17,22 @@ const menuSlice = createSlice({
       state.price = 0;
       state.courses = [];
     },
-    changeName(state, {payload: name}) {
+    changeName(state, { payload: name }) {
       state.name = name;
     },
-    changeQuantity(state, {payload: quantity}) {
+    changeQuantity(state, { payload: quantity }) {
       state.quantity = quantity;
     },
-    addCourse(state, {payload: {courseTypeId, dishesIds, position}}) {
+    addCourse(state, { payload: { courseTypeId, dishesIds, position } }) {
       state.courses.push({
         position: position,
-        type: {id: courseTypeId},
+        type: { id: courseTypeId },
         dishes: dishesIds.map(id => {
-          return {id};
+          return { id };
         }),
       });
     },
-    removeCourse(state, {payload: {courseTypeId, position}}) {
+    removeCourse(state, { payload: { courseTypeId, position } }) {
       const newCourses = state.courses.filter(c => c.type.id !== courseTypeId);
       let decrement = 0;
       state.courses.filter(c => c.type.id === courseTypeId).sort((a, b) => a.position - b.position)
@@ -42,18 +42,18 @@ const menuSlice = createSlice({
             return;
           }
 
-          newCourses.push({...course, position: course.position - decrement});
+          newCourses.push({ ...course, position: course.position - decrement });
         });
 
       state.courses = newCourses;
     },
-    increasePrice(state, {payload: amount}) {
+    increasePrice(state, { payload: amount }) {
       state.price += amount;
     },
-    decreasePrice(state, {payload: amount}) {
+    decreasePrice(state, { payload: amount }) {
       state.price -= amount;
     },
-    changeCoursesPosition(state, {payload: newCourses}) {
+    changeCoursesPosition(state, { payload: newCourses }) {
       const courseTypeId = newCourses[0]?.type.id;
       const noSortedCourses = state.courses.filter(c => c.type.id !== courseTypeId);
       state.courses = [...noSortedCourses, ...newCourses];

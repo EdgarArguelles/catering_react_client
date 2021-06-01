@@ -1,14 +1,14 @@
 import './Sort.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Utils from 'app/common/Utils';
-import {changeSort} from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
+import { changeSort } from 'app/features/quotations/dish/dish_filter/DishFilterReducer';
 
-const Sort = ({value, label, icon}) => {
+const Sort = ({ value, label, icon }) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.quotations.dish.filter);
   const className = filter.sort === value ? 'active' : '';

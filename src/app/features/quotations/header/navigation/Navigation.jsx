@@ -1,9 +1,9 @@
 import './Navigation.scss';
 import Logo from 'assets/img/logo.svg';
-import React, {useEffect, useRef} from 'react';
-import {useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@material-ui/core/IconButton';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
@@ -19,7 +19,7 @@ const Navigation = () => {
   const processed = useRef(false);
   useEffect(() => {
     if (navigation.title === '') {
-      Utils.animateIcon('navigation-logo', {strokeWidth: 1, duration: 75, animation: 'delayed'});
+      Utils.animateIcon('navigation-logo', { strokeWidth: 1, duration: 75, animation: 'delayed' });
     }
   }, [navigation.title]);
 
@@ -52,7 +52,7 @@ const Navigation = () => {
   }
 
   const handleClick = () => {
-    Utils.animateIcon('menu-back-icon', {duration: 30});
+    Utils.animateIcon('menu-back-icon', { duration: 30 });
     History.navigate(navigation.backLink);
   };
 

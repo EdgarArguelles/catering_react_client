@@ -1,12 +1,12 @@
 import './Home.scss';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import { isQuotationStarted } from 'app/features/quotations/quotation/Quotation.service';
 import CreateQuotation from './action/create_quotation/CreateQuotation';
 import EditQuotation from './action/edit_quotation/EditQuotation';
 import MyQuotations from './action/my_quotations/MyQuotations';
-import {changeNavigation} from 'app/features/quotations/header/navigation/NavigationReducer';
+import { changeNavigation } from 'app/features/quotations/header/navigation/NavigationReducer';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Home = () => {
   const smSize = isStarted ? 4 : 6;
   const className = isStarted ? 'three-actions' : 'two-actions';
   useEffect(() => {
-    dispatch(changeNavigation({backLink: '/presupuestos'}));
+    dispatch(changeNavigation({ backLink: '/presupuestos' }));
   }, [dispatch]);
 
   return (

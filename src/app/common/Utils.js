@@ -98,7 +98,7 @@ export default class Utils {
    * @return {void}
    */
   static resetInfiniteQuery(queryClient, queryKey, newPageParams) {
-    queryClient.setQueryData(queryKey, data => ({pages: [data.pages[0]], pageParams: [newPageParams]}));
+    queryClient.setQueryData(queryKey, data => ({ pages: [data.pages[0]], pageParams: [newPageParams] }));
     queryClient.invalidateQueries(queryKey);
   }
 
@@ -125,7 +125,7 @@ export default class Utils {
    * @return {Object} Vivus object
    */
   static async animateIcon(id, configuration = {}) {
-    const {strokeWidth = 40, restoreOnComplete = true, duration = 50, animation = 'sync', callback} = configuration;
+    const { strokeWidth = 40, restoreOnComplete = true, duration = 50, animation = 'sync', callback } = configuration;
     const paths = document.getElementById(id).querySelectorAll('path');
     const restore = () => {
       [].forEach.call(paths, element => {
@@ -141,7 +141,7 @@ export default class Utils {
       element.setAttribute('stroke', 'currentColor');
       element.setAttribute('stroke-width', strokeWidth);
     });
-    const {default: Vivus} = await import('vivus');
+    const { default: Vivus } = await import('vivus');
     process.env.NODE_ENV !== 'test' && document.getElementById(id) && new Vivus(id, {
       duration,
       type: animation,

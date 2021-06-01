@@ -14,7 +14,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
         error: null,
       };
 
-      const result = quotationsReducer(undefined, {type: 'invalid'});
+      const result = quotationsReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -23,17 +23,17 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       const state = {
         isRemoteProcessing: true,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       };
 
-      const result = quotationsReducer(state, {type: 'invalid'});
+      const result = quotationsReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
       expect(state).toStrictEqual({
         isRemoteProcessing: true,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       });
     });
 
@@ -41,14 +41,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       const state = {
         isRemoteProcessing: false,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       };
       const stateExpected = {
         isRemoteProcessing: true,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       };
-      const action = {type: changeIsRemoteProcessing.type, payload: true};
+      const action = { type: changeIsRemoteProcessing.type, payload: true };
 
       const result = quotationsReducer(state, action);
 
@@ -57,7 +57,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         isRemoteProcessing: false,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       });
     });
 
@@ -65,14 +65,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       const state = {
         isRemoteProcessing: true,
         fetching: false,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       };
       const stateExpected = {
         isRemoteProcessing: true,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       };
-      const action = {type: changeFetching.type, payload: true};
+      const action = { type: changeFetching.type, payload: true };
 
       const result = quotationsReducer(state, action);
 
@@ -81,7 +81,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         isRemoteProcessing: true,
         fetching: false,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       });
     });
 
@@ -89,14 +89,14 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       const state = {
         isRemoteProcessing: true,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       };
       const stateExpected = {
         isRemoteProcessing: true,
         fetching: true,
         error: null,
       };
-      const action = {type: changeError.type, payload: null};
+      const action = { type: changeError.type, payload: null };
 
       const result = quotationsReducer(state, action);
 
@@ -105,7 +105,7 @@ describe('Data -> Quotations -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         isRemoteProcessing: true,
         fetching: true,
-        error: {id: 'error1'},
+        error: { id: 'error1' },
       });
     });
   });

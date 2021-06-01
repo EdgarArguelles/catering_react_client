@@ -2,7 +2,7 @@ import './SectionHeader.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SectionHeader = ({title, children}) => {
+const SectionHeader = ({ title, children }) => {
   return (
     <div className="section-header">
       <h2 className="section-title">{title}</h2>

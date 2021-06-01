@@ -1,17 +1,17 @@
 import './MultipleDishesActions.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import {useDishesByIds} from 'app/hooks/data/Dishes';
-import {addCourse, increasePrice} from 'app/features/quotations/menu/MenuReducer';
-import {cleanDishes} from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
+import { useDishesByIds } from 'app/hooks/data/Dishes';
+import { addCourse, increasePrice } from 'app/features/quotations/menu/MenuReducer';
+import { cleanDishes } from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
 
-const MultipleDishesActions = ({courseType, onClose}) => {
+const MultipleDishesActions = ({ courseType, onClose }) => {
   const dispatch = useDispatch();
   const menuCourses = useSelector(state => state.quotations.quotation.menus.find(menu => menu.isSelected).courses);
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
-  const {dishes, isAnyFetching} = useDishesByIds(multipleDishes.map(dish => dish.id));
+  const { dishes, isAnyFetching } = useDishesByIds(multipleDishes.map(dish => dish.id));
   const handleCleanDishes = () => dispatch(cleanDishes());
   const handleAddCourse = (dishesIds, position) => dispatch(addCourse({
     courseTypeId: courseType.id,

@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import {getMenuFromLink, getRandomMenuId, getShareMenuLink} from 'app/features/quotations/menu/Menu.service';
+import { getMenuFromLink, getRandomMenuId, getShareMenuLink } from 'app/features/quotations/menu/Menu.service';
 
 const LINK = 'http://localhost/presupuestos/menu/ver?menu=';
 
@@ -32,50 +32,50 @@ describe('Quotations -> Menu -> Service', () => {
     });
 
     it('should encode name and replace all ; by %', () => {
-      const menu = {id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100};
+      const menu = { id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100 };
 
       const result = getShareMenuLink(menu);
 
       expect(result).toStrictEqual(`${LINK}name%201%25abc%25123;150.45;100;`);
       // don't mutate
-      expect(menu).toStrictEqual({id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100});
+      expect(menu).toStrictEqual({ id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100 });
     });
 
     it('should get link when courses is not present', () => {
-      const menu = {id: 'test'};
+      const menu = { id: 'test' };
 
       const result = getShareMenuLink(menu);
 
       expect(result).toStrictEqual(`${LINK};;;`);
       // don't mutate
-      expect(menu).toStrictEqual({id: 'test'});
+      expect(menu).toStrictEqual({ id: 'test' });
     });
 
     it('should get link when courses is empty', () => {
-      const menu = {id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []};
+      const menu = { id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: [] };
 
       const result = getShareMenuLink(menu);
 
       expect(result).toStrictEqual(`${LINK}name%201%25abc%25123;150.45;100;`);
       // don't mutate
-      expect(menu).toStrictEqual({id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []});
+      expect(menu).toStrictEqual({ id: 'test', name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: [] });
     });
 
     it('should get link when menu is complete', () => {
       const menu = {
         id: 'test', name: 'name 1', price: 150.45, quantity: 100, courses: [
           {
-            id: 'C1', position: 5, type: {id: 'T1', name: 'Type 1'}, dishes: [
-              {id: 'D1', name: 'Dish 1'}, {id: 'D2'}, {id: 'D3', name: 'Dish 3'},
+            id: 'C1', position: 5, type: { id: 'T1', name: 'Type 1' }, dishes: [
+              { id: 'D1', name: 'Dish 1' }, { id: 'D2' }, { id: 'D3', name: 'Dish 3' },
             ],
           },
           {
-            id: 'C2', position: 8, type: {id: 'T2'}, dishes: [
-              {id: 'D4', name: 'Dish 4'}, {id: 'D5'},
+            id: 'C2', position: 8, type: { id: 'T2' }, dishes: [
+              { id: 'D4', name: 'Dish 4' }, { id: 'D5' },
             ],
           },
           {
-            id: 'C3', position: 6, type: {id: 'T2'}, dishes: [],
+            id: 'C3', position: 6, type: { id: 'T2' }, dishes: [],
           },
         ],
       };
@@ -87,17 +87,17 @@ describe('Quotations -> Menu -> Service', () => {
       expect(menu).toStrictEqual({
         id: 'test', name: 'name 1', price: 150.45, quantity: 100, courses: [
           {
-            id: 'C1', position: 5, type: {id: 'T1', name: 'Type 1'}, dishes: [
-              {id: 'D1', name: 'Dish 1'}, {id: 'D2'}, {id: 'D3', name: 'Dish 3'},
+            id: 'C1', position: 5, type: { id: 'T1', name: 'Type 1' }, dishes: [
+              { id: 'D1', name: 'Dish 1' }, { id: 'D2' }, { id: 'D3', name: 'Dish 3' },
             ],
           },
           {
-            id: 'C2', position: 8, type: {id: 'T2'}, dishes: [
-              {id: 'D4', name: 'Dish 4'}, {id: 'D5'},
+            id: 'C2', position: 8, type: { id: 'T2' }, dishes: [
+              { id: 'D4', name: 'Dish 4' }, { id: 'D5' },
             ],
           },
           {
-            id: 'C3', position: 6, type: {id: 'T2'}, dishes: [],
+            id: 'C3', position: 6, type: { id: 'T2' }, dishes: [],
           },
         ],
       });
@@ -126,7 +126,7 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getMenuFromLink(data);
 
-      expect(result).toStrictEqual({name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: []});
+      expect(result).toStrictEqual({ name: 'name 1;abc;123', price: 150.45, quantity: 100, courses: [] });
       // don't mutate
       expect(data).toStrictEqual('name 1%abc%123;150.45;100;');
     });
@@ -136,7 +136,7 @@ describe('Quotations -> Menu -> Service', () => {
 
       const result = getMenuFromLink(data);
 
-      expect(result).toStrictEqual({name: '', price: 0.0, quantity: 0, courses: []});
+      expect(result).toStrictEqual({ name: '', price: 0.0, quantity: 0, courses: [] });
       // don't mutate
       expect(data).toStrictEqual(';;;');
     });
@@ -149,13 +149,13 @@ describe('Quotations -> Menu -> Service', () => {
       expect(result).toStrictEqual({
         name: 'name 1', price: 150.45, quantity: 100, courses: [
           {
-            position: 5, type: {id: 'T1'}, dishes: [{id: 'D1'}, {id: 'D2'}, {id: 'D3'}],
+            position: 5, type: { id: 'T1' }, dishes: [{ id: 'D1' }, { id: 'D2' }, { id: 'D3' }],
           },
           {
-            position: 8, type: {id: 'T2'}, dishes: [{id: 'D4'}, {id: 'D5'}],
+            position: 8, type: { id: 'T2' }, dishes: [{ id: 'D4' }, { id: 'D5' }],
           },
           {
-            position: 6, type: {id: 'T2'}, dishes: [],
+            position: 6, type: { id: 'T2' }, dishes: [],
           },
         ],
       });

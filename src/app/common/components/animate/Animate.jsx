@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Animate = ({show, className, animationIn, animationOut, onUnmount, children}) => {
+const Animate = ({ show, className, animationIn, animationOut, onUnmount, children }) => {
   const [shouldRender, setShouldRender] = useState(show);
   const animation = show ? animationIn : animationOut;
   const classes = [];
@@ -21,7 +21,7 @@ const Animate = ({show, className, animationIn, animationOut, onUnmount, childre
   }
 
   return React.Children.map(children, child =>
-    React.cloneElement(child, {className: classes.join(' '), onAnimationEnd}),
+    React.cloneElement(child, { className: classes.join(' '), onAnimationEnd }),
   );
 };
 

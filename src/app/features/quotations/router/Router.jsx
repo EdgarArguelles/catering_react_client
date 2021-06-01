@@ -1,7 +1,7 @@
 import './Router.scss';
-import React, {lazy, Suspense, useEffect} from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import History from 'app/router/History';
 
 const Home = lazy(() => import('app/features/quotations/home/Home'));
@@ -19,7 +19,7 @@ const RedirectHome = () => {
   return null;
 };
 
-const Router = ({isMenuSelected}) => {
+const Router = ({ isMenuSelected }) => {
   const validateMenu = component => isMenuSelected ? component : RedirectHome;
 
   return (

@@ -37,7 +37,7 @@ const cleanMenus = quotation => {
         ...menu,
         price: null,
         isSelected: null,
-        courses: menu.courses.map(course => ({...course, dishes: null}))
+        courses: menu.courses.map(course => ({ ...course, dishes: null }))
           .sort(Utils.getSortString('id', (a, b) => a.position - b.position)),
       })).sort(Utils.getSortString('name')),
     };

@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-export const ACTION_TYPES = {FETCH_FAILURE: 'FETCH_FAILURE', SESSION_EXPIRED: 'SESSION_EXPIRED'};
+export const ACTION_TYPES = { FETCH_FAILURE: 'FETCH_FAILURE', SESSION_EXPIRED: 'SESSION_EXPIRED' };
 
 /**
  * Handle endpoint calls
@@ -10,8 +10,8 @@ export const ACTION_TYPES = {FETCH_FAILURE: 'FETCH_FAILURE', SESSION_EXPIRED: 'S
  */
 const createHeaders = (headers = {}) => {
   const accessToken = window?.sessionStorage?.getItem('accessToken');
-  const authorization = accessToken ? {Authorization: `Bearer ${accessToken}`} : {};
-  return {...headers, ...authorization};
+  const authorization = accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
+  return { ...headers, ...authorization };
 };
 
 /**
@@ -53,7 +53,7 @@ const fetchAPI = async (dispatch, endpoint, options = {}) => {
       window.sessionStorage.removeItem('accessToken');
       window.sessionStorage.removeItem('userImage');
 
-      dispatch({type: ACTION_TYPES.SESSION_EXPIRED});
+      dispatch({ type: ACTION_TYPES.SESSION_EXPIRED });
     }
 
     dispatch({

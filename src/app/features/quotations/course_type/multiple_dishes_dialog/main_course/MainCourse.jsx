@@ -1,16 +1,16 @@
 import './MainCourse.scss';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Divider from '@material-ui/core/Divider';
-import {useDishesByIds} from 'app/hooks/data/Dishes';
+import { useDishesByIds } from 'app/hooks/data/Dishes';
 import DishThumbnail from './dish_thumbnail/DishThumbnail';
 import AddDish from './add_dish/AddDish';
 
 const MainCourse = () => {
   const multipleDishes = useSelector(state => state.quotations.multipleDishesDialog.dishes);
-  const {dishes, isAnyFetching} = useDishesByIds(multipleDishes.map(dish => dish.id));
+  const { dishes, isAnyFetching } = useDishesByIds(multipleDishes.map(dish => dish.id));
   const sections = ['Proteina', 'Guarnición'];
 
   const getLoader = () => {

@@ -18,7 +18,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         price: 0,
       };
 
-      const result = quotationReducer(undefined, {type: 'invalid'});
+      const result = quotationReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -27,18 +27,18 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
 
-      const result = quotationReducer(state, {type: 'invalid'});
+      const result = quotationReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });
@@ -53,10 +53,10 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID2',
         value: 'value 1',
         menus: [
-          {id: 'M1', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: [{price: 33}]}], price: 68.5},
-          {id: 'M2', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: []}], price: 35.5},
-          {id: 'M3', courses: [{dishes: []}, {dishes: []}], price: 0},
-          {id: 'M4', courses: [], extra: 'abc', price: 0},
+          { id: 'M1', courses: [{ dishes: [{ price: 15 }, { price: 20.5 }] }, { dishes: [{ price: 33 }] }], price: 68.5 },
+          { id: 'M2', courses: [{ dishes: [{ price: 15 }, { price: 20.5 }] }, { dishes: [] }], price: 35.5 },
+          { id: 'M3', courses: [{ dishes: [] }, { dishes: [] }], price: 0 },
+          { id: 'M4', courses: [], extra: 'abc', price: 0 },
         ],
       };
       const action = {
@@ -64,10 +64,10 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
           id: 'ID2',
           value: 'value 1',
           menus: [
-            {id: 'M1', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: [{price: 33}]}], price: 123},
-            {id: 'M2', courses: [{dishes: [{price: 15}, {price: 20.5}]}, {dishes: []}]},
-            {id: 'M3', courses: [{dishes: []}, {dishes: []}], price: 8},
-            {id: 'M4', courses: [], extra: 'abc'},
+            { id: 'M1', courses: [{ dishes: [{ price: 15 }, { price: 20.5 }] }, { dishes: [{ price: 33 }] }], price: 123 },
+            { id: 'M2', courses: [{ dishes: [{ price: 15 }, { price: 20.5 }] }, { dishes: [] }] },
+            { id: 'M3', courses: [{ dishes: [] }, { dishes: [] }], price: 8 },
+            { id: 'M4', courses: [], extra: 'abc' },
           ],
         },
       };
@@ -117,16 +117,16 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
       const stateExpected = {
         id: 'ID1',
         name: 'namE 2',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
-      const action = {type: changeName.type, payload: 'namE 2'};
+      const action = { type: changeName.type, payload: 'namE 2' };
 
       const result = quotationReducer(state, action);
 
@@ -135,7 +135,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });
@@ -144,16 +144,16 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
       const stateExpected = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}, {id: 'menu 3', name: '', quantity: 1, price: 0, courses: []}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }, { id: 'menu 3', name: '', quantity: 1, price: 0, courses: [] }],
         price: 500.5,
       };
-      const action = {type: addNewMenu.type, payload: 'menu 3'};
+      const action = { type: addNewMenu.type, payload: 'menu 3' };
 
       const result = quotationReducer(state, action);
 
@@ -162,7 +162,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });
@@ -171,16 +171,16 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
       const stateExpected = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}, {id: 'menu 3', name: 'abc'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }, { id: 'menu 3', name: 'abc' }],
         price: 500.5,
       };
-      const action = {type: addMenu.type, payload: {id: 'menu 3', name: 'abc'}};
+      const action = { type: addMenu.type, payload: { id: 'menu 3', name: 'abc' } };
 
       const result = quotationReducer(state, action);
 
@@ -189,7 +189,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });
@@ -198,16 +198,16 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
       const stateExpected = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
-      const action = {type: removeMenu.type, payload: 'menu2'};
+      const action = { type: removeMenu.type, payload: 'menu2' };
 
       const result = quotationReducer(state, action);
 
@@ -216,7 +216,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });
@@ -225,16 +225,16 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
       const stateExpected = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}],
+        menus: [{ id: 'menu 1' }],
         price: 500.5,
       };
-      const action = {type: removeMenu.type, payload: 'menu 2'};
+      const action = { type: removeMenu.type, payload: 'menu 2' };
 
       const result = quotationReducer(state, action);
 
@@ -243,7 +243,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });
@@ -253,9 +253,9 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID1',
         name: 'name 1',
         menus: [
-          {id: 'menu 1', extra: 'abc1'},
-          {id: 'menu 2', extra: 'abc2', isSelected: true},
-          {id: 'menu 3', isSelected: false, extra: 'abc3'},
+          { id: 'menu 1', extra: 'abc1' },
+          { id: 'menu 2', extra: 'abc2', isSelected: true },
+          { id: 'menu 3', isSelected: false, extra: 'abc3' },
         ],
         price: 500.5,
       };
@@ -263,13 +263,13 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID1',
         name: 'name 1',
         menus: [
-          {id: 'menu 1', extra: 'abc1', isSelected: false},
-          {id: 'menu 2', extra: 'abc2', isSelected: false},
-          {id: 'menu 3', isSelected: false, extra: 'abc3'},
+          { id: 'menu 1', extra: 'abc1', isSelected: false },
+          { id: 'menu 2', extra: 'abc2', isSelected: false },
+          { id: 'menu 3', isSelected: false, extra: 'abc3' },
         ],
         price: 500.5,
       };
-      const action = {type: selectMenu.type, payload: 'menu2'};
+      const action = { type: selectMenu.type, payload: 'menu2' };
 
       const result = quotationReducer(state, action);
 
@@ -279,9 +279,9 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID1',
         name: 'name 1',
         menus: [
-          {id: 'menu 1', extra: 'abc1'},
-          {id: 'menu 2', extra: 'abc2', isSelected: true},
-          {id: 'menu 3', isSelected: false, extra: 'abc3'},
+          { id: 'menu 1', extra: 'abc1' },
+          { id: 'menu 2', extra: 'abc2', isSelected: true },
+          { id: 'menu 3', isSelected: false, extra: 'abc3' },
         ],
         price: 500.5,
       });
@@ -292,10 +292,10 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID1',
         name: 'name 1',
         menus: [
-          {id: 'menu 1', extra: 'abc1'},
-          {id: 'menu 2', extra: 'abc2', isSelected: false},
-          {id: 'menu 2', extra: 'abc22', isSelected: true},
-          {id: 'menu 3', isSelected: false, extra: 'abc3'},
+          { id: 'menu 1', extra: 'abc1' },
+          { id: 'menu 2', extra: 'abc2', isSelected: false },
+          { id: 'menu 2', extra: 'abc22', isSelected: true },
+          { id: 'menu 3', isSelected: false, extra: 'abc3' },
         ],
         price: 500.5,
       };
@@ -303,14 +303,14 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID1',
         name: 'name 1',
         menus: [
-          {id: 'menu 1', extra: 'abc1', isSelected: false},
-          {id: 'menu 2', extra: 'abc2', isSelected: true},
-          {id: 'menu 2', extra: 'abc22', isSelected: true},
-          {id: 'menu 3', isSelected: false, extra: 'abc3'},
+          { id: 'menu 1', extra: 'abc1', isSelected: false },
+          { id: 'menu 2', extra: 'abc2', isSelected: true },
+          { id: 'menu 2', extra: 'abc22', isSelected: true },
+          { id: 'menu 3', isSelected: false, extra: 'abc3' },
         ],
         price: 500.5,
       };
-      const action = {type: selectMenu.type, payload: 'menu 2'};
+      const action = { type: selectMenu.type, payload: 'menu 2' };
 
       const result = quotationReducer(state, action);
 
@@ -320,10 +320,10 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         id: 'ID1',
         name: 'name 1',
         menus: [
-          {id: 'menu 1', extra: 'abc1'},
-          {id: 'menu 2', extra: 'abc2', isSelected: false},
-          {id: 'menu 2', extra: 'abc22', isSelected: true},
-          {id: 'menu 3', isSelected: false, extra: 'abc3'},
+          { id: 'menu 1', extra: 'abc1' },
+          { id: 'menu 2', extra: 'abc2', isSelected: false },
+          { id: 'menu 2', extra: 'abc22', isSelected: true },
+          { id: 'menu 3', isSelected: false, extra: 'abc3' },
         ],
         price: 500.5,
       });
@@ -334,24 +334,24 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
         const state = {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2', isSelected: false}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2', isSelected: false }],
           price: 500.5,
         };
         const stateExpected = {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2', isSelected: false}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2', isSelected: false }],
           price: 500.5,
         };
 
-        const result = quotationReducer(state, {type: 'invalid'});
+        const result = quotationReducer(state, { type: 'invalid' });
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
         expect(state).toStrictEqual({
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2', isSelected: false}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2', isSelected: false }],
           price: 500.5,
         });
       });
@@ -361,10 +361,10 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
           id: 'ID1',
           name: 'name 1',
           menus: [
-            {id: 'menu 1', extra: 'abc1'},
-            {id: 'menu 2', extra: 'abc2', isSelected: true},
-            {id: 'menu 2', extra: 'abc22', isSelected: true},
-            {id: 'menu 3', isSelected: false, extra: 'abc3'},
+            { id: 'menu 1', extra: 'abc1' },
+            { id: 'menu 2', extra: 'abc2', isSelected: true },
+            { id: 'menu 2', extra: 'abc22', isSelected: true },
+            { id: 'menu 3', isSelected: false, extra: 'abc3' },
           ],
           price: 500.5,
         };
@@ -372,14 +372,14 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
           id: 'ID1',
           name: 'name 1',
           menus: [
-            {id: 'menu 1', extra: 'abc1'},
-            {id: 'menu 3', isSelected: false, extra: 'abc3'},
-            {id: 'menu 2', extra: 'abc2', isSelected: true},
+            { id: 'menu 1', extra: 'abc1' },
+            { id: 'menu 3', isSelected: false, extra: 'abc3' },
+            { id: 'menu 2', extra: 'abc2', isSelected: true },
           ],
           price: 500.5,
         };
 
-        const result = quotationReducer(state, {type: 'invalid'});
+        const result = quotationReducer(state, { type: 'invalid' });
 
         expect(result).toStrictEqual(stateExpected);
         // don't mutate
@@ -387,10 +387,10 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
           id: 'ID1',
           name: 'name 1',
           menus: [
-            {id: 'menu 1', extra: 'abc1'},
-            {id: 'menu 2', extra: 'abc2', isSelected: true},
-            {id: 'menu 2', extra: 'abc22', isSelected: true},
-            {id: 'menu 3', isSelected: false, extra: 'abc3'},
+            { id: 'menu 1', extra: 'abc1' },
+            { id: 'menu 2', extra: 'abc2', isSelected: true },
+            { id: 'menu 2', extra: 'abc22', isSelected: true },
+            { id: 'menu 3', isSelected: false, extra: 'abc3' },
           ],
           price: 500.5,
         });
@@ -401,16 +401,16 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       const state = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       };
       const stateExpected = {
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 100,
       };
-      const action = {type: setPrice.type, payload: 100};
+      const action = { type: setPrice.type, payload: 100 };
 
       const result = quotationReducer(state, action);
 
@@ -419,7 +419,7 @@ describe('Quotations -> Quotation -> Reducer/Actions', () => {
       expect(state).toStrictEqual({
         id: 'ID1',
         name: 'name 1',
-        menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+        menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
         price: 500.5,
       });
     });

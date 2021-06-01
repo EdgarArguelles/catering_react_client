@@ -1,17 +1,17 @@
 import './QuotationGrid.scss';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Utils from 'app/common/Utils';
-import {useQuotations} from 'app/hooks/data/Quotations';
-import {isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import { useQuotations } from 'app/hooks/data/Quotations';
+import { isQuotationStarted } from 'app/features/quotations/quotation/Quotation.service';
 import Quotation from 'app/features/quotations/quotation/Quotation';
 import ContinueQuotation from './continue_quotation/ContinueQuotation';
 import CreateNewQuotation from './create_new_quotation/CreateNewQuotation';
 
 const QuotationGrid = () => {
-  const {quotations, metaData, isFetching} = useQuotations();
+  const { quotations, metaData, isFetching } = useQuotations();
   const isEditStarted = useSelector(state => isQuotationStarted(state.quotations.quotation));
 
   const getSortDate = (b, a) => a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
@@ -20,14 +20,14 @@ const QuotationGrid = () => {
     const sort = metaData.pagination.sort[0];
 
     switch (sort) {
-      case 'createdAt':
-        return getSortDate;
-      case 'price':
-        return (a, b) => a.price - b.price !== 0 ? a.price - b.price : getSortDate(a, b);
-      case 'name':
-        return Utils.getSortString('name', getSortDate);
-      default:
-        return () => 0;
+    case 'createdAt':
+      return getSortDate;
+    case 'price':
+      return (a, b) => a.price - b.price !== 0 ? a.price - b.price : getSortDate(a, b);
+    case 'name':
+      return Utils.getSortString('name', getSortDate);
+    default:
+      return () => 0;
     }
   };
 

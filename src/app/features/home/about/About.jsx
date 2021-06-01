@@ -1,7 +1,7 @@
 import './About.scss';
 import image from 'assets/img/about-img.png';
 import React from 'react';
-import {faCameraRetro, faChartLine, faShoppingBag} from '@fortawesome/free-solid-svg-icons';
+import { faCameraRetro, faChartLine, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import SectionHeader from 'app/features/home/SectionHeader';
 import AboutItem from './about_item/AboutItem';

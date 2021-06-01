@@ -1,25 +1,25 @@
 import './DishGrid.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Utils from 'app/common/Utils';
 import Animate from 'app/common/components/animate/Animate';
 import DishItem from 'app/features/quotations/dish/dish_list/dish_item/DishItem';
 
-const DishGrid = ({dishes, isLoading}) => {
+const DishGrid = ({ dishes, isLoading }) => {
   const filter = useSelector(state => state.quotations.dish.filter);
-  const {sort, search, categories} = filter;
+  const { sort, search, categories } = filter;
 
   const getSort = () => {
     switch (sort) {
-      case 'price':
-        return (a, b) => a.price - b.price;
-      case 'name':
-        return Utils.getSortString('name');
-      default:
-        return () => 0;
+    case 'price':
+      return (a, b) => a.price - b.price;
+    case 'name':
+      return Utils.getSortString('name');
+    default:
+      return () => 0;
     }
   };
 

@@ -1,15 +1,15 @@
 import './EmptyQuotationList.scss';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import {getRandomMenuId} from 'app/features/quotations/menu/Menu.service';
-import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
-import {addNewMenu, selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
-import {deleteLocal} from 'app/features/quotations/QuotationsReducer';
+import { getRandomMenuId } from 'app/features/quotations/menu/Menu.service';
+import { getEditPath, isQuotationStarted } from 'app/features/quotations/quotation/Quotation.service';
+import { addNewMenu, selectMenu } from 'app/features/quotations/quotation/QuotationReducer';
+import { deleteLocal } from 'app/features/quotations/QuotationsReducer';
 
 const EmptyQuotationList = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const EmptyQuotationList = () => {
 
   // animate icon when component loads
   useEffect(() => {
-    Utils.animateIcon('empty-quotation-info-icon', {strokeWidth: 20});
+    Utils.animateIcon('empty-quotation-info-icon', { strokeWidth: 20 });
   }, []);
 
   const handleQuotationRedirect = () => {

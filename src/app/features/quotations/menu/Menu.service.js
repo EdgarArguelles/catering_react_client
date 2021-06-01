@@ -16,9 +16,9 @@ export const getShareMenuLink = menu => {
     return null;
   }
 
-  const {name, price, quantity, courses} = menu;
-  const coursesList = !courses ? '' : courses.reduce((accumulator, {position, type, dishes}) => {
-    const dishesList = dishes.reduce((dishList, {id}) => `${dishList}${id},`, '');
+  const { name, price, quantity, courses } = menu;
+  const coursesList = !courses ? '' : courses.reduce((accumulator, { position, type, dishes }) => {
+    const dishesList = dishes.reduce((dishList, { id }) => `${dishList}${id},`, '');
     return `${accumulator}${position}.${type.id}.${dishesList.substring(0, dishesList.length - 1)}:`;
   }, '');
 
@@ -48,8 +48,8 @@ export const getMenuFromLink = data => {
       const [position, type, dishes] = course.split('.');
       return {
         position: position ? parseInt(position, 10) : 0,
-        type: {id: type},
-        dishes: !dishes ? [] : dishes.split(',').map(id => ({id})),
+        type: { id: type },
+        dishes: !dishes ? [] : dishes.split(',').map(id => ({ id })),
       };
     }),
   };

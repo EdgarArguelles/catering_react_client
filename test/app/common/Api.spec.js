@@ -130,25 +130,25 @@ describe('Api', () => {
 
           it('should overwrite method and body in options and Accept and Content-Type ' +
             'in headers when options is defined', () => {
-              const config = {
-                method: 'old',
-                body: 'old',
-                extra: 'test',
-                headers: { Accept: 'old', 'Content-Type': 'old', extra: 'test2' },
-              };
-              optionsExpected = {
-                method: 'POST',
-                body: JSON.stringify(body),
-                extra: 'test',
-                headers: { Accept: 'application/json', 'Content-Type': 'application/json', extra: 'test2' },
-              };
+            const config = {
+              method: 'old',
+              body: 'old',
+              extra: 'test',
+              headers: { Accept: 'old', 'Content-Type': 'old', extra: 'test2' },
+            };
+            optionsExpected = {
+              method: 'POST',
+              body: JSON.stringify(body),
+              extra: 'test',
+              headers: { Accept: 'application/json', 'Content-Type': 'application/json', extra: 'test2' },
+            };
 
-              Api.postJSON(null, '/test', body, config);
+            Api.postJSON(null, '/test', body, config);
 
-              expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
-              // don't mutate
-              expect(body).toStrictEqual({ content: 'test' });
-            });
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
+            // don't mutate
+            expect(body).toStrictEqual({ content: 'test' });
+          });
         });
 
         describe('PUT', () => {
@@ -172,25 +172,25 @@ describe('Api', () => {
 
           it('should overwrite method and body in options and Accept and Content-Type in headers' +
             ' when options is defined', () => {
-              const config = {
-                method: 'old',
-                body: 'old',
-                extra: 'test',
-                headers: { Accept: 'old', 'Content-Type': 'old', extra: 'test2' },
-              };
-              optionsExpected = {
-                method: 'PUT',
-                body: JSON.stringify(body),
-                extra: 'test',
-                headers: { Accept: 'application/json', 'Content-Type': 'application/json', extra: 'test2' },
-              };
+            const config = {
+              method: 'old',
+              body: 'old',
+              extra: 'test',
+              headers: { Accept: 'old', 'Content-Type': 'old', extra: 'test2' },
+            };
+            optionsExpected = {
+              method: 'PUT',
+              body: JSON.stringify(body),
+              extra: 'test',
+              headers: { Accept: 'application/json', 'Content-Type': 'application/json', extra: 'test2' },
+            };
 
-              Api.putJSON(null, '/test', body, config);
+            Api.putJSON(null, '/test', body, config);
 
-              expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
-              // don't mutate
-              expect(body).toStrictEqual({ content: 'test' });
-            });
+            expect(fetchMock.lastOptions()).toStrictEqual(optionsExpected);
+            // don't mutate
+            expect(body).toStrictEqual({ content: 'test' });
+          });
         });
 
         describe('DELETE', () => {

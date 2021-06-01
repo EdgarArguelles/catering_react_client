@@ -1,27 +1,27 @@
 import './CourseContent.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import formatCurrency from 'format-currency';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faGripVertical, faTrash} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGripVertical, faTrash } from '@fortawesome/free-solid-svg-icons';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
-import {useCourseTypes} from 'app/hooks/data/CourseTypes';
-import {useDishesByIds} from 'app/hooks/data/Dishes';
-import {useMultipleDishes} from 'app/features/quotations/course_type/CourseType.service';
-import {selectDish} from 'app/features/quotations/dish/DishReducer';
+import { useCourseTypes } from 'app/hooks/data/CourseTypes';
+import { useDishesByIds } from 'app/hooks/data/Dishes';
+import { useMultipleDishes } from 'app/features/quotations/course_type/CourseType.service';
+import { selectDish } from 'app/features/quotations/dish/DishReducer';
 import {
   addDish,
   openDialog,
 } from 'app/features/quotations/course_type/multiple_dishes_dialog/MultipleDishesDialogReducer';
 
-const CourseContent = ({course, onActionClick}) => {
+const CourseContent = ({ course, onActionClick }) => {
   const dispatch = useDispatch();
-  const {data: courseTypes} = useCourseTypes();
-  const {dishes} = useDishesByIds(course.dishes.map(dish => dish.id));
+  const { data: courseTypes } = useCourseTypes();
+  const { dishes } = useDishesByIds(course.dishes.map(dish => dish.id));
   const coursePrice = dishes.reduce((accumulator, dish) => dish.price ? accumulator + dish.price : accumulator, 0);
   const handleSelectDish = dishId => dispatch(selectDish(dishId));
   const isMultipleDishes = useMultipleDishes(courseTypes.find(c => c.id === course.type.id));
@@ -58,7 +58,7 @@ const CourseContent = ({course, onActionClick}) => {
       </div>}
       subheader={<ul>{getDishesList()}</ul>}
       action={<>
-        <p className="price">{formatCurrency(coursePrice, {format: '%s%v', symbol: '$'})}</p>
+        <p className="price">{formatCurrency(coursePrice, { format: '%s%v', symbol: '$' })}</p>
         <IconButton onClick={handleRemoveClick}>
           <FontAwesomeIcon id={`${course.type.id}-${course.position}-trash-icon`} icon={faTrash}/>
         </IconButton>

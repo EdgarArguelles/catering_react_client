@@ -18,7 +18,10 @@
     }
   },
   "rules": {
-    "comma-dangle": [2, "always-multiline"], // force trailing commas only when multiline
+    "comma-dangle": [
+      2,
+      "always-multiline"
+    ], // force trailing commas only when multiline
     "prefer-const": 2, // use const when is possible
     "prefer-template": 2, // use `Hello, ${name}!` instead of "Hello, " + name + "!"
     "no-cond-assign": 2, // disallow assignment in conditional expressions
@@ -46,7 +49,6 @@
     "use-isnan": 2, // disallow comparisons with the value NaN
     "valid-jsdoc": 2, // Ensure JSDoc comments are valid (off by default)
     "valid-typeof": 2, // Ensure that the results of typeof are compared against a valid string
-
     //
     // Best Practices
     //
@@ -96,12 +98,10 @@
     "vars-on-top": 2, // requires to declare all vars on top of their containing scope (off by default)
     "wrap-iife": 2, // require immediate function invocation to be wrapped in parentheses (off by default)
     "yoda": 2, // require or disallow Yoda conditions
-
     //
     // Strict Mode
     //
     "strict": 2, // controls location of Use Strict Directives. 0: required by `babel-eslint`
-
     //
     // Variables
     //
@@ -116,7 +116,6 @@
     "no-undef-init": 2, // disallow use of undefined when initializing variables
     "no-unused-vars": 2, // disallow declaration of variables that are not used in the code
     "no-use-before-define": 2, // disallow use of variables before they are defined
-
     //
     //Stylistic Issues
     //
@@ -124,34 +123,112 @@
     //
     "brace-style": 2, // enforce one true brace style (off by default)
     "camelcase": 2, // require camel case names
-    "comma-spacing": [2, {"before": false, "after": true}], // enforce spacing before and after comma
-    "comma-style": [2, "last"], // enforce one true comma style (off by default)
-    "consistent-this": [2, "_this"], // enforces consistent naming when capturing the current execution context (off by default)
+    "comma-spacing": [
+      2,
+      {
+        "before": false,
+        "after": true
+      }
+    ], // enforce spacing before and after comma
+    "comma-style": [
+      2,
+      "last"
+    ], // enforce one true comma style (off by default)
+    "consistent-this": [
+      2,
+      "_this"
+    ], // enforces consistent naming when capturing the current execution context (off by default)
     "func-names": 2, // require function expressions to have a name (off by default)
     "func-style": 2, // enforces use of function declarations or expressions (off by default)
-    "key-spacing": [2, {"beforeColon": false, "afterColon": true}], // enforces spacing between keys and values in object literal properties
+    "key-spacing": [
+      2,
+      {
+        "beforeColon": false,
+        "afterColon": true
+      }
+    ], // enforces spacing between keys and values in object literal properties
     "new-parens": 2, // disallow the omission of parentheses when invoking a constructor with no arguments
     "no-array-constructor": 2, // disallow use of the Array constructor
     "no-lonely-if": 2, // disallow if as the only statement in an else block (off by default)
     "no-mixed-spaces-and-tabs": 2, // disallow mixed spaces and tabs for indentation
-    "no-multiple-empty-lines": [2, {"max": 1}], // disallow multiple empty lines (off by default)
+    "indent": [
+      2,
+      2
+    ], // enforce correct indentation with 2 spaces
+    "object-curly-spacing": [
+      2,
+      "always"
+    ], // enforce consistent spacing inside braces
+    "no-multiple-empty-lines": [
+      2,
+      {
+        "max": 1
+      }
+    ], // disallow multiple empty lines (off by default)
     "no-new-object": 2, // disallow use of the Object constructor
     "no-spaced-func": 2, // disallow space between function identifier and application
     "no-trailing-spaces": 2, // disallow trailing whitespace at the end of lines
-    "padded-blocks": [2, "never"], // enforce padding within blocks (off by default)
-    "quote-props": [2, "as-needed"], // require quotes around object literal property names (off by default)
-    "quotes": [2, "single"], // specify whether double or single quotes should be used
-    "semi": [2, "always"], // require or disallow use of semicolons instead of ASI
-    "semi-spacing": [2, {"before": false, "after": true}], // enforce spacing before and after semicolons
+    "padded-blocks": [
+      2,
+      "never"
+    ], // enforce padding within blocks (off by default)
+    "quote-props": [
+      2,
+      "as-needed"
+    ], // require quotes around object literal property names (off by default)
+    "quotes": [
+      2,
+      "single"
+    ], // specify whether double or single quotes should be used
+    "semi": [
+      2,
+      "always"
+    ], // require or disallow use of semicolons instead of ASI
+    "semi-spacing": [
+      2,
+      {
+        "before": false,
+        "after": true
+      }
+    ], // enforce spacing before and after semicolons
     "sort-vars": 2, // sort variables within the same declaration block (off by default)
-    "space-before-blocks": [2, "always"], // require or disallow space before blocks (off by default)
-    "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}], // require or disallow space before function opening parenthesis (off by default)
-    "space-in-parens": [2, "never"], // require or disallow spaces inside parentheses (off by default)
-    "space-unary-ops": [2, {"words": true, "nonwords": false}], // Require or disallow spaces before/after unary operators (words on by default, nonwords off by default)
-    "spaced-comment": [2, "always"], // require or disallow a space immediately following the // in a line comment (off by default)
-    "eol-last": [2, "never"], // enforces at least one newline (or absence thereof) at the end of non-empty files.
-    "max-lines": [2, {"max": 100, "skipComments": true}], // max number of lines in a file.
-
+    "space-before-blocks": [
+      2,
+      "always"
+    ], // require or disallow space before blocks (off by default)
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ], // require or disallow space before function opening parenthesis (off by default)
+    "space-in-parens": [
+      2,
+      "never"
+    ], // require or disallow spaces inside parentheses (off by default)
+    "space-unary-ops": [
+      2,
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ], // Require or disallow spaces before/after unary operators (words on by default, nonwords off by default)
+    "spaced-comment": [
+      2,
+      "always"
+    ], // require or disallow a space immediately following the // in a line comment (off by default)
+    "eol-last": [
+      2,
+      "never"
+    ], // enforces at least one newline (or absence thereof) at the end of non-empty files.
+    "max-lines": [
+      2,
+      {
+        "max": 100,
+        "skipComments": true
+      }
+    ], // max number of lines in a file.
     //
     // ECMAScript 6
     //
@@ -159,12 +236,17 @@
     //
     "no-var": 2, // require let or const instead of var (off by default)
     "prefer-arrow-callback": 2, // prefer arrow functions in callback
-    "arrow-parens": [2, "as-needed"], // add parens in arrow only when is needed
-    "generator-star-spacing": [2, "before"], // enforce the spacing around the * in generator functions (off by default)
+    "arrow-parens": [
+      2,
+      "as-needed"
+    ], // add parens in arrow only when is needed
+    "generator-star-spacing": [
+      2,
+      "before"
+    ], // enforce the spacing around the * in generator functions (off by default)
     "require-await": 2, // disallow async functions which have no await expression
     "constructor-super": 2, // require super() calls in constructors
     "prefer-spread": 2, // require spread operators instead of .apply()
-
     //
     // Legacy
     //
@@ -172,17 +254,29 @@
     // While the names of the rules may not match up with the JSHint/JSLint counterpart,
     // the functionality is the same.
     //
-    "max-depth": [2, 4], // specify the maximum depth that blocks can be nested (off by default)
-    "max-len": [2, 120, 2], // specify the maximum length of a line in your program (off by default)
-    "max-params": [2, 6], // limits the number of parameters that can be used in the function declaration. (off by default)
+    "max-depth": [
+      2,
+      4
+    ], // specify the maximum depth that blocks can be nested (off by default)
+    "max-len": [
+      2,
+      130,
+      2
+    ], // specify the maximum length of a line in your program (off by default)
+    "max-params": [
+      2,
+      6
+    ], // limits the number of parameters that can be used in the function declaration. (off by default)
     "no-bitwise": 2, // disallow use of bitwise operators (off by default)
-
     //
     // eslint-plugin-react
     //
     // React specific linting rules for ESLint
     //
-    "jsx-quotes": [2, "prefer-double"], // prefer double quotes in JSX
+    "jsx-quotes": [
+      2,
+      "prefer-double"
+    ], // prefer double quotes in JSX
     "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
     "react/jsx-uses-vars": 2, // Prevent variables used in JSX to be incorrectly marked as unused
@@ -194,13 +288,11 @@
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
     "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
     "react/jsx-filename-extension": 2, // Force .jsx extension
-
     //
     // eslint-plugin-react-hooks
     //
     "react-hooks/rules-of-hooks": 2, // Checks rules of Hooks
     "react-hooks/exhaustive-deps": 2, // Checks effect dependencies
-
     //
     // eslint-plugin-more
     //
@@ -209,6 +301,9 @@
     "more/no-then": 2, // Forces the use of async / await instead of then
     "more/no-filter-instead-of-find": 2, // Prohibits using Array.prototype.filter to find one element and asks to use 'find' instead.
     "more/force-native-methods": 2, // Forces the use of native methods instead of lodash/underscore
-    "more/classbody-starts-with-newline": [2, "never"] // Prohibits an empty line at the beggining of a class body
+    "more/classbody-starts-with-newline": [
+      2,
+      "never"
+    ] // Prohibits an empty line at the beggining of a class body
   }
 }

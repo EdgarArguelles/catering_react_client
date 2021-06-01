@@ -11,7 +11,7 @@ describe('Data -> Reducer/Actions', () => {
         },
       };
 
-      const result = dataReducer(undefined, {type: 'invalid'});
+      const result = dataReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -21,11 +21,11 @@ describe('Data -> Reducer/Actions', () => {
         quotations: {
           isRemoteProcessing: true,
           fetching: true,
-          error: {id: 'error'},
+          error: { id: 'error' },
         },
       };
 
-      const result = dataReducer(state, {type: 'invalid'});
+      const result = dataReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -33,7 +33,7 @@ describe('Data -> Reducer/Actions', () => {
         quotations: {
           isRemoteProcessing: true,
           fetching: true,
-          error: {id: 'error'},
+          error: { id: 'error' },
         },
       });
     });

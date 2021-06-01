@@ -1,20 +1,20 @@
 import './EditMenu.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit} from '@fortawesome/free-regular-svg-icons';
+import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import {changeMenuTab} from 'app/features/quotations/QuotationsReducer';
-import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
+import { changeMenuTab } from 'app/features/quotations/QuotationsReducer';
+import { selectMenu } from 'app/features/quotations/quotation/QuotationReducer';
 
-const EditMenu = ({menu, onClose}) => {
+const EditMenu = ({ menu, onClose }) => {
   const dispatch = useDispatch();
 
   const editMenu = () => {
-    Utils.animateIcon('edit-menu-icon', {strokeWidth: 10});
+    Utils.animateIcon('edit-menu-icon', { strokeWidth: 10 });
     dispatch(selectMenu(menu.id));
     dispatch(changeMenuTab(0));
     onClose();

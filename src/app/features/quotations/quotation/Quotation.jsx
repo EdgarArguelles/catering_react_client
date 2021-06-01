@@ -1,7 +1,7 @@
 import './Quotation.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import formatCurrency from 'format-currency';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -9,21 +9,21 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import History from 'app/router/History';
-import {useQuotation} from 'app/hooks/data/Quotations';
-import {areEqual} from './Quotation.service';
+import { useQuotation } from 'app/hooks/data/Quotations';
+import { areEqual } from './Quotation.service';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import {revertQuotation} from 'app/features/quotations/quotation/QuotationReducer';
+import { revertQuotation } from 'app/features/quotations/quotation/QuotationReducer';
 
-const Quotation = ({index, quotation}) => {
+const Quotation = ({ index, quotation }) => {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.app.theme);
   const selectedQuotation = useSelector(state => state.quotations.quotation);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [shouldOverwrite, setShouldOverwrite] = useState(false);
   const [remoteId, setRemoteId] = useState(null);
-  const {data: remote} = useQuotation(remoteId);
-  const {data: selectedRemote} = useQuotation(remoteId ? selectedQuotation.id : null);
-  const {id} = quotation;
+  const { data: remote } = useQuotation(remoteId);
+  const { data: selectedRemote } = useQuotation(remoteId ? selectedQuotation.id : null);
+  const { id } = quotation;
   const createdAt = quotation.createdAt ? moment(`${quotation.createdAt}Z`) : moment();
   const dialogLabel = 'Al seleccionar este presupuesto se perderan todos los cambios no guardados ¿Desea continuar?';
   const selectQuotation = () => {
@@ -62,7 +62,7 @@ const Quotation = ({index, quotation}) => {
             <p className="title">{quotation.name}</p>
             <p className="price">
               El precio de este presupuesto es:<br/>
-              <span className="amount">{formatCurrency(quotation.price, {format: '%s%v', symbol: '$'})}</span>
+              <span className="amount">{formatCurrency(quotation.price, { format: '%s%v', symbol: '$' })}</span>
             </p>
             <div className="date">
               <p className="relative-date">Creado {createdAt.locale('es').fromNow()}</p>
@@ -73,7 +73,7 @@ const Quotation = ({index, quotation}) => {
       </ButtonBase>
 
       <ConfirmationDialog title="Seleccionar presupuesto" label={dialogLabel} okLabel="Continuar" open={isDialogOpen}
-                          onClose={() => setIsDialogOpen(false)} onOK={() => selectQuotation(quotation.id)}/>
+        onClose={() => setIsDialogOpen(false)} onOK={() => selectQuotation(quotation.id)}/>
     </>
   );
 };

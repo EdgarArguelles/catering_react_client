@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import {logout} from 'app/features/auth/AuthReducer';
+import { logout } from 'app/features/auth/AuthReducer';
 import quotationsReducer, {
   changeMenuDialogOpen,
   changeMenuTab,
@@ -39,7 +39,7 @@ describe('Quotations -> Reducer/Actions', () => {
         },
       };
 
-      const result = quotationsReducer(undefined, {type: 'invalid'});
+      const result = quotationsReducer(undefined, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
     });
@@ -52,7 +52,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -66,17 +66,17 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       };
 
-      const result = quotationsReducer(state, {type: 'invalid'});
+      const result = quotationsReducer(state, { type: 'invalid' });
 
       expect(result).toStrictEqual(state);
       // don't mutate
@@ -87,7 +87,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -101,12 +101,12 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       });
@@ -121,7 +121,7 @@ describe('Quotations -> Reducer/Actions', () => {
           navigation: {
             backLink: 'abc',
             title: '123',
-            closeDialog: {id: 'ID1'},
+            closeDialog: { id: 'ID1' },
           },
           dish: {
             selected: 'test',
@@ -135,12 +135,12 @@ describe('Quotations -> Reducer/Actions', () => {
           },
           multipleDishesDialog: {
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+            dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
           },
           quotation: {
             id: 'ID1',
             name: 'name 1',
-            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
             price: 500.5,
           },
         };
@@ -186,7 +186,7 @@ describe('Quotations -> Reducer/Actions', () => {
           navigation: {
             backLink: 'abc',
             title: '123',
-            closeDialog: {id: 'ID1'},
+            closeDialog: { id: 'ID1' },
           },
           dish: {
             selected: 'test',
@@ -200,23 +200,23 @@ describe('Quotations -> Reducer/Actions', () => {
           },
           multipleDishesDialog: {
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+            dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
           },
           quotation: {
             id: 'ID1',
             name: 'name 1',
-            menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+            menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
             price: 500.5,
           },
         });
       };
 
       it('should reset values when action is logout', () => {
-        validateResetData({type: logout.type});
+        validateResetData({ type: logout.type });
       });
 
       it('should reset values when action is deleteLocal', () => {
-        validateResetData({type: deleteLocal.type});
+        validateResetData({ type: deleteLocal.type });
       });
     });
 
@@ -228,7 +228,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -242,12 +242,12 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       };
@@ -259,7 +259,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -273,17 +273,17 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       };
 
-      const result = quotationsReducer(state, {type: changeMenuTab.type, payload: 6});
+      const result = quotationsReducer(state, { type: changeMenuTab.type, payload: 6 });
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -294,7 +294,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -308,12 +308,12 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       });
@@ -327,7 +327,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -341,12 +341,12 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       };
@@ -358,7 +358,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -372,17 +372,17 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       };
 
-      const result = quotationsReducer(state, {type: changeMenuDialogOpen.type, payload: true});
+      const result = quotationsReducer(state, { type: changeMenuDialogOpen.type, payload: true });
 
       expect(result).toStrictEqual(stateExpected);
       // don't mutate
@@ -393,7 +393,7 @@ describe('Quotations -> Reducer/Actions', () => {
         navigation: {
           backLink: 'abc',
           title: '123',
-          closeDialog: {id: 'ID1'},
+          closeDialog: { id: 'ID1' },
         },
         dish: {
           selected: 'test',
@@ -407,12 +407,12 @@ describe('Quotations -> Reducer/Actions', () => {
         },
         multipleDishesDialog: {
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'id1'}, {id: 'id2'}, {id: 'id3'}],
+          dishes: [{ id: 'id1' }, { id: 'id2' }, { id: 'id3' }],
         },
         quotation: {
           id: 'ID1',
           name: 'name 1',
-          menus: [{id: 'menu 1'}, {id: 'menu 2'}],
+          menus: [{ id: 'menu 1' }, { id: 'menu 2' }],
           price: 500.5,
         },
       });

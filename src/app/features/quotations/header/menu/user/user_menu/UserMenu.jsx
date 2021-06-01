@@ -1,20 +1,20 @@
 import './UserMenu.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faDonate, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDonate, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Popover from '@material-ui/core/Popover';
 import MenuItem from '@material-ui/core/MenuItem';
 import History from 'app/router/History';
 import Utils from 'app/common/Utils';
-import {useAppTheme} from 'app/hooks/Common';
+import { useAppTheme } from 'app/hooks/Common';
 import ConfirmationDialog from 'app/common/components/confirmation_dialog/ConfirmationDialog';
-import {logout} from 'app/features/auth/AuthReducer';
+import { logout } from 'app/features/auth/AuthReducer';
 
-const UserMenu = ({open, anchorEl, onClose}) => {
+const UserMenu = ({ open, anchorEl, onClose }) => {
   const dispatch = useDispatch();
-  const {theme, themeIcon, changeTheme} = useAppTheme();
+  const { theme, themeIcon, changeTheme } = useAppTheme();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const redirectToMyQuotations = () => {
@@ -41,7 +41,7 @@ const UserMenu = ({open, anchorEl, onClose}) => {
 
   return (
     <Popover id="user-menu" open={open} anchorEl={anchorEl} onClose={onClose}
-             anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
       <MenuItem onClick={redirectToMyQuotations}>
         <FontAwesomeIcon id="menu-my-quotations-icon" className="menu-icon" icon={faDonate}/> Mis Presupuestos
       </MenuItem>
@@ -54,7 +54,7 @@ const UserMenu = ({open, anchorEl, onClose}) => {
       </MenuItem>
 
       <ConfirmationDialog title="Salir" label="Al salir se perderan todos los cambios no guardados ¿Desea salir?"
-                          okLabel="Salir" open={isDialogOpen} onClose={() => setIsDialogOpen(false)} onOK={doLogout}/>
+        okLabel="Salir" open={isDialogOpen} onClose={() => setIsDialogOpen(false)} onOK={doLogout}/>
     </Popover>
   );
 };

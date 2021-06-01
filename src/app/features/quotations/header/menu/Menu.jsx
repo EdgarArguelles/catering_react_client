@@ -1,7 +1,7 @@
 import './Menu.scss';
-import React, {useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPhone} from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import Utils from 'app/common/Utils';
 import ContactDialog from 'app/features/quotations/header/contact_dialog/ContactDialog';

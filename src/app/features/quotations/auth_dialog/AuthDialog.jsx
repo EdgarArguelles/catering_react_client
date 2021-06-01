@@ -1,18 +1,18 @@
 import './AuthDialog.scss';
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Zoom from '@material-ui/core/Zoom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import {useBrowserNavigation} from 'app/hooks/Common';
+import { useBrowserNavigation } from 'app/hooks/Common';
 import Auth from 'app/features/auth/Auth';
-import {closeAuthDialog} from './AuthDialogReducer';
+import { closeAuthDialog } from './AuthDialogReducer';
 
-const AuthDialog = ({onSuccess}) => {
+const AuthDialog = ({ onSuccess }) => {
   const dispatch = useDispatch();
   const open = useSelector(state => state.quotations.isAuthDialogOpen);
   const onClose = useCallback(() => dispatch(closeAuthDialog()), [dispatch]);
@@ -25,7 +25,7 @@ const AuthDialog = ({onSuccess}) => {
 
   return (
     <Dialog id="auth-dialog" maxWidth="xs" open={open} onClose={onClose}
-            TransitionComponent={Zoom} transitionDuration={500}>
+      TransitionComponent={Zoom} transitionDuration={500}>
       <DialogTitle>Acceder</DialogTitle>
       <DialogContent>
         <Auth onSuccess={handleSuccess}/>

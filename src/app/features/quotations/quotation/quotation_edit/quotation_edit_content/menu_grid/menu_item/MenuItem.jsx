@@ -1,21 +1,21 @@
 import './MenuItem.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import Animate from 'app/common/components/animate/Animate';
 import MenuItemHeader from './menu_item_header/MenuItemHeader';
 import MenuItemContent from './menu_item_content/MenuItemContent';
 import MenuMenu from './menu_menu/MenuMenu';
-import {selectMenu} from 'app/features/quotations/quotation/QuotationReducer';
+import { selectMenu } from 'app/features/quotations/quotation/QuotationReducer';
 
-const MenuItem = ({index, menu}) => {
+const MenuItem = ({ index, menu }) => {
   const dispatch = useDispatch();
   const selectedMenu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [removeAction, setRemoveAction] = useState(null);
-  const [focus, setFocus] = useState({title: false, quantity: false});
+  const [focus, setFocus] = useState({ title: false, quantity: false });
   const handleSelectMenu = menuId => dispatch(selectMenu(menuId));
   const openMenu = event => {
     setOpen(true);
@@ -30,7 +30,7 @@ const MenuItem = ({index, menu}) => {
   };
 
   const setFocusAndSelect = source => {
-    setFocus({title: source === 'title', quantity: source === 'quantity'});
+    setFocus({ title: source === 'title', quantity: source === 'quantity' });
     handleSelectMenu(menu.id);
   };
 
@@ -41,7 +41,7 @@ const MenuItem = ({index, menu}) => {
       <Card raised className="menu-item">
         <MenuMenu menu={menu} open={open} anchorEl={anchorEl} onClose={onClose}/>
         <MenuItemHeader index={index} menu={menu} focus={focus.title} openMenu={openMenu}
-                        select={() => select('title')}/>
+          select={() => select('title')}/>
         <MenuItemContent menu={menu} focus={focus.quantity} select={() => select('quantity')}/>
       </Card>
     </Animate>

@@ -1,11 +1,11 @@
 import './Offline.scss';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSlash, faWifi} from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSlash, faWifi } from '@fortawesome/free-solid-svg-icons';
 import Slide from '@material-ui/core/Slide';
 import Utils from 'app/common/Utils';
-import {changeIsOnline} from 'app/AppReducer';
+import { changeIsOnline } from 'app/AppReducer';
 
 const Offline = () => {
   const dispatch = useDispatch();

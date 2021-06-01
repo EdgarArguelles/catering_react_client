@@ -1,16 +1,16 @@
 import './DishFilter.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
-import {faDollarSign, faSortAlphaUp} from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { faDollarSign, faSortAlphaUp } from '@fortawesome/free-solid-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
-import {changeSort, setCategories} from './DishFilterReducer';
+import { changeSort, setCategories } from './DishFilterReducer';
 import Categories from './categories/Categories';
 import Sort from './sort/Sort';
 
-const DishFilter = ({onClose}) => {
+const DishFilter = ({ onClose }) => {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.app.theme);
   const filter = useSelector(state => state.quotations.dish.filter);

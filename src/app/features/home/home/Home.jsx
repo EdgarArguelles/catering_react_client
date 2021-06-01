@@ -1,10 +1,10 @@
 import './Home.scss';
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import History from 'app/router/History';
 import Welcome from 'app/features/welcome/Welcome';
-import {getEditPath, isQuotationStarted} from 'app/features/quotations/quotation/Quotation.service';
+import { getEditPath, isQuotationStarted } from 'app/features/quotations/quotation/Quotation.service';
 
 const Home = () => {
   const quotation = useSelector(state => state.quotations.quotation);
@@ -13,7 +13,7 @@ const Home = () => {
   const scroll = () => {
     const element = document.getElementById('quotations');
     const offsetTop = element ? element.offsetTop - 60 : 0;
-    window.scroll({top: offsetTop, left: 0, behavior: 'smooth'});
+    window.scroll({ top: offsetTop, left: 0, behavior: 'smooth' });
   };
 
   const getButton = () => {

@@ -1,8 +1,8 @@
 import './Layout.scss';
-import React, {useEffect} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IconButton from '@material-ui/core/IconButton';
-import {useAppTheme} from 'app/hooks/Common';
+import { useAppTheme } from 'app/hooks/Common';
 import Utils from 'app/common/Utils';
 import BackToTop from 'app/common/components/back_to_top/BackToTop';
 import SideMenu from './side_menu/SideMenu';
@@ -15,7 +15,7 @@ import Social from './social/Social';
 import Contact from './contact/Contact';
 
 const Layout = () => {
-  const {themeIcon, changeTheme} = useAppTheme();
+  const { themeIcon, changeTheme } = useAppTheme();
   useEffect(() => {
     Utils.completeLoading();
   }, []);

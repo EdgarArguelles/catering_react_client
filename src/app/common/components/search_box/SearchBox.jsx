@@ -1,14 +1,14 @@
 import './SearchBox.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBackspace, faSearch} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackspace, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Utils from 'app/common/Utils';
 
-const SearchBox = ({id, className, initValue, onFocus, onBlur, onSearch, ...rest}) => {
+const SearchBox = ({ id, className, initValue, onFocus, onBlur, onSearch, ...rest }) => {
   const [search, setSearch] = useState(initValue || '');
   const [focus, setFocus] = useState(!!initValue);
 
@@ -45,7 +45,7 @@ const SearchBox = ({id, className, initValue, onFocus, onBlur, onSearch, ...rest
     return (
       <InputAdornment position="end" className="search-box-adornment">
         <IconButton className="clear-search-box-btn" onClick={() => handleSearch('')}
-                    onMouseEnter={() => Utils.animateIcon('search-box-end-icon')}>
+          onMouseEnter={() => Utils.animateIcon('search-box-end-icon')}>
           <FontAwesomeIcon id="search-box-end-icon" icon={faBackspace}/>
         </IconButton>
       </InputAdornment>
@@ -54,8 +54,8 @@ const SearchBox = ({id, className, initValue, onFocus, onBlur, onSearch, ...rest
 
   return (
     <Input id={id} placeholder="Buscar" className={`${className} ${search !== '' || focus ? 'search-active' : ''}`}
-           fullWidth={true} value={search} startAdornment={getStartAdornment()} endAdornment={getEndAdornment()}
-           onChange={event => handleSearch(event.target.value)} onFocus={handleFocus} onBlur={handleBlur} {...rest}/>
+      fullWidth={true} value={search} startAdornment={getStartAdornment()} endAdornment={getEndAdornment()}
+      onChange={event => handleSearch(event.target.value)} onFocus={handleFocus} onBlur={handleBlur} {...rest}/>
   );
 };
 

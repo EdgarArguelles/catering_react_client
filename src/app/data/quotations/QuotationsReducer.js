@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const SLICE_NAME = 'DATA_QUOTATIONS';
 
@@ -10,17 +10,17 @@ const quotationsDataSlice = createSlice({
     error: null,
   },
   reducers: {
-    changeIsRemoteProcessing(state, {payload: isRemoteProcessing}) {
+    changeIsRemoteProcessing(state, { payload: isRemoteProcessing }) {
       state.isRemoteProcessing = isRemoteProcessing;
     },
-    changeFetching(state, {payload: fetching}) {
+    changeFetching(state, { payload: fetching }) {
       state.fetching = fetching;
     },
-    changeError(state, {payload: error}) {
+    changeError(state, { payload: error }) {
       state.error = error;
     },
   },
 });
 
 export default quotationsDataSlice.reducer;
-export const {changeIsRemoteProcessing, changeFetching, changeError} = quotationsDataSlice.actions;
+export const { changeIsRemoteProcessing, changeFetching, changeError } = quotationsDataSlice.actions;

@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import {isDishAdded} from 'app/features/quotations/dish/Dish.service';
+import { isDishAdded } from 'app/features/quotations/dish/Dish.service';
 
 describe('Quotations -> Dish -> Service', () => {
   describe('isDishAdded', () => {
@@ -9,7 +9,7 @@ describe('Quotations -> Dish -> Service', () => {
       beforeEach(() => {
         dishId = 'd2';
         menuCourses = null;
-        multipleDishesDialog = {isMultipleDishesDialogOpen: true, dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}]};
+        multipleDishesDialog = { isMultipleDishesDialogOpen: true, dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }] };
       });
 
       describe('multipleDishesDialog', () => {
@@ -71,7 +71,7 @@ describe('Quotations -> Dish -> Service', () => {
           expect(menuCourses).toBeUndefined();
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+            dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
           });
         });
 
@@ -86,12 +86,12 @@ describe('Quotations -> Dish -> Service', () => {
           expect(menuCourses).toStrictEqual([]);
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+            dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
           });
         });
 
         it('should get true when menuCourses has values', () => {
-          menuCourses = [{id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]}, {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]}];
+          menuCourses = [{ id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] }, { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] }];
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
@@ -99,12 +99,12 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual('d2');
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+            dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
           });
         });
       });
@@ -121,7 +121,7 @@ describe('Quotations -> Dish -> Service', () => {
           expect(menuCourses).toStrictEqual(null);
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+            dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
           });
         });
 
@@ -136,7 +136,7 @@ describe('Quotations -> Dish -> Service', () => {
           expect(menuCourses).toStrictEqual(null);
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+            dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
           });
         });
 
@@ -151,7 +151,7 @@ describe('Quotations -> Dish -> Service', () => {
           expect(menuCourses).toStrictEqual(null);
           expect(multipleDishesDialog).toStrictEqual({
             isMultipleDishesDialogOpen: true,
-            dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+            dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
           });
         });
       });
@@ -165,7 +165,7 @@ describe('Quotations -> Dish -> Service', () => {
         expect(menuCourses).toStrictEqual(null);
         expect(multipleDishesDialog).toStrictEqual({
           isMultipleDishesDialogOpen: true,
-          dishes: [{id: 'd1'}, {id: 'd2'}, {id: 'd3'}],
+          dishes: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }],
         });
       });
     });
@@ -173,7 +173,7 @@ describe('Quotations -> Dish -> Service', () => {
     describe('isDishAddedInMenu', () => {
       beforeEach(() => {
         dishId = 'd2';
-        menuCourses = [{id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]}, {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]}];
+        menuCourses = [{ id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] }, { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] }];
         multipleDishesDialog = null;
       });
 
@@ -187,8 +187,8 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual('d2');
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
           expect(multipleDishesDialog).toBeUndefined();
         });
@@ -202,14 +202,14 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual('d2');
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
           expect(multipleDishesDialog).toStrictEqual({});
         });
 
         it('should get true when isMultipleDishesDialogOpen is multipleDishesDialog is null', () => {
-          multipleDishesDialog = {isMultipleDishesDialogOpen: null};
+          multipleDishesDialog = { isMultipleDishesDialogOpen: null };
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
@@ -217,14 +217,14 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual('d2');
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
-          expect(multipleDishesDialog).toStrictEqual({isMultipleDishesDialogOpen: null});
+          expect(multipleDishesDialog).toStrictEqual({ isMultipleDishesDialogOpen: null });
         });
 
         it('should get true when isMultipleDishesDialogOpen is multipleDishesDialog is false', () => {
-          multipleDishesDialog = {isMultipleDishesDialogOpen: false};
+          multipleDishesDialog = { isMultipleDishesDialogOpen: false };
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
@@ -232,10 +232,10 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual('d2');
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
-          expect(multipleDishesDialog).toStrictEqual({isMultipleDishesDialogOpen: false});
+          expect(multipleDishesDialog).toStrictEqual({ isMultipleDishesDialogOpen: false });
         });
       });
 
@@ -277,14 +277,14 @@ describe('Quotations -> Dish -> Service', () => {
         });
 
         it('should get false when menuCourses does not have dishes', () => {
-          menuCourses = [{id: 'c1'}, {id: 'c2'}];
+          menuCourses = [{ id: 'c1' }, { id: 'c2' }];
 
           const result = isDishAdded(multipleDishesDialog, menuCourses, dishId);
 
           expect(result).toBeFalsy();
           // don't mutate
           expect(dishId).toStrictEqual('d2');
-          expect(menuCourses).toStrictEqual([{id: 'c1'}, {id: 'c2'}]);
+          expect(menuCourses).toStrictEqual([{ id: 'c1' }, { id: 'c2' }]);
           expect(multipleDishesDialog).toStrictEqual(null);
         });
       });
@@ -299,8 +299,8 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toBeUndefined();
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
           expect(multipleDishesDialog).toStrictEqual(null);
         });
@@ -314,8 +314,8 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual(null);
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
           expect(multipleDishesDialog).toStrictEqual(null);
         });
@@ -329,8 +329,8 @@ describe('Quotations -> Dish -> Service', () => {
           // don't mutate
           expect(dishId).toStrictEqual('d3');
           expect(menuCourses).toStrictEqual([
-            {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-            {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+            { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+            { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
           ]);
           expect(multipleDishesDialog).toStrictEqual(null);
         });
@@ -343,8 +343,8 @@ describe('Quotations -> Dish -> Service', () => {
         // don't mutate
         expect(dishId).toStrictEqual('d2');
         expect(menuCourses).toStrictEqual([
-          {id: 'c1', dishes: [{id: 'd1'}, {id: 'd2'}]},
-          {id: 'c2', dishes: [{id: 'd2'}, {id: 'd4'}]},
+          { id: 'c1', dishes: [{ id: 'd1' }, { id: 'd2' }] },
+          { id: 'c2', dishes: [{ id: 'd2' }, { id: 'd4' }] },
         ]);
         expect(multipleDishesDialog).toStrictEqual(null);
       });

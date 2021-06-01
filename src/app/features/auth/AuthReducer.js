@@ -1,5 +1,5 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import Api, {ACTION_TYPES} from 'app/common/Api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import Api, { ACTION_TYPES } from 'app/common/Api';
 
 const SLICE_NAME = 'AUTH';
 
@@ -27,7 +27,7 @@ const saveToken = loggedUser => {
 export const fetchPing = createAsyncThunk(
   `${SLICE_NAME}/fetchPing`,
   async (arg, thunkAPI) => {
-    const body = {query: '{ping {id fullName image role token permissions}}'};
+    const body = { query: '{ping {id fullName image role token permissions}}' };
 
     const json = await Api.graphql(thunkAPI.dispatch, body);
     const loggedUser = json?.data?.ping?.id ? json.data.ping : null;
@@ -52,7 +52,7 @@ const authSlice = createSlice({
       removeToken();
       state.loggedUser = null;
     },
-    login(state, {payload: {loggedUser}}) {
+    login(state, { payload: { loggedUser } }) {
       saveToken(loggedUser);
       state.loggedUser = loggedUser;
     },
@@ -74,4 +74,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const {connectSocket, logout, login} = authSlice.actions;
+export const { connectSocket, logout, login } = authSlice.actions;

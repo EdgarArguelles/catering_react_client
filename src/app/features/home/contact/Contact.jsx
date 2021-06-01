@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Media from './media/Media';
 import Content from './content/Content';
 
-const Contact = ({isHomeScreen}) => {
+const Contact = ({ isHomeScreen }) => {
   const className = isHomeScreen ? 'home-screen' : 'in-dialog';
   const mdMedia = isHomeScreen ? null : 4;
   const mdContent = isHomeScreen ? null : 8;

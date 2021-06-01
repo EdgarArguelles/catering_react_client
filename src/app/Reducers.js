@@ -1,7 +1,7 @@
 /**
  * Collect all reducers and combine them.
  */
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import app from './AppReducer';
 import data from './data/DataReducer';
 import auth from './features/auth/AuthReducer';

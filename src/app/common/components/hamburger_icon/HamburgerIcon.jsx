@@ -1,8 +1,8 @@
 import './HamburgerIcon.scss';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const HamburgerIcon = ({open, onOpen, onClose}) => {
+const HamburgerIcon = ({ open, onOpen, onClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [fixed, setFixed] = useState(false);
   const className = (isOpen ? 'open ' : '') + (fixed ? 'fixed' : '');

@@ -6,10 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 import Utils from 'app/common/Utils';
 import Image from 'app/common/components/image/Image';
-import {useIsMobileSize} from 'app/hooks/Common';
+import { useIsMobileSize } from 'app/hooks/Common';
 import DishActions from 'app/features/quotations/dish/dish_actions/DishActions';
 
-const Dish = ({dish}) => {
+const Dish = ({ dish }) => {
   const fullScreen = useIsMobileSize();
 
   return (

@@ -1,6 +1,6 @@
 import './Menu.scss';
-import React, {useEffect} from 'react';
-import MenuItems, {selectItem} from './menu_items/MenuItems';
+import React, { useEffect } from 'react';
+import MenuItems, { selectItem } from './menu_items/MenuItems';
 
 const Menu = () => {
   useEffect(() => {

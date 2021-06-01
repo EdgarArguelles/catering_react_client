@@ -1,7 +1,7 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {useQuery, useQueryClient} from 'react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { useQuery, useQueryClient } from 'react-query';
 import Api from 'app/common/Api';
-import {ACTIVE_DISHES_KEY, CACHE as DISH_CACHE, DISH_KEY} from 'app/hooks/data/Dishes';
+import { ACTIVE_DISHES_KEY, CACHE as DISH_CACHE, DISH_KEY } from 'app/hooks/data/Dishes';
 
 export const useCourseTypes = () => {
   const KEY = 'CourseTypes';
@@ -15,7 +15,7 @@ export const useCourseTypes = () => {
   };
 
   return useQuery(KEY, async () => {
-    const body = {query: '{activeCourseTypes {id name picture position status}}'};
+    const body = { query: '{activeCourseTypes {id name picture position status}}' };
     const json = await Api.graphql(dispatch, body);
     const courseTypes = json.data.activeCourseTypes;
     window.localStorage.setItem(CACHE, JSON.stringify(courseTypes));
@@ -37,7 +37,7 @@ export const useDBVersion = courseTypes => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   return useQuery(KEY, async () => {
-    const body = {query: '{version {version}}'};
+    const body = { query: '{version {version}}' };
     const json = await Api.graphql(dispatch, body);
     const version = json.data.version.version;
     const oldVersion = window?.localStorage?.getItem(CACHE);
@@ -50,5 +50,5 @@ export const useDBVersion = courseTypes => {
       }
     }
     return version;
-  }, {enabled: !!courseTypes});
+  }, { enabled: !!courseTypes });
 };

@@ -1,11 +1,11 @@
 import './Service.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Utils from 'app/common/Utils';
 
-const Service = ({title, icon, children}) => {
+const Service = ({ title, icon, children }) => {
   const theme = useSelector(state => state.app.theme);
 
   return (

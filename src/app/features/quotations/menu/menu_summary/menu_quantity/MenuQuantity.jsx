@@ -1,11 +1,11 @@
 import './MenuQuantity.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import {changeQuantity} from 'app/features/quotations/menu/MenuReducer';
+import { changeQuantity } from 'app/features/quotations/menu/MenuReducer';
 
-const MenuQuantity = ({autoFocus, hideLabels, onEnter, onEsc, onBlur}) => {
+const MenuQuantity = ({ autoFocus, hideLabels, onEnter, onEsc, onBlur }) => {
   const dispatch = useDispatch();
   const menu = useSelector(state => state.quotations.quotation.menus.find(m => m.isSelected));
   const [empty, setEmpty] = useState(false);
@@ -35,7 +35,7 @@ const MenuQuantity = ({autoFocus, hideLabels, onEnter, onEsc, onBlur}) => {
 
     return (
       <TextField type="number" className="menu-quantity-field" margin="dense" autoFocus={autoFocus}
-                 value={empty ? '' : menuQuantity} onChange={handleSave} onKeyUp={handleKeyUp} onBlur={handleBlur}/>
+        value={empty ? '' : menuQuantity} onChange={handleSave} onKeyUp={handleKeyUp} onBlur={handleBlur}/>
     );
   };
 

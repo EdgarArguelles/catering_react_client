@@ -1,14 +1,14 @@
 import './MenuItems.scss';
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const MENU_ITEMS = {
-  home: {label: 'Home'},
-  about: {label: 'Quienes Somos'},
-  services: {label: 'Servicios'},
-  quotations: {label: 'Presupuesto'},
-  social: {label: 'Comunidad'},
-  contact: {label: 'Contactanos'},
+  home: { label: 'Home' },
+  about: { label: 'Quienes Somos' },
+  services: { label: 'Servicios' },
+  quotations: { label: 'Presupuesto' },
+  social: { label: 'Comunidad' },
+  contact: { label: 'Contactanos' },
 };
 
 export const selectItem = () => {
@@ -30,14 +30,14 @@ export const selectItem = () => {
   });
 };
 
-const MenuItems = ({onClick}) => {
+const MenuItems = ({ onClick }) => {
   useEffect(() => {
     selectItem();
   }, []);
 
   const handleClick = id => {
     const fixValue = id === 'contact' ? 0 : 60;
-    window.scroll({top: document.getElementById(id).offsetTop - fixValue, left: 0, behavior: 'smooth'});
+    window.scroll({ top: document.getElementById(id).offsetTop - fixValue, left: 0, behavior: 'smooth' });
     onClick && onClick();
   };
 

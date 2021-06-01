@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const SLICE_NAME = 'DISH_FILTER';
 
@@ -22,19 +22,19 @@ const dishFilterSlice = createSlice({
       state.sort = 'name';
       state.categories = null;
     },
-    changeSearch(state, {payload: search}) {
+    changeSearch(state, { payload: search }) {
       state.search = search;
     },
-    changeSort(state, {payload: sort}) {
+    changeSort(state, { payload: sort }) {
       state.sort = sort;
     },
-    setCategories(state, {payload: categories}) {
+    setCategories(state, { payload: categories }) {
       state.categories = categories;
     },
-    addCategory(state, {payload: category}) {
+    addCategory(state, { payload: category }) {
       state.categories.push(category);
     },
-    removeCategory(state, {payload: category}) {
+    removeCategory(state, { payload: category }) {
       state.categories = state.categories.filter(cat => cat !== category);
     },
   },
